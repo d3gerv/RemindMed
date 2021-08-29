@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "76217091049",
+    "firebase_url": "https://remindmed-18e5b-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "remindmed-18e5b",
+    "storage_bucket": "remindmed-18e5b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:76217091049:android:4c46e90534e25ebe064178",
+        "android_client_info": {
+          "package_name": "com.example.capstone1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "76217091049-iqsk27pa6ph7c1tmgqicomggeiqbh56p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApBHFxYshe6sIUHeiaOg4RsB66l3qD_g4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "76217091049-iqsk27pa6ph7c1tmgqicomggeiqbh56p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

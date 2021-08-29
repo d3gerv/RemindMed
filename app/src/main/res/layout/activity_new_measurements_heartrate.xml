@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".new_measurements_heartrate">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="421dp"
+        android:layout_height="92dp"
+        android:background="#E73927"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageButton
+        android:id="@+id/imageBack"
+        android:layout_width="64dp"
+        android:layout_height="68dp"
+        android:layout_marginEnd="360dp"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="#E73927"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/backarrow" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="668dp"
+        android:text="New Measurements"
+        android:textColor="#FFFFFF"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="31dp"
+        android:text="Heart Rate"
+        android:textColor="#000000"
+        android:textSize="21sp"
+        app:layout_constraintBottom_toTopOf="@+id/time_txt1"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <EditText
+        android:id="@+id/heart_rate_box"
+        android:layout_width="107dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/edittext3"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:paddingStart="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/time_txt1"
+        app:layout_constraintStart_toEndOf="@+id/textView13" />
+
+    <TextView
+        android:id="@+id/time_txt1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="23dp"
+        android:text="Time"
+        android:textColor="#000000"
+        android:textSize="21sp"
+        app:layout_constraintBottom_toTopOf="@+id/time_button_three"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/time_button_three"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="27dp"
+        android:width="125dp"
+        android:height="50dp"
+        android:background="@drawable/edittext3"
+        android:onClick="popTimePicker"
+        android:text="Set Time"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/frequency_txt1"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="OnClick" />
+
+    <TextView
+        android:id="@+id/frequency_txt1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="22dp"
+        android:text="Frequency"
+        android:textColor="#000000"
+        android:textSize="21sp"
+        app:layout_constraintBottom_toTopOf="@+id/frequency_spinner_six"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Spinner
+        android:id="@+id/frequency_spinner_six"
+        android:layout_width="143dp"
+        android:layout_height="54dp"
+        android:layout_marginEnd="252dp"
+        android:layout_marginBottom="27dp"
+        android:backgroundTint="#FDCB00"
+        app:layout_constraintBottom_toTopOf="@+id/duration_txt1"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/duration_txt1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="25dp"
+        android:text="Duration"
+        android:textColor="#000000"
+        android:textSize="21sp"
+        app:layout_constraintBottom_toTopOf="@+id/startButton"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/startButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="196dp"
+        android:width="125dp"
+        android:height="50dp"
+        android:background="@drawable/edittext3"
+        android:drawableStart="@drawable/ic_calendar"
+        android:paddingLeft="10dp"
+        android:text="Start"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/endButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginBottom="196dp"
+        android:width="125dp"
+        android:height="50dp"
+        android:background="@drawable/edittext3"
+        android:drawableStart="@drawable/ic_calendar"
+        android:paddingLeft="10dp"
+        android:text="End"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/startButton" />
+
+    <Button
+        android:id="@+id/btnsaveheart"
+        android:layout_width="247dp"
+        android:layout_height="49dp"
+        android:layout_marginBottom="108dp"
+        android:background="@drawable/edit_round"
+        android:fontFamily="@font/viga"
+        android:text="Save"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#FFFFFF"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/cancelButton"
+        android:layout_width="247dp"
+        android:layout_height="49dp"
+        android:layout_marginBottom="36dp"
+        android:background="@drawable/editttextcancel"
+        android:fontFamily="@font/viga"
+        android:text="Cancel"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#000000"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
