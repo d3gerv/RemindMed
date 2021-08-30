@@ -20,12 +20,12 @@ public class instruction_slidethree extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openinstruction_slidethree();
+                openhome_page();
             }
         });
     }
 
-    private void openinstruction_slidethree() {
+    private void openhome_page() {
         Intent intent = new Intent(this, home_page.class);
         startActivity(intent);
     }
