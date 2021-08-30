@@ -140,7 +140,7 @@ public class new_medications extends AppCompatActivity {
                         });
                     }
                 });
-
+/*
         DocumentReference documentReference = fstore.collection("users").document(userId);
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
@@ -150,6 +150,8 @@ public class new_medications extends AppCompatActivity {
                 inventory.setText(value.getString("InventoryMeds"));
             }
         });
+        
+ */
     }
 
 
