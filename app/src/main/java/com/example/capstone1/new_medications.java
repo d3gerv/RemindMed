@@ -124,8 +124,10 @@ public class new_medications extends AppCompatActivity {
                         String Inventory = inventory.getText().toString().trim();
                         String FrequencyMedication = spinnerfrequencymedication.getSelectedItem().toString().trim();
                         String FrequencyMedicationType = spinnertypeunit.getSelectedItem().toString().trim();
+                        String TimeMedication = timeButton.getText().toString().trim();
 
                         Map<String,Object> user =new HashMap<>();
+                        user.put("TimeMedication", TimeMedication);
                         user.put("Medication",Medication);
                         user.put("Dosage",Dosage);
                         user.put("InventoryMeds",Inventory);
@@ -150,7 +152,7 @@ public class new_medications extends AppCompatActivity {
                 inventory.setText(value.getString("InventoryMeds"));
             }
         });
-        
+
  */
     }
 
@@ -171,5 +173,7 @@ public class new_medications extends AppCompatActivity {
 
                 timePickerDialog.setTitle("Set Time");
                 timePickerDialog.show();
+
+
             }
         };
