@@ -78,6 +78,8 @@ public class new_measurements_bloodpressure extends AppCompatActivity {
         myAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerbp.setAdapter(myAdapter2);
 
+        timeButton = findViewById(R.id.time_btn_one);
+
         buttonsavesbloodpressure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

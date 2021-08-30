@@ -78,6 +78,8 @@ public class new_measurements_hours_of_sleep extends AppCompatActivity {
         myAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnersl.setAdapter(myAdapter2);
 
+        timeButton = findViewById(R.id.time_button_five);
+
 
         buttonsavesleep.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -72,6 +72,8 @@ public class new_measurements_heartrate extends AppCompatActivity {
         myAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerhr.setAdapter(myAdapter2);
 
+        timeButton = findViewById(R.id.time_button_four);
+
 
         buttonsaveheart.setOnClickListener(new View.OnClickListener() {
             @Override

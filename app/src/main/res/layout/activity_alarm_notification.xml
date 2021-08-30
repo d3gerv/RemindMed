@@ -70,7 +70,7 @@
         android:id="@+id/snooze_button"
         android:layout_width="247dp"
         android:layout_height="49dp"
-        android:layout_marginBottom="196dp"
+        android:layout_marginBottom="35dp"
         android:background="@drawable/edit_round"
         android:fontFamily="@font/viga"
         android:text="Snooze!"
@@ -78,7 +78,7 @@
         android:textColor="#FFFFFF"
         android:textSize="22sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/stop_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

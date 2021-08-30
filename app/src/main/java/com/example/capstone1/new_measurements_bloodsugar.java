@@ -73,6 +73,8 @@ public class new_measurements_bloodsugar extends AppCompatActivity {
         myAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerbs.setAdapter(myAdapter2);
 
+        timeButton = findViewById(R.id.time_button_two);
+
 
         buttonsavesugar.setOnClickListener(new View.OnClickListener() {
             @Override

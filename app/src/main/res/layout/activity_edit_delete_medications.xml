@@ -46,15 +46,14 @@
         app:layout_constraintGuide_begin="20dp"
         app:layout_constraintGuide_percent="0.80"/>
 
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="421dp"
         android:layout_height="92dp"
-        android:layout_marginBottom="6dp"
         android:background="#E73927"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        app:layout_constraintBottom_toTopOf="@+id/medicineName_txt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -64,23 +63,24 @@
         android:id="@+id/imageBack"
         android:layout_width="64dp"
         android:layout_height="68dp"
-        android:layout_marginEnd="348dp"
+        android:layout_marginEnd="360dp"
+        android:layout_marginBottom="24dp"
         android:backgroundTint="#E73927"
-        app:layout_constraintBottom_toBottomOf="@+id/textView11"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/backarrow" />
 
+
     <TextView
-        android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="28dp"
         android:text="Edit Medications"
         android:textColor="#FFFFFF"
         android:textSize="35sp"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -88,12 +88,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="12dp"
         android:text="Medicine Name"
         android:textColor="#000000"
         android:textSize="21sp"
         app:layout_constraintBottom_toTopOf="@+id/medicine_Box"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <EditText
         android:id="@+id/medicine_Box"
@@ -113,8 +115,8 @@
         android:id="@+id/ocr1"
         android:layout_width="46dp"
         android:layout_height="49dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
         android:backgroundTint="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/type_txt"
         app:layout_constraintStart_toEndOf="@+id/medicine_Box"
@@ -150,12 +152,13 @@
         android:id="@+id/type_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="87dp"
         android:layout_marginBottom="8dp"
         android:text="Type/Unit"
         android:textColor="#000000"
         android:textSize="21sp"
         app:layout_constraintBottom_toTopOf="@+id/type_spinner_two"
-        tools:layout_editor_absoluteX="173dp" />
+        app:layout_constraintStart_toEndOf="@+id/dosage_txt" />
 
     <Spinner
         android:id="@+id/type_spinner_two"
@@ -200,7 +203,7 @@
         android:layout_width="51dp"
         android:layout_height="47dp"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="12dp"
         android:backgroundTint="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/inventory_txt"
         app:layout_constraintStart_toEndOf="@+id/timeButton"
@@ -244,23 +247,24 @@
         android:id="@+id/inventoryBox"
         android:layout_width="118dp"
         android:layout_height="55dp"
-        android:layout_marginStart="25dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginBottom="12dp"
         android:background="@drawable/edittext3"
         android:ems="10"
         android:hint="Inventory"
         android:inputType="textPersonName"
         android:paddingStart="10dp"
-        app:layout_constraintStart_toEndOf="@+id/frequency_spinner_two"
-        tools:layout_editor_absoluteY="433dp" />
+        app:layout_constraintBottom_toTopOf="@+id/duration_txt1"
+        app:layout_constraintStart_toEndOf="@+id/frequency_spinner_two" />
 
     <ImageButton
         android:id="@+id/ocr2"
         android:layout_width="46dp"
         android:layout_height="49dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="19dp"
         android:backgroundTint="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/endButton_one"
+        app:layout_constraintBottom_toTopOf="@+id/duration_txt1"
         app:layout_constraintStart_toEndOf="@+id/inventoryBox"
         app:srcCompat="@drawable/scan" />
 
@@ -269,7 +273,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="8dp"
         android:text="Duration"
         android:textColor="#000000"
         android:textSize="21sp"
@@ -281,7 +285,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="16dp"
         android:width="125dp"
         android:height="50dp"
         android:background="@drawable/edittext3"
@@ -298,7 +302,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="16dp"
         android:width="125dp"
         android:height="50dp"
         android:background="@drawable/edittext3"
@@ -316,7 +320,7 @@
         android:layout_height="52dp"
         android:layout_marginStart="76dp"
         android:layout_marginEnd="102dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/edit_round"
         android:fontFamily="@font/viga"
         android:text="Save Changes"
@@ -326,14 +330,14 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/deleteBtn"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/deleteBtn"
         android:layout_width="233dp"
         android:layout_height="49dp"
-        android:layout_marginStart="76dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/editttextcancel"
         android:fontFamily="@font/viga"
         android:text="Delete"
@@ -342,6 +346,8 @@
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.421"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

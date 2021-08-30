@@ -70,6 +70,8 @@ public class new_measurements_temperature extends AppCompatActivity {
         myAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnertemp.setAdapter(myAdapter2);
 
+        timeButton = findViewById(R.id.time_button_seven);
+
         buttonsavetemp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

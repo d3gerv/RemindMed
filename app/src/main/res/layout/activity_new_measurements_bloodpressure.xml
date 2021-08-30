@@ -11,16 +11,16 @@
         android:id="@+id/toolbar"
         android:layout_width="421dp"
         android:layout_height="92dp"
-        android:layout_marginBottom="20dp"
         android:background="#E73927"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        app:layout_constraintBottom_toTopOf="@+id/blood_pressure_box"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <ImageButton
-        android:id="@+id/imageBack"
+        android:id="@+id/imageBack_bloodpressure"
         android:layout_width="64dp"
         android:layout_height="68dp"
         android:layout_marginEnd="360dp"
@@ -40,6 +40,7 @@
         android:textSize="35sp"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -73,15 +74,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="21dp"
+        android:layout_marginBottom="22dp"
         android:text="Time"
         android:textColor="#000000"
         android:textSize="21sp"
-        app:layout_constraintBottom_toTopOf="@+id/timeButton"
+        app:layout_constraintBottom_toTopOf="@+id/time_btn_one"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/timeButton"
+        android:id="@+id/time_btn_one"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

@@ -10,7 +10,6 @@
         android:id="@+id/toolbar"
         android:layout_width="421dp"
         android:layout_height="92dp"
-        android:layout_marginBottom="20dp"
         android:background="#E73927"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
@@ -20,11 +19,10 @@
 
     <ImageView
         android:id="@+id/imageView6"
-        android:layout_width="174dp"
-        android:layout_height="128dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginBottom="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/add_medications_btn"
+        android:layout_width="136dp"
+        android:layout_height="113dp"
+        android:layout_marginStart="28dp"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintStart_toEndOf="@+id/firstnameview"
         app:srcCompat="@drawable/pills" />
 
@@ -45,14 +43,14 @@
         android:id="@+id/firstnameview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="156dp"
-        android:layout_marginBottom="672dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="32dp"
         android:fontFamily="@font/viga"
         android:text="name"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+        app:layout_constraintStart_toEndOf="@+id/welcomeName" />
 
     <Button
         android:id="@+id/add_medications_btn"

@@ -30,17 +30,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/backarrow" />
 
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="668dp"
+        android:layout_marginBottom="24dp"
         android:text="New Measurements"
         android:textColor="#FFFFFF"
         android:textSize="35sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
 
     <TextView
         android:id="@+id/textView17"
@@ -73,15 +73,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="532dp"
+        android:layout_marginBottom="24dp"
         android:text="Time"
         android:textColor="#000000"
         android:textSize="22sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/time_button_six"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/time_button_four"
+        android:id="@+id/time_button_six"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

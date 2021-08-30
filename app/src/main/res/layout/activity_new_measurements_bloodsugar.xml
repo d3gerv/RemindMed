@@ -77,11 +77,11 @@
         android:text="Time"
         android:textColor="#000000"
         android:textSize="21sp"
-        app:layout_constraintBottom_toTopOf="@+id/time_button_one"
+        app:layout_constraintBottom_toTopOf="@+id/time_button_two"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/time_button_one"
+        android:id="@+id/time_button_two"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

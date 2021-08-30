@@ -74,6 +74,8 @@ public class new_measurements_pulserate extends AppCompatActivity {
         myAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerpr.setAdapter(myAdapter2);
 
+        timeButton = findViewById(R.id.time_button_six);
+
         buttonsavespulserate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
