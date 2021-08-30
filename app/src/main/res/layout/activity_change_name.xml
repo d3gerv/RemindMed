@@ -182,6 +182,7 @@
         android:background="@drawable/editttextcancel"
         android:fontFamily="@font/viga"
         android:text="Cancel"
+        android:onClick="Change_To_User"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#000000"
         android:textSize="22sp"

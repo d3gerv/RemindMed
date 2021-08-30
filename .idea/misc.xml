@@ -63,6 +63,18 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_main_page.xml" value="0.1793478260869565" />
         <entry key="..\:/Users/User/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_new_measurements_bloodpressure.xml" value="0.1793478260869565" />
         <entry key="..\:/Users/User/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_new_measurements_bloodsugar.xml" value="0.1793478260869565" />
+        <entry key="..\:/Users/gabri/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_change_name.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/gabri/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_health_measurements.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/gabri/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_home_page.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/gabri/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_new_measurements_bloodpressure.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/gabri/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_new_measurements_bloodsugar.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/gabri/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_new_measurements_cholesterol.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/gabri/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_new_measurements_heartrate.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/gabri/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_new_measurements_hours_of_sleep.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/gabri/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_new_measurements_pulserate.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/gabri/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_new_measurements_temperature.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/gabri/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_new_medications.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/gabri/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_user_information.xml" value="0.20416666666666666" />
       </map>
     </option>
   </component>

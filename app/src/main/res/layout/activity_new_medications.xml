@@ -268,11 +268,11 @@
         android:text="End"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/save_changes_button"
+        app:layout_constraintBottom_toTopOf="@+id/save_medication_button"
         app:layout_constraintStart_toEndOf="@+id/startButton_date" />
 
     <Button
-        android:id="@+id/save_changes_button"
+        android:id="@+id/save_medication_button"
         android:layout_width="247dp"
         android:layout_height="49dp"
         android:layout_marginBottom="44dp"

@@ -53,6 +53,9 @@
             android:name=".health_measurements"
             android:exported="true" />
         <activity
+            android:name=".new_medications"
+            android:exported="true" />
+        <activity
             android:name=".change_name"
             android:exported="true" />
         <activity
