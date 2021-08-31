@@ -51,7 +51,7 @@ public class new_measurements_cholesterol extends AppCompatActivity {
     String userId;
     Spinner spinnerch;
 
-    Button timeButton;
+    Button timeButtonchol;
     int hour, minute;
 
 
@@ -76,7 +76,7 @@ public class new_measurements_cholesterol extends AppCompatActivity {
         myAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerch.setAdapter(myAdapter2);
 
-        timeButton = findViewById(R.id.time_button_three);
+        timeButtonchol = findViewById(R.id.time_button_three);
 
 
         buttonsavecholesterol.setOnClickListener(new View.OnClickListener() {
@@ -84,8 +84,11 @@ public class new_measurements_cholesterol extends AppCompatActivity {
             public void onClick(View v) {
                 String Cholesterol = cholesterol.getText().toString().trim();
                 String Frequency = spinnerch.getSelectedItem().toString().trim();
+                String TimeCholesterol = timeButtonchol.getText().toString().trim();
+
 
                 Map<String,Object> user = new HashMap<>();
+                user.put("TimeCholesterol",TimeCholesterol);
                 user.put("Cholesterol",Cholesterol);
                 user.put("FrequencyChol",Frequency);
 
@@ -123,7 +126,7 @@ public class new_measurements_cholesterol extends AppCompatActivity {
             public void onTimeSet(TimePicker timePicker, int i, int i1) {
                 hour = i;
                 minute = i1;
-                timeButton.setText(String.format(Locale.getDefault(), "%02d:%02d", hour, minute));
+                timeButtonchol.setText(String.format(Locale.getDefault(), "%02d:%02d", hour, minute));
             }
         };
 

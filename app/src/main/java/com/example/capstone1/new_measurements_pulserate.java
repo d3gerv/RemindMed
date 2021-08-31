@@ -50,7 +50,7 @@ public class new_measurements_pulserate extends AppCompatActivity {
     String userId;
     Spinner spinnerpr;
 
-    Button timeButton;
+    Button timeButtonpulse;
     int hour, minute;
 
     @Override
@@ -74,15 +74,18 @@ public class new_measurements_pulserate extends AppCompatActivity {
         myAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerpr.setAdapter(myAdapter2);
 
-        timeButton = findViewById(R.id.time_button_six);
+        timeButtonpulse = findViewById(R.id.time_button_six);
 
         buttonsavespulserate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String Pulserate = pulserate.getText().toString().trim();
                 String Frequency = spinnerpr.getSelectedItem().toString().trim();
+                String TimePulseRate = timeButtonpulse.getText().toString().trim();
+
 
                 Map<String, Object> user = new HashMap<>();
+                user.put("TimePulseRate",TimePulseRate);
                 user.put("Pulserate", Pulserate);
                 user.put("FrequencyPulseR", Frequency );
 
@@ -117,7 +120,7 @@ public class new_measurements_pulserate extends AppCompatActivity {
             public void onTimeSet(TimePicker timePicker, int i, int i1) {
                 hour = i;
                 minute = i1;
-                timeButton.setText(String.format(Locale.getDefault(), "%02d:%02d", hour, minute));
+                timeButtonpulse.setText(String.format(Locale.getDefault(), "%02d:%02d", hour, minute));
             }
         };
 

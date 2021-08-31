@@ -3,6 +3,7 @@ package com.example.capstone1;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -176,4 +177,8 @@ public class new_medications extends AppCompatActivity {
 
 
             }
-        };
+    public void Medication_To_Home (View view){
+        Intent intent = new Intent(new_medications.this, home_page.class);
+        startActivity(intent);
+    }
+};

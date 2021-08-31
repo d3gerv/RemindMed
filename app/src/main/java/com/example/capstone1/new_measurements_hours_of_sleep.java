@@ -53,7 +53,7 @@ public class new_measurements_hours_of_sleep extends AppCompatActivity {
     String userId;
     Spinner spinnersl;
 
-    Button timeButton;
+    Button timeButtonsleep;
     int hour, minute;
 
 
@@ -78,7 +78,7 @@ public class new_measurements_hours_of_sleep extends AppCompatActivity {
         myAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnersl.setAdapter(myAdapter2);
 
-        timeButton = findViewById(R.id.time_button_five);
+        timeButtonsleep = findViewById(R.id.time_button_five);
 
 
         buttonsavesleep.setOnClickListener(new View.OnClickListener() {
@@ -86,8 +86,11 @@ public class new_measurements_hours_of_sleep extends AppCompatActivity {
             public void onClick(View v) {
                 String Sleep = sleep.getText().toString().trim();
                 String Frequency = spinnersl.getSelectedItem().toString().trim();
+                String TimeSleep = timeButtonsleep.getText().toString().trim();
+
 
                 Map<String,Object> user =new HashMap<>();
+                user.put("TimeSleep",TimeSleep);
                 user.put("Sleep",Sleep);
                 user.put("FrequencySleep",Frequency);
 
@@ -122,7 +125,7 @@ public class new_measurements_hours_of_sleep extends AppCompatActivity {
             public void onTimeSet(TimePicker timePicker, int i, int i1) {
                 hour = i;
                 minute = i1;
-                timeButton.setText(String.format(Locale.getDefault(), "%02d:%02d", hour, minute));
+                timeButtonsleep.setText(String.format(Locale.getDefault(), "%02d:%02d", hour, minute));
             }
         };
 

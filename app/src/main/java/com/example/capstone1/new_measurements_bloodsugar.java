@@ -49,7 +49,7 @@ public class new_measurements_bloodsugar extends AppCompatActivity {
     String userId;
     Spinner spinnerbs;
 
-    Button timeButton;
+    Button timeButtonbs;
     int hour, minute;
 
     @Override
@@ -73,7 +73,7 @@ public class new_measurements_bloodsugar extends AppCompatActivity {
         myAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerbs.setAdapter(myAdapter2);
 
-        timeButton = findViewById(R.id.time_button_two);
+        timeButtonbs = findViewById(R.id.time_button_two);
 
 
         buttonsavesugar.setOnClickListener(new View.OnClickListener() {
@@ -81,8 +81,10 @@ public class new_measurements_bloodsugar extends AppCompatActivity {
             public void onClick(View v) {
                 String Sugar = sugar.getText().toString().trim();
                 String Frequency = spinnerbs.getSelectedItem().toString().trim();
+                String TimeBloodSugar = timeButtonbs.getText().toString().trim();
 
                 Map<String, Object> user = new HashMap<>();
+                user.put("TimeBloodSugar",TimeBloodSugar);
                 user.put("Sugar", Sugar);
                 user.put("FrequencyBloodSgr",Frequency);
 
@@ -119,7 +121,7 @@ public class new_measurements_bloodsugar extends AppCompatActivity {
             public void onTimeSet(TimePicker timePicker, int i, int i1) {
                 hour = i;
                 minute = i1;
-                timeButton.setText(String.format(Locale.getDefault(), "%02d:%02d", hour, minute));
+                timeButtonbs.setText(String.format(Locale.getDefault(), "%02d:%02d", hour, minute));
             }
         };
 

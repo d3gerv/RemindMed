@@ -128,4 +128,12 @@ public class health_measurements extends AppCompatActivity {
         Intent intent = new Intent(health_measurements.this, new_measurements_bloodpressure.class);
         startActivity(intent);
     }
+    public void Health_To_Home (View view){
+        Intent intent = new Intent(health_measurements.this, home_page.class);
+        startActivity(intent);
+    }
+    public void Health_To_User (View view){
+        Intent intent = new Intent(health_measurements.this, user_information.class);
+        startActivity(intent);
+    }
 }

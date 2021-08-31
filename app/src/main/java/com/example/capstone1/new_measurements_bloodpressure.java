@@ -54,7 +54,7 @@ public class new_measurements_bloodpressure extends AppCompatActivity {
     String userId;
     Spinner spinnerbp;
 
-    Button timeButton;
+    Button timeButtonbp;
     int hour, minute;
 
     @Override
@@ -78,15 +78,17 @@ public class new_measurements_bloodpressure extends AppCompatActivity {
         myAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerbp.setAdapter(myAdapter2);
 
-        timeButton = findViewById(R.id.time_btn_one);
+        timeButtonbp = findViewById(R.id.time_btn_one);
 
         buttonsavesbloodpressure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String Bloodpressure = bloodpressure.getText().toString().trim();
                 String Frequency = spinnerbp.getSelectedItem().toString().trim();
+                String TimeBloodPressure = timeButtonbp.getText().toString().trim();
 
                 Map<String,Object> user =new HashMap<>();
+                user.put("TimeBloodPressure", TimeBloodPressure);
                 user.put("Bloodpressure",Bloodpressure);
                 user.put("FrequencyBloodPrs",Frequency);
 
@@ -122,7 +124,7 @@ public class new_measurements_bloodpressure extends AppCompatActivity {
             public void onTimeSet(TimePicker timePicker, int i, int i1) {
                 hour = i;
                 minute = i1;
-                timeButton.setText(String.format(Locale.getDefault(), "%02d:%02d", hour, minute));
+                timeButtonbp.setText(String.format(Locale.getDefault(), "%02d:%02d", hour, minute));
             }
         };
 

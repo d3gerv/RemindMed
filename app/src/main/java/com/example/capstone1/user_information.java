@@ -228,4 +228,8 @@ public class user_information extends AppCompatActivity {
         startActivity(intent);
 
     }
+    public void User_To_Home (View view){
+        Intent intent = new Intent(user_information.this, home_page.class);
+        startActivity(intent);
+    }
 }

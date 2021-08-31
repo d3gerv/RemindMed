@@ -45,7 +45,7 @@ public class new_measurements_temperature extends AppCompatActivity {
     FirebaseAuth rootAuthen;
     FirebaseFirestore fstore;
     String userId;
-    Button timeButton;
+    Button timeButtontemp;
     int hour, minute;
     Spinner spinnertemp;
 
@@ -70,15 +70,18 @@ public class new_measurements_temperature extends AppCompatActivity {
         myAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnertemp.setAdapter(myAdapter2);
 
-        timeButton = findViewById(R.id.time_button_seven);
+        timeButtontemp = findViewById(R.id.time_button_seven);
 
         buttonsavetemp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String Temperature = temperature.getText().toString().trim();
                 String Frequency = spinnertemp.getSelectedItem().toString().trim();
+                String TimeTemperature = timeButtontemp.getText().toString().trim();
+
 
                 Map<String,Object> user =new HashMap<>();
+                user.put("TimeTemperature",TimeTemperature);
                 user.put("Temperature",Temperature);
                 user.put("FrequencyTemp",Frequency);
 
@@ -105,7 +108,7 @@ public class new_measurements_temperature extends AppCompatActivity {
         Intent intent = new Intent(new_measurements_temperature.this, health_measurements.class);
         startActivity(intent);
 
-        timeButton = findViewById(R.id.timeButton);
+        //timeButton = findViewById(R.id.timeButton);
     }
 
     public void popTimePicker(View view) {
@@ -114,7 +117,7 @@ public class new_measurements_temperature extends AppCompatActivity {
             public void onTimeSet(TimePicker timePicker, int i, int i1) {
                 hour = i;
                 minute = i1;
-                timeButton.setText(String.format(Locale.getDefault(), "%02d:%02d", hour, minute));
+                timeButtontemp.setText(String.format(Locale.getDefault(), "%02d:%02d", hour, minute));
             }
         };
 
