@@ -9,7 +9,7 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        android:layout_width="421dp"
+        android:layout_width="match_parent"
         android:layout_height="92dp"
         android:background="#E73927"
         android:minHeight="?attr/actionBarSize"
@@ -20,72 +20,132 @@
 
 
     <ImageButton
-        android:id="@+id/imageBack"
+        android:id="@+id/imageBack_bloodsugar"
         android:layout_width="64dp"
         android:layout_height="68dp"
-        android:layout_marginEnd="360dp"
-        android:layout_marginBottom="24dp"
         android:backgroundTint="#E73927"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/backarrow" />
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="29dp"
+        android:layout_marginBottom="28dp"
         android:text="New Measurements"
         android:textColor="#FFFFFF"
         android:textSize="35sp"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent" />
 
 
-    <TextView
+    <Button
+        android:id="@+id/endButton_two"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="30dp"
-        android:text="Blood Sugar Level"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="64dp"
+        android:width="125dp"
+        android:height="50dp"
+        android:background="@drawable/edittext3"
+        android:drawableStart="@drawable/ic_calendar"
+        android:paddingLeft="10dp"
+        android:text="End"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnsavebloodsugar"
+        app:layout_constraintStart_toEndOf="@+id/guideline24"
+        app:layout_constraintTop_toBottomOf="@+id/guideline27" />
+
+    <Button
+        android:id="@+id/startButton_two"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="64dp"
+        android:width="125dp"
+        android:height="50dp"
+        android:background="@drawable/edittext3"
+        android:drawableStart="@drawable/ic_calendar"
+        android:paddingLeft="10dp"
+        android:text="Start"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnsavebloodsugar"
+        app:layout_constraintEnd_toEndOf="@+id/guideline24"
+        app:layout_constraintTop_toBottomOf="@+id/guideline27" />
+
+    <TextView
+        android:id="@+id/duration_txt1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="22dp"
+        android:text="Duration"
+        android:textColor="#000000"
+        android:textSize="21sp"
+        app:layout_constraintBottom_toTopOf="@+id/startButton_two"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/bloodSView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginBottom="40dp"
+        android:text="Blood Sugar"
         android:textColor="#000000"
         android:textSize="21sp"
         app:layout_constraintBottom_toTopOf="@+id/time_txt1"
-        app:layout_constraintStart_toStartOf="parent" />
-
-
-    <EditText
-        android:id="@+id/blood_sugar_level"
-        android:layout_width="107dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="208dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/edittext3"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:paddingStart="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/time_txt1"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <TextView
         android:id="@+id/time_txt1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="21dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="16dp"
         android:text="Time"
         android:textColor="#000000"
         android:textSize="21sp"
-        app:layout_constraintBottom_toTopOf="@+id/time_button_two"
+        app:layout_constraintBottom_toTopOf="@+id/time_btn_two"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/time_button_two"
+    <TextView
+        android:id="@+id/frequency_txt1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="27dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="16dp"
+        android:text="Frequency"
+        android:textColor="#000000"
+        android:textSize="21sp"
+        app:layout_constraintBottom_toTopOf="@+id/frequency_spinner_four"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Spinner
+        android:id="@+id/frequency_spinner_four"
+        android:layout_width="143dp"
+        android:layout_height="54dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="28dp"
+        android:backgroundTint="#FDCB00"
+        app:layout_constraintBottom_toTopOf="@+id/duration_txt1"
+        app:layout_constraintEnd_toEndOf="@+id/guideline24" />
+
+    <Button
+        android:id="@+id/time_btn_two"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginBottom="24dp"
         android:width="125dp"
         android:height="50dp"
         android:background="@drawable/edittext3"
@@ -96,76 +156,23 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="OnClick" />
 
-    <TextView
-        android:id="@+id/frequency_txt1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="21dp"
-        android:text="Frequency"
-        android:textColor="#000000"
-        android:textSize="21sp"
-        app:layout_constraintBottom_toTopOf="@+id/frequency_spinner_three"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Spinner
-        android:id="@+id/frequency_spinner_three"
-        android:layout_width="143dp"
-        android:layout_height="54dp"
-        android:layout_marginEnd="252dp"
-        android:layout_marginBottom="27dp"
-        android:backgroundTint="#FDCB00"
-        app:layout_constraintBottom_toTopOf="@+id/duration_txt1"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <TextView
-        android:id="@+id/duration_txt1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="25dp"
-        android:text="Duration"
-        android:textColor="#000000"
-        android:textSize="22sp"
-        app:layout_constraintBottom_toTopOf="@+id/startButton"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/startButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="39dp"
-        android:width="125dp"
-        android:height="50dp"
+    <EditText
+        android:id="@+id/blood_pressure_box"
+        android:layout_width="107dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="228dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/edittext3"
-        android:drawableStart="@drawable/ic_calendar"
-        android:paddingLeft="10dp"
-        android:text="Start"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnsavesugar"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:paddingStart="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/time_txt1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <Button
-        android:id="@+id/endButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginBottom="39dp"
-        android:width="125dp"
-        android:height="50dp"
-        android:background="@drawable/edittext3"
-        android:drawableStart="@drawable/ic_calendar"
-        android:paddingLeft="10dp"
-        android:text="End"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnsavesugar"
-        app:layout_constraintStart_toEndOf="@+id/startButton" />
-
-    <Button
-        android:id="@+id/btnsavesugar"
+        android:id="@+id/btnsavebloodsugar"
         android:layout_width="247dp"
         android:layout_height="49dp"
         android:layout_marginBottom="23dp"
@@ -176,19 +183,19 @@
         android:textColor="#FFFFFF"
         android:textSize="22sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/cancelButton"
+        app:layout_constraintBottom_toTopOf="@+id/cancel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/cancelButton"
+        android:id="@+id/cancel"
         android:layout_width="247dp"
         android:layout_height="49dp"
         android:layout_marginBottom="36dp"
         android:background="@drawable/editttextcancel"
         android:fontFamily="@font/viga"
-        android:text="Cancel"
         android:onClick="BloodSugar_To_Health"
+        android:text="Cancel"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#000000"
         android:textSize="22sp"
@@ -196,5 +203,27 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.75" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline27"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.65" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

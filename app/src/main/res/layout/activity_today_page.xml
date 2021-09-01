@@ -8,7 +8,7 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        android:layout_width="421dp"
+        android:layout_width="match_parent"
         android:layout_height="92dp"
         android:background="#E73927"
         android:minHeight="?attr/actionBarSize"
@@ -160,8 +160,8 @@
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="24dp"
-        tools:layout_editor_absoluteY="107dp">
+        tools:layout_editor_absoluteX="-71dp"
+        tools:layout_editor_absoluteY="73dp">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_view_medicine"
@@ -275,13 +275,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="108dp"
             android:layout_marginBottom="40dp"
             android:text="Calendar"
             android:textColor="#FDCB00"
             android:textSize="25sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/textView3"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/imageButton"
@@ -290,11 +292,10 @@
             android:layout_marginStart="4dp"
             android:layout_marginBottom="92dp"
             android:background="#FFFCFC"
-            app:tint="#FDCB00"
             app:layout_constraintBottom_toTopOf="@+id/card_view_medicine"
             app:layout_constraintStart_toEndOf="@+id/textView14"
-            app:srcCompat="@android:drawable/arrow_down_float" />
-
+            app:srcCompat="@android:drawable/arrow_down_float"
+            app:tint="#FDCB00" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

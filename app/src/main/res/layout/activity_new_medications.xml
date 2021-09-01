@@ -9,7 +9,7 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        android:layout_width="421dp"
+        android:layout_width="match_parent"
         android:layout_height="92dp"
         android:background="#E73927"
         android:minHeight="?attr/actionBarSize"
@@ -23,12 +23,10 @@
         android:id="@+id/imageBack"
         android:layout_width="64dp"
         android:layout_height="68dp"
-        android:onClick="Medication_To_Home"
-        android:layout_marginEnd="360dp"
-        android:layout_marginBottom="24dp"
         android:backgroundTint="#E73927"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:onClick="Medication_To_Home"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/backarrow" />
 
 
@@ -55,7 +53,7 @@
         android:textColor="#000000"
         android:textSize="21sp"
         app:layout_constraintBottom_toTopOf="@+id/medicine_Box"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline26"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <EditText
@@ -71,7 +69,7 @@
         android:inputType="textPersonName"
         android:paddingStart="10dp"
         app:layout_constraintBottom_toTopOf="@+id/dosage_txt"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline26"
         app:layout_constraintTop_toBottomOf="@+id/medicineName_txt" />
 
     <ImageButton
@@ -95,7 +93,7 @@
         android:textColor="#000000"
         android:textSize="21sp"
         app:layout_constraintBottom_toTopOf="@+id/DosageBox"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline26"
         app:layout_constraintTop_toBottomOf="@+id/medicine_Box" />
 
     <EditText
@@ -111,7 +109,7 @@
         android:inputType="textPersonName"
         android:paddingStart="10dp"
         app:layout_constraintBottom_toTopOf="@+id/time_txt1"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline26"
         app:layout_constraintTop_toBottomOf="@+id/dosage_txt" />
 
     <TextView
@@ -132,8 +130,10 @@
         android:layout_height="48dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="51dp"
         android:background="@drawable/edittext3"
         android:backgroundTint="#FDCB00"
+        app:layout_constraintBottom_toTopOf="@+id/add_btn"
         app:layout_constraintStart_toEndOf="@+id/DosageBox"
         app:layout_constraintTop_toBottomOf="@+id/type_txt" />
 
@@ -148,7 +148,7 @@
         android:textColor="#000000"
         android:textSize="21sp"
         app:layout_constraintBottom_toTopOf="@+id/timeButton"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline26"
         app:layout_constraintTop_toBottomOf="@+id/DosageBox" />
 
     <Button
@@ -164,7 +164,7 @@
         android:text="Set Time"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/frequency_txt1"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline26"
         tools:ignore="OnClick" />
 
     <ImageButton
@@ -190,7 +190,7 @@
         android:textSize="21sp"
         app:layout_constraintBottom_toTopOf="@+id/frequency_spinner_ten"
         app:layout_constraintEnd_toStartOf="@+id/inventory_txt"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/guideline26" />
 
     <Spinner
         android:id="@+id/frequency_spinner_ten"
@@ -201,7 +201,7 @@
         android:background="@drawable/edittext3"
         android:backgroundTint="#FDCB00"
         app:layout_constraintBottom_toTopOf="@+id/duration_txt1"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/guideline26" />
 
     <TextView
         android:id="@+id/inventory_txt"
@@ -250,7 +250,7 @@
         android:textColor="#000000"
         android:textSize="21sp"
         app:layout_constraintBottom_toTopOf="@+id/startButton_date"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/guideline26" />
 
     <Button
         android:id="@+id/startButton_date"
@@ -267,7 +267,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/save_medication_button"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/guideline26" />
 
     <Button
         android:id="@+id/endButton_one"
@@ -302,6 +302,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.426"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline26"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.01"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
