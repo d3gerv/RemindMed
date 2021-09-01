@@ -3,8 +3,10 @@ package com.example.capstone1;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -20,11 +22,14 @@ public class login_page extends AppCompatActivity {
     EditText password, emailInput;
     Button buttonlogin;
     FirebaseAuth rootAuthen;
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
+
+        progressDialog = new ProgressDialog(this);
 
         emailInput = findViewById(R.id.emailinput);
         password = findViewById(R.id.passwordinput);
@@ -34,6 +39,16 @@ public class login_page extends AppCompatActivity {
         buttonlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressDialog.setMessage("Loading");
+                progressDialog.show();
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        progressDialog.setCanceledOnTouchOutside(true);
+                        progressDialog.dismiss();
+                    }
+                },3000);
 
                 String Email = emailInput.getText().toString().trim();
                 String Password = password.getText().toString().trim();
