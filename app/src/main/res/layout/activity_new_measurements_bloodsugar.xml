@@ -57,7 +57,7 @@
         android:text="End"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnsavebloodsugar"
+        app:layout_constraintBottom_toTopOf="@+id/btnsavesugar"
         app:layout_constraintStart_toEndOf="@+id/guideline24"
         app:layout_constraintTop_toBottomOf="@+id/guideline27" />
 
@@ -76,7 +76,7 @@
         android:text="Start"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnsavebloodsugar"
+        app:layout_constraintBottom_toTopOf="@+id/btnsavesugar"
         app:layout_constraintEnd_toEndOf="@+id/guideline24"
         app:layout_constraintTop_toBottomOf="@+id/guideline27" />
 
@@ -127,11 +127,11 @@
         android:text="Frequency"
         android:textColor="#000000"
         android:textSize="21sp"
-        app:layout_constraintBottom_toTopOf="@+id/frequency_spinner_four"
+        app:layout_constraintBottom_toTopOf="@+id/frequency_spinner_three"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Spinner
-        android:id="@+id/frequency_spinner_four"
+        android:id="@+id/frequency_spinner_three"
         android:layout_width="143dp"
         android:layout_height="54dp"
         android:layout_marginEnd="20dp"
@@ -157,7 +157,7 @@
         tools:ignore="OnClick" />
 
     <EditText
-        android:id="@+id/blood_pressure_box"
+        android:id="@+id/blood_sugar_level"
         android:layout_width="107dp"
         android:layout_height="47dp"
         android:layout_marginStart="228dp"
@@ -172,7 +172,7 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <Button
-        android:id="@+id/btnsavebloodsugar"
+        android:id="@+id/btnsavesugar"
         android:layout_width="247dp"
         android:layout_height="49dp"
         android:layout_marginBottom="23dp"
