@@ -39,16 +39,6 @@ public class login_page extends AppCompatActivity {
         buttonlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressDialog.setMessage("Loading");
-                progressDialog.show();
-
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        progressDialog.setCanceledOnTouchOutside(true);
-                        progressDialog.dismiss();
-                    }
-                },3000);
 
                 String Email = emailInput.getText().toString().trim();
                 String Password = password.getText().toString().trim();
@@ -73,6 +63,16 @@ public class login_page extends AppCompatActivity {
                         if(task.isSuccessful()){
                             Toast.makeText(login_page.this, "Logged in Succesfully!", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(), instruction_slideone.class));
+                            progressDialog.setMessage("Loading");
+                            progressDialog.show();
+
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    progressDialog.setCanceledOnTouchOutside(true);
+                                    progressDialog.dismiss();
+                                }
+                            },10000);
                         }else{
                             Toast.makeText(login_page.this, "Error! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
 
