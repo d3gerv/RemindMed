@@ -187,7 +187,7 @@
         android:background="@drawable/edit_round"
         android:fontFamily="@font/viga"
         android:text="Logout"
-        android:onClick="Logout"
+
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
         android:textSize="22sp"

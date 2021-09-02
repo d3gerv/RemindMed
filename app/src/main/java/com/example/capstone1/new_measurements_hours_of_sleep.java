@@ -63,8 +63,8 @@ public class new_measurements_hours_of_sleep extends AppCompatActivity {
         setContentView(R.layout.activity_new_measurements_hours_of_sleep);
 
         sleep = findViewById(R.id.hours_of_sleep_box);
-        buttonsavesleep = findViewById(R.id.btnsavesleep);
-        spinnersl = findViewById(R.id.frequency_spinner_seven);
+        buttonsavesleep = findViewById(R.id.btnsavehoursofsleep);
+        spinnersl = findViewById(R.id.frequency_spinner_four);
 
         rootAuthen = FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
@@ -78,7 +78,7 @@ public class new_measurements_hours_of_sleep extends AppCompatActivity {
         myAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnersl.setAdapter(myAdapter2);
 
-        timeButtonsleep = findViewById(R.id.time_button_five);
+        timeButtonsleep = findViewById(R.id.time_btn_five);
 
 
         buttonsavesleep.setOnClickListener(new View.OnClickListener() {

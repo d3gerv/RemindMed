@@ -127,13 +127,13 @@ public class new_medications extends AppCompatActivity {
                         String FrequencyMedicationType = spinnertypeunit.getSelectedItem().toString().trim();
                         String TimeMedication = timeButton.getText().toString().trim();
 
-                        Map<String,Object> user =new HashMap<>();
+                        Map<String, Object> user = new HashMap<>();
                         user.put("TimeMedication", TimeMedication);
-                        user.put("Medication",Medication);
-                        user.put("Dosage",Dosage);
-                        user.put("InventoryMeds",Inventory);
-                        user.put("FrequencyMedication",FrequencyMedication);
-                        user.put("FrequencyMedicationType",FrequencyMedicationType);
+                        user.put("Medication", Medication);
+                        user.put("Dosage", Dosage);
+                        user.put("InventoryMeds", Inventory);
+                        user.put("FrequencyMedication", FrequencyMedication);
+                        user.put("FrequencyMedicationType", FrequencyMedicationType);
 
                         fstore.collection("users").document(userId).set(user, SetOptions.merge()).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
@@ -153,9 +153,8 @@ public class new_medications extends AppCompatActivity {
                 inventory.setText(value.getString("InventoryMeds"));
             }
         });
-
  */
-    }
+            }
 
 
             public void popTimePicker(View view) {
@@ -177,8 +176,11 @@ public class new_medications extends AppCompatActivity {
 
 
             }
-    public void Medication_To_Home (View view){
-        Intent intent = new Intent(new_medications.this, home_page.class);
-        startActivity(intent);
+
+            public void Medication_To_Home(View view) {
+                Intent intent = new Intent(new_medications.this, home_page.class);
+                startActivity(intent);
+            }
+        };
     }
-};
+}

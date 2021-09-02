@@ -62,7 +62,7 @@ public class new_measurements_cholesterol extends AppCompatActivity {
 
         cholesterol = findViewById(R.id.cholesterol_box);
         buttonsavecholesterol = findViewById(R.id.btnsavecholesterol);
-        spinnerch = findViewById(R.id.frequency_spinner_five);
+        spinnerch = findViewById(R.id.frequency_spinner_four);
 
         rootAuthen = FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
@@ -76,7 +76,7 @@ public class new_measurements_cholesterol extends AppCompatActivity {
         myAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerch.setAdapter(myAdapter2);
 
-        timeButtonchol = findViewById(R.id.time_button_three);
+        timeButtonchol = findViewById(R.id.time_btn_three);
 
 
         buttonsavecholesterol.setOnClickListener(new View.OnClickListener() {

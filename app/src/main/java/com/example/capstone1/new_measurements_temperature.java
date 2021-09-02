@@ -55,8 +55,8 @@ public class new_measurements_temperature extends AppCompatActivity {
         setContentView(R.layout.activity_new_measurements_temperature);
 
         temperature= findViewById(R.id.body_tempt_box);
-        buttonsavetemp = findViewById(R.id.btnsavetemp);
-        spinnertemp = findViewById(R.id.frequency_spinner_nine);
+        buttonsavetemp = findViewById(R.id.btnsavetemperature);
+        spinnertemp = findViewById(R.id.frequency_spinner_four);
 
         rootAuthen = FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
@@ -70,7 +70,7 @@ public class new_measurements_temperature extends AppCompatActivity {
         myAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnertemp.setAdapter(myAdapter2);
 
-        timeButtontemp = findViewById(R.id.time_button_seven);
+        timeButtontemp = findViewById(R.id.time_btn_seven);
 
         buttonsavetemp.setOnClickListener(new View.OnClickListener() {
             @Override

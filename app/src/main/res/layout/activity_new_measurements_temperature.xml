@@ -157,7 +157,7 @@
         tools:ignore="OnClick" />
 
     <EditText
-        android:id="@+id/blood_pressure_box"
+        android:id="@+id/body_tempt_box"
         android:layout_width="107dp"
         android:layout_height="47dp"
         android:layout_marginStart="228dp"

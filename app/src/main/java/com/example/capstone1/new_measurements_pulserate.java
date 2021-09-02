@@ -60,7 +60,7 @@ public class new_measurements_pulserate extends AppCompatActivity {
 
         pulserate = findViewById(R.id.pulse_rate_box);
         buttonsavespulserate = findViewById(R.id.btnsavepulserate);
-        spinnerpr = findViewById(R.id.frequency_spinner_eight);
+        spinnerpr = findViewById(R.id.frequency_spinner_four);
 
         rootAuthen = FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
@@ -74,7 +74,7 @@ public class new_measurements_pulserate extends AppCompatActivity {
         myAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerpr.setAdapter(myAdapter2);
 
-        timeButtonpulse = findViewById(R.id.time_button_six);
+        timeButtonpulse = findViewById(R.id.time_btn_six);
 
         buttonsavespulserate.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -57,8 +57,8 @@ public class new_measurements_heartrate extends AppCompatActivity {
         setContentView(R.layout.activity_new_measurements_heartrate);
 
         heartrate= findViewById(R.id.heart_rate_box);
-        buttonsaveheart = findViewById(R.id.btnsaveheart);
-        spinnerhr = findViewById(R.id.frequency_spinner_six);
+        buttonsaveheart = findViewById(R.id.btnsaveHeartrate);
+        spinnerhr = findViewById(R.id.frequency_spinner_four);
 
         rootAuthen = FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
@@ -72,7 +72,7 @@ public class new_measurements_heartrate extends AppCompatActivity {
         myAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerhr.setAdapter(myAdapter2);
 
-        timeButtonheart = findViewById(R.id.time_button_four);
+        timeButtonheart = findViewById(R.id.time_btn_four);
 
 
         buttonsaveheart.setOnClickListener(new View.OnClickListener() {
