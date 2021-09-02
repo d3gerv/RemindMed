@@ -15,7 +15,11 @@ public class HomeSession extends Application {
         FirebaseUser firebaseUser = rootAuthen.getCurrentUser();
 
         if(firebaseUser !=null){
-            startActivity(new Intent(HomeSession.this, home_page.class));
+            Intent intent = new Intent(HomeSession.this, home_page.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            //startActivity(new Intent(HomeSession.this, home_page.class));
         }
     }
 }
