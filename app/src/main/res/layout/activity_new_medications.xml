@@ -130,10 +130,8 @@
         android:layout_height="48dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="51dp"
         android:background="@drawable/edittext3"
         android:backgroundTint="#FDCB00"
-        app:layout_constraintBottom_toTopOf="@+id/add_btn"
         app:layout_constraintStart_toEndOf="@+id/DosageBox"
         app:layout_constraintTop_toBottomOf="@+id/type_txt" />
 
@@ -167,16 +165,19 @@
         app:layout_constraintStart_toStartOf="@+id/guideline26"
         tools:ignore="OnClick" />
 
-    <ImageButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_btn"
-        android:layout_width="51dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="33dp"
-        android:backgroundTint="#FFFFFF"
+        android:layout_width="84dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="32dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:backgroundTint="#FDCB00"
+        app:fabSize="mini"
         app:layout_constraintBottom_toTopOf="@+id/inventory_txt"
         app:layout_constraintStart_toEndOf="@+id/timeButton"
-        app:srcCompat="@drawable/add_button" />
+        app:srcCompat="@drawable/ic_baseline_add" />
 
     <TextView
         android:id="@+id/frequency_txt1"

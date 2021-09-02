@@ -50,15 +50,17 @@
         android:backgroundTint="#E73927"
         app:layout_constraintBottom_toBottomOf="@+id/edit_Measurements"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/backarrow" />
 
     <TextView
         android:id="@+id/edit_Measurements"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="29dp"
+        android:layout_marginBottom="28dp"
         android:fontFamily="sans-serif"
         android:text="Edit Measurements"
         android:textColor="#FFFFFF"
@@ -67,7 +69,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent" />
-
 
     <TextView
         android:id="@+id/bloodPressureView"
@@ -143,7 +144,7 @@
         android:layout_height="54dp"
         android:layout_marginEnd="252dp"
         android:layout_marginBottom="24dp"
-        android:backgroundTint="#000000"
+        android:background="@drawable/edittext3"
         app:layout_constraintBottom_toTopOf="@+id/duration_txt1"
         app:layout_constraintEnd_toEndOf="parent" />
 

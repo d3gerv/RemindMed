@@ -72,7 +72,7 @@ public class new_medications extends AppCompatActivity {
 
         userId = rootAuthen.getCurrentUser().getUid();
 
-        /*not sure here
+        //not sure here
         mDisplayDate = (TextView) findViewById(R.id.startButton_date);
         mDisplayDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,8 +99,8 @@ public class new_medications extends AppCompatActivity {
                 Log.d(TAG, "onDateSet: mm/dd/yyy: " + year + "/" + month + "/" + day);
 
                 String date = month + "/" + day + "/" + year;
-                mDisplayDate.setText(date);*/
-        
+                mDisplayDate.setText(date);
+
 
                 //Spinner mySpinner = (Spinner) findViewById(R.id.type_spinner_one);
                 //Spinner mySpinnertwo = (Spinner) findViewById(R.id.frequency_spinner_ten);

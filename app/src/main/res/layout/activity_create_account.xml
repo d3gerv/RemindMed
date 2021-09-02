@@ -65,7 +65,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="12dp"
         android:fontFamily="@font/viga"
         android:text="Back"
         android:textColor="#000000"
@@ -75,9 +75,10 @@
 
     <TextView
         android:id="@+id/create_account"
-        android:layout_width="226dp"
-        android:layout_height="103dp"
-        android:layout_marginEnd="168dp"
+        android:layout_width="188dp"
+        android:layout_height="95dp"
+        android:layout_marginEnd="204dp"
+        android:layout_marginBottom="12dp"
         android:fontFamily="sans-serif"
         android:text="Create an Account"
         android:textColor="#000000"
@@ -97,13 +98,15 @@
         android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/first_nameBox"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/create_account"
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
         android:id="@+id/first_nameBox"
         android:layout_width="370dp"
         android:layout_height="51dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/edittext3"
         android:ems="10"
         android:hint="First Name"
@@ -119,7 +122,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="12dp"
         android:fontFamily="sans-serif"
         android:text="Last Name"
         android:textColor="#000000"
@@ -219,7 +222,7 @@
         android:layout_height="50dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="25dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="12dp"
         android:background="@drawable/edittext3"
         android:ems="10"
         android:hint="Confirm Password"
@@ -232,12 +235,12 @@
 
     <ImageView
         android:id="@+id/imageView5"
-        android:layout_width="276dp"
-        android:layout_height="191dp"
-        android:layout_marginStart="164dp"
-        android:layout_marginBottom="40dp"
-        app:layout_constraintBottom_toBottomOf="@+id/first_nameBox"
-        app:layout_constraintStart_toStartOf="@+id/create_account"
+        android:layout_width="230dp"
+        android:layout_height="155dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toEndOf="@+id/create_account"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/doctorr" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
