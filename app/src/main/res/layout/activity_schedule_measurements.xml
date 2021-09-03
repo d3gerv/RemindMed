@@ -53,7 +53,7 @@
         android:layout_marginBottom="28dp"
         android:text="Health Measurements"
         android:textColor="#FFFFFF"
-        android:textSize="35sp"
+        android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

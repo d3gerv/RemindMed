@@ -35,7 +35,7 @@
         android:layout_marginBottom="28dp"
         android:text="New Measurements"
         android:textColor="#FFFFFF"
-        android:textSize="35sp"
+        android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -46,9 +46,8 @@
         android:id="@+id/endButton_seven"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="64dp"
+        android:layout_marginStart="73dp"
+        android:layout_marginTop="307dp"
         android:width="125dp"
         android:height="50dp"
         android:background="@drawable/edittext3"
@@ -57,17 +56,15 @@
         android:text="End"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnsavetemperature"
-        app:layout_constraintStart_toEndOf="@+id/guideline24"
-        app:layout_constraintTop_toBottomOf="@+id/guideline27" />
+        app:layout_constraintStart_toEndOf="@+id/startButton_seven"
+        app:layout_constraintTop_toBottomOf="@+id/body_tempt_box" />
 
     <Button
         android:id="@+id/startButton_seven"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="64dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="22dp"
         android:width="125dp"
         android:height="50dp"
         android:background="@drawable/edittext3"
@@ -76,33 +73,30 @@
         android:text="Start"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnsavetemperature"
-        app:layout_constraintEnd_toEndOf="@+id/guideline24"
-        app:layout_constraintTop_toBottomOf="@+id/guideline27" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/duration_txt1" />
 
     <TextView
         android:id="@+id/duration_txt1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="22dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="23dp"
         android:text="Duration"
         android:textColor="#000000"
         android:textSize="21sp"
-        app:layout_constraintBottom_toTopOf="@+id/startButton_seven"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frequency_spinner_four" />
 
     <TextView
         android:id="@+id/temperatureView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="23dp"
-        android:layout_marginBottom="40dp"
         android:text="Temperature"
         android:textColor="#000000"
         android:textSize="21sp"
-        app:layout_constraintBottom_toTopOf="@+id/time_txt1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
@@ -110,72 +104,71 @@
         android:id="@+id/time_txt1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
         android:text="Time"
         android:textColor="#000000"
         android:textSize="21sp"
-        app:layout_constraintBottom_toTopOf="@+id/time_btn_seven"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/temperatureView" />
 
     <TextView
         android:id="@+id/frequency_txt1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="22dp"
         android:text="Frequency"
         android:textColor="#000000"
         android:textSize="21sp"
-        app:layout_constraintBottom_toTopOf="@+id/frequency_spinner_four"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/time_btn_seven" />
 
     <Spinner
         android:id="@+id/frequency_spinner_four"
         android:layout_width="143dp"
         android:layout_height="54dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="13dp"
+        android:background="@drawable/edittext3"
         android:backgroundTint="#FDCB00"
-        app:layout_constraintBottom_toTopOf="@+id/duration_txt1"
-        app:layout_constraintEnd_toEndOf="@+id/guideline24" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frequency_txt1" />
 
     <Button
         android:id="@+id/time_btn_seven"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="25dp"
         android:width="125dp"
         android:height="50dp"
         android:background="@drawable/edittext3"
         android:onClick="popTimePicker"
         android:text="Set Time"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/frequency_txt1"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/time_txt1"
         tools:ignore="OnClick" />
 
     <EditText
         android:id="@+id/body_tempt_box"
         android:layout_width="107dp"
         android:layout_height="47dp"
-        android:layout_marginStart="228dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginStart="74dp"
+        android:layout_marginTop="14dp"
         android:background="@drawable/edittext3"
         android:ems="10"
         android:inputType="textPersonName"
         android:paddingStart="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/time_txt1"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/temperatureView"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <Button
         android:id="@+id/btnsavetemperature"
         android:layout_width="247dp"
         android:layout_height="49dp"
-        android:layout_marginBottom="23dp"
+        android:layout_marginTop="34dp"
         android:background="@drawable/edit_round"
         android:fontFamily="@font/viga"
         android:text="Save"
@@ -183,15 +176,15 @@
         android:textColor="#FFFFFF"
         android:textSize="22sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/cancel"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startButton_seven" />
 
     <Button
         android:id="@+id/cancel"
         android:layout_width="247dp"
         android:layout_height="49dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginTop="28dp"
         android:background="@drawable/editttextcancel"
         android:fontFamily="@font/viga"
         android:onClick="Temperature_To_Health"
@@ -200,9 +193,9 @@
         android:textColor="#000000"
         android:textSize="22sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnsavetemperature" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline24"

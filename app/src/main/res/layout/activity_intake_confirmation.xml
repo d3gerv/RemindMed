@@ -39,21 +39,22 @@
         android:layout_marginBottom="28dp"
         android:text="Intake Confirmation"
         android:textColor="#FFFFFF"
-        android:textSize="35sp"
+        android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="14dp"
+        android:layout_marginTop="25dp"
         android:text="Name of Medicine"
         android:textColor="#000000"
         android:textSize="32sp"
-        app:layout_constraintBottom_toTopOf="@+id/cardView"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <View
         android:id="@+id/view6"
@@ -72,12 +73,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="18dp"
+        android:layout_marginTop="19dp"
         android:text="Time"
         android:textColor="#000000"
         android:textSize="22sp"
-        app:layout_constraintBottom_toTopOf="@+id/cardView2"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view6" />
 
     <ImageButton
         android:id="@+id/imageButton3"
@@ -123,20 +124,20 @@
         android:layout_width="115dp"
         android:layout_height="53dp"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="210dp"
+        android:layout_marginTop="18dp"
         app:cardBackgroundColor="#FDCB00"
-        app:layout_constraintBottom_toTopOf="@+id/skip_btn"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/time_txt1" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="139dp"
         android:layout_height="50dp"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginTop="13dp"
         app:cardBackgroundColor="#FDCB00"
         app:cardCornerRadius="2dp"
-        app:layout_constraintBottom_toBottomOf="@+id/view6"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

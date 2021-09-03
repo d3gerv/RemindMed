@@ -13,13 +13,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Capstone1">
 
-
+        <activity
+            android:name=".today"
+            android:exported="true"/>
         <activity
             android:name=".optical_character_recognition"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".optical_character_recognition_one"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".new_measurements_bloodpressure"
             android:exported="true" />
