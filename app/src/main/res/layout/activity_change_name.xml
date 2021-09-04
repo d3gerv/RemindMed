@@ -76,7 +76,7 @@
         android:id="@+id/buttonsave"
         android:layout_width="247dp"
         android:layout_height="49dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/edit_round"
         android:fontFamily="@font/viga"
         android:text="Save Changes"
@@ -84,99 +84,99 @@
         android:textColor="#FFFFFF"
         android:textSize="22sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/cancelBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editemail" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="14dp"
         android:text="First Name"
         android:textColor="#000000"
         android:textSize="22sp"
-        app:layout_constraintBottom_toTopOf="@+id/editfirstname"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+        android:layout_marginTop="21dp"
         android:text="Last Name"
         android:textColor="#000000"
         android:textSize="22sp"
-        app:layout_constraintBottom_toTopOf="@+id/editlastname"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.069"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editfirstname" />
 
     <TextView
         android:id="@+id/textView15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="23dp"
         android:text="Email"
         android:textColor="#000000"
         android:textSize="22sp"
-        app:layout_constraintBottom_toTopOf="@+id/editemail"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editlastname" />
 
     <EditText
         android:id="@+id/editfirstname"
         android:layout_width="372dp"
         android:layout_height="71dp"
-        android:layout_marginBottom="21dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/edittext3"
         android:ems="10"
         android:hint="First Name"
         android:inputType="textPersonName"
         android:paddingStart="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.487"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
         android:id="@+id/editlastname"
         android:layout_width="372dp"
         android:layout_height="71dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/edittext3"
         android:ems="10"
         android:hint="Last Name"
         android:inputType="textPersonName"
         android:paddingStart="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView15"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.512"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <EditText
         android:id="@+id/editemail"
         android:layout_width="372dp"
         android:layout_height="71dp"
         android:layout_marginStart="23dp"
+        android:layout_marginTop="21dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="32dp"
         android:background="@drawable/edittext3"
         android:ems="10"
         android:hint="Email"
         android:inputType="textPersonName"
         android:paddingStart="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonsave"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
     <Button
         android:id="@+id/cancelBtn"
         android:layout_width="247dp"
         android:layout_height="49dp"
-        android:layout_marginBottom="56dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/editttextcancel"
         android:fontFamily="@font/viga"
         android:onClick="Change_To_User"
@@ -185,9 +185,9 @@
         android:textColor="#000000"
         android:textSize="22sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonsave" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

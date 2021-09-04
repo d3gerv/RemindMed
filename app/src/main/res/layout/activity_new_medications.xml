@@ -7,6 +7,20 @@
     tools:context=".new_medications">
 
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/ocr_btn"
+        android:layout_width="48dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="42dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:backgroundTint="#FFFFFF"
+        app:fabSize="mini"
+        app:layout_constraintStart_toEndOf="@+id/medicine_Box"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:srcCompat="@drawable/ic_ocr" />
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -48,6 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="7dp"
+        android:fontFamily="@font/viga"
         android:text="Medicine Name"
         android:textColor="#000000"
         android:textSize="21sp"
@@ -68,22 +83,12 @@
         app:layout_constraintStart_toStartOf="@+id/guideline26"
         app:layout_constraintTop_toBottomOf="@+id/medicineName_txt" />
 
-    <ImageButton
-        android:id="@+id/ocr1"
-        android:layout_width="46dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="36dp"
-        android:backgroundTint="#FFFFFF"
-        app:layout_constraintStart_toEndOf="@+id/medicine_Box"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:srcCompat="@drawable/scan" />
-
     <TextView
         android:id="@+id/dosage_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:fontFamily="@font/viga"
         android:text="Dosage"
         android:textColor="#000000"
         android:textSize="21sp"
@@ -110,6 +115,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="86dp"
         android:layout_marginTop="6dp"
+        android:fontFamily="@font/viga"
         android:text="Type/Unit"
         android:textColor="#000000"
         android:textSize="19sp"
@@ -133,6 +139,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
+        android:fontFamily="@font/viga"
         android:text="Time"
         android:textColor="#000000"
         android:textSize="21sp"
@@ -176,6 +183,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="68dp"
+        android:fontFamily="@font/viga"
         android:text="Frequency"
         android:textColor="#000000"
         android:textSize="21sp"
@@ -200,6 +208,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="68dp"
         android:layout_marginTop="24dp"
+        android:fontFamily="@font/viga"
         android:text="Inventory"
         android:textColor="#000000"
         android:textSize="21sp"
@@ -220,23 +229,13 @@
         app:layout_constraintStart_toEndOf="@+id/frequency_spinner_ten"
         app:layout_constraintTop_toBottomOf="@+id/inventory_txt" />
 
-    <ImageButton
-        android:id="@+id/ocr2"
-        android:layout_width="46dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="244dp"
-        android:backgroundTint="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/inventoryBox"
-        app:srcCompat="@drawable/scan" />
-
     <TextView
         android:id="@+id/duration_txt1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="18dp"
+        android:fontFamily="@font/viga"
         android:text="Duration"
         android:textColor="#000000"
         android:textSize="21sp"
@@ -300,6 +299,20 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.01"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/ocr_button"
+        android:layout_width="48dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="160dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:backgroundTint="#FFFFFF"
+        app:fabSize="mini"
+        app:layout_constraintStart_toEndOf="@+id/inventoryBox"
+        app:layout_constraintTop_toBottomOf="@+id/type_spinner_one"
+        app:srcCompat="@drawable/ic_ocr" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,10 +12,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Capstone1">
+        <activity
+            android:name=".today_page_recycler"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".today"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".optical_character_recognition"
             android:exported="true" />
