@@ -210,6 +210,7 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/accountSetting_button"
+        android:onClick="User_To_Account"
         android:layout_width="42dp"
         android:layout_height="34dp"
         android:layout_marginStart="156dp"

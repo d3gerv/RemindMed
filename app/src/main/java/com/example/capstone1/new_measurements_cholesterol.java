@@ -84,15 +84,15 @@ public class new_measurements_cholesterol extends AppCompatActivity {
             public void onClick(View v) {
                 String Cholesterol = cholesterol.getText().toString().trim();
                 String Frequency = spinnerch.getSelectedItem().toString().trim();
-                String TimeCholesterol = timeButtonchol.getText().toString().trim();
+                //String TimeCholesterol = timeButtonchol.getText().toString().trim();
 
 
                 Map<String,Object> user = new HashMap<>();
-                user.put("TimeCholesterol",TimeCholesterol);
+                //user.put("TimeCholesterol",TimeCholesterol);
                 user.put("Cholesterol",Cholesterol);
                 user.put("FrequencyChol",Frequency);
 
-                fstore.collection("users").document(userId).set(user, SetOptions.merge()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                fstore.collection("users").document(userId).collection("New Health Measurements").document("Cholesterol").set(user, SetOptions.merge()).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()){
@@ -104,7 +104,7 @@ public class new_measurements_cholesterol extends AppCompatActivity {
             }
         });
 
-        DocumentReference documentReference = fstore.collection("users").document(userId);
+        DocumentReference documentReference = fstore.collection("users").document(userId).collection("New Health Measurements").document("Cholesterol");
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {

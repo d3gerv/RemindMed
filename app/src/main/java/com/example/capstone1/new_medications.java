@@ -71,7 +71,7 @@ public class new_medications extends AppCompatActivity {
         fstore = FirebaseFirestore.getInstance();
 
         userId = rootAuthen.getCurrentUser().getUid();
-
+/*
         //not sure here
         mDisplayDate = (TextView) findViewById(R.id.startButton_date);
         mDisplayDate.setOnClickListener(new View.OnClickListener() {
@@ -116,33 +116,33 @@ public class new_medications extends AppCompatActivity {
                 spinnerfrequencymedication.setAdapter(myAdapter2);
 
                 timeButton = findViewById(R.id.timeButton);
+*/
+        buttonsavemedication.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String Medication = medication.getText().toString().trim();
+                String Dosage = dosage.getText().toString().trim();
+                String Inventory = inventory.getText().toString().trim();
+//                        String FrequencyMedication = spinnerfrequencymedication.getSelectedItem().toString().trim();
+                //          String FrequencyMedicationType = spinnertypeunit.getSelectedItem().toString().trim();
+                //     String TimeMedication = timeButton.getText().toString().trim();
 
-                buttonsavemedication.setOnClickListener(new View.OnClickListener() {
+                Map<String, Object> user = new HashMap<>();
+                //  user.put("TimeMedication", TimeMedication);
+                user.put("Medication", Medication);
+                user.put("Dosage", Dosage);
+                user.put("InventoryMeds", Inventory);
+                //user.put("FrequencyMedication", FrequencyMedication);
+                // user.put("FrequencyMedicationType", FrequencyMedicationType);
+
+                fstore.collection("users").document(userId).collection("New Medications").document().set(user, SetOptions.merge()).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
-                    public void onClick(View v) {
-                        String Medication = medication.getText().toString().trim();
-                        String Dosage = dosage.getText().toString().trim();
-                        String Inventory = inventory.getText().toString().trim();
-                        String FrequencyMedication = spinnerfrequencymedication.getSelectedItem().toString().trim();
-                        String FrequencyMedicationType = spinnertypeunit.getSelectedItem().toString().trim();
-                        String TimeMedication = timeButton.getText().toString().trim();
-
-                        Map<String, Object> user = new HashMap<>();
-                        user.put("TimeMedication", TimeMedication);
-                        user.put("Medication", Medication);
-                        user.put("Dosage", Dosage);
-                        user.put("InventoryMeds", Inventory);
-                        user.put("FrequencyMedication", FrequencyMedication);
-                        user.put("FrequencyMedicationType", FrequencyMedicationType);
-
-                        fstore.collection("users").document(userId).set(user, SetOptions.merge()).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                Toast.makeText(new_medications.this, "New Medication added", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Toast.makeText(new_medications.this, "New Medication added", Toast.LENGTH_SHORT).show();
                     }
                 });
+            }
+        });
 /*
         DocumentReference documentReference = fstore.collection("users").document(userId);
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
@@ -154,33 +154,33 @@ public class new_medications extends AppCompatActivity {
             }
         });
  */
-            }
+    }
 
 
-            public void popTimePicker(View view) {
-                TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker timePicker, int i, int i1) {
-                        hour = i;
-                        minute = i1;
-                        timeButton.setText(String.format(Locale.getDefault(), "%02d:%02d", hour, minute));
-                    }
-                };
-
-                int style = AlertDialog.THEME_HOLO_DARK;
-
-                TimePickerDialog timePickerDialog = new TimePickerDialog(new_medications.this, style, onTimeSetListener, hour, minute, true);
-
-                timePickerDialog.setTitle("Set Time");
-                timePickerDialog.show();
-
-
-            }
-
-            public void Medication_To_Home(View view) {
-                Intent intent = new Intent(new_medications.this, home_page.class);
-                startActivity(intent);
+    public void popTimePicker(View view) {
+        TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int i, int i1) {
+                hour = i;
+                minute = i1;
+                timeButton.setText(String.format(Locale.getDefault(), "%02d:%02d", hour, minute));
             }
         };
+
+        int style = AlertDialog.THEME_HOLO_DARK;
+
+        TimePickerDialog timePickerDialog = new TimePickerDialog(new_medications.this, style, onTimeSetListener, hour, minute, true);
+
+        timePickerDialog.setTitle("Set Time");
+        timePickerDialog.show();
+
+
     }
-}
+
+    public void Medication_To_Home(View view) {
+        Intent intent = new Intent(new_medications.this, home_page.class);
+        startActivity(intent);
+    }
+};
+// }
+//}

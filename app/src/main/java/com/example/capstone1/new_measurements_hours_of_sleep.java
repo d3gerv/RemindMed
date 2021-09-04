@@ -86,15 +86,15 @@ public class new_measurements_hours_of_sleep extends AppCompatActivity {
             public void onClick(View v) {
                 String Sleep = sleep.getText().toString().trim();
                 String Frequency = spinnersl.getSelectedItem().toString().trim();
-                String TimeSleep = timeButtonsleep.getText().toString().trim();
+                //String TimeSleep = timeButtonsleep.getText().toString().trim();
 
 
                 Map<String,Object> user =new HashMap<>();
-                user.put("TimeSleep",TimeSleep);
+                //user.put("TimeSleep",TimeSleep);
                 user.put("Sleep",Sleep);
                 user.put("FrequencySleep",Frequency);
 
-                fstore.collection("users").document(userId).set(user, SetOptions.merge()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                fstore.collection("users").document(userId).collection("New Health Measurements").document("Hours of Sleep").set(user, SetOptions.merge()).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         Toast.makeText(new_measurements_hours_of_sleep.this, "New hours of sleep measurement added", Toast.LENGTH_SHORT).show();
@@ -103,7 +103,7 @@ public class new_measurements_hours_of_sleep extends AppCompatActivity {
             }
         });
 
-        DocumentReference documentReference = fstore.collection("users").document(userId);
+        DocumentReference documentReference = fstore.collection("users").document(userId).collection("New Health Measurements").document("Hours of Sleep");
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {

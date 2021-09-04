@@ -77,15 +77,15 @@ public class new_measurements_temperature extends AppCompatActivity {
             public void onClick(View v) {
                 String Temperature = temperature.getText().toString().trim();
                 String Frequency = spinnertemp.getSelectedItem().toString().trim();
-                String TimeTemperature = timeButtontemp.getText().toString().trim();
+                //String TimeTemperature = timeButtontemp.getText().toString().trim();
 
 
                 Map<String,Object> user =new HashMap<>();
-                user.put("TimeTemperature",TimeTemperature);
+                //user.put("TimeTemperature",TimeTemperature);
                 user.put("Temperature",Temperature);
                 user.put("FrequencyTemp",Frequency);
 
-                fstore.collection("users").document(userId).set(user, SetOptions.merge()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                fstore.collection("users").document(userId).collection("New Health Measurements").document("Temperature").set(user, SetOptions.merge()).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         Toast.makeText(new_measurements_temperature.this, "New temperature measurement added", Toast.LENGTH_SHORT).show();
@@ -94,7 +94,7 @@ public class new_measurements_temperature extends AppCompatActivity {
             }
         });
 
-        DocumentReference documentReference = fstore.collection("users").document(userId);
+        DocumentReference documentReference = fstore.collection("users").document(userId).collection("New Health Measurements").document("Temperature");
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {

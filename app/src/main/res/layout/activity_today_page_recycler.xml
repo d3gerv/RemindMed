@@ -66,6 +66,7 @@
 
     <ImageButton
         android:id="@+id/imageHomeButton"
+        android:onClick="Today_To_Home"
         android:layout_width="56dp"
         android:layout_height="51dp"
         android:layout_marginStart="16dp"
@@ -99,6 +100,7 @@
 
     <ImageButton
         android:id="@+id/imageUserButton"
+        android:onClick="Today_To_User"
         android:layout_width="56dp"
         android:layout_height="51dp"
         android:layout_marginStart="332dp"

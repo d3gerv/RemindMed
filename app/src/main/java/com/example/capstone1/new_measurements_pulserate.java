@@ -81,15 +81,15 @@ public class new_measurements_pulserate extends AppCompatActivity {
             public void onClick(View v) {
                 String Pulserate = pulserate.getText().toString().trim();
                 String Frequency = spinnerpr.getSelectedItem().toString().trim();
-                String TimePulseRate = timeButtonpulse.getText().toString().trim();
+                //String TimePulseRate = timeButtonpulse.getText().toString().trim();
 
 
                 Map<String, Object> user = new HashMap<>();
-                user.put("TimePulseRate",TimePulseRate);
+                //user.put("TimePulseRate",TimePulseRate);
                 user.put("Pulserate", Pulserate);
                 user.put("FrequencyPulseR", Frequency );
 
-                fstore.collection("users").document(userId).set(user, SetOptions.merge()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                fstore.collection("users").document(userId).collection("New Health Measurements").document("Pulserate").set(user, SetOptions.merge()).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         Toast.makeText(new_measurements_pulserate.this, "New pulserate measurement added", Toast.LENGTH_SHORT).show();
@@ -98,7 +98,7 @@ public class new_measurements_pulserate extends AppCompatActivity {
             }
         });
 
-        DocumentReference documentReference = fstore.collection("users").document(userId);
+        DocumentReference documentReference = fstore.collection("users").document(userId).collection("New Health Measurements").document("Pulserate");
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {

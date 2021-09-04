@@ -85,14 +85,14 @@ public class new_measurements_bloodpressure extends AppCompatActivity {
             public void onClick(View v) {
                 String Bloodpressure = bloodpressure.getText().toString().trim();
                 String Frequency = spinnerbp.getSelectedItem().toString().trim();
-                String TimeBloodPressure = timeButtonbp.getText().toString().trim();
+                //String TimeBloodPressure = timeButtonbp.getText().toString().trim();
 
                 Map<String,Object> user =new HashMap<>();
-                user.put("TimeBloodPressure", TimeBloodPressure);
+                //user.put("TimeBloodPressure", TimeBloodPressure);
                 user.put("Bloodpressure",Bloodpressure);
                 user.put("FrequencyBloodPrs",Frequency);
 
-                fstore.collection("users").document(userId).set(user, SetOptions.merge()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                fstore.collection("users").document(userId).collection("New Health Measurements").document("Bloodpressure").set(user, SetOptions.merge()).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         Toast.makeText(new_measurements_bloodpressure.this, "New blood pressure measurement added", Toast.LENGTH_SHORT).show();
@@ -101,7 +101,7 @@ public class new_measurements_bloodpressure extends AppCompatActivity {
             }
         });
 
-        DocumentReference documentReference = fstore.collection("users").document(userId);
+        DocumentReference documentReference = fstore.collection("users").document(userId).collection("New Health Measurements").document("Bloodpressure");
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
