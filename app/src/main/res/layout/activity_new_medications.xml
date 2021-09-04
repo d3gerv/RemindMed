@@ -9,10 +9,10 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/ocr_btn"
-        android:layout_width="48dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="42dp"
+        android:layout_width="51dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="52dp"
         android:clickable="true"
         android:focusable="true"
         app:backgroundTint="#FFFFFF"
@@ -113,8 +113,8 @@
         android:id="@+id/type_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="86dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="4dp"
         android:fontFamily="@font/viga"
         android:text="Type/Unit"
         android:textColor="#000000"
@@ -302,9 +302,9 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/ocr_button"
-        android:layout_width="48dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="17dp"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="160dp"
         android:clickable="true"
         android:focusable="true"
