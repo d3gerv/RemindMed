@@ -16,7 +16,7 @@ public class landing_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing_page);
 
-        ImageView button = (ImageView) findViewById(R.id.nextbtn);
+        ImageView button = (ImageView) findViewById(R.id.nextBtn);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

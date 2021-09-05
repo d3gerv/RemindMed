@@ -4,18 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Instruction_slidetwo">
-
-    <ImageView
-        android:id="@+id/instruction_two_btn"
-        android:layout_width="514dp"
-        android:layout_height="266dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="72dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4"
-        app:srcCompat="@drawable/next"
-        tools:ignore="OnClick" />
+    tools:context=".instruction_slidetwo">
 
     <ImageView
         android:id="@+id/imageView4"
@@ -44,15 +33,16 @@
         android:id="@+id/description2"
         android:layout_width="354dp"
         android:layout_height="62dp"
-        android:layout_marginBottom="49dp"
         android:fontFamily="@font/viga"
         android:text="Hover your camera to a printed text"
         android:textAlignment="center"
         android:textColor="#E73927"
         android:textSize="25sp"
-        app:layout_constraintBottom_toTopOf="@+id/instruction_two_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.687" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

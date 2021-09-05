@@ -4,24 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Instruction_slideone">
-
-    <ImageView
-        android:id="@+id/instructione_one_btn"
-        android:layout_width="514dp"
-        android:layout_height="266dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="64dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4"
-        app:srcCompat="@drawable/next"
-        tools:ignore="OnClick" />
+    tools:context=".instruction_slideone">
 
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="292dp"
+        android:layout_marginBottom="280dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/slideone" />
@@ -42,17 +31,17 @@
 
     <TextView
         android:id="@+id/description3"
-        android:layout_width="354dp"
-        android:layout_height="62dp"
-        android:layout_marginBottom="49dp"
+        android:layout_width="361dp"
+        android:layout_height="111dp"
         android:fontFamily="@font/viga"
         android:text="It has an alarm that will remind you that you need to take your medicine"
         android:textAlignment="center"
         android:textColor="#E73927"
         android:textSize="25sp"
-        app:layout_constraintBottom_toTopOf="@+id/instructione_one_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView4"
+        app:layout_constraintVertical_bias="0.67" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

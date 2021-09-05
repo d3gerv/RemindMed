@@ -18,18 +18,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <ImageButton
         android:id="@+id/imageBack"
         android:layout_width="64dp"
         android:layout_height="68dp"
-        android:onClick="User_To_Home"
-        android:layout_marginEnd="360dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="352dp"
+        android:layout_marginBottom="8dp"
         android:backgroundTint="#E73927"
+        android:onClick="User_To_Home"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/backarrow" />
-
 
     <TextView
         android:id="@+id/userInformation"
@@ -44,48 +44,54 @@
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent" />
 
+
     <EditText
         android:id="@+id/editTextbirth"
         android:layout_width="140dp"
         android:layout_height="44dp"
-        android:layout_marginStart="118dp"
-        android:layout_marginTop="24dp"
         android:background="@drawable/edittext3"
         android:ems="10"
         android:hint="Year of Birth"
         android:inputType="textPersonName"
         android:paddingStart="10dp"
-        app:layout_constraintStart_toEndOf="@+id/year_of_birth"
-        app:layout_constraintTop_toBottomOf="@+id/gender_spinner" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.863"
+        app:layout_constraintStart_toEndOf="@+id/genderView"
+        app:layout_constraintTop_toBottomOf="@+id/gender_spinner"
+        app:layout_constraintVertical_bias="0.040" />
 
     <EditText
         android:id="@+id/editTextheight"
         android:layout_width="140dp"
         android:layout_height="44dp"
-        android:layout_marginStart="174dp"
-        android:layout_marginTop="21dp"
         android:background="@drawable/edittext3"
         android:ems="10"
         android:hint="Height"
         android:inputType="textPersonName"
         android:paddingStart="10dp"
-        app:layout_constraintStart_toEndOf="@+id/heightView"
-        app:layout_constraintTop_toBottomOf="@+id/editTextbirth" />
-
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.863"
+        app:layout_constraintStart_toEndOf="@+id/genderView"
+        app:layout_constraintTop_toBottomOf="@+id/editTextbirth"
+        app:layout_constraintVertical_bias="0.040" />
 
     <EditText
         android:id="@+id/editTextweight"
         android:layout_width="140dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="170dp"
-        android:layout_marginTop="17dp"
+        android:layout_height="44dp"
         android:background="@drawable/edittext3"
         android:ems="10"
         android:hint="Weight"
         android:inputType="textPersonName"
         android:paddingStart="10dp"
-        app:layout_constraintStart_toEndOf="@+id/weightView"
-        app:layout_constraintTop_toBottomOf="@+id/editTextheight" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.863"
+        app:layout_constraintStart_toEndOf="@+id/genderView"
+        app:layout_constraintTop_toBottomOf="@+id/editTextheight"
+        app:layout_constraintVertical_bias="0.040" />
 
     <TextView
         android:id="@+id/emailview"
@@ -130,12 +136,12 @@
         android:id="@+id/year_of_birth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="28dp"
         android:text="Year of birth"
         android:textColor="#000000"
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.055"
+        app:layout_constraintHorizontal_bias="0.054"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/genderView" />
 
@@ -143,12 +149,12 @@
         android:id="@+id/heightView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="31dp"
+        android:layout_marginTop="28dp"
         android:text="Height"
         android:textColor="#000000"
         android:textSize="22sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.046"
+        app:layout_constraintEnd_toStartOf="@+id/editTextheight"
+        app:layout_constraintHorizontal_bias="0.104"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/year_of_birth" />
 
@@ -156,12 +162,12 @@
         android:id="@+id/weightView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="28dp"
         android:text="Weight"
         android:textColor="#000000"
         android:textSize="22sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.046"
+        app:layout_constraintEnd_toStartOf="@+id/editTextweight"
+        app:layout_constraintHorizontal_bias="0.106"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/heightView" />
 
@@ -200,28 +206,34 @@
 
     <Spinner
         android:id="@+id/gender_spinner"
-        android:layout_width="139dp"
+        android:layout_width="140dp"
         android:layout_height="44dp"
-        android:layout_marginStart="168dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/edittext3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.859"
         app:layout_constraintStart_toEndOf="@+id/genderView"
-        app:layout_constraintTop_toBottomOf="@+id/accountSetting_button" />
+        app:layout_constraintTop_toBottomOf="@+id/accountSetting_button"
+        app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/accountSetting_button"
-        android:onClick="User_To_Account"
-        android:layout_width="42dp"
-        android:layout_height="34dp"
+        android:layout_width="37dp"
+        android:layout_height="40dp"
         android:layout_marginStart="156dp"
         android:layout_marginTop="75dp"
         android:clickable="true"
         android:focusable="true"
+        android:onClick="User_To_Account"
         app:backgroundTint="#FFFFFF"
         app:fabSize="mini"
-        app:layout_constraintEnd_toStartOf="@+id/accountSetting_btn"
-        app:layout_constraintStart_toEndOf="@+id/account_settingView"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.623"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.14"
         app:srcCompat="@drawable/ic_arrow_next" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
