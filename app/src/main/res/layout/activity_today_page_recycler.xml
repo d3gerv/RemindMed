@@ -160,6 +160,7 @@
 
     <CalendarView
         android:id="@+id/calendarView"
+        android:background="@drawable/bg_calendar"
         android:layout_width="391dp"
         android:layout_height="196dp"
         android:layout_marginStart="27dp"

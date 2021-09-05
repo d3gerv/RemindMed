@@ -14,8 +14,29 @@
         android:theme="@style/Theme.Capstone1">
 
         <activity
-            android:name=".today_page_recycler"
+            android:name=".edit_delete_temperature"
             android:exported="true"/>
+        <activity
+            android:name=".edit_delete_pulserate"
+            android:exported="true"/>
+        <activity
+            android:name=".edit_delete_hours_of_sleep"
+            android:exported="true"/>
+        <activity
+            android:name=".edit_delete_heartrate"
+            android:exported="true"/>
+        <activity
+            android:name=".edit_delete_cholesterol"
+            android:exported="true" />
+        <activity
+            android:name=".edit_delete_bloodsugar"
+            android:exported="true"/>
+        <activity
+            android:name=".edit_delete_bloodpressure"
+            android:exported="true"/>
+        <activity
+            android:name=".today_page_recycler"
+            android:exported="true" />
         <activity
             android:name=".today"
             android:exported="true" />

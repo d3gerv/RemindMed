@@ -27,19 +27,9 @@ import java.util.Map;
 
 import android.app.AlertDialog;
 import android.app.TimePickerDialog;
-import android.os.Bundle;
-import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TimePicker;
-
-
-import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 public class new_measurements_bloodsugar extends AppCompatActivity {
     EditText sugar;
@@ -58,7 +48,7 @@ public class new_measurements_bloodsugar extends AppCompatActivity {
         setContentView(R.layout.activity_new_measurements_bloodsugar);
 
         sugar = findViewById(R.id.blood_sugar_level);
-        buttonsavesugar = findViewById(R.id.btnsavesugar);
+        buttonsavesugar = findViewById(R.id.btnsavesugaredit);
         spinnerbs = findViewById(R.id.frequency_spinner_three);
 
         rootAuthen = FirebaseAuth.getInstance();
@@ -73,7 +63,7 @@ public class new_measurements_bloodsugar extends AppCompatActivity {
         myAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerbs.setAdapter(myAdapter2);
 
-        timeButtonbs = findViewById(R.id.timeButton);
+        timeButtonbs = findViewById(R.id.time_btn_one);
 
 
         buttonsavesugar.setOnClickListener(new View.OnClickListener() {

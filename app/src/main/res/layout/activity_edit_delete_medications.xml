@@ -10,13 +10,13 @@
         android:id="@+id/ocr_button2"
         android:layout_width="50dp"
         android:layout_height="40dp"
-        android:layout_marginStart="21dp"
-        android:layout_marginTop="259dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="264dp"
         android:clickable="true"
         android:focusable="true"
         app:backgroundTint="#FFFFFF"
         app:fabSize="mini"
-        app:layout_constraintStart_toEndOf="@+id/endButton_one"
+        app:layout_constraintStart_toEndOf="@+id/endButton_oneM"
         app:layout_constraintTop_toBottomOf="@+id/type_spinner_two"
         app:srcCompat="@drawable/ic_ocr" />
 
@@ -202,7 +202,7 @@
         app:layout_constraintTop_toBottomOf="@+id/DosageBox" />
 
     <Button
-        android:id="@+id/timeButton"
+        android:id="@+id/timeButton_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -228,7 +228,7 @@
         android:textColor="#000000"
         android:textSize="21sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timeButton" />
+        app:layout_constraintTop_toBottomOf="@+id/timeButton_edit" />
 
     <Spinner
         android:id="@+id/frequency_spinner_two"
@@ -282,11 +282,11 @@
         app:layout_constraintTop_toBottomOf="@+id/frequency_spinner_two" />
 
     <Button
-        android:id="@+id/startButton_one"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/startButton_oneM"
+        android:layout_width="147dp"
+        android:layout_height="51dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="16dp"
         android:width="125dp"
         android:height="50dp"
         android:background="@drawable/edittext3"
@@ -299,11 +299,11 @@
         app:layout_constraintTop_toBottomOf="@+id/duration_txt1" />
 
     <Button
-        android:id="@+id/endButton_one"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="48dp"
+        android:id="@+id/endButton_oneM"
+        android:layout_width="143dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="58dp"
         android:width="125dp"
         android:height="50dp"
         android:background="@drawable/edittext3"
@@ -312,7 +312,7 @@
         android:text="End"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/startButton_one"
+        app:layout_constraintStart_toEndOf="@+id/startButton_oneM"
         app:layout_constraintTop_toBottomOf="@+id/inventoryBox" />
 
     <Button
@@ -320,7 +320,7 @@
         android:layout_width="233dp"
         android:layout_height="52dp"
         android:layout_marginStart="76dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="102dp"
         android:background="@drawable/edit_round"
         android:fontFamily="@font/viga"
@@ -332,7 +332,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startButton_one" />
+        app:layout_constraintTop_toBottomOf="@+id/startButton_oneM" />
 
     <Button
         android:id="@+id/deleteBtn"
@@ -361,7 +361,7 @@
         android:focusable="true"
         app:backgroundTint="#FDCB00"
         app:fabSize="mini"
-        app:layout_constraintStart_toEndOf="@+id/timeButton"
+        app:layout_constraintStart_toEndOf="@+id/timeButton_edit"
         app:layout_constraintTop_toBottomOf="@+id/DosageBox"
         app:srcCompat="@drawable/ic_baseline_add" />
 

@@ -58,30 +58,36 @@
         android:layout_width="314dp"
         android:layout_height="146dp"
         android:layout_marginStart="48dp"
-        android:layout_marginBottom="83dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="31dp"
         android:background="@drawable/edit_round2"
-        android:fontFamily="@font/open_sans_bold"
-        android:text="Add Medications"
+        android:fontFamily="@font/viga"
         android:onClick="Home_To_Medication"
+        android:text="Add Medications"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="28sp"
-        app:layout_constraintBottom_toTopOf="@+id/add_measurements_btn"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <Button
         android:id="@+id/add_measurements_btn"
         android:layout_width="314dp"
         android:layout_height="146dp"
         android:layout_marginStart="48dp"
-        android:layout_marginBottom="97dp"
+        android:layout_marginTop="112dp"
+        android:layout_marginEnd="31dp"
         android:background="@drawable/edit_round2"
-        android:fontFamily="@font/open_sans_bold"
-        android:text="Add Measurements"
+        android:fontFamily="@font/viga"
         android:onClick="Home_To_Health"
+        android:text="Add Measurements"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="26sp"
-        app:layout_constraintBottom_toTopOf="@+id/view5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_medications_btn" />
 
     <View
         android:id="@+id/view5"
@@ -131,10 +137,10 @@
         android:id="@+id/imageUserButton"
         android:layout_width="56dp"
         android:layout_height="51dp"
-        android:onClick="Home_To_User"
         android:layout_marginStart="42dp"
         android:layout_marginBottom="40dp"
         android:backgroundTint="#FFFFFF"
+        android:onClick="Home_To_User"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageHistoryButton"
         app:srcCompat="@drawable/user" />

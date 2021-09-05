@@ -43,28 +43,11 @@
 
 
     <Button
-        android:id="@+id/endButton_seven"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="73dp"
-        android:layout_marginTop="307dp"
-        android:width="125dp"
-        android:height="50dp"
-        android:background="@drawable/edittext3"
-        android:drawableStart="@drawable/ic_calendar"
-        android:paddingLeft="10dp"
-        android:text="End"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/startButton_seven"
-        app:layout_constraintTop_toBottomOf="@+id/body_tempt_box" />
-
-    <Button
-        android:id="@+id/startButton_seven"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/starButton_newTemp"
+        android:layout_width="147dp"
+        android:layout_height="51dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="16dp"
         android:width="125dp"
         android:height="50dp"
         android:background="@drawable/edittext3"
@@ -75,6 +58,23 @@
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/duration_txt1" />
+
+    <Button
+        android:id="@+id/endButton_newTemp"
+        android:layout_width="148dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="308dp"
+        android:width="125dp"
+        android:height="50dp"
+        android:background="@drawable/edittext3"
+        android:drawableStart="@drawable/ic_calendar"
+        android:paddingLeft="10dp"
+        android:text="End"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/starButton_newTemp"
+        app:layout_constraintTop_toBottomOf="@+id/body_tempt_box" />
 
     <TextView
         android:id="@+id/duration_txt1"
@@ -172,7 +172,7 @@
         android:id="@+id/btnsavetemperature"
         android:layout_width="247dp"
         android:layout_height="49dp"
-        android:layout_marginTop="34dp"
+        android:layout_marginTop="37dp"
         android:background="@drawable/edit_round"
         android:fontFamily="@font/viga"
         android:text="Save"
@@ -182,7 +182,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startButton_seven" />
+        app:layout_constraintTop_toBottomOf="@+id/starButton_newTemp" />
 
     <Button
         android:id="@+id/cancel"

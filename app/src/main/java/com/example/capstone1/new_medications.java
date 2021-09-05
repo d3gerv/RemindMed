@@ -32,6 +32,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.SetOptions;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Locale;
@@ -45,8 +46,10 @@ public class new_medications extends AppCompatActivity {
     String userId;
     Spinner spinnertypeunit, spinnerfrequencymedication;
 
-    Button timeButton;
+    Button timeButton, dateformat;
     int hour, minute;
+    int year, month, day;
+
 
     private static final String TAG = "new_medications";
 
@@ -71,37 +74,30 @@ public class new_medications extends AppCompatActivity {
         fstore = FirebaseFirestore.getInstance();
 
         userId = rootAuthen.getCurrentUser().getUid();
-/*
-        //not sure here
-        mDisplayDate = (TextView) findViewById(R.id.startButton_date);
-        mDisplayDate.setOnClickListener(new View.OnClickListener() {
+
+        //calendar but di pa oks ayaw mapalitan ng naka show
+        dateformat = findViewById(R.id.startButton_date);
+        final Calendar calendar = Calendar.getInstance();
+        dateformat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Calendar cal = Calendar.getInstance();
-                int year = cal.get((Calendar.YEAR));
-                int month = cal.get((Calendar.MONTH));
-                int day = cal.get((Calendar.DAY_OF_MONTH));
+               year = calendar.get((Calendar.YEAR));
+               month = calendar.get((Calendar.MONTH));
+               day = calendar.get((Calendar.DAY_OF_MONTH));
+               DatePickerDialog datePickerDialog = new DatePickerDialog(new_medications.this, new DatePickerDialog.OnDateSetListener() {
+                   @Override
+                   public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                       dateformat.setText(SimpleDateFormat.getDateInstance().format(calendar.getTime()));
 
-                DatePickerDialog dialog = new DatePickerDialog(
-                        new_medications.this,
-                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                        mDateSetListener,
-                        year, month, day);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
-
+                   }
+               }, year, month, day);
+               datePickerDialog.show();
             }
         });
 
-        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                Log.d(TAG, "onDateSet: mm/dd/yyy: " + year + "/" + month + "/" + day);
-
-                String date = month + "/" + day + "/" + year;
-                mDisplayDate.setText(date);
 
 
+/*
                 //Spinner mySpinner = (Spinner) findViewById(R.id.type_spinner_one);
                 //Spinner mySpinnertwo = (Spinner) findViewById(R.id.frequency_spinner_ten);
 
@@ -115,8 +111,9 @@ public class new_medications extends AppCompatActivity {
                 myAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinnerfrequencymedication.setAdapter(myAdapter2);
 
-                timeButton = findViewById(R.id.timeButton);
+                timeButton = findViewById(R.id.timeBtn);
 */
+
         buttonsavemedication.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

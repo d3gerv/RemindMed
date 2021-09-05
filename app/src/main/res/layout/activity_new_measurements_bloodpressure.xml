@@ -43,28 +43,11 @@
 
 
     <Button
-        android:id="@+id/endButton_one"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="304dp"
-        android:width="125dp"
-        android:height="50dp"
-        android:background="@drawable/edittext3"
-        android:drawableStart="@drawable/ic_calendar"
-        android:paddingLeft="10dp"
-        android:text="End"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/startButton_one"
-        app:layout_constraintTop_toBottomOf="@+id/blood_pressure_box" />
-
-    <Button
-        android:id="@+id/startButton_one"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="19dp"
-        android:layout_marginEnd="64dp"
+        android:id="@+id/startButton_newBP"
+        android:layout_width="147dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:width="125dp"
         android:height="50dp"
         android:background="@drawable/edittext3"
@@ -73,8 +56,25 @@
         android:text="Start"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/guideline24"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/duration_txt1" />
+
+    <Button
+        android:id="@+id/endButton_newBP"
+        android:layout_width="145dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="307dp"
+        android:width="125dp"
+        android:height="50dp"
+        android:background="@drawable/edittext3"
+        android:drawableStart="@drawable/ic_calendar"
+        android:paddingLeft="10dp"
+        android:text="End"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/startButton_newBP"
+        app:layout_constraintTop_toBottomOf="@+id/blood_pressure_box" />
 
     <TextView
         android:id="@+id/duration_txt1"
@@ -182,7 +182,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/endButton_one" />
+        app:layout_constraintTop_toBottomOf="@+id/startButton_newBP" />
 
     <Button
         android:id="@+id/cancel"
