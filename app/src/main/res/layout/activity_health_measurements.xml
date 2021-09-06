@@ -38,7 +38,7 @@
         android:layout_height="41dp"
         android:clickable="true"
         android:focusable="true"
-        android:onClick="Health_To_Sugar"
+        android:onClick="Health_To_Cholesterol"
         app:backgroundTint="#FFFFFF"
         app:fabSize="mini"
 
@@ -53,7 +53,7 @@
         android:layout_height="41dp"
         android:clickable="true"
         android:focusable="true"
-        android:onClick="Health_To_Temperature"
+        android:onClick="Health_To_Sugar"
         app:backgroundTint="#FFFFFF"
         app:fabSize="mini"
 
@@ -68,7 +68,7 @@
         android:layout_height="41dp"
         android:clickable="true"
         android:focusable="true"
-        android:onClick="Health_To_Heartrate"
+        android:onClick="Health_To_Temperature"
         app:backgroundTint="#FFFFFF"
         app:fabSize="mini"
         app:layout_constraintBottom_toTopOf="@+id/heartRate_button"
@@ -82,7 +82,7 @@
         android:layout_height="41dp"
         android:clickable="true"
         android:focusable="true"
-        android:onClick="Health_To_Pulserate"
+        android:onClick="Health_To_Heartrate"
         app:backgroundTint="#FFFFFF"
         app:fabSize="mini"
         app:layout_constraintBottom_toTopOf="@+id/sleep_button"
@@ -96,7 +96,7 @@
         android:layout_height="41dp"
         android:clickable="true"
         android:focusable="true"
-        android:onClick="Health_To_Cholesterol"
+        android:onClick="Health_To_Pulserate"
         app:backgroundTint="#FFFFFF"
         app:fabSize="mini"
         app:layout_constraintBottom_toTopOf="@+id/cholesterol_button"
@@ -125,7 +125,6 @@
         android:layout_width="64dp"
         android:layout_height="68dp"
         android:layout_marginTop="4dp"
-        android:onClick="Health_To_Home"
         android:backgroundTint="#E73927"
         app:layout_constraintStart_toStartOf="@+id/guideline29"
         app:layout_constraintTop_toTopOf="parent"
@@ -258,6 +257,72 @@
         app:layout_constraintStart_toStartOf="parent" />
 
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/Home_page_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:backgroundTint="#FFFFFF"
+        app:fabSize="normal"
+        app:layout_constraintEnd_toStartOf="@+id/Today_page_button"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view4"
+        app:srcCompat="@drawable/hoome" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/Today_page_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="40dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:backgroundTint="#FFFFFF"
+        app:fabSize="normal"
+        app:layout_constraintEnd_toStartOf="@+id/History_page_button"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/Home_page_button"
+        app:layout_constraintTop_toBottomOf="@+id/view4"
+        app:srcCompat="@drawable/today" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/History_page_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:backgroundTint="#FFFFFF"
+        app:fabSize="normal"
+        app:layout_constraintEnd_toStartOf="@+id/Profile_page_button"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/Today_page_button"
+        app:layout_constraintTop_toBottomOf="@+id/view4"
+        app:srcCompat="@drawable/ic_history"
+        tools:ignore="OnClick" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/Profile_page_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="41dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:backgroundTint="#FFFFFF"
+        app:fabSize="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/History_page_button"
+        app:layout_constraintTop_toBottomOf="@+id/view4"
+        app:srcCompat="@drawable/profile" />
+
     <TextView
         android:id="@+id/textViewHome"
         android:layout_width="wrap_content"
@@ -346,7 +411,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".88" />
+        app:layout_constraintEnd_toStartOf="@+id/Home_page_button"
+        app:layout_constraintGuide_percent=".88"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline34"
@@ -354,59 +422,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent=".96" />
-
-    <ImageButton
-        android:id="@+id/imageHomeButton"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/guideline34"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toStartOf="@+id/imageTodayButton"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline33"
-        app:layout_constraintVertical_bias="0.181"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <ImageButton
-        android:id="@+id/imageTodayButton"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/guideline34"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toStartOf="@+id/imageHistoryButton"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageHomeButton"
-        app:layout_constraintTop_toTopOf="@+id/guideline33"
-        app:layout_constraintVertical_bias="0.0"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <ImageButton
-        android:id="@+id/imageHistoryButton"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/guideline34"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toStartOf="@+id/imageUserButton"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageTodayButton"
-        app:layout_constraintTop_toTopOf="@+id/guideline33"
-        app:layout_constraintVertical_bias="1.0"
-        android:backgroundTint="@color/common_google_signin_btn_tint"
-        tools:srcCompat="@drawable/history"  />
-
-    <ImageButton
-        android:id="@+id/imageUserButton"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/guideline34"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageHistoryButton"
-        app:layout_constraintTop_toTopOf="@+id/guideline33"
-        app:layout_constraintVertical_bias="1.0"
-        tools:srcCompat="@tools:sample/avatars" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

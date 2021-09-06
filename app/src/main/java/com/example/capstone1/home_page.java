@@ -42,15 +42,18 @@ public class home_page extends AppCompatActivity {
             }
         });
     }
-    public void Home_To_Medication(View view){
+
+    public void Home_To_Medication(View view) {
         Intent intent = new Intent(this, new_medications.class);
         startActivity(intent);
     }
-    public void Home_To_Health(View view){
+
+    public void Home_To_Health(View view) {
         Intent intent = new Intent(this, health_measurements.class);
         startActivity(intent);
     }
-    public void Home_To_User(View view){
+
+    public void Home_To_User(View view) {
         Intent intent = new Intent(this, user_information.class);
         startActivity(intent);
     }
