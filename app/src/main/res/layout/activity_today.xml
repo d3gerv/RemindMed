@@ -46,12 +46,12 @@
 
     <CalendarView
         android:id="@+id/calendarView"
-        android:background="@drawable/bg_calendar"
         android:layout_width="391dp"
         android:layout_height="196dp"
         android:layout_marginStart="27dp"
         android:layout_marginTop="17dp"
         android:layout_marginEnd="32dp"
+        android:background="@drawable/bg_calendar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
@@ -91,6 +91,8 @@
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/textViewToday"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/HomeT" />
 
@@ -105,6 +107,8 @@
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/textViewHistory"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/textViewHome"
         app:layout_constraintTop_toBottomOf="@+id/TodayT" />
 
@@ -119,6 +123,8 @@
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/textViewProfile"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/textViewToday"
         app:layout_constraintTop_toBottomOf="@+id/HistoryT" />
 
@@ -135,7 +141,7 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/textViewHistory"
         app:layout_constraintTop_toBottomOf="@+id/ProfileT" />
 
@@ -202,7 +208,7 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" >
+        app:layout_constraintTop_toBottomOf="@+id/textView11">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_view_medicine"
