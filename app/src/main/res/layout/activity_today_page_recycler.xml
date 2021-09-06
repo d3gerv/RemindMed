@@ -66,12 +66,12 @@
 
     <ImageButton
         android:id="@+id/imageHomeButton"
-        android:onClick="Today_To_Home"
         android:layout_width="56dp"
         android:layout_height="51dp"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="40dp"
         android:backgroundTint="#FFFFFF"
+        android:onClick="Today_To_Home"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/home" />
@@ -91,22 +91,22 @@
         android:id="@+id/imageHistoryButton"
         android:layout_width="66dp"
         android:layout_height="61dp"
-        android:onClick="Today_To_History"
         android:layout_marginStart="44dp"
         android:layout_marginBottom="32dp"
         android:backgroundTint="#FFFFFF"
+        android:onClick="Today_To_History"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageTodayButton"
         app:srcCompat="@drawable/history" />
 
     <ImageButton
         android:id="@+id/imageUserButton"
-        android:onClick="Today_To_User"
         android:layout_width="56dp"
         android:layout_height="51dp"
         android:layout_marginStart="332dp"
         android:layout_marginBottom="40dp"
         android:backgroundTint="#FFFFFF"
+        android:onClick="Today_To_User"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/user" />
@@ -161,12 +161,12 @@
 
     <CalendarView
         android:id="@+id/calendarView"
-        android:background="@drawable/bg_calendar"
         android:layout_width="391dp"
         android:layout_height="196dp"
         android:layout_marginStart="27dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="32dp"
+        android:background="@drawable/bg_calendar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.435"
         app:layout_constraintStart_toStartOf="parent"
@@ -186,13 +186,29 @@
         app:layout_constraintTop_toBottomOf="@+id/calendarView" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="413dp"
-        android:layout_height="272dp"
-        android:layout_marginStart="1dp"
+        android:id="@+id/recyclerViewToday"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginEnd="1dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:.75"
+        app:layout_constraintEnd_toEndOf="@id/guideline40"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline39"
+        app:layout_constraintTop_toBottomOf="@+id/textView12"
+        app:layout_constraintVertical_bias="0.099" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline39"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline40"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

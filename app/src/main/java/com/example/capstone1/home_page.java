@@ -62,4 +62,5 @@ public class home_page extends AppCompatActivity {
         Intent intent = new Intent(home_page.this, today_page_recycler.class);
         startActivity(intent);
     }
+
 }
