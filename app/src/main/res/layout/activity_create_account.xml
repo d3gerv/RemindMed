@@ -43,6 +43,7 @@
         android:layout_marginTop="3dp"
         android:fontFamily="@font/viga"
         android:text="Back"
+        android:onClick="Create_To_Main"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"

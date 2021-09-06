@@ -54,4 +54,12 @@ public class home_page extends AppCompatActivity {
         Intent intent = new Intent(this, user_information.class);
         startActivity(intent);
     }
+    public void Home_To_History (View view){
+        Intent intent = new Intent(home_page.this, history_page.class);
+        startActivity(intent);
+    }
+    public void Home_To_Today (View view){
+        Intent intent = new Intent(home_page.this, today_page_recycler.class);
+        startActivity(intent);
+    }
 }

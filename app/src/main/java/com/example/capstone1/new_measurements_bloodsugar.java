@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -78,15 +80,35 @@ public class new_measurements_bloodsugar extends AppCompatActivity {
                 user.put("Sugar", Sugar);
                 user.put("FrequencyBloodSgr",Frequency);
 
+                fstore.collection("users").document(userId).collection("New Health Measurements")
+                        .add(user)
+                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                            @Override
+                            public void onSuccess(DocumentReference documentReference) {
+                                Toast.makeText(new_measurements_bloodsugar.this, "New BloodSugar measurement added", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                // Log.d(TAG,"onSuccess: failed");
+                            }
+                        });
+
+/*
                 fstore.collection("users").document(userId).collection("New Health Measurements").document("Bloodsugar").set(user, SetOptions.merge()).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         Toast.makeText(new_measurements_bloodsugar.this, "New blood sugar measurement added", Toast.LENGTH_SHORT).show();
                     }
                 });
+
+ */
             }
         });
 
+
+/*
         DocumentReference documentReference = fstore.collection("users").document(userId).collection("New Health Measurements").document("Bloodsugar");
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
@@ -95,6 +117,8 @@ public class new_measurements_bloodsugar extends AppCompatActivity {
 
             }
         });
+
+ */
     }
 
     //added spinner and timePicker

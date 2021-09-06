@@ -91,6 +91,7 @@
         android:id="@+id/imageHistoryButton"
         android:layout_width="66dp"
         android:layout_height="61dp"
+        android:onClick="Today_To_History"
         android:layout_marginStart="44dp"
         android:layout_marginBottom="32dp"
         android:backgroundTint="#FFFFFF"

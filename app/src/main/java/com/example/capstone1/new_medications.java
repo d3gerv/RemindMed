@@ -23,8 +23,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -45,6 +48,8 @@ public class new_medications extends AppCompatActivity {
     FirebaseFirestore fstore;
     String userId;
     Spinner spinnertypeunit, spinnerfrequencymedication;
+
+    //CollectionReference reference = fstore.collection("Users");
 
     Button timeButton, dateformat;
     int hour, minute;
@@ -132,14 +137,55 @@ public class new_medications extends AppCompatActivity {
                 //user.put("FrequencyMedication", FrequencyMedication);
                 // user.put("FrequencyMedicationType", FrequencyMedicationType);
 
+                fstore.collection("users").document(userId).collection("New Medications")
+                        .add(user)
+                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                            @Override
+                            public void onSuccess(DocumentReference documentReference) {
+                                Toast.makeText(new_medications.this, "New Medication added", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.d(TAG,"onSuccess: failed");
+                            }
+                        });
+/*
                 fstore.collection("users").document(userId).collection("New Medications").document().set(user, SetOptions.merge()).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         Toast.makeText(new_medications.this, "New Medication added", Toast.LENGTH_SHORT).show();
                     }
                 });
+
+ */
             }
         });
+
+/*
+        buttonsavemedication.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //String Medication = medication.getText().toString().trim();
+                String Dosage = dosage.getText().toString().trim();
+                String Inventory = inventory.getText().toString().trim();
+
+                Medication medication = new Medication(Dosage,Inventory);
+                //Medication student =new Medication(Medication,Dosage,Inventory);
+
+                reference.add(medication).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentReference> task) {
+                        Toast.makeText(new_medications.this, "gago gumana", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
+            }
+        });
+
+ */
 /*
         DocumentReference documentReference = fstore.collection("users").document(userId);
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {

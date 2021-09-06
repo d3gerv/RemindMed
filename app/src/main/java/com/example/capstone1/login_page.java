@@ -87,4 +87,8 @@ public class login_page extends AppCompatActivity {
         Intent intent = new Intent(login_page.this, forgot_password.class);
         startActivity(intent);
     }
+    public void Log_To_Main(View view) {
+        Intent intent = new Intent(login_page.this, main_page.class);
+        startActivity(intent);
+    }
 }

@@ -14,11 +14,15 @@ public class today_page_recycler extends AppCompatActivity {
         setContentView(R.layout.activity_today_page_recycler);
     }
     public void Today_To_Home(View view){
-        Intent intent = new Intent(this, home_page.class);
+        Intent intent = new Intent(today_page_recycler.this, home_page.class);
         startActivity(intent);
     }
     public void Today_To_User(View view){
-        Intent intent = new Intent(this, user_information.class);
+        Intent intent = new Intent(today_page_recycler.this, user_information.class);
+        startActivity(intent);
+    }
+    public void Today_To_History(View view){
+        Intent intent = new Intent(today_page_recycler.this, history_page.class);
         startActivity(intent);
     }
 }

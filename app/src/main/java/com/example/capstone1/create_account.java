@@ -141,5 +141,9 @@ public class create_account extends AppCompatActivity {
             }
         });
     }
+    public void Create_To_Main(View view) {
+        Intent intent = new Intent(create_account.this, main_page.class);
+        startActivity(intent);
+    }
 
 }
