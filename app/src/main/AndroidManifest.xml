@@ -15,25 +15,25 @@
 
         <activity
             android:name=".edit_delete_temperature"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".edit_delete_pulserate"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".edit_delete_hours_of_sleep"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".edit_delete_heartrate"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".edit_delete_cholesterol"
             android:exported="true" />
         <activity
             android:name=".edit_delete_bloodsugar"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".edit_delete_bloodpressure"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".today_page_recycler"
             android:exported="true" />
@@ -81,9 +81,6 @@
             android:exported="true" />
         <activity
             android:name=".new_medications"
-            android:exported="true" />
-        <activity
-            android:name=".change_name"
             android:exported="true" />
         <activity
             android:name=".user_information"

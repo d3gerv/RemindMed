@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="20dp"
-        app:layout_constraintGuide_percent="0.0"/>
+        app:layout_constraintGuide_percent="0.0" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline17"
@@ -20,15 +20,15 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="20dp"
-        app:layout_constraintGuide_percent="0.20"/>
+        app:layout_constraintGuide_percent="0.14" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="20dp"
-        app:layout_constraintGuide_percent="0.30"/>
+        app:layout_constraintGuide_begin="275dp"
+        app:layout_constraintGuide_percent="0.33" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -74,33 +74,40 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="32dp"
         android:fontFamily="@font/viga"
         android:text="Blood pressure"
         android:textColor="#000000"
         android:textSize="21sp"
+        app:layout_constraintEnd_toStartOf="@+id/bloodPressure_editBox"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintTop_toTopOf="@+id/guideline17" />
 
     <EditText
         android:id="@+id/bloodPressure_editBox"
         android:layout_width="107dp"
         android:layout_height="48dp"
-        android:layout_marginStart="188dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/edittext3"
         android:ems="10"
         android:inputType="textPersonName"
         android:paddingStart="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintBottom_toTopOf="@+id/guideline18"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/bloodPressureView"
+        app:layout_constraintStart_toStartOf="@+id/guideline6"
+        app:layout_constraintTop_toTopOf="@+id/guideline17"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="23dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/viga"
         android:text="Time"
         android:textColor="#000000"
@@ -112,15 +119,15 @@
         android:id="@+id/timeButton_editBP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="64dp"
         android:width="125dp"
         android:height="50dp"
         android:background="@drawable/edittext3"
         android:onClick="popTimePicker"
         android:text="Set Time"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
         app:layout_constraintTop_toBottomOf="@+id/textView8"
         tools:ignore="OnClick" />
 
@@ -129,7 +136,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/viga"
         android:text="Frequency"
         android:textColor="#000000"
@@ -141,10 +148,10 @@
         android:id="@+id/frequency_spinner_edit_oneBP"
         android:layout_width="143dp"
         android:layout_height="54dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="252dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="44dp"
         android:background="@drawable/edittext3"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
         app:layout_constraintTop_toBottomOf="@+id/frequency_txt1" />
 
     <TextView
@@ -152,7 +159,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/viga"
         android:text="Duration"
         android:textColor="#000000"
@@ -165,7 +172,7 @@
         android:layout_width="147dp"
         android:layout_height="51dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:width="125dp"
         android:height="50dp"
         android:background="@drawable/edittext3"
@@ -174,6 +181,8 @@
         android:text="Start"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintHorizontal_bias="0.069"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/duration_txt1" />
 
@@ -181,8 +190,8 @@
         android:id="@+id/endButtonbp"
         android:layout_width="143dp"
         android:layout_height="50dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="267dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="32dp"
         android:width="125dp"
         android:height="50dp"
         android:background="@drawable/edittext3"
@@ -192,13 +201,13 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/startButton_bp"
-        app:layout_constraintTop_toBottomOf="@+id/bloodPressure_editBox" />
+        app:layout_constraintTop_toTopOf="@+id/guideline32" />
 
     <Button
         android:id="@+id/save_changes_button"
         android:layout_width="247dp"
         android:layout_height="49dp"
-        android:layout_marginTop="54dp"
+        android:layout_marginTop="60dp"
         android:background="@drawable/edit_round"
         android:fontFamily="@font/viga"
         android:text="Save Changes"
@@ -207,6 +216,7 @@
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.518"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/startButton_bp" />
 
@@ -223,9 +233,27 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#000000"
         android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/save_changes_button" />
+        app:layout_constraintTop_toBottomOf="@+id/save_changes_button"
+        app:layout_constraintVertical_bias="0.144" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="206dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline32"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="275dp"
+        app:layout_constraintGuide_percent="0.60" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
