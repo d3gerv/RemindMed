@@ -24,6 +24,7 @@
         android:layout_width="64dp"
         android:layout_height="68dp"
         android:backgroundTint="#E73927"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/backarrow" />
@@ -32,22 +33,20 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
+        android:layout_marginBottom="20dp"
         android:text="Edit Measurements"
         android:textColor="#FFFFFF"
         android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/imageBack_hoursofsleep" />
 
 
     <Button
         android:id="@+id/startButtonSleep"
         android:layout_width="147dp"
         android:layout_height="51dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:width="125dp"
         android:height="50dp"
         android:background="@drawable/edittext3"
@@ -56,15 +55,15 @@
         android:text="Start"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline25"
+        app:layout_constraintEnd_toStartOf="@+id/guideline24"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/duration_txt1" />
+        app:layout_constraintTop_toBottomOf="@+id/guideline27" />
 
     <Button
         android:id="@+id/endButtonSleep"
-        android:layout_width="143dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="303dp"
+        android:layout_width="145dp"
+        android:layout_height="48dp"
         android:width="125dp"
         android:height="50dp"
         android:background="@drawable/edittext3"
@@ -73,32 +72,34 @@
         android:text="End"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/startButtonSleep"
-        app:layout_constraintTop_toBottomOf="@+id/hours_of_sleep_editBox" />
+        app:layout_constraintBottom_toTopOf="@+id/guideline25"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/guideline24"
+        app:layout_constraintTop_toBottomOf="@+id/guideline27" />
 
     <TextView
         android:id="@+id/duration_txt1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="18dp"
+        android:layout_marginBottom="10dp"
         android:fontFamily="@font/viga"
         android:text="Duration"
         android:textColor="#000000"
         android:textSize="21sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frequency_spinner_editSleep" />
+        app:layout_constraintBottom_toTopOf="@+id/startButtonSleep"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/hoursofsleepView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
         android:fontFamily="@font/viga"
         android:text="Hours of Sleep"
         android:textColor="#000000"
         android:textSize="21sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline21"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
@@ -107,13 +108,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="27dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/viga"
         android:text="Time"
         android:textColor="#000000"
         android:textSize="21sp"
+        app:layout_constraintBottom_toTopOf="@+id/time_btn_editSleep"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hoursofsleepView" />
+        app:layout_constraintTop_toBottomOf="@+id/guideline21"
+        app:layout_constraintVertical_bias="0.45" />
 
     <TextView
         android:id="@+id/frequency_txt1"
@@ -125,6 +128,7 @@
         android:text="Frequency"
         android:textColor="#000000"
         android:textSize="21sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline23"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/time_btn_editSleep" />
 
@@ -132,25 +136,26 @@
         android:id="@+id/frequency_spinner_editSleep"
         android:layout_width="143dp"
         android:layout_height="54dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="17dp"
         android:background="@drawable/edittext3"
         android:backgroundTint="#FDCB00"
+        app:layout_constraintBottom_toTopOf="@+id/duration_txt1"
+        app:layout_constraintEnd_toEndOf="@id/guideline24"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frequency_txt1" />
+        app:layout_constraintTop_toBottomOf="@+id/frequency_txt1"
+        app:layout_constraintVertical_bias="0.25" />
 
     <Button
         android:id="@+id/time_btn_editSleep"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="21dp"
         android:width="125dp"
         android:height="50dp"
         android:background="@drawable/edittext3"
         android:onClick="popTimePicker"
         android:text="Set Time"
         android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/frequency_txt1"
+        app:layout_constraintEnd_toEndOf="@id/guideline24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/time_txt1"
         tools:ignore="OnClick" />
@@ -159,12 +164,12 @@
         android:id="@+id/hours_of_sleep_editBox"
         android:layout_width="107dp"
         android:layout_height="47dp"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginStart="47dp"
         android:background="@drawable/edittext3"
         android:ems="10"
         android:inputType="textPersonName"
         android:paddingStart="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline21"
         app:layout_constraintStart_toEndOf="@+id/hoursofsleepView"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
@@ -172,7 +177,8 @@
         android:id="@+id/btnsavehoursofsleepedit"
         android:layout_width="247dp"
         android:layout_height="49dp"
-        android:layout_marginTop="42dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/edit_round"
         android:fontFamily="@font/viga"
         android:text="Save Changes"
@@ -180,26 +186,58 @@
         android:textColor="#FFFFFF"
         android:textSize="22sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/deleteBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startButtonSleep" />
+        app:layout_constraintTop_toBottomOf="@+id/guideline25" />
 
     <Button
-        android:id="@+id/canceleditsleep"
+        android:id="@+id/deleteBtn"
         android:layout_width="247dp"
         android:layout_height="49dp"
-        android:layout_marginTop="29dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/editttextcancel"
         android:fontFamily="@font/viga"
-        android:onClick="Sleep_To_Health"
+        android:text="Delete"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#000000"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/cancel_Btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnsavehoursofsleepedit" />
+
+    <Button
+        android:id="@+id/cancel_Btn"
+        android:layout_width="247dp"
+        android:layout_height="49dp"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/editttextcancel"
+        android:fontFamily="@font/viga"
         android:text="Cancel"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#000000"
         android:textSize="22sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnsavehoursofsleepedit" />
+        app:layout_constraintTop_toBottomOf="@+id/deleteBtn" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.25" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline24"
