@@ -5,16 +5,25 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -41,21 +50,32 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.SetOptions;
+import com.google.mlkit.vision.common.InputImage;
+import com.google.mlkit.vision.text.Text;
+import com.google.mlkit.vision.text.TextRecognition;
+import com.google.mlkit.vision.text.TextRecognizer;
+import com.google.mlkit.vision.text.TextRecognizerOptions;
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-public class new_medications extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener{
+public class new_medications extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
     EditText medication, dosage, inventory;
     Button buttonsavemedication;
-    FloatingActionButton timeSetBtn;
+    FloatingActionButton timeSetBtn, captureImage;
     FirebaseAuth rootAuthen;
     FirebaseFirestore fstore;
     String userId;
-
+    Uri imageUri;
+    String currentPhotoPath;
+    int REQUEST_IMAGE_CAPTURE = 1;
 
     private static final String TAG = "new_medications";
 
@@ -63,7 +83,7 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_medications);
-
+        captureImage = (FloatingActionButton) findViewById(R.id.ocr_btn);
         medication = findViewById(R.id.medicine_Box);
         dosage = findViewById(R.id.DosageBox);
         inventory = findViewById(R.id.inventoryBox);
@@ -72,6 +92,7 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
         rootAuthen = FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
         userId = rootAuthen.getCurrentUser().getUid();
+
 
         timeSetBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,21 +124,26 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Log.d(TAG,"onSuccess: failed");
+                                Log.d(TAG, "onSuccess: failed");
                             }
                         });
             }
         });
 
     }
+
     public void Medication_To_Home(View view) {
         Intent intent = new Intent(new_medications.this, home_page.class);
         startActivity(intent);
     }
-
+    public void Medication_To_OCR(View view) {
+        Intent intent = new Intent(new_medications.this, optical_character_recognition.class);
+        startActivity(intent);
+    }
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         TextView timeTV = (TextView) findViewById(R.id.timeTV);
         timeTV.setText(hourOfDay + ":" + minute);
     }
-}
+
+ }

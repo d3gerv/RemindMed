@@ -21,6 +21,7 @@
         app:layout_constraintHorizontal_bias="0.113"
         app:layout_constraintStart_toEndOf="@+id/medicine_Box"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        android:onClick="Medication_To_OCR"
         app:srcCompat="@drawable/ic_ocr" />
 
     <androidx.appcompat.widget.Toolbar
