@@ -72,8 +72,10 @@
         android:text="End"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/startButton_newTemp"
-        app:layout_constraintTop_toBottomOf="@+id/body_tempt_box" />
+        app:layout_constraintBottom_toTopOf="@+id/guideline25"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/guideline24"
+        app:layout_constraintTop_toBottomOf="@+id/guideline27" />
 
     <TextView
         android:id="@+id/duration_txt1"
