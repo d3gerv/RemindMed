@@ -148,24 +148,22 @@
         app:layout_constraintStart_toStartOf="@+id/guideline26"
         app:layout_constraintTop_toBottomOf="@+id/DosageBox" />
 
-    <Button
-        android:id="@+id/timeBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <TextView
+        android:id="@+id/timeTV"
+        android:layout_width="134dp"
+        android:layout_height="51dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
         android:width="125dp"
         android:height="50dp"
         android:background="@drawable/edittext3"
-        android:onClick="popTimePicker"
-        android:text="Set Time"
-        android:textSize="18sp"
+        android:hint="00:00"
+        android:gravity="center"
         app:layout_constraintStart_toStartOf="@+id/guideline26"
-        app:layout_constraintTop_toBottomOf="@+id/time_txt1"
-        tools:ignore="OnClick" />
+        app:layout_constraintTop_toBottomOf="@+id/time_txt1" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_btn"
+        android:id="@+id/add_btnTime"
         android:layout_width="84dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
@@ -174,7 +172,7 @@
         android:focusable="true"
         app:backgroundTint="#FDCB00"
         app:fabSize="mini"
-        app:layout_constraintStart_toEndOf="@+id/timeBtn"
+        app:layout_constraintStart_toEndOf="@+id/timeTV"
         app:layout_constraintTop_toBottomOf="@+id/DosageBox"
         app:srcCompat="@drawable/ic_baseline_add" />
 
@@ -191,7 +189,7 @@
         android:textSize="21sp"
         app:layout_constraintEnd_toStartOf="@+id/inventory_txt"
         app:layout_constraintStart_toStartOf="@+id/guideline26"
-        app:layout_constraintTop_toBottomOf="@+id/timeBtn" />
+        app:layout_constraintTop_toBottomOf="@+id/timeTV" />
 
     <Spinner
         android:id="@+id/frequency_spinner_ten"
@@ -215,7 +213,7 @@
         android:textColor="#000000"
         android:textSize="21sp"
         app:layout_constraintStart_toEndOf="@+id/frequency_txt1"
-        app:layout_constraintTop_toBottomOf="@+id/add_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/add_btnTime" />
 
     <EditText
         android:id="@+id/inventoryBox"

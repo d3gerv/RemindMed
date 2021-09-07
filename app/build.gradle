@@ -67,5 +67,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation platform('com.google.firebase:firebase-bom:28.3.1')
     implementation 'com.google.firebase:firebase-database'
+    api 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
+    implementation 'com.google.android.gms:play-services-mlkit-text-recognition:16.3.0'
+    implementation 'com.google.mlkit:object-detection-custom:16.3.3'
 }
 apply plugin: 'com.google.gms.google-services'
