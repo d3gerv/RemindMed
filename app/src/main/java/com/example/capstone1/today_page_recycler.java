@@ -5,11 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -50,7 +53,26 @@ public class today_page_recycler extends AppCompatActivity {
         myAdapter = new MyMedicationAdapter(today_page_recycler.this, myArrayList);
         recyclerView1.setAdapter(myAdapter);
         EventChangeListener();
+
+
+        AlertDialog dialog = new AlertDialog.Builder(today_page_recycler.this)
+                .setTitle("You have recently recorded a *insert health measurement*")
+                .setMessage("Do you want to proceed with the recommendation?")
+                .setPositiveButton("Yes", null)
+                .setNegativeButton("No", null)
+                .show();
+
+        Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+        positiveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(today_page_recycler.this,"Recommendation", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(), recommendations.class));
+                dialog.dismiss();
+            }
+        });
     }
+
     public void Today_To_Home(View view){
         Intent intent = new Intent(today_page_recycler.this, home_page.class);
         startActivity(intent);

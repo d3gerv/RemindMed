@@ -102,47 +102,45 @@
         android:id="@+id/textViewHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="12dp"
+        android:layout_marginEnd="48dp"
         android:layout_marginBottom="8dp"
         android:text="Home"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/textViewToday"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/HomeT" />
+        app:layout_constraintTop_toBottomOf="@+id/HomeT"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textViewToday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
         android:layout_marginTop="12dp"
+        android:layout_marginEnd="44dp"
         android:layout_marginBottom="8dp"
         android:text="Today"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/textViewHistory"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textViewHome"
-        app:layout_constraintTop_toBottomOf="@+id/TodayT" />
+        app:layout_constraintTop_toBottomOf="@+id/TodayT"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textViewHistory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
+        android:layout_marginStart="44dp"
         android:layout_marginTop="12dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="4dp"
         android:text="History"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/textViewProfile"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/textViewToday"
         app:layout_constraintTop_toBottomOf="@+id/HistoryT" />
 
@@ -150,32 +148,30 @@
         android:id="@+id/textViewProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
+        android:layout_marginStart="47dp"
         android:layout_marginTop="12dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="27dp"
         android:layout_marginBottom="8dp"
         android:text="Profile"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/textViewHistory"
-        app:layout_constraintTop_toBottomOf="@+id/ProfileT" />
+        app:layout_constraintTop_toBottomOf="@+id/ProfileT"
+        app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/HomeT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="12dp"
         android:clickable="true"
         android:focusable="true"
         app:backgroundTint="#FFFFFF"
         app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/TodayT"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view5"
         app:layout_constraintVertical_bias="0.0"
@@ -185,53 +181,44 @@
         android:id="@+id/TodayT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
         android:layout_marginTop="8dp"
         android:clickable="true"
         android:focusable="true"
         app:backgroundTint="#FFFFFF"
         app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/HistoryT"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/HomeT"
         app:layout_constraintTop_toBottomOf="@+id/view5"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/today" />
+        app:layout_constraintVertical_bias="0.09"
+        app:srcCompat="@drawable/today"
+        tools:layout_editor_absoluteX="135dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/HistoryT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:clickable="true"
         android:focusable="true"
         app:backgroundTint="#FFFFFF"
         app:fabSize="normal"
-        app:layout_constraintEnd_toStartOf="@+id/ProfileT"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/TodayT"
         app:layout_constraintTop_toBottomOf="@+id/view5"
-        app:srcCompat="@drawable/ic_history" />
+        app:srcCompat="@drawable/ic_history"
+        tools:layout_editor_absoluteX="230dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/ProfileT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="45dp"
+        android:layout_marginStart="43dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="15dp"
         android:clickable="true"
         android:focusable="true"
         app:backgroundTint="#FFFFFF"
         app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/HistoryT"
         app:layout_constraintTop_toBottomOf="@+id/view5"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.09"
         app:srcCompat="@drawable/profile" />
 
     <FrameLayout
@@ -282,6 +269,18 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/ic_edit_delete" />
+
+                    <ImageView
+                        android:id="@+id/imageView8"
+                        android:layout_width="73dp"
+                        android:layout_height="55dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="48dp"
+                        android:layout_marginBottom="7dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/medpills" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
