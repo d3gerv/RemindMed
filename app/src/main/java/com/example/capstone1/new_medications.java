@@ -86,38 +86,35 @@ public class new_medications extends AppCompatActivity {
         dateformat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               year = calendar.get((Calendar.YEAR));
-               month = calendar.get((Calendar.MONTH));
-               day = calendar.get((Calendar.DAY_OF_MONTH));
-               DatePickerDialog datePickerDialog = new DatePickerDialog(new_medications.this, new DatePickerDialog.OnDateSetListener() {
-                   @Override
-                   public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-                       dateformat.setText(SimpleDateFormat.getDateInstance().format(calendar.getTime()));
+                year = calendar.get((Calendar.YEAR));
+                month = calendar.get((Calendar.MONTH));
+                day = calendar.get((Calendar.DAY_OF_MONTH));
+                DatePickerDialog datePickerDialog = new DatePickerDialog(new_medications.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                        dateformat.setText(SimpleDateFormat.getDateInstance().format(calendar.getTime()));
 
-                   }
-               }, year, month, day);
-               datePickerDialog.show();
+                    }
+                }, year, month, day);
+                datePickerDialog.show();
             }
         });
 
 
 
-/*
-                //Spinner mySpinner = (Spinner) findViewById(R.id.type_spinner_one);
-                //Spinner mySpinnertwo = (Spinner) findViewById(R.id.frequency_spinner_ten);
 
+                Spinner mySpinner = (Spinner) findViewById(R.id.type_spinner_one);
+                Spinner mySpinnertwo = (Spinner) findViewById(R.id.frequency_spinner_ten);
                 ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(new_medications.this,
                         android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.type));
                 myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinnertypeunit.setAdapter(myAdapter);
-
                 ArrayAdapter<String> myAdapter2 = new ArrayAdapter<String>(new_medications.this,
                         android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.frequency));
                 myAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinnerfrequencymedication.setAdapter(myAdapter2);
-
                 timeButton = findViewById(R.id.timeBtn);
-*/
+
 
         buttonsavemedication.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,7 +155,6 @@ public class new_medications extends AppCompatActivity {
                         Toast.makeText(new_medications.this, "New Medication added", Toast.LENGTH_SHORT).show();
                     }
                 });
-
  */
             }
         });
@@ -170,21 +166,16 @@ public class new_medications extends AppCompatActivity {
                 //String Medication = medication.getText().toString().trim();
                 String Dosage = dosage.getText().toString().trim();
                 String Inventory = inventory.getText().toString().trim();
-
                 Medication medication = new Medication(Dosage,Inventory);
                 //Medication student =new Medication(Medication,Dosage,Inventory);
-
                 reference.add(medication).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentReference> task) {
                         Toast.makeText(new_medications.this, "gago gumana", Toast.LENGTH_SHORT).show();
                     }
                 });
-
-
             }
         });
-
  */
 /*
         DocumentReference documentReference = fstore.collection("users").document(userId);
