@@ -63,7 +63,7 @@
         app:srcCompat="@drawable/pills" />
 
     <CalendarView
-        android:id="@+id/calendarView"
+        android:id="@+id/calendarViewTD"
         android:layout_width="391dp"
         android:layout_height="196dp"
         android:layout_marginStart="27dp"
@@ -85,7 +85,7 @@
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calendarView" />
+        app:layout_constraintTop_toBottomOf="@+id/calendarViewTD" />
 
     <View
         android:id="@+id/view5"

@@ -1,5 +1,6 @@
 package com.example.capstone1;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -10,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.CalendarView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -28,6 +30,7 @@ public class today_page_recycler extends AppCompatActivity {
     MyMedicationAdapter myAdapter;
     FirebaseFirestore db;
     ProgressDialog progressDialog;
+    private CalendarView calendarView;
 
 
     @Override
@@ -39,16 +42,26 @@ public class today_page_recycler extends AppCompatActivity {
         progressDialog.setCancelable(false);
         progressDialog.setMessage("Fetching Data...");
         progressDialog.show();
+        calendarView = findViewById(R.id.calendarViewTD);
 
         recyclerView1 = findViewById(R.id.recyclerViewToday);
         recyclerView1.setHasFixedSize(true);
         recyclerView1.setLayoutManager(new LinearLayoutManager(this));
-
-
         db = FirebaseFirestore.getInstance();
         myArrayList = new ArrayList<medication_info>();
         myAdapter = new MyMedicationAdapter(today_page_recycler.this, myArrayList);
-        recyclerView1.setAdapter(myAdapter);
+
+
+        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                String date = year + "/" + month +"/"+dayOfMonth;
+                Log.d("Calendar", "Selected day change" + date );
+                recyclerView1.setAdapter(myAdapter);
+
+            }
+        });
+
         EventChangeListener();
     }
     public void Today_To_Home(View view){

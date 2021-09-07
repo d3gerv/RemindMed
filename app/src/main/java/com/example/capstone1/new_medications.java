@@ -26,6 +26,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.timepicker.MaterialTimePicker;
+import com.google.android.material.timepicker.TimeFormat;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -51,8 +53,7 @@ public class new_medications extends AppCompatActivity {
 
     //CollectionReference reference = fstore.collection("Users");
 
-    Button timeButton, dateformat;
-    int hour, minute;
+    Button  dateformat;
     int year, month, day;
 
 
@@ -99,8 +100,6 @@ public class new_medications extends AppCompatActivity {
                datePickerDialog.show();
             }
         });
-
-
 
 /*
                 //Spinner mySpinner = (Spinner) findViewById(R.id.type_spinner_one);
@@ -199,26 +198,6 @@ public class new_medications extends AppCompatActivity {
  */
     }
 
-
-    public void popTimePicker(View view) {
-        TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
-            @Override
-            public void onTimeSet(TimePicker timePicker, int i, int i1) {
-                hour = i;
-                minute = i1;
-                timeButton.setText(String.format(Locale.getDefault(), "%02d:%02d", hour, minute));
-            }
-        };
-
-        int style = AlertDialog.THEME_HOLO_DARK;
-
-        TimePickerDialog timePickerDialog = new TimePickerDialog(new_medications.this, style, onTimeSetListener, hour, minute, true);
-
-        timePickerDialog.setTitle("Set Time");
-        timePickerDialog.show();
-
-
-    }
 
     public void Medication_To_Home(View view) {
         Intent intent = new Intent(new_medications.this, home_page.class);
