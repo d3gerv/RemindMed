@@ -33,7 +33,7 @@ public class landing_page extends AppCompatActivity {
 
         image.setAnimation(topAnim);
 
-
+        ImageView button = (ImageView) findViewById(R.id.nextBtn);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
