@@ -24,6 +24,8 @@ public class landing_page extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_landing_page);
 
+        button = (ImageView) findViewById(R.id.nextBtn);
+
         //Animations
         topAnim = AnimationUtils.loadAnimation(this, R.anim.top_animation);
 
@@ -31,7 +33,7 @@ public class landing_page extends AppCompatActivity {
 
         image.setAnimation(topAnim);
 
-
+        ImageView button = (ImageView) findViewById(R.id.nextBtn);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

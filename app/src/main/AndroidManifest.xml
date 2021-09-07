@@ -98,6 +98,9 @@
             android:name=".create_account"
             android:exported="true" />
         <activity
+            android:name=".pdf_form"
+            android:exported="true" />
+        <activity
             android:name=".login_page"
             android:exported="true" />
         <activity

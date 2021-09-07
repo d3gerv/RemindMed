@@ -29,18 +29,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/freqView"
                 tools:srcCompat="@tools:sample/avatars" />
 
-            <ImageView
-                android:id="@+id/imageView9"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintEnd_toStartOf="@+id/guideline31"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="@+id/guideline32"
-                app:layout_constraintTop_toBottomOf="@+id/timeView"
-                tools:srcCompat="@tools:sample/avatars" />
-
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline15"
                 android:layout_width="wrap_content"
@@ -79,7 +67,9 @@
                 android:id="@+id/medNameView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/viga"
                 android:text="TextView"
+                android:textColor="#000000"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toTopOf="@+id/inventoryView"
                 app:layout_constraintEnd_toStartOf="@+id/guideline38"
@@ -91,7 +81,9 @@
                 android:id="@+id/freqView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/viga"
                 android:text="TextView"
+                android:textColor="#000000"
                 app:layout_constraintEnd_toStartOf="@+id/guideline28"
                 app:layout_constraintStart_toStartOf="@+id/guideline15"
                 tools:layout_editor_absoluteY="11dp" />
@@ -100,16 +92,21 @@
                 android:id="@+id/timeView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/viga"
                 android:text="TextView"
+                android:textColor="#000000"
                 app:layout_constraintEnd_toStartOf="@+id/guideline31"
+                app:layout_constraintHorizontal_bias="0.545"
                 app:layout_constraintStart_toStartOf="@+id/guideline32"
-                tools:layout_editor_absoluteY="8dp" />
+                tools:layout_editor_absoluteY="11dp" />
 
             <TextView
                 android:id="@+id/inventoryView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/viga"
                 android:text="TextView"
+                android:textColor="#000000"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/guideline38"
                 app:layout_constraintStart_toStartOf="@+id/guideline37"
@@ -128,6 +125,21 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.69" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/floatingActionButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                app:backgroundTint="#FFFFFF"
+                app:fabSize="normal"
+                android:onClick="Edit_To_Medications"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/guideline31"
+                app:layout_constraintStart_toStartOf="@+id/guideline32"
+                app:layout_constraintTop_toBottomOf="@+id/timeView"
+                app:srcCompat="@drawable/ic_edit_delete" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
