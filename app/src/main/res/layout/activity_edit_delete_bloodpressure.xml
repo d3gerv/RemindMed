@@ -161,6 +161,8 @@
         app:layout_constraintTop_toBottomOf="@+id/time_txt1"
         tools:ignore="OnClick" />
 
+
+
     <EditText
         android:id="@+id/blood_pressure_box"
         android:layout_width="107dp"
