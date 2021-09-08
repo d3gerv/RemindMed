@@ -32,12 +32,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="692dp"
         android:text="Optical Character "
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="31sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/textView5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.543"
         app:layout_constraintStart_toStartOf="parent" />
@@ -46,12 +45,11 @@
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="652dp"
         android:text="Recognition"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="31sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -59,7 +57,7 @@
         android:id="@+id/paste_medicine_button"
         android:layout_width="260dp"
         android:layout_height="48dp"
-        android:layout_marginBottom="108dp"
+        android:layout_marginBottom="24dp"
         android:background="@drawable/edit_round"
         android:fontFamily="@font/viga"
         android:text="Paste to Medicine Name"
@@ -67,7 +65,7 @@
         android:textColor="#FFFFFF"
         android:textSize="22sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/cancel_ocr_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -75,7 +73,7 @@
         android:id="@+id/cancel_ocr_button"
         android:layout_width="254dp"
         android:layout_height="49dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="32dp"
         android:background="@drawable/editttextcancel"
         android:fontFamily="@font/viga"
         android:text="Cancel"

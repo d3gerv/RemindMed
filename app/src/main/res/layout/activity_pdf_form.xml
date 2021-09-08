@@ -33,11 +33,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="684dp"
         android:text="RemindMed monthly report for "
         android:textColor="#FFFFFF"
         android:textSize="23sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/monthView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.612"
         app:layout_constraintStart_toStartOf="parent" />
@@ -46,11 +45,10 @@
         android:id="@+id/monthView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="652dp"
         android:text="month"
         android:textColor="#FFFFFF"
         android:textSize="23sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/toolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.524"
         app:layout_constraintStart_toStartOf="parent" />
