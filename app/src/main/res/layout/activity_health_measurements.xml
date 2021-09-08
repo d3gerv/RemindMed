@@ -26,7 +26,7 @@
         android:onClick="Health_To_Bloodpressure"
         app:backgroundTint="#FFFFFF"
         app:fabSize="mini"
-        app:layout_constraintBottom_toTopOf="@+id/pulseRate_button"
+        app:layout_constraintBottom_toTopOf="@+id/cholesterol_button"
         app:layout_constraintDimensionRatio="5:5"
         app:layout_constraintEnd_toStartOf="@+id/guideline31"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
@@ -44,7 +44,7 @@
 
         app:layout_constraintBottom_toTopOf="@+id/bloodSugar_button"
         app:layout_constraintEnd_toStartOf="@+id/guideline31"
-        app:layout_constraintTop_toBottomOf="@+id/pulseRate_button"
+        app:layout_constraintTop_toBottomOf="@+id/bloodPressure_button"
         app:srcCompat="@drawable/ic_arrow_next" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -57,9 +57,9 @@
         app:backgroundTint="#FFFFFF"
         app:fabSize="mini"
 
-        app:layout_constraintBottom_toTopOf="@+id/temperature_button"
+        app:layout_constraintBottom_toTopOf="@+id/cholesterol_button"
         app:layout_constraintEnd_toStartOf="@+id/guideline31"
-        app:layout_constraintTop_toBottomOf="@+id/cholesterol_button"
+        app:layout_constraintTop_toBottomOf="@+id/temperature_button"
         app:srcCompat="@drawable/ic_arrow_next" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -85,7 +85,7 @@
         android:onClick="Health_To_Heartrate"
         app:backgroundTint="#FFFFFF"
         app:fabSize="mini"
-        app:layout_constraintBottom_toTopOf="@+id/sleep_button"
+        app:layout_constraintBottom_toTopOf="@+id/pulseRate_button"
         app:layout_constraintEnd_toStartOf="@+id/guideline31"
         app:layout_constraintTop_toBottomOf="@+id/temperature_button"
         app:srcCompat="@drawable/ic_arrow_next" />
@@ -99,9 +99,9 @@
         android:onClick="Health_To_Pulserate"
         app:backgroundTint="#FFFFFF"
         app:fabSize="mini"
-        app:layout_constraintBottom_toTopOf="@+id/cholesterol_button"
+        app:layout_constraintBottom_toTopOf="@+id/sleep_button"
         app:layout_constraintEnd_toStartOf="@+id/guideline31"
-        app:layout_constraintTop_toBottomOf="@+id/bloodPressure_button"
+        app:layout_constraintTop_toBottomOf="@+id/heartRate_button"
         app:srcCompat="@drawable/ic_arrow_next" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -116,7 +116,7 @@
 
         app:layout_constraintBottom_toTopOf="@+id/view4"
         app:layout_constraintEnd_toStartOf="@+id/guideline31"
-        app:layout_constraintTop_toBottomOf="@+id/heartRate_button"
+        app:layout_constraintTop_toBottomOf="@+id/pulseRate_button"
         app:layout_constraintVertical_bias="0.356"
         app:srcCompat="@drawable/ic_arrow_next" />
 

@@ -6,29 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".edit_delete_bloodpressure">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="20dp"
-        app:layout_constraintGuide_percent="0.0" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline17"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="20dp"
-        app:layout_constraintGuide_percent="0.14" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline18"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="275dp"
-        app:layout_constraintGuide_percent="0.33" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -46,27 +23,72 @@
         android:id="@+id/imageBack"
         android:layout_width="64dp"
         android:layout_height="68dp"
-        android:layout_marginEnd="348dp"
         android:backgroundTint="#E73927"
-        app:layout_constraintBottom_toBottomOf="@+id/edit_Measurements"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/backarrow" />
+
 
     <TextView
         android:id="@+id/edit_Measurements"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:fontFamily="sans-serif"
+        android:layout_marginBottom="20dp"
         android:text="Edit Measurements"
         android:textColor="#FFFFFF"
         android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toEndOf="@+id/imageBack" />
+
+
+    <Button
+        android:id="@+id/startButton_bp"
+        android:layout_width="147dp"
+        android:layout_height="51dp"
+        android:width="125dp"
+        android:height="50dp"
+        android:background="@drawable/edittext3"
+        android:drawableStart="@drawable/ic_calendar"
+        android:paddingLeft="10dp"
+        android:text="Start"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline25"
+        app:layout_constraintEnd_toStartOf="@+id/guideline24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guideline27" />
+
+    <Button
+        android:id="@+id/endButton_newBP"
+        android:layout_width="145dp"
+        android:layout_height="48dp"
+        android:width="125dp"
+        android:height="50dp"
+        android:background="@drawable/edittext3"
+        android:drawableStart="@drawable/ic_calendar"
+        android:paddingLeft="10dp"
+        android:text="End"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline25"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/guideline24"
+        app:layout_constraintTop_toBottomOf="@+id/guideline27" />
+
+    <TextView
+        android:id="@+id/duration_txt1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/viga"
+        android:text="Duration"
+        android:textColor="#000000"
+        android:textSize="21sp"
+        app:layout_constraintBottom_toTopOf="@+id/startButton_bp"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -74,36 +96,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
         android:fontFamily="@font/viga"
-        android:text="Blood pressure"
+        android:text="Blood Pressure"
         android:textColor="#000000"
         android:textSize="21sp"
-        app:layout_constraintEnd_toStartOf="@+id/bloodPressure_editBox"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintBottom_toTopOf="@+id/guideline21"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline17" />
-
-    <EditText
-        android:id="@+id/bloodPressure_editBox"
-        android:layout_width="107dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/edittext3"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:paddingStart="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline18"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/bloodPressureView"
-        app:layout_constraintStart_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toTopOf="@+id/guideline17"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/time_txt1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -112,24 +114,10 @@
         android:text="Time"
         android:textColor="#000000"
         android:textSize="21sp"
+        app:layout_constraintBottom_toTopOf="@+id/timeButton_editBP"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bloodPressureView" />
-
-    <Button
-        android:id="@+id/timeButton_editBP"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="64dp"
-        android:width="125dp"
-        android:height="50dp"
-        android:background="@drawable/edittext3"
-        android:onClick="popTimePicker"
-        android:text="Set Time"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/textView8"
-        tools:ignore="OnClick" />
+        app:layout_constraintTop_toBottomOf="@+id/guideline21"
+        app:layout_constraintVertical_bias="0.45" />
 
     <TextView
         android:id="@+id/frequency_txt1"
@@ -141,6 +129,7 @@
         android:text="Frequency"
         android:textColor="#000000"
         android:textSize="21sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline23"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/timeButton_editBP" />
 
@@ -148,66 +137,49 @@
         android:id="@+id/frequency_spinner_edit_oneBP"
         android:layout_width="143dp"
         android:layout_height="54dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="44dp"
         android:background="@drawable/edittext3"
-        app:layout_constraintEnd_toStartOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/frequency_txt1" />
+        android:backgroundTint="#FDCB00"
+        app:layout_constraintBottom_toTopOf="@+id/duration_txt1"
+        app:layout_constraintEnd_toEndOf="@id/guideline24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frequency_txt1"
+        app:layout_constraintVertical_bias="0.25" />
 
-    <TextView
-        android:id="@+id/duration_txt1"
+    <Button
+        android:id="@+id/timeButton_editBP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/viga"
-        android:text="Duration"
-        android:textColor="#000000"
-        android:textSize="21sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frequency_spinner_edit_oneBP" />
-
-    <Button
-        android:id="@+id/startButton_bp"
-        android:layout_width="147dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
         android:width="125dp"
         android:height="50dp"
         android:background="@drawable/edittext3"
-        android:drawableStart="@drawable/ic_calendar"
-        android:paddingLeft="10dp"
-        android:text="Start"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:onClick="popTimePicker"
+        android:text="Set Time"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline6"
-        app:layout_constraintHorizontal_bias="0.069"
+        app:layout_constraintBottom_toTopOf="@+id/frequency_txt1"
+        app:layout_constraintEnd_toEndOf="@id/guideline24"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/duration_txt1" />
+        app:layout_constraintTop_toBottomOf="@+id/time_txt1"
+        tools:ignore="OnClick" />
 
-    <Button
-        android:id="@+id/endButtonbp"
-        android:layout_width="143dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="32dp"
-        android:width="125dp"
-        android:height="50dp"
+    <EditText
+        android:id="@+id/blood_pressure_box"
+        android:layout_width="107dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="47dp"
         android:background="@drawable/edittext3"
-        android:drawableStart="@drawable/ic_calendar"
-        android:paddingLeft="10dp"
-        android:text="End"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/startButton_bp"
-        app:layout_constraintTop_toTopOf="@+id/guideline32" />
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:paddingStart="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline21"
+        app:layout_constraintStart_toEndOf="@+id/bloodPressureView"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <Button
         android:id="@+id/save_changes_button"
         android:layout_width="247dp"
         android:layout_height="49dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/edit_round"
         android:fontFamily="@font/viga"
         android:text="Save Changes"
@@ -215,45 +187,79 @@
         android:textColor="#FFFFFF"
         android:textSize="22sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/deleteBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.518"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startButton_bp" />
+        app:layout_constraintTop_toBottomOf="@+id/guideline25" />
 
     <Button
         android:id="@+id/deleteBtn"
-        android:layout_width="249dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="82dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="80dp"
+        android:layout_width="247dp"
+        android:layout_height="49dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/editttextcancel"
         android:fontFamily="@font/viga"
         android:text="Delete"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#000000"
         android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/cancel_Btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/save_changes_button" />
+
+    <Button
+        android:id="@+id/cancel_Btn"
+        android:layout_width="247dp"
+        android:layout_height="49dp"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/editttextcancel"
+        android:fontFamily="@font/viga"
+        android:text="Cancel"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#000000"
+        android:textSize="22sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/save_changes_button"
-        app:layout_constraintVertical_bias="0.144" />
+        app:layout_constraintTop_toBottomOf="@+id/deleteBtn" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="206dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline32"
+        android:id="@+id/guideline21"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="275dp"
-        app:layout_constraintGuide_percent="0.60" />
+        app:layout_constraintGuide_percent="0.25" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.75" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline27"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.65" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
