@@ -57,7 +57,6 @@
         android:id="@+id/snooze_button"
         android:layout_width="247dp"
         android:layout_height="49dp"
-        android:layout_marginTop="40dp"
         android:background="@drawable/edit_round"
         android:fontFamily="@font/viga"
         android:text="Snooze!"
@@ -69,13 +68,13 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline29"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/guideline28"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/guideline7" />
 
     <Button
         android:id="@+id/stop_button"
         android:layout_width="247dp"
         android:layout_height="49dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginBottom="32dp"
         android:background="@drawable/editttextcancel"
         android:fontFamily="@font/viga"
         android:text="Stop"
