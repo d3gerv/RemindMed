@@ -153,11 +153,13 @@ public class new_medications extends AppCompatActivity  implements TimePickerDia
                 String Medication = medication.getText().toString().trim();
                 String Dosage = dosage.getText().toString().trim();
                 String Inventory = inventory.getText().toString().trim();
+                String Time = timeButtonmedtst.getText().toString().trim();
 
                 Map<String, Object> user = new HashMap<>();
                 user.put("Medication", Medication);
                 user.put("Dosage", Dosage);
                 user.put("InventoryMeds", Inventory);
+                user.put("TimeMedication", Time);
 
 
                 fstore.collection("users").document(userId).collection("New Medications")

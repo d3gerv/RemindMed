@@ -14,6 +14,7 @@
         android:clickable="true"
         android:focusable="true"
         app:backgroundTint="#FFFFFF"
+        android:onClick="Home_To_Pdf"
         app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="@+id/textViewHome"
         app:layout_constraintStart_toStartOf="parent"

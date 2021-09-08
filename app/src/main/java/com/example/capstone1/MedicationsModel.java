@@ -1,15 +1,17 @@
 package com.example.capstone1;
 
+import java.sql.Time;
+
 public class MedicationsModel {
     private String Medication;
-    private String Dosage;
+    private String TimeMedication;
     private String InventoryMeds;
 
     private MedicationsModel(){}
 
-    private MedicationsModel(String Medication,String Dosage, String InventoryMeds){
+    private MedicationsModel(String Medication,String TimeMedication, String InventoryMeds){
         this.Medication = Medication;
-        this.Dosage = Dosage;
+        this.TimeMedication = TimeMedication;
         this.InventoryMeds = InventoryMeds;
 
     }
@@ -22,12 +24,12 @@ public class MedicationsModel {
         this.Medication = Medication;
     }
 
-    public String getDosage(){
-        return Dosage;
+    public String getTimeMedication(){
+        return TimeMedication;
     }
 
-    public void setDosage(String Dosage){
-        this.Dosage = Dosage;
+    public void setTimeMedication(String TimeMedication){
+        this.TimeMedication = TimeMedication;
     }
 
     public String getInventoryMeds(){
