@@ -43,8 +43,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.SetOptions;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -90,6 +92,36 @@ public class new_medications extends AppCompatActivity  implements TimePickerDia
         fstore = FirebaseFirestore.getInstance();
         timeButtonmedtst = findViewById(R.id.timeButtonmed);
 
+        timeButtonmedtst.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(new_medications.this,
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker timePicker, int i, int i1) {
+                                hour = i;
+                                minute = i1;
+                                String time = hour + ":" + minute;
+                                SimpleDateFormat f24Hours = new SimpleDateFormat("HH:mm"
+                                );
+                                try {
+                                    Date date = f24Hours.parse(time);
+                                    SimpleDateFormat f12Hours = new SimpleDateFormat("hh:mm aa"
+                                    );
+                                    timeButtonmedtst.setText(f12Hours.format(date));
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }, 12, 0, false
+                );
+                timePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                timePickerDialog.updateTime(hour, minute);
+                timePickerDialog.show();
+            }
+        });
+
 
         userId = rootAuthen.getCurrentUser().getUid();
 
@@ -103,10 +135,16 @@ public class new_medications extends AppCompatActivity  implements TimePickerDia
             }
         });*/
 
+
         ArrayAdapter<String> myAdapter2 = new ArrayAdapter<String>(new_medications.this,
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.frequency));
         myAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerfrequencymedication.setAdapter(myAdapter2);
+
+        ArrayAdapter<String> myAdapter_two = new ArrayAdapter<String>(new_medications.this,
+                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.type));
+        myAdapter_two.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnertypeunit.setAdapter(myAdapter_two);
 
 
         buttonsavemedication.setOnClickListener(new View.OnClickListener() {
@@ -169,7 +207,7 @@ public class new_medications extends AppCompatActivity  implements TimePickerDia
 
     }
 
-    public void popTimePicker (View view){
+    /*public void popTimePicker (View view){
         TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int i, int i1) {
@@ -189,7 +227,7 @@ public class new_medications extends AppCompatActivity  implements TimePickerDia
         calendar.set(Calendar.MINUTE, minute);
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MILLISECOND, 0);
-    }
+    }*/
 
     private void createNotificationChannel() {
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)

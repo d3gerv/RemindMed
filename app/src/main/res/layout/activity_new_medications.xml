@@ -159,7 +159,6 @@
         android:height="50dp"
         android:background="@drawable/edittext3"
         android:text="Set Time"
-        android:onClick="popTimePicker"
         android:textSize="18sp"
         android:gravity="center"
         app:layout_constraintStart_toStartOf="@+id/guideline26"
@@ -304,6 +303,20 @@
         app:layout_constraintStart_toEndOf="@+id/inventoryBox"
         app:layout_constraintTop_toBottomOf="@+id/type_spinner_one"
         app:srcCompat="@drawable/ic_ocr" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/timeSet_btn"
+        android:layout_width="40dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="52dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:backgroundTint="#FDCB00"
+        app:fabSize="mini"
+        app:layout_constraintStart_toEndOf="@+id/timeButtonmed"
+        app:layout_constraintTop_toBottomOf="@+id/type_spinner_one"
+        app:srcCompat="@drawable/ic_baseline_add" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

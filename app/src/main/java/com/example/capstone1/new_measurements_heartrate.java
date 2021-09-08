@@ -5,6 +5,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,6 +25,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.SetOptions;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -76,6 +81,35 @@ public class new_measurements_heartrate extends AppCompatActivity {
 
         timeButtonheart = findViewById(R.id.time_btn_four);
 
+        timeButtonheart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(new_measurements_heartrate.this,
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker timePicker, int i, int i1) {
+                                hour = i;
+                                minute = i1;
+                                String time = hour + ":" + minute;
+                                SimpleDateFormat f24Hours = new SimpleDateFormat("HH:mm"
+                                );
+                                try {
+                                    Date date = f24Hours.parse(time);
+                                    SimpleDateFormat f12Hours = new SimpleDateFormat("hh:mm aa"
+                                    );
+                                    timeButtonheart.setText(f12Hours.format(date));
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }, 12, 0, false
+                );
+                timePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                timePickerDialog.updateTime(hour, minute);
+                timePickerDialog.show();
+            }
+        });
 
         buttonsaveheart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,23 +167,5 @@ public class new_measurements_heartrate extends AppCompatActivity {
         Intent intent = new Intent(new_measurements_heartrate.this, health_measurements.class);
         startActivity(intent);
 
-    }
-
-    public void popTimePicker (View view){
-        TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
-            @Override
-            public void onTimeSet(TimePicker timePicker, int i, int i1) {
-                hour = i;
-                minute = i1;
-                timeButtonheart.setText(String.format(Locale.getDefault(), "%02d:%02d", hour, minute));
-            }
-        };
-
-        int style = AlertDialog.THEME_HOLO_DARK;
-
-        TimePickerDialog timePickerDialog = new TimePickerDialog(this, style, onTimeSetListener, hour, minute, true);
-
-        timePickerDialog.setTitle("Set Time");
-        timePickerDialog.show();
     }
 }
