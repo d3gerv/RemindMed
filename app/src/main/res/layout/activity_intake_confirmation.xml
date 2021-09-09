@@ -43,7 +43,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/medNameConfirmTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -82,7 +82,7 @@
         android:id="@+id/confirm_btn"
         android:layout_width="128dp"
         android:layout_height="106dp"
-        android:layout_marginStart="123dp"
+        android:layout_marginStart="92dp"
         android:layout_marginTop="329dp"
         android:layout_marginBottom="44dp"
         android:background="@drawable/edit_skip"
@@ -92,7 +92,8 @@
         android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/skip_btn"
-        app:layout_constraintTop_toBottomOf="@+id/view6" />
+        app:layout_constraintTop_toBottomOf="@+id/view6"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/skip_btn"
@@ -124,12 +125,12 @@
         android:id="@+id/cardView"
         android:layout_width="139dp"
         android:layout_height="50dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="13dp"
         app:cardBackgroundColor="#FDCB00"
         app:cardCornerRadius="2dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/medNameConfirmTv" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton2"
@@ -141,8 +142,18 @@
         android:focusable="true"
         app:backgroundTint="#FFFFFF"
         app:fabSize="mini"
-        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintStart_toEndOf="@+id/medNameConfirmTv"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:srcCompat="@drawable/ic_text_to_speech" />
+
+    <TextView
+        android:id="@+id/medInventoryTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/view6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cardView"
+        app:layout_constraintTop_toBottomOf="@+id/medNameConfirmTv" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

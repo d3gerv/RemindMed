@@ -4,12 +4,17 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/RemindMed/app/src/main/res/layout/activity_edit_delete_bloodpressure.xml" value="0.28306159420289856" />
+        <entry key="..\:/RemindMed/app/src/main/res/layout/activity_history_page.xml" value="0.33" />
         <entry key="..\:/RemindMed/app/src/main/res/layout/activity_home_page.xml" value="0.2957427536231884" />
+        <entry key="..\:/RemindMed/app/src/main/res/layout/activity_intake_confirmation.xml" value="0.5" />
+        <entry key="..\:/RemindMed/app/src/main/res/layout/activity_login_page.xml" value="0.36666666666666664" />
         <entry key="..\:/RemindMed/app/src/main/res/layout/activity_main_page.xml" value="0.2957427536231884" />
         <entry key="..\:/RemindMed/app/src/main/res/layout/activity_new_medications.xml" value="0.5" />
         <entry key="..\:/RemindMed/app/src/main/res/layout/activity_optical_character_recognition.xml" value="0.28940217391304346" />
         <entry key="..\:/RemindMed/app/src/main/res/layout/activity_optical_character_recognition_one.xml" value="0.28940217391304346" />
         <entry key="..\:/RemindMed/app/src/main/res/layout/activity_today_page_recycler.xml" value="0.2957427536231884" />
+        <entry key="..\:/RemindMed/app/src/main/res/layout/items_today_medication.xml" value="0.33" />
+        <entry key="..\:/RemindMed/app/src/main/res/layout/list_item_single.xml" value="0.20520833333333333" />
         <entry key="..\:/RemindMed/app/src/main/res/xml/file_paths.xml" value="0.28940217391304346" />
         <entry key="..\:/Users/Arah/Desktop/RemindMed-Frontend_Backend/app/src/main/res/layout/activity_alarm_notification.xml" value="0.2" />
         <entry key="..\:/Users/Arah/Desktop/RemindMed-Frontend_Backend/app/src/main/res/layout/activity_change_name.xml" value="0.25" />

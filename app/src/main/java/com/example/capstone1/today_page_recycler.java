@@ -13,9 +13,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.CalendarView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -23,6 +25,7 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class today_page_recycler extends AppCompatActivity {
     RecyclerView recyclerView1;
@@ -30,6 +33,8 @@ public class today_page_recycler extends AppCompatActivity {
     MyMedicationAdapter myAdapter;
     FirebaseFirestore db;
     ProgressDialog progressDialog;
+    String date;
+    int i;
     private CalendarView calendarView;
 
 
@@ -51,11 +56,10 @@ public class today_page_recycler extends AppCompatActivity {
         myArrayList = new ArrayList<medication_info>();
         myAdapter = new MyMedicationAdapter(today_page_recycler.this, myArrayList);
 
-
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                String date = year + "/" + month +"/"+dayOfMonth;
+                date = dayOfMonth + "/" + month +"/"+year;
                 Log.d("Calendar", "Selected day change" + date );
                 recyclerView1.setAdapter(myAdapter);
 
@@ -81,7 +85,8 @@ public class today_page_recycler extends AppCompatActivity {
 
         FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        db.document("users/"+currentFirebaseUser.getUid()).collection("New Medications").orderBy("Medication", Query.Direction.ASCENDING).addSnapshotListener(new EventListener<QuerySnapshot>() {
+        db.document("users/"+currentFirebaseUser.getUid()).collection("New Medications")
+                .orderBy("Medication", Query.Direction.ASCENDING).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
 
@@ -97,9 +102,11 @@ public class today_page_recycler extends AppCompatActivity {
                 {
                     if(dc.getType() == DocumentChange.Type.ADDED)
                     {
-                        myArrayList.add(dc.getDocument().toObject(medication_info.class));
-                    }
+                        medication_info m = dc.getDocument().toObject(medication_info.class);
+                        m.setId(dc.getDocument().getId());
+                        myArrayList.add(m);
 
+                    }
                     myAdapter.notifyDataSetChanged();
                     if(progressDialog.isShowing()) {
                         progressDialog.dismiss();
@@ -108,6 +115,8 @@ public class today_page_recycler extends AppCompatActivity {
 
             }
         });
+
+
 
     }
 }

@@ -1,6 +1,7 @@
 package com.example.capstone1;
 
 import android.content.Context;
+import android.content.Intent;
 import android.opengl.Visibility;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,14 +42,29 @@ public class MyMedicationAdapter extends RecyclerView.Adapter<MyMedicationAdapte
         holder.StartDate.setText(medication_info.StartDate);
         holder.Time.setText(medication_info.Time);
 
-        if (holder.StartDate.toString().equals(today.selectedDate))
+        if(medication_info.StartDate.equals(today.date))
         {
-            holder.itemView.setVisibility(View.VISIBLE);
+        }
 
-        }
-        else{
-        }
+        holder.mainLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, intake_confirmation.class);
+                medication_info medication_info = userArrayList.get(position);
+                intent.putExtra("description", medication_info.Medication);
+                intent.putExtra("pill", medication_info.InventoryMeds);
+                intent.putExtra("startdate", medication_info.StartDate);
+                intent.putExtra("time", medication_info.Time);
+                intent.putExtra("medication_info", medication_info);
+
+
+                context.startActivity(intent);
+            }
+        });
+
+
     }
+
 
     @Override
     public int getItemCount() {
@@ -65,7 +81,10 @@ public class MyMedicationAdapter extends RecyclerView.Adapter<MyMedicationAdapte
             StartDate = itemView.findViewById(R.id.dateTV);
             InventoryMeds = itemView.findViewById(R.id.inventoryView);
             Time = itemView.findViewById(R.id.timeView);
+            mainLayout = itemView.findViewById(R.id.mainLayout);
 
         }
+
     }
+
 }
