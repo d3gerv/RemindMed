@@ -45,9 +45,9 @@
         <item>Prefer not to say</item>
     </string-array>
 
-    <string name = "medName"> MedName </string>
-    <string name = "dosage"> dose </string>
-    <string name = "daily"> freq </string>
-    <string name = "time"> time </string>
+    <string name="medName"> MedName </string>
+    <string name="dosage"> dose </string>
+    <string name="daily"> freq </string>
+    <string name="time"> time </string>
 
 </resources>

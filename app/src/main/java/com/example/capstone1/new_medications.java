@@ -54,16 +54,20 @@ public class new_medications extends AppCompatActivity  implements TimePickerDia
     Button buttonsavemedication;
     FirebaseAuth rootAuthen;
     FirebaseFirestore fstore;
-    String userId, timeString, dateString, Medication, Dosage, Inventory, Time, StartDate;
+    String userId;
     Spinner spinnertypeunit, spinnerfrequencymedication;
     private Calendar calendar;
     private AlarmManager alarmManager;
     private PendingIntent pendingIntent;
-    DatePickerDialog datePickerDialog;
+    FloatingActionButton timeSetBtn;
+
     //CollectionReference reference = fstore.collection("Users");
 
-    Button timeButtonmedtst, startDate;
-    int hour, minute, year, month, day;
+    Button timeButtonmedtst, dateformat;
+    int hour, minute;
+    int year, month, day;
+
+
     private static final String TAG = "new_medications";
 
     private TextView mDisplayDate;
@@ -88,7 +92,9 @@ public class new_medications extends AppCompatActivity  implements TimePickerDia
 
 
         userId = rootAuthen.getCurrentUser().getUid();
-        startDate = findViewById(R.id.startButton_date);
+
+        //calendar but di pa oks ayaw mapalitan ng naka show
+        dateformat = findViewById(R.id.startButton_date);
         /*timeSetBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,12 +107,35 @@ public class new_medications extends AppCompatActivity  implements TimePickerDia
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.frequency));
         myAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerfrequencymedication.setAdapter(myAdapter2);
-        initDatePicker();
+
 
         buttonsavemedication.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveData();
+                String Medication = medication.getText().toString().trim();
+                String Dosage = dosage.getText().toString().trim();
+                String Inventory = inventory.getText().toString().trim();
+
+                Map<String, Object> user = new HashMap<>();
+                user.put("Medication", Medication);
+                user.put("Dosage", Dosage);
+                user.put("InventoryMeds", Inventory);
+
+
+                fstore.collection("users").document(userId).collection("New Medications")
+                        .add(user)
+                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                            @Override
+                            public void onSuccess(DocumentReference documentReference) {
+                                Toast.makeText(new_medications.this, "New Medication added", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.d(TAG, "onSuccess: failed");
+                            }
+                        });
                 setAlarm();
             }
         });
@@ -130,28 +159,25 @@ public class new_medications extends AppCompatActivity  implements TimePickerDia
         //TextView timeTV = (TextView) findViewById(R.id.timeTV);
         //timeTV.setText(hourOfDay + ":" + minute);
     }
-
     private void setAlarm() {
         alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
         Intent intent = new Intent(this, alarmreceiver.class);
-        pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
+        pendingIntent = PendingIntent.getBroadcast(this, 0 , intent, 0 );
         alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
         Toast.makeText(this, "Alarm Set Succesfully", Toast.LENGTH_SHORT).show();
 
     }
 
-    public void popTimePicker(View view) {
+    public void popTimePicker (View view){
         TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int i, int i1) {
                 hour = i;
                 minute = i1;
                 timeButtonmedtst.setText(String.format(Locale.getDefault(), "%02d:%02d", hour, minute));
-                timeString = timeButtonmedtst.getText().toString();
             }
         };
-
 
         int style = AlertDialog.THEME_HOLO_DARK;
 
@@ -165,38 +191,6 @@ public class new_medications extends AppCompatActivity  implements TimePickerDia
         calendar.set(Calendar.MILLISECOND, 0);
     }
 
-    private void initDatePicker() {
-        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                month = month + 1;
-                String date = makeDateString(month, dayOfMonth, year);
-                startDate.setText(date);
-                dateString = startDate.getText().toString();
-
-            }
-        };
-        calendar = Calendar.getInstance();
-        year = calendar.get(Calendar.YEAR);
-        month = calendar.get(Calendar.MONTH);
-        day = calendar.get(Calendar.DAY_OF_MONTH);
-
-        int style = AlertDialog.THEME_HOLO_DARK;
-
-        datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
-
-    }
-
-    public void openDatePicker(View view)
-    {
-        datePickerDialog.show();
-    }
-
-    private String makeDateString(int day, int month, int year) {
-        return month + "/" + day +"/" + year;
-    }
-
-
     private void createNotificationChannel() {
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
         {
@@ -209,52 +203,6 @@ public class new_medications extends AppCompatActivity  implements TimePickerDia
             notificationManager.createNotificationChannel(channel);
         }
 
-    }
-    public void saveData()
-    {
-        Medication = medication.getText().toString().trim();
-        Dosage = dosage.getText().toString().trim();
-        Inventory = inventory.getText().toString().trim();
-        Time = timeString.trim();
-        StartDate = dateString.trim();
-
-        Map<String, Object> user = new HashMap<>();
-        user.put("Medication", Medication);
-        user.put("Dosage", Dosage);
-        user.put("InventoryMeds", Inventory);
-        user.put("Time", Time);
-        user.put("StartDate", StartDate);
-
-
-        fstore.collection("users").document(userId).collection("New Medications")
-                .add(user)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Toast.makeText(new_medications.this, "New Medication added", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.d(TAG, "onSuccess: failed");
-                    }
-                });
-
-        fstore.collection("events").document(userId).collection("New Medications")
-                .add(user)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Toast.makeText(new_medications.this, "New Medication added", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.d(TAG, "onSuccess: failed");
-                    }
-                });
     }
 }
 // }

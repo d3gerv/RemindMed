@@ -14,6 +14,7 @@
         android:clickable="true"
         android:focusable="true"
         app:backgroundTint="#FFFFFF"
+        android:onClick="Home_To_Pdf"
         app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="@+id/textViewHome"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,11 +31,11 @@
         android:focusable="true"
         app:backgroundTint="#FFFFFF"
         app:fabSize="normal"
+        android:onClick="Home_To_Today"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/home_history"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.946"
-        android:onClick="Home_To_Today"
         app:srcCompat="@drawable/today" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -49,6 +50,7 @@
         app:backgroundTint="#FFFFFF"
         android:onClick="Home_To_History"
         app:fabSize="normal"
+        android:onClick="Home_To_History"
         app:layout_constraintBottom_toBottomOf="@+id/textViewHistory"
         app:layout_constraintStart_toEndOf="@+id/today_history"
         app:layout_constraintTop_toBottomOf="@+id/view5"
@@ -66,6 +68,7 @@
         android:focusable="true"
         app:backgroundTint="#FFFFFF"
         app:fabSize="normal"
+        android:onClick="Home_To_User"
         app:layout_constraintBottom_toBottomOf="@+id/textViewProfile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/home_historybtn"

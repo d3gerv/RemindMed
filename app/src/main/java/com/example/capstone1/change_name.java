@@ -114,4 +114,8 @@ public class change_name extends AppCompatActivity {
         Intent intent = new Intent(change_name.this, user_information.class);
         startActivity(intent);
     }
+    public void Change_To_Reset (View view){
+        Intent intent = new Intent(change_name.this, change_password.class);
+        startActivity(intent);
+    }
 }

@@ -11,17 +11,17 @@
         android:id="@+id/ocr_btn"
         android:layout_width="51dp"
         android:layout_height="40dp"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="48dp"
         android:clickable="true"
         android:focusable="true"
+        android:onClick="Medication_To_OCR"
         app:backgroundTint="#FFFFFF"
         app:fabSize="mini"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.113"
         app:layout_constraintStart_toEndOf="@+id/medicine_Box"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        android:onClick="Medication_To_OCR"
         app:srcCompat="@drawable/ic_ocr" />
 
     <androidx.appcompat.widget.Toolbar
@@ -91,24 +91,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/viga"
         android:text="Dosage"
         android:textColor="#000000"
         android:textSize="21sp"
+        app:layout_constraintBottom_toTopOf="@+id/DosageBox"
         app:layout_constraintStart_toStartOf="@+id/guideline26"
-        app:layout_constraintTop_toBottomOf="@+id/medicine_Box" />
+        app:layout_constraintTop_toBottomOf="@+id/guideline1" />
 
     <EditText
         android:id="@+id/DosageBox"
         android:layout_width="149dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="7dp"
         android:background="@drawable/edittext3"
         android:ems="10"
         android:hint="Dosage"
         android:inputType="textPersonName"
         android:paddingStart="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline26"
         app:layout_constraintTop_toBottomOf="@+id/dosage_txt" />
 
@@ -116,24 +118,23 @@
         android:id="@+id/type_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="96dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/viga"
         android:text="Type/Unit"
         android:textColor="#000000"
-        android:textSize="19sp"
-        app:layout_constraintStart_toEndOf="@+id/dosage_txt"
-        app:layout_constraintTop_toBottomOf="@+id/medicine_Box" />
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/type_spinner_one"
+        app:layout_constraintStart_toEndOf="@+id/guideline28"
+        app:layout_constraintTop_toBottomOf="@+id/guideline1" />
 
     <Spinner
         android:id="@+id/type_spinner_one"
         android:layout_width="178dp"
         android:layout_height="48dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="3dp"
         android:background="@drawable/edittext3"
         android:backgroundTint="#FDCB00"
-        app:layout_constraintStart_toEndOf="@+id/DosageBox"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintStart_toEndOf="@+id/guideline28"
         app:layout_constraintTop_toBottomOf="@+id/type_txt" />
 
     <TextView
@@ -141,27 +142,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
         android:fontFamily="@font/viga"
         android:text="Time"
         android:textColor="#000000"
         android:textSize="21sp"
+        app:layout_constraintBottom_toTopOf="@+id/timeButtonmed"
         app:layout_constraintStart_toStartOf="@+id/guideline26"
-        app:layout_constraintTop_toBottomOf="@+id/DosageBox" />
+        app:layout_constraintTop_toBottomOf="@+id/guideline2" />
 
     <Button
         android:id="@+id/timeButtonmed"
         android:layout_width="134dp"
         android:layout_height="51dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
         android:width="125dp"
         android:height="50dp"
         android:background="@drawable/edittext3"
-        android:text="Set Time"
-        android:onClick="popTimePicker"
-        android:textSize="18sp"
         android:gravity="center"
+        android:text="Set Time"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="@+id/guideline26"
         app:layout_constraintTop_toBottomOf="@+id/time_txt1" />
 
@@ -170,24 +170,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="68dp"
         android:fontFamily="@font/viga"
         android:text="Frequency"
         android:textColor="#000000"
         android:textSize="21sp"
-        app:layout_constraintEnd_toStartOf="@+id/inventory_txt"
+        app:layout_constraintBottom_toTopOf="@+id/frequency_spinner_ten"
         app:layout_constraintStart_toStartOf="@+id/guideline26"
-        app:layout_constraintTop_toBottomOf="@+id/timeButtonmed" />
+        app:layout_constraintTop_toBottomOf="@+id/guideline3" />
 
     <Spinner
         android:id="@+id/frequency_spinner_ten"
         android:layout_width="143dp"
         android:layout_height="54dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:background="@drawable/edittext3"
         android:backgroundTint="#FDCB00"
+        app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintStart_toStartOf="@+id/guideline26"
         app:layout_constraintTop_toBottomOf="@+id/frequency_txt1" />
 
@@ -195,27 +193,25 @@
         android:id="@+id/inventory_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="12dp"
         android:fontFamily="@font/viga"
         android:text="Inventory"
         android:textColor="#000000"
         android:textSize="21sp"
-        app:layout_constraintStart_toEndOf="@+id/frequency_txt1"
-        app:layout_constraintTop_toBottomOf="@+id/timeButtonmed" />
+        app:layout_constraintBottom_toTopOf="@+id/inventoryBox"
+        app:layout_constraintStart_toEndOf="@+id/guideline28"
+        app:layout_constraintTop_toBottomOf="@+id/guideline3" />
 
     <EditText
         android:id="@+id/inventoryBox"
         android:layout_width="118dp"
         android:layout_height="55dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
         android:background="@drawable/edittext3"
         android:ems="10"
         android:hint="Inventory"
         android:inputType="textPersonName"
         android:paddingStart="10dp"
-        app:layout_constraintStart_toEndOf="@+id/frequency_spinner_ten"
+        app:layout_constraintBottom_toTopOf="@+id/guideline4"
+        app:layout_constraintStart_toEndOf="@+id/guideline28"
         app:layout_constraintTop_toBottomOf="@+id/inventory_txt" />
 
     <TextView
@@ -223,20 +219,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="18dp"
         android:fontFamily="@font/viga"
         android:text="Duration"
         android:textColor="#000000"
         android:textSize="21sp"
+        app:layout_constraintBottom_toTopOf="@+id/startButton_date"
         app:layout_constraintStart_toStartOf="@+id/guideline26"
-        app:layout_constraintTop_toBottomOf="@+id/frequency_spinner_ten" />
+        app:layout_constraintTop_toBottomOf="@+id/guideline4" />
 
     <Button
         android:id="@+id/startButton_date"
         android:layout_width="147dp"
         android:layout_height="51dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:width="125dp"
         android:height="50dp"
         android:background="@drawable/edittext3"
@@ -246,6 +240,8 @@
         android:onClick="openDatePicker"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline5"
+        app:layout_constraintEnd_toStartOf="@+id/endButton_one"
         app:layout_constraintStart_toStartOf="@+id/guideline26"
         app:layout_constraintTop_toBottomOf="@+id/duration_txt1" />
 
@@ -253,8 +249,6 @@
         android:id="@+id/endButton_one"
         android:layout_width="146dp"
         android:layout_height="50dp"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="61dp"
         android:width="125dp"
         android:height="50dp"
         android:background="@drawable/edittext3"
@@ -263,14 +257,16 @@
         android:text="End"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline5"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/startButton_date"
-        app:layout_constraintTop_toBottomOf="@+id/inventoryBox" />
+        app:layout_constraintTop_toBottomOf="@+id/duration_txt1" />
 
     <Button
         android:id="@+id/save_medication_button"
         android:layout_width="247dp"
         android:layout_height="49dp"
-        android:layout_marginTop="37dp"
+        android:layout_marginBottom="32dp"
         android:background="@drawable/edit_round"
         android:fontFamily="@font/viga"
         android:text="Add Reminder"
@@ -278,33 +274,84 @@
         android:textColor="#FFFFFF"
         android:textSize="22sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.426"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startButton_date" />
+        app:layout_constraintTop_toBottomOf="@+id/guideline5" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline26"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.01"/>
+        app:layout_constraintGuide_percent="0.01" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline28"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/ocr_button"
         android:layout_width="50dp"
         android:layout_height="40dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="176dp"
+        android:layout_marginStart="8dp"
         android:clickable="true"
         android:focusable="true"
         app:backgroundTint="#FFFFFF"
         app:fabSize="mini"
+        app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.065"
         app:layout_constraintStart_toEndOf="@+id/inventoryBox"
-        app:layout_constraintTop_toBottomOf="@+id/type_spinner_one"
+        app:layout_constraintTop_toBottomOf="@+id/inventory_txt"
         app:srcCompat="@drawable/ic_ocr" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/timeSet_btn"
+        android:layout_width="36dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:backgroundTint="#FDCB00"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        app:layout_constraintStart_toEndOf="@+id/timeButtonmed"
+        app:layout_constraintTop_toBottomOf="@+id/time_txt1"
+        app:srcCompat="@drawable/ic_baseline_add" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.25" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.4" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.55" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.70" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.85" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

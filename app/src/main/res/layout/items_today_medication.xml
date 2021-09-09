@@ -7,6 +7,7 @@
     android:layout_margin="2dp">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="20dp"
@@ -132,9 +133,9 @@
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:focusable="true"
+                android:onClick="Edit_To_Medications"
                 app:backgroundTint="#FFFFFF"
                 app:fabSize="normal"
-                android:onClick="Edit_To_Medications"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/guideline31"
                 app:layout_constraintStart_toStartOf="@+id/guideline32"
