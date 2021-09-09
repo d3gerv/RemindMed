@@ -148,13 +148,9 @@ public class today_page_recycler extends AppCompatActivity {
                 }
 
                 for (DocumentChange dc : queryDocumentSnapshots.getDocumentChanges()) {
-
                     if (dc.getType() == DocumentChange.Type.ADDED) {
                         myArrayList.add(dc.getDocument().toObject(medication_info.class));
                     }
-
-
-
                     myAdapter.notifyDataSetChanged();
                     if (progressDialog.isShowing()) {
                         progressDialog.dismiss();

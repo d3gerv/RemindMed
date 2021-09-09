@@ -47,9 +47,6 @@ public class MyMedicationAdapter extends RecyclerView.Adapter<MyMedicationAdapte
 
         }
         else{
-            holder.itemView.setVisibility(View.GONE);
-            today.test.setText(holder.StartDate.toString());
-
         }
     }
 

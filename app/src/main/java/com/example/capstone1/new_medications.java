@@ -54,7 +54,7 @@ public class new_medications extends AppCompatActivity  implements TimePickerDia
     Button buttonsavemedication;
     FirebaseAuth rootAuthen;
     FirebaseFirestore fstore;
-    String userId, timeString, dateString;
+    String userId, timeString, dateString, Medication, Dosage, Inventory, Time, StartDate;
     Spinner spinnertypeunit, spinnerfrequencymedication;
     private Calendar calendar;
     private AlarmManager alarmManager;
@@ -106,34 +106,7 @@ public class new_medications extends AppCompatActivity  implements TimePickerDia
         buttonsavemedication.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String Medication = medication.getText().toString().trim();
-                String Dosage = dosage.getText().toString().trim();
-                String Inventory = inventory.getText().toString().trim();
-                String Time = timeString.trim();
-                String StartDate = dateString.trim();
-
-                Map<String, Object> user = new HashMap<>();
-                user.put("Medication", Medication);
-                user.put("Dosage", Dosage);
-                user.put("InventoryMeds", Inventory);
-                user.put("Time", Time);
-                user.put("StartDate", StartDate);
-
-
-                fstore.collection("users").document(userId).collection("New Medications")
-                        .add(user)
-                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                            @Override
-                            public void onSuccess(DocumentReference documentReference) {
-                                Toast.makeText(new_medications.this, "New Medication added", Toast.LENGTH_SHORT).show();
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.d(TAG, "onSuccess: failed");
-                            }
-                        });
+                saveData();
                 setAlarm();
             }
         });
@@ -236,6 +209,52 @@ public class new_medications extends AppCompatActivity  implements TimePickerDia
             notificationManager.createNotificationChannel(channel);
         }
 
+    }
+    public void saveData()
+    {
+        Medication = medication.getText().toString().trim();
+        Dosage = dosage.getText().toString().trim();
+        Inventory = inventory.getText().toString().trim();
+        Time = timeString.trim();
+        StartDate = dateString.trim();
+
+        Map<String, Object> user = new HashMap<>();
+        user.put("Medication", Medication);
+        user.put("Dosage", Dosage);
+        user.put("InventoryMeds", Inventory);
+        user.put("Time", Time);
+        user.put("StartDate", StartDate);
+
+
+        fstore.collection("users").document(userId).collection("New Medications")
+                .add(user)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Toast.makeText(new_medications.this, "New Medication added", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d(TAG, "onSuccess: failed");
+                    }
+                });
+
+        fstore.collection("events").document(userId).collection("New Medications")
+                .add(user)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Toast.makeText(new_medications.this, "New Medication added", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d(TAG, "onSuccess: failed");
+                    }
+                });
     }
 }
 // }
