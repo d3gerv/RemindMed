@@ -40,6 +40,7 @@ public class MyMedicationAdapter extends RecyclerView.Adapter<MyMedicationAdapte
         holder.Medication.setText(medication_info.Medication);
         holder.StartDate.setText(medication_info.StartDate);
         holder.Time.setText(medication_info.Time);
+        /*
 
         if (holder.StartDate.toString().equals(today.selectedDate))
         {
@@ -48,6 +49,8 @@ public class MyMedicationAdapter extends RecyclerView.Adapter<MyMedicationAdapte
         }
         else{
         }
+
+         */
     }
 
     @Override
