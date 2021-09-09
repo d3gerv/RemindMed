@@ -47,6 +47,7 @@
         android:clickable="true"
         android:focusable="true"
         app:backgroundTint="#FFFFFF"
+        android:onClick="Home_To_History"
         app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="@+id/textViewHistory"
         app:layout_constraintStart_toEndOf="@+id/today_history"

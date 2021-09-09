@@ -80,6 +80,9 @@
             android:name=".instruction_slideone"
             android:exported="true" />
         <activity
+            android:name=".history_page"
+            android:exported="true" />
+        <activity
             android:name=".health_measurements"
             android:exported="true" />
         <activity
