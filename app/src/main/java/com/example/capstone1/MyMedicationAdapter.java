@@ -21,7 +21,6 @@ public class MyMedicationAdapter extends RecyclerView.Adapter<MyMedicationAdapte
     ArrayList<medication_info> userArrayList;
     today_page_recycler today = new today_page_recycler();
     int inventory[];
-
     public MyMedicationAdapter(Context context, ArrayList<medication_info> userArrayList)
     {
         this.context =context;
@@ -33,7 +32,6 @@ public class MyMedicationAdapter extends RecyclerView.Adapter<MyMedicationAdapte
         View v = LayoutInflater.from(context).inflate(R.layout.items_today_medication, parent, false);
         return new MyViewHolder(v);
     }
-
     @Override
     public void onBindViewHolder(@NonNull MyMedicationAdapter.MyViewHolder holder, int position) {
         medication_info medication_info = userArrayList.get(position);
@@ -43,8 +41,17 @@ public class MyMedicationAdapter extends RecyclerView.Adapter<MyMedicationAdapte
         holder.Time.setText(medication_info.Time);
 
 
+        String inventory = medication_info.getInventoryMeds();
 
-
+        int intInv = Integer.parseInt(inventory);
+        if (Integer.parseInt(medication_info.getInventoryMeds())  > 1)
+        {
+            holder.constraintLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.green));
+        }
+        else if(Integer.parseInt(medication_info.getInventoryMeds())   == 1)
+        {
+            holder.constraintLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.red1));
+        }
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,20 +65,14 @@ public class MyMedicationAdapter extends RecyclerView.Adapter<MyMedicationAdapte
                 context.startActivity(intent);
             }
         });
-
-
     }
-
-
     @Override
     public int getItemCount() {
         return userArrayList.size();
     }
-
     public static class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView Medication, Time, InventoryMeds, StartDate;
+        TextView Medication, Time, InventoryMeds, StartDate, medicationHome, timeHome;
         ConstraintLayout constraintLayout, mainLayout;
-
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             Medication =itemView.findViewById(R.id.medNameView);
@@ -79,9 +80,8 @@ public class MyMedicationAdapter extends RecyclerView.Adapter<MyMedicationAdapte
             InventoryMeds = itemView.findViewById(R.id.inventoryView);
             Time = itemView.findViewById(R.id.timeView);
             mainLayout = itemView.findViewById(R.id.mainLayout);
+            constraintLayout = itemView.findViewById(R.id.constraintLayout);
 
         }
-
     }
-
 }

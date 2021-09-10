@@ -13,8 +13,8 @@
         android:layout_marginStart="16dp"
         android:clickable="true"
         android:focusable="true"
-        app:backgroundTint="#FFFFFF"
         android:onClick="Home_To_Pdf"
+        app:backgroundTint="#FFFFFF"
         app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="@+id/textViewHome"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,9 +29,9 @@
         android:layout_marginStart="44dp"
         android:clickable="true"
         android:focusable="true"
+        android:onClick="Home_To_Today"
         app:backgroundTint="#FFFFFF"
         app:fabSize="normal"
-        android:onClick="Home_To_Today"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/home_history"
         app:layout_constraintTop_toTopOf="parent"
@@ -47,8 +47,8 @@
         android:layout_marginBottom="28dp"
         android:clickable="true"
         android:focusable="true"
-        app:backgroundTint="#FFFFFF"
         android:onClick="Home_To_History"
+        app:backgroundTint="#FFFFFF"
         app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="@+id/textViewHistory"
         app:layout_constraintStart_toEndOf="@+id/today_history"
@@ -65,9 +65,9 @@
         android:layout_marginBottom="28dp"
         android:clickable="true"
         android:focusable="true"
+        android:onClick="Home_To_User"
         app:backgroundTint="#FFFFFF"
         app:fabSize="normal"
-        android:onClick="Home_To_User"
         app:layout_constraintBottom_toBottomOf="@+id/textViewProfile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/home_historybtn"
@@ -228,5 +228,54 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.888"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewHome"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/guideline44"
+        app:layout_constraintStart_toStartOf="@+id/guideline54"
+        app:layout_constraintTop_toTopOf="@+id/guideline39"
+        app:layout_constraintEnd_toEndOf="@id/guideline53"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline39"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".12" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline44"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".75" />
+
+    <Button
+        android:id="@+id/changeLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="@+id/view5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline44" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline53"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".95" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline54"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".05" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

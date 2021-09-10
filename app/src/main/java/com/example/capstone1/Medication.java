@@ -3,7 +3,7 @@ package com.example.capstone1;
 import android.app.Application;
 
 public class Medication extends Application {
-    private String medication, dosage, inventory;
+    private String medication, inventory, dosage;
 
     public Medication(String medication, String dosage, String inventory) {
         this.medication = medication;
