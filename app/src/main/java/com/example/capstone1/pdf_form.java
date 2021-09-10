@@ -147,6 +147,7 @@ public class pdf_form extends AppCompatActivity {
                 holder.list_time.setText(model.getTimeMedication());
                 holder.list_inventory.setText(model.getInventoryMeds());
 
+
             }
         };
          firestorerecyclerView.setHasFixedSize(true);
