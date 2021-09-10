@@ -43,13 +43,15 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.SetOptions;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-public class new_medications extends AppCompatActivity  implements TimePickerDialog.OnTimeSetListener {
+public class new_medications extends AppCompatActivity {
     EditText medication, dosage, inventory;
     Button buttonsavemedication;
     FirebaseAuth rootAuthen;
@@ -59,6 +61,8 @@ public class new_medications extends AppCompatActivity  implements TimePickerDia
     private Calendar calendar;
     private AlarmManager alarmManager;
     private PendingIntent pendingIntent;
+    private DatePickerDialog datePickerDialog;
+    private Button dateButton;
     FloatingActionButton timeSetBtn;
 
     //CollectionReference reference = fstore.collection("Users");
@@ -73,8 +77,6 @@ public class new_medications extends AppCompatActivity  implements TimePickerDia
     private TextView mDisplayDate;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
 
-    //added spinner and timePicker
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,31 +85,19 @@ public class new_medications extends AppCompatActivity  implements TimePickerDia
         medication = findViewById(R.id.medicine_Box);
         dosage = findViewById(R.id.DosageBox);
         inventory = findViewById(R.id.inventoryBox);
+        dateButton = findViewById(R.id.startButton_date);
         spinnertypeunit = findViewById(R.id.type_spinner_one);
         spinnerfrequencymedication = findViewById(R.id.frequency_spinner_ten);
         buttonsavemedication = findViewById(R.id.save_medication_button);
         rootAuthen = FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
         timeButtonmedtst = findViewById(R.id.timeButtonmed);
-
-
         userId = rootAuthen.getCurrentUser().getUid();
-
-        //calendar but di pa oks ayaw mapalitan ng naka show
-        dateformat = findViewById(R.id.startButton_date);
-        /*timeSetBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DialogFragment timepicker = new TimePickerFragment();
-                timepicker.show(getSupportFragmentManager(), "time picker");
-            }
-        });*/
-
+        initDatePicker();
         ArrayAdapter<String> myAdapter2 = new ArrayAdapter<String>(new_medications.this,
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.frequency));
         myAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerfrequencymedication.setAdapter(myAdapter2);
-
 
         buttonsavemedication.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,11 +105,14 @@ public class new_medications extends AppCompatActivity  implements TimePickerDia
                 String Medication = medication.getText().toString().trim();
                 String Dosage = dosage.getText().toString().trim();
                 String Inventory = inventory.getText().toString().trim();
-
+                String Time = timeButtonmedtst.getText().toString().trim();
+                String StartDate =  dateButton.getText().toString().trim();
                 Map<String, Object> user = new HashMap<>();
                 user.put("Medication", Medication);
                 user.put("Dosage", Dosage);
                 user.put("InventoryMeds", Inventory);
+                user.put("Time", Time);
+                user.put("StartDate", StartDate);
 
 
                 fstore.collection("users").document(userId).collection("New Medications")
@@ -138,7 +131,10 @@ public class new_medications extends AppCompatActivity  implements TimePickerDia
                         });
                 setAlarm();
             }
+
         });
+
+
 
 
     }
@@ -154,18 +150,28 @@ public class new_medications extends AppCompatActivity  implements TimePickerDia
         startActivity(intent);
     }
 
-    @Override
-    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-        //TextView timeTV = (TextView) findViewById(R.id.timeTV);
-        //timeTV.setText(hourOfDay + ":" + minute);
-    }
     private void setAlarm() {
         alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
         Intent intent = new Intent(this, alarmreceiver.class);
-        pendingIntent = PendingIntent.getBroadcast(this, 0 , intent, 0 );
+        pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
         alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
         Toast.makeText(this, "Alarm Set Succesfully", Toast.LENGTH_SHORT).show();
+
+    }
+
+
+
+    private void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "MyApp";
+            String description = "My app manager";
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel channel = new NotificationChannel("MyApp", name, importance);
+            channel.setDescription(description);
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
 
     }
 
@@ -191,19 +197,42 @@ public class new_medications extends AppCompatActivity  implements TimePickerDia
         calendar.set(Calendar.MILLISECOND, 0);
     }
 
-    private void createNotificationChannel() {
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+    private void initDatePicker()
+    {
+        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener()
         {
-            CharSequence name = "MyApp";
-            String description = "My app manager";
-            int importance = NotificationManager.IMPORTANCE_HIGH;
-            NotificationChannel channel = new NotificationChannel("MyApp", name, importance);
-            channel.setDescription(description);
-            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
-        }
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day)
+            {
+                month+=1;
+                String date = makeDateString(day, month, year);
+                dateButton.setText(date);
+            }
+        };
+
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+
+        int style = AlertDialog.THEME_HOLO_LIGHT;
+
+        datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
+        //datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
 
     }
+
+    private String makeDateString(int day, int month, int year)
+    {
+        return month + "/" + day + "/" + year;
+    }
+
+    public void openDatePicker(View view)
+    {
+        datePickerDialog.show();
+    }
 }
+
+
 // }
 //}

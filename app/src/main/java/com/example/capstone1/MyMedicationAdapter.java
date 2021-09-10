@@ -42,9 +42,8 @@ public class MyMedicationAdapter extends RecyclerView.Adapter<MyMedicationAdapte
         holder.StartDate.setText(medication_info.StartDate);
         holder.Time.setText(medication_info.Time);
 
-        if(medication_info.StartDate.equals(today.date))
-        {
-        }
+
+
 
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,8 +55,6 @@ public class MyMedicationAdapter extends RecyclerView.Adapter<MyMedicationAdapte
                 intent.putExtra("startdate", medication_info.StartDate);
                 intent.putExtra("time", medication_info.Time);
                 intent.putExtra("medication_info", medication_info);
-
-
                 context.startActivity(intent);
             }
         });

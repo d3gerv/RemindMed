@@ -159,6 +159,7 @@
         android:height="50dp"
         android:background="@drawable/edittext3"
         android:gravity="center"
+        android:onClick="popTimePicker"
         android:text="Set Time"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
