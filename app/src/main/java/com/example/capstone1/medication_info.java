@@ -1,17 +1,29 @@
 package com.example.capstone1;
 
-public class medication_info {
-    String Medication, InventoryMeds, Dosage, StartDate, Time;
+import com.google.firebase.firestore.Exclude;
 
+import java.io.Serializable;
+
+public class medication_info implements Serializable {
+    String Medication, InventoryMeds, Dosage, StartDate, Time;
+    @Exclude  private String id;
     public medication_info() {}
 
-    public medication_info(String Medication, String InventoryMeds, String Dosage, String StartDate, String Time)
+    public medication_info(String Medication, String InventoryMeds,  String StartDate, String Time  )
     {
         this.Medication = Medication;
         this.InventoryMeds = InventoryMeds;
-        this.Dosage = Dosage;
         this.StartDate = StartDate;
         this.Time = Time;
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getMedication() {

@@ -44,6 +44,9 @@
             android:name=".edit_delete_bloodsugar"
             android:exported="true" />
         <activity
+            android:name=".intake_confirmation"
+            android:exported="true" />
+        <activity
             android:name=".edit_delete_bloodpressure"
             android:exported="true" />
         <activity

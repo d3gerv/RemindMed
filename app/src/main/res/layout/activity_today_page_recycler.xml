@@ -90,22 +90,10 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/textViewSched"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:text="Schedule"
-        android:textColor="#000000"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline36" />
-
-    <TextView
-        android:id="@+id/textViewTest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="196dp"
+        android:layout_marginStart="28dp"
         android:text="Schedule"
         android:textColor="#000000"
         android:textSize="25sp"
@@ -252,7 +240,7 @@
         app:layout_constraintDimensionRatio="1:0.34"
         app:layout_constraintEnd_toEndOf="@id/guideline35"
         app:layout_constraintStart_toStartOf="@+id/guideline5"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTest" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewSched" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline5"
