@@ -99,6 +99,11 @@ public class new_medications extends AppCompatActivity {
         myAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerfrequencymedication.setAdapter(myAdapter2);
 
+        ArrayAdapter<String> myAdapterTwo = new ArrayAdapter<String>(new_medications.this,
+                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.type));
+        myAdapterTwo.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnertypeunit.setAdapter(myAdapterTwo);
+
         buttonsavemedication.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,6 +118,7 @@ public class new_medications extends AppCompatActivity {
                 user.put("InventoryMeds", Inventory);
                 user.put("Time", Time);
                 user.put("StartDate", StartDate);
+
 
 
                 fstore.collection("users").document(userId).collection("New Medications")
@@ -181,13 +187,14 @@ public class new_medications extends AppCompatActivity {
             public void onTimeSet(TimePicker timePicker, int i, int i1) {
                 hour = i;
                 minute = i1;
+                //String time = hour + ":" + minute;
                 timeButtonmedtst.setText(String.format(Locale.getDefault(), "%02d:%02d", hour, minute));
             }
         };
 
         int style = AlertDialog.THEME_HOLO_DARK;
 
-        TimePickerDialog timePickerDialog = new TimePickerDialog(this, style, onTimeSetListener, hour, minute, true);
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, style, onTimeSetListener, hour, minute, false);
         timePickerDialog.setTitle("Set Time");
         timePickerDialog.show();
         calendar = Calendar.getInstance();

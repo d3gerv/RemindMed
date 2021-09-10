@@ -236,13 +236,14 @@
         android:height="50dp"
         android:background="@drawable/edittext3"
         android:drawableStart="@drawable/ic_calendar"
+        android:onClick="openDatePicker"
         android:paddingLeft="10dp"
         android:text="Start"
-        android:onClick="openDatePicker"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline5"
         app:layout_constraintEnd_toStartOf="@+id/endButton_one"
+        app:layout_constraintHorizontal_bias="0.313"
         app:layout_constraintStart_toStartOf="@+id/guideline26"
         app:layout_constraintTop_toBottomOf="@+id/duration_txt1" />
 
@@ -250,6 +251,7 @@
         android:id="@+id/endButton_one"
         android:layout_width="146dp"
         android:layout_height="50dp"
+        android:layout_marginEnd="56dp"
         android:width="125dp"
         android:height="50dp"
         android:background="@drawable/edittext3"
@@ -260,8 +262,8 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/startButton_date"
-        app:layout_constraintTop_toBottomOf="@+id/duration_txt1" />
+        app:layout_constraintTop_toBottomOf="@+id/duration_txt1"
+        app:layout_constraintVertical_bias="0.523" />
 
     <Button
         android:id="@+id/save_medication_button"

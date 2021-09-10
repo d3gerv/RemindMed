@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentChange;
@@ -37,6 +38,7 @@ public class home_page extends AppCompatActivity {
     ProgressDialog progressDialog;
     Button addMed, addHM, changeLayout;
     int layout = 1;
+
 
 
     @Override
