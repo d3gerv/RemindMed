@@ -24,8 +24,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:visibility="gone"
-        app:headerColor="@color/red"
         app:datePicker="true"
+        app:headerColor="@color/red"
         app:layout_constraintBottom_toTopOf="@+id/guideline36"
         app:layout_constraintDimensionRatio=":1"
         app:layout_constraintEnd_toEndOf="parent"
@@ -78,7 +78,7 @@
 
     <CalendarView
         android:id="@+id/calendarViewTD"
-        android:layout_width="369dp"
+        android:layout_width="371dp"
         android:layout_height="305dp"
         android:layout_marginStart="27dp"
         android:layout_marginTop="20dp"
@@ -124,7 +124,8 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Home_page" />
+        app:layout_constraintTop_toBottomOf="@+id/Home_page"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textViewToday"
@@ -137,6 +138,8 @@
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/textViewHistory"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/textViewHome"
         app:layout_constraintTop_toBottomOf="@+id/Today_page" />
 
@@ -145,8 +148,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="47dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="2dp"
         android:text="History"
         android:textColor="#000000"
         android:textSize="18sp"
@@ -158,15 +161,16 @@
         android:id="@+id/textViewProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="43dp"
+        android:layout_marginStart="41dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="42dp"
+        android:layout_marginEnd="48dp"
         android:layout_marginBottom="8dp"
         android:text="Profile"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/textViewHistory"
         app:layout_constraintTop_toBottomOf="@+id/Profile_page" />
 
@@ -225,10 +229,11 @@
         android:layout_marginEnd="40dp"
         android:clickable="true"
         android:focusable="true"
-        app:backgroundTint="#FFFFFF"
         android:onClick="Today_To_User"
+        app:backgroundTint="#FFFFFF"
         app:fabSize="normal"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/History_page"
         app:layout_constraintTop_toBottomOf="@+id/view5"
         app:srcCompat="@drawable/profile" />
@@ -262,7 +267,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.60" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
