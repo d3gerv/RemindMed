@@ -43,9 +43,6 @@ public class today_page_recycler extends AppCompatActivity {
     ProgressDialog progressDialog;
     String date;
     medication_info medication_info;
-    FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-    private DocumentSnapshot lastqueue;
-    private DatePickerDialog datePickerDialog;
     int i;
     private CalendarView calendarView;
 
@@ -74,6 +71,8 @@ public class today_page_recycler extends AppCompatActivity {
                 month +=1;
                 date = month + "/" + dayOfMonth +"/"+year;
                 Log.d("Calendar", "Selected day change" + date );
+                Log.d("Calendar", "Selected day change" + myArrayList.size() );
+
                 EventChangeListener();
                 myArrayList.clear();
                 recyclerView1.setAdapter(myAdapter);
@@ -96,7 +95,6 @@ public class today_page_recycler extends AppCompatActivity {
     }
 
     private void EventChangeListener() {
-        int size = myArrayList.size()+1;
         FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         db.document("users/"+currentFirebaseUser.getUid()).collection("New Medications")
                 .orderBy("Medication", Query.Direction.ASCENDING).addSnapshotListener(new EventListener<QuerySnapshot>() {
@@ -127,7 +125,6 @@ public class today_page_recycler extends AppCompatActivity {
                         progressDialog.dismiss();
                     }
                 }
-
             }
         });
     }

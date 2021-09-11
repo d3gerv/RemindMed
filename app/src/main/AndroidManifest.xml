@@ -50,6 +50,10 @@
             android:name=".edit_delete_bloodpressure"
             android:exported="true" />
         <activity
+            android:name=".edit_delete_medications"
+            android:exported="true" />
+
+        <activity
             android:name=".today_page_recycler"
             android:exported="true" />
         <activity

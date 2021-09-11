@@ -293,6 +293,7 @@
         android:drawableStart="@drawable/ic_calendar"
         android:paddingLeft="10dp"
         android:text="Start"
+        android:onClick="openDatePicker"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
