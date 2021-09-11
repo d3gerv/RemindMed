@@ -22,9 +22,9 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.List;
 
-public class intake_confirmation extends AppCompatActivity implements View.OnClickListener {
+public class intake_confirmation extends AppCompatActivity{
     TextView medName, medAmount;
-    String title, amount, time, date, id;
+    String title, amount, time, date;
     int medicationAmount;
     int inventoryInt;
     Button confirm;
@@ -41,24 +41,6 @@ public class intake_confirmation extends AppCompatActivity implements View.OnCli
         medName = findViewById(R.id.medNameConfirmTv);
         medAmount = findViewById(R.id.medInventoryTV);
         confirm = findViewById(R.id.confirm_btn);
-
-        db.collection("users").document(currentFirebaseUser.getUid()).collection("New Medication").get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(@NonNull QuerySnapshot queryDocumentSnapshots) {
-                        if(!queryDocumentSnapshots.isEmpty())
-                        {
-                            List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
-                            for(DocumentSnapshot d :list)
-                            {
-                                medication_info m = d.toObject(medication_info.class);
-                                m.setId(d.getId());
-                            }
-
-                        }
-                    }
-                });
-
 
         getData();
         setData();
@@ -106,13 +88,5 @@ public class intake_confirmation extends AppCompatActivity implements View.OnCli
                             Toast.makeText(intake_confirmation.this, "Confirmed Intake", Toast.LENGTH_LONG);
                         }
                     });
-
-
-
-    }
-
-    @Override
-    public void onClick(View v) {
-
     }
 }

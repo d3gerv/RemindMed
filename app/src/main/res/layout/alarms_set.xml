@@ -4,14 +4,19 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="16dp">
+    android:layout_margin="8dp">
 
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="1:.3"
         app:cardPreventCornerOverlap="false"
-        app:cardUseCompatPadding="true">
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -54,28 +59,29 @@
                 app:layout_constraintGuide_percent=".40" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/buttonEdit"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:text="Edit"
-                android:textSize="7dp"
-                app:layout_constraintDimensionRatio="4:3"
+                android:textSize="10dp"
+                app:layout_constraintBottom_toTopOf="@+id/buttonDelete"
+                app:layout_constraintDimensionRatio="1:.5"
                 app:layout_constraintEnd_toStartOf="@+id/guideline17"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="@+id/guideline18"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/buttonDelete"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:text="Delete"
-                android:textSize="7dp"
+                android:textSize="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintDimensionRatio="4:3"
+                app:layout_constraintDimensionRatio="1:.5"
                 app:layout_constraintEnd_toStartOf="@+id/guideline17"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/guideline18"
-                app:layout_constraintTop_toBottomOf="@+id/button" />
+                app:layout_constraintTop_toBottomOf="@+id/buttonEdit" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline17"
@@ -89,7 +95,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent=".80" />
+                app:layout_constraintGuide_percent=".75" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
