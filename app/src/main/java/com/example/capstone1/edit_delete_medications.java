@@ -104,8 +104,6 @@ public class edit_delete_medications extends AppCompatActivity {
             }
         });
 
-
-
         getData();
         setData();
 
