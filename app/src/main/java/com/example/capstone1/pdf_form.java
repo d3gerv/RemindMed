@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -36,7 +37,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class pdf_form extends AppCompatActivity {
-    TextView firstname, lastname;
+    TextView firstname, lastname, medication,list, listtime;
     Button buttonpdf;
     private FirebaseFirestore fstore;
     private RecyclerView firestorerecyclerView;
@@ -50,9 +51,12 @@ public class pdf_form extends AppCompatActivity {
         setContentView(R.layout.activity_pdf_form);
 
         buttonpdf = findViewById(R.id.btnSavePDF);
+        list = findViewById(R.id.list_medication);
+        listtime = findViewById(R.id.list_time);
 
         firstname = findViewById(R.id.firstview);
         lastname = findViewById(R.id.lastview);
+        medication = findViewById(R.id.medicationview);
 
         firestorerecyclerView = findViewById(R.id.firestore_list);
         fstore = FirebaseFirestore.getInstance();
@@ -61,8 +65,26 @@ public class pdf_form extends AppCompatActivity {
         buttonpdf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                list = findViewById(R.id.list_medication);
+                listtime = findViewById(R.id.list_time);
+                /*
+                for (int i = 0; i< adapter.getItemCount();i++){
+                    View view=firestorerecyclerView.getChildAt(i);
+                    if(view!=null)
+                    {
+                        list = findViewById(R.id.list_medication);
+                        list.getText().toString().trim();
+                    }
+                }
+
+                 */
+
+
                 String Firstname = firstname.getText().toString().trim();
                 String Lastname = lastname.getText().toString().trim();
+                String Medication = list.getText().toString().trim();
+                String Time = listtime.getText().toString().trim();
+
                 //String Mema = firestorerecyclerView.getText.toString.trim();
                 /*
                 String Gender = spinner.getSelectedItem().toString().trim();
@@ -75,6 +97,8 @@ public class pdf_form extends AppCompatActivity {
                 Map<String,Object> user = new HashMap<>();
                 user.put("firstname", Firstname);
                 user.put("lastname",Lastname);
+                user.put("Medication",Medication);
+                user.put("MedicationTime",Time);
                 //user.put("Medication", Mema);
                 //user.put("gender",Gender);
                 //user.put("birthyr",Birthyr);
@@ -97,6 +121,7 @@ public class pdf_form extends AppCompatActivity {
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
                 firstname.setText(value.getString("firstname"));
                 lastname.setText(value.getString("lastname"));
+                //list.setText(value.getString("Medication"));
             }
         });
 
@@ -121,6 +146,7 @@ public class pdf_form extends AppCompatActivity {
                 holder.list_medications.setText(model.getMedication());
                 holder.list_time.setText(model.getTimeMedication());
                 holder.list_inventory.setText(model.getInventoryMeds());
+
 
             }
         };
@@ -180,7 +206,8 @@ public class pdf_form extends AppCompatActivity {
 
         canvas.drawText("Name: " + firstname.getText(),20,80,paint);
         canvas.drawText("" + lastname.getText(),85,80,paint);
-        canvas.drawText("Medication: " + firestorerecyclerView.getAdapter(),20,90,paint);
+        canvas.drawText("Medication: " + list.getText(),20,90,paint);
+        canvas.drawText("Time: " + listtime.getText(),20,100,paint);
             /*
             canvas.drawText("Gender: " + spinner.getSelectedItem(),20,90,paint);
             canvas.drawText("Year of birth: " + birthyr.getText(),20,100,paint);

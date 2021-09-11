@@ -6,7 +6,6 @@ import android.opengl.Visibility;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +36,7 @@ public class MyMedicationAdapter extends RecyclerView.Adapter<MyMedicationAdapte
         View v = LayoutInflater.from(context).inflate(R.layout.items_today_medication, parent, false);
         return new MyViewHolder(v);
     }
+
     @Override
     public void onBindViewHolder(@NonNull MyMedicationAdapter.MyViewHolder holder, int position) {
         medication_info medication_info = userArrayList.get(position);
@@ -71,6 +71,8 @@ public class MyMedicationAdapter extends RecyclerView.Adapter<MyMedicationAdapte
             }
         });
     }
+
+
     @Override
     public int getItemCount() {
         return userArrayList.size();
@@ -79,6 +81,7 @@ public class MyMedicationAdapter extends RecyclerView.Adapter<MyMedicationAdapte
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         TextView Medication, Time, InventoryMeds, StartDate, medicationHome, timeHome;
         ConstraintLayout constraintLayout, mainLayout;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             Medication =itemView.findViewById(R.id.medNameView);
@@ -91,18 +94,4 @@ public class MyMedicationAdapter extends RecyclerView.Adapter<MyMedicationAdapte
         }
     }
 
-    public static class MyViewHolder2 extends RecyclerView.ViewHolder {
-        TextView Medication, Time;
-        Button edit, delete;
-        public MyViewHolder2(@NonNull View itemView) {
-            super(itemView);
-
-            Medication = itemView.findViewById(R.id.medNameHome);
-            Time = itemView.findViewById(R.id.medTimeHome);
-            edit = itemView.findViewById(R.id.buttonEdit);
-            delete = itemView.findViewById(R.id.buttonDelete);
-        }
-    }
 }
-
-
