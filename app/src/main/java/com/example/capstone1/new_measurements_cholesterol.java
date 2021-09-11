@@ -119,16 +119,16 @@ public class new_measurements_cholesterol extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String Cholesterol = cholesterol.getText().toString().trim();
-                String Frequency = spinnerch.getSelectedItem().toString().trim();
-                //String TimeCholesterol = timeButtonchol.getText().toString().trim();
+                //String Frequency = spinnerch.getSelectedItem().toString().trim();
+                String TimeCholesterol = timeButtonchol.getText().toString().trim();
 
 
                 Map<String,Object> user = new HashMap<>();
-                //user.put("TimeCholesterol",TimeCholesterol);
+                user.put("TimeCholesterol",TimeCholesterol);
                 user.put("Cholesterol",Cholesterol);
-                user.put("FrequencyChol",Frequency);
+                //user.put("FrequencyChol",Frequency);
 
-                fstore.collection("users").document(userId).collection("New Health Measurements")
+                fstore.collection("users").document(userId).collection("New Health Measurements").document("Cholesterol").collection("Cholesterol")
                         .add(user)
                         .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                             @Override

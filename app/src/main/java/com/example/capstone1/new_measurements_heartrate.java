@@ -115,16 +115,16 @@ public class new_measurements_heartrate extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String Heartrate = heartrate.getText().toString().trim();
-                String Frequency = spinnerhr.getSelectedItem().toString().trim();
-                //String TimeHeartRate = timeButtonheart.getText().toString().trim();
+                //String Frequency = spinnerhr.getSelectedItem().toString().trim();
+                String TimeHeartRate = timeButtonheart.getText().toString().trim();
 
 
                 Map<String,Object> user =new HashMap<>();
-                //user.put("TimeHeartRate",TimeHeartRate);
+                user.put("TimeHeartRate",TimeHeartRate);
                 user.put("Heartrate",Heartrate);
-                user.put("FrequencyHeartR",Frequency);
+                //user.put("FrequencyHeartR",Frequency);
 
-                fstore.collection("users").document(userId).collection("New Health Measurements")
+                fstore.collection("users").document(userId).collection("New Health Measurements").document("Heartrate").collection("Heartrate")
                         .add(user)
                         .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                             @Override

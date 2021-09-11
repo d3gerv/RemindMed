@@ -122,15 +122,15 @@ public class new_measurements_bloodpressure extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String Bloodpressure = bloodpressure.getText().toString().trim();
-                String Frequency = spinnerbp.getSelectedItem().toString().trim();
-                //String TimeBloodPressure = timeButtonbp.getText().toString().trim();
+                //String Frequency = spinnerbp.getSelectedItem().toString().trim();
+                String TimeBloodPressure = timeButtonbp.getText().toString().trim();
 
                 Map<String,Object> user =new HashMap<>();
-                //user.put("TimeBloodPressure", TimeBloodPressure);
+                user.put("TimeBloodPressure", TimeBloodPressure);
                 user.put("Bloodpressure",Bloodpressure);
-                user.put("FrequencyBloodPrs",Frequency);
+                //user.put("FrequencyBloodPrs",Frequency);
 
-                fstore.collection("users").document(userId).collection("New Health Measurements")
+                fstore.collection("users").document(userId).collection("New Health Measurements").document("Bloodpressure").collection("Bloodpressure")
                         .add(user)
                         .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                             @Override
