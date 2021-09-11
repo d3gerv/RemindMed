@@ -113,16 +113,16 @@ public class new_measurements_temperature extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String Temperature = temperature.getText().toString().trim();
-                String Frequency = spinnertemp.getSelectedItem().toString().trim();
-                //String TimeTemperature = timeButtontemp.getText().toString().trim();
+                //String Frequency = spinnertemp.getSelectedItem().toString().trim();
+                String TimeTemperature = timeButtontemp.getText().toString().trim();
 
 
                 Map<String,Object> user =new HashMap<>();
-                //user.put("TimeTemperature",TimeTemperature);
+                user.put("TimeTemperature",TimeTemperature);
                 user.put("Temperature",Temperature);
-                user.put("FrequencyTemp",Frequency);
+                //user.put("FrequencyTemp",Frequency);
 
-                fstore.collection("users").document(userId).collection("New Health Measurements")
+                fstore.collection("users").document(userId).collection("New Health Measurements").document("Temperature").collection("Temperature")
                         .add(user)
                         .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                             @Override

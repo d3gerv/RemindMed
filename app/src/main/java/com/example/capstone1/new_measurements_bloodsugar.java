@@ -106,15 +106,15 @@ public class new_measurements_bloodsugar extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String Sugar = sugar.getText().toString().trim();
-                String Frequency = spinnerbs.getSelectedItem().toString().trim();
-                //String TimeBloodSugar = timeButtonbs.getText().toString().trim();
+                //String Frequency = spinnerbs.getSelectedItem().toString().trim();
+                String TimeBloodSugar = timeButtonbs.getText().toString().trim();
 
                 Map<String, Object> user = new HashMap<>();
-                //user.put("TimeBloodSugar",TimeBloodSugar);
+                user.put("TimeBloodSugar",TimeBloodSugar);
                 user.put("Sugar", Sugar);
-                user.put("FrequencyBloodSgr",Frequency);
+                //user.put("FrequencyBloodSgr",Frequency);
 
-                fstore.collection("users").document(userId).collection("New Health Measurements")
+                fstore.collection("users").document(userId).collection("New Health Measurements").document("Bloodsugar").collection("Bloodsugar")
                         .add(user)
                         .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                             @Override

@@ -121,16 +121,16 @@ public class new_measurements_hours_of_sleep extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String Sleep = sleep.getText().toString().trim();
-                String Frequency = spinnersl.getSelectedItem().toString().trim();
-                //String TimeSleep = timeButtonsleep.getText().toString().trim();
+                //String Frequency = spinnersl.getSelectedItem().toString().trim();
+                String TimeSleep = timeButtonsleep.getText().toString().trim();
 
 
                 Map<String,Object> user =new HashMap<>();
-                //user.put("TimeSleep",TimeSleep);
+                user.put("TimeSleep",TimeSleep);
                 user.put("Sleep",Sleep);
-                user.put("FrequencySleep",Frequency);
+                //user.put("FrequencySleep",Frequency);
 
-                fstore.collection("users").document(userId).collection("New Health Measurements")
+                fstore.collection("users").document(userId).collection("New Health Measurements").document("Sleep").collection("Sleep")
                         .add(user)
                         .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                             @Override

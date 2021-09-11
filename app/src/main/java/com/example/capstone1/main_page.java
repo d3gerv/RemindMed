@@ -69,7 +69,7 @@ public class main_page extends AppCompatActivity {
         Intent intent = new Intent(this, create_account.class);
         startActivity(intent);
     }
-    
+
     public void Main_To_instruction(View view) {
         Intent intent = new Intent(this, instruction_slideone.class);
         startActivity(intent);
