@@ -74,42 +74,5 @@ public class main_page extends AppCompatActivity {
         Intent intent = new Intent(this, instruction_slideone.class);
         startActivity(intent);
     }
-
-/*
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = rootAuthen.getCurrentUser();
-        updateUI(currentUser);
-        }
-
- */
-/*
-    private void updateUI(FirebaseUser user) {
-        if(user==null){
-            rootAuthen.signInAnonymously().addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()) {
-                        // Sign in success, update UI with the signed-in user's information
-                        Log.d(TAG, "signInAnonymously:success");
-                        FirebaseUser user = rootAuthen.getCurrentUser();
-                        updateUI(user);
-
-                    } else {
-                        // If sign in fails, display a message to the user.
-                        Log.w(TAG, "signInAnonymously:failure", task.getException());
-                        Toast.makeText(main_page.this, "Authentication failed.",
-                                Toast.LENGTH_SHORT).show();
-                        updateUI(null);
-
-                    }
-                }
-            });
-        }
-    }
-
- */
 }
 
