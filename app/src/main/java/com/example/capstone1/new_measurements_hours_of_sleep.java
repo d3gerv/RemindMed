@@ -126,8 +126,10 @@ public class new_measurements_hours_of_sleep extends AppCompatActivity {
 
 
                 Map<String,Object> user =new HashMap<>();
-                user.put("TimeSleep",TimeSleep);
-                user.put("Sleep",Sleep);
+                user.put("Time",TimeSleep);
+                user.put("Record",Sleep);
+                user.put("Name", "Sleep");
+
                 //user.put("FrequencySleep",Frequency);
 
                 fstore.collection("users").document(userId).collection("New Health Measurements").document("Sleep").collection("Sleep")

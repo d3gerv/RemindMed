@@ -118,8 +118,10 @@ public class new_measurements_temperature extends AppCompatActivity {
 
 
                 Map<String,Object> user =new HashMap<>();
-                user.put("TimeTemperature",TimeTemperature);
-                user.put("Temperature",Temperature);
+                user.put("Time",TimeTemperature);
+                user.put("Record",Temperature);
+                user.put("Name", "Temperature");
+
                 //user.put("FrequencyTemp",Frequency);
 
                 fstore.collection("users").document(userId).collection("New Health Measurements").document("Temperature").collection("Temperature")

@@ -124,8 +124,10 @@ public class new_measurements_cholesterol extends AppCompatActivity {
 
 
                 Map<String,Object> user = new HashMap<>();
-                user.put("TimeCholesterol",TimeCholesterol);
-                user.put("Cholesterol",Cholesterol);
+                user.put("Time",TimeCholesterol);
+                user.put("Record",Cholesterol);
+                user.put("Name", "Cholesterol");
+
                 //user.put("FrequencyChol",Frequency);
 
                 fstore.collection("users").document(userId).collection("New Health Measurements").document("Cholesterol").collection("Cholesterol")

@@ -210,6 +210,7 @@
         android:layout_marginTop="20dp"
         android:fontFamily="@font/viga"
         android:text="Measurements"
+        android:onClick="medHistory_to_measurement"
         android:textColor="#000000"
         android:textSize="25sp"
         app:layout_constraintStart_toEndOf="@+id/medicationsView"

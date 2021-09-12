@@ -120,8 +120,10 @@ public class new_measurements_heartrate extends AppCompatActivity {
 
 
                 Map<String,Object> user =new HashMap<>();
-                user.put("TimeHeartRate",TimeHeartRate);
-                user.put("Heartrate",Heartrate);
+                user.put("Time",TimeHeartRate);
+                user.put("Record",Heartrate);
+                user.put("Name", "Heartrate");
+
                 //user.put("FrequencyHeartR",Frequency);
 
                 fstore.collection("users").document(userId).collection("New Health Measurements").document("Heartrate").collection("Heartrate")

@@ -122,8 +122,10 @@ public class new_measurements_pulserate extends AppCompatActivity {
 
 
                 Map<String, Object> user = new HashMap<>();
-                user.put("TimePulseRate",TimePulseRate);
-                user.put("Pulserate", Pulserate);
+                user.put("Time",TimePulseRate);
+                user.put("Record", Pulserate);
+                user.put("Name", "Pulserate");
+
                 //user.put("FrequencyPulseR", Frequency );
 
                 fstore.collection("users").document(userId).collection("New Health Measurements").document("Pulserate").collection("Pulserate")

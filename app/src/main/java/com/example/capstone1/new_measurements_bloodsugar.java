@@ -110,8 +110,10 @@ public class new_measurements_bloodsugar extends AppCompatActivity {
                 String TimeBloodSugar = timeButtonbs.getText().toString().trim();
 
                 Map<String, Object> user = new HashMap<>();
-                user.put("TimeBloodSugar",TimeBloodSugar);
-                user.put("Sugar", Sugar);
+                user.put("Time",TimeBloodSugar);
+                user.put("Record", Sugar);
+                user.put("Name", "Bloodsugar");
+
                 //user.put("FrequencyBloodSgr",Frequency);
 
                 fstore.collection("users").document(userId).collection("New Health Measurements").document("Bloodsugar").collection("Bloodsugar")

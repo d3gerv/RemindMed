@@ -66,6 +66,10 @@ public class history_page extends AppCompatActivity {
         Intent intent = new Intent(history_page.this, user_information.class);
         startActivity(intent);
     }
+    public void medHistory_to_measurement(View view){
+        Intent intent = new Intent(history_page.this, history_for_measurements.class);
+        startActivity(intent);
+    }
 
     private void EventChangeListener() {
 

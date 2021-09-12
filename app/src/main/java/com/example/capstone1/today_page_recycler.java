@@ -43,7 +43,6 @@ public class today_page_recycler extends AppCompatActivity {
     ProgressDialog progressDialog;
     String date;
     medication_info medication_info;
-    int i;
     private CalendarView calendarView;
 
 
@@ -96,6 +95,7 @@ public class today_page_recycler extends AppCompatActivity {
 
     private void EventChangeListener() {
         FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
         db.document("users/"+currentFirebaseUser.getUid()).collection("New Medications")
                 .orderBy("Medication", Query.Direction.ASCENDING).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
@@ -128,4 +128,11 @@ public class today_page_recycler extends AppCompatActivity {
             }
         });
     }
+
+
+
+
 }
+
+
+

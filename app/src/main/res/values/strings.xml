@@ -50,4 +50,15 @@
     <string name="daily"> freq </string>
     <string name="time"> time </string>
 
+    <string-array name="measurements">
+        <item>Bloodpressure</item>
+        <item>BloodSugar</item>
+        <item>Cholesterol</item>
+        <item>Heartrate</item>
+        <item>Pulserate</item>
+        <item>Sleep</item>
+        <item>Temperature</item>
+    </string-array>
+
+
 </resources>
