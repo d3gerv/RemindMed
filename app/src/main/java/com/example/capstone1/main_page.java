@@ -75,7 +75,7 @@ public class main_page extends AppCompatActivity {
         startActivity(intent);
     }
 
-
+/*
     @Override
     public void onStart() {
         super.onStart();
@@ -84,6 +84,8 @@ public class main_page extends AppCompatActivity {
         updateUI(currentUser);
         }
 
+ */
+/*
     private void updateUI(FirebaseUser user) {
         if(user==null){
             rootAuthen.signInAnonymously().addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -107,5 +109,7 @@ public class main_page extends AppCompatActivity {
             });
         }
     }
+
+ */
 }
 
