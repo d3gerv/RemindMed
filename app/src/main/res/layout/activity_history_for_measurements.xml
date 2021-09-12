@@ -60,6 +60,7 @@
         android:text="Medications"
         android:textColor="#000000"
         android:textSize="25sp"
+        app:layout_constraintEnd_toStartOf="@+id/measurementsView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
@@ -79,10 +80,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="23dp"
         android:fontFamily="@font/viga"
         android:text="Measurements"
         android:textColor="#000000"
         android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/medicationsView"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
@@ -124,44 +127,36 @@
         android:id="@+id/textViewHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="8dp"
         android:text="Home"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Home_historyH"
-        app:layout_constraintVertical_bias="0.25" />
+        app:layout_constraintTop_toBottomOf="@+id/Home_historyH" />
 
     <TextView
         android:id="@+id/textViewToday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="8dp"
         android:text="Today"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textViewHome"
-        app:layout_constraintTop_toBottomOf="@+id/Today_historyH"
-        app:layout_constraintVertical_bias="0.25" />
+        app:layout_constraintEnd_toStartOf="@+id/guideline7"
+        app:layout_constraintStart_toEndOf="@+id/guideline6"
+        app:layout_constraintTop_toBottomOf="@+id/Today_historyH"/>
 
     <TextView
         android:id="@+id/textViewHistory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="41dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="8dp"
         android:text="History"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textViewToday"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8"
+        app:layout_constraintStart_toEndOf="@+id/guideline7"
         app:layout_constraintTop_toBottomOf="@+id/History_health"
         app:layout_constraintVertical_bias="0.0" />
 
@@ -169,16 +164,12 @@
         android:id="@+id/textViewProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="8dp"
         android:text="Profile"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textViewHistory"
+        app:layout_constraintStart_toEndOf="@+id/guideline8"
         app:layout_constraintTop_toBottomOf="@+id/Profile_historyH"
         app:layout_constraintVertical_bias="0.0" />
 
@@ -186,58 +177,56 @@
         android:id="@+id/Home_historyH"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="12dp"
         android:clickable="true"
         android:focusable="true"
         app:backgroundTint="#FFFFFF"
         app:fabSize="normal"
+        app:layout_constraintBottom_toTopOf="@+id/textViewHome"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view5"
+        app:layout_constraintTop_toBottomOf="@+id/guideline51"
         app:srcCompat="@drawable/hoome" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/Today_historyH"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="12dp"
         android:clickable="true"
         android:focusable="true"
         app:backgroundTint="#FFFFFF"
         app:fabSize="normal"
-        app:layout_constraintStart_toEndOf="@+id/Home_historyH"
-        app:layout_constraintTop_toBottomOf="@+id/view5"
+        app:layout_constraintBottom_toTopOf="@+id/textViewToday"
+        app:layout_constraintEnd_toStartOf="@+id/guideline7"
+        app:layout_constraintStart_toEndOf="@+id/guideline6"
+        app:layout_constraintTop_toBottomOf="@+id/guideline51"
         app:srcCompat="@drawable/today" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/History_health"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="34dp"
-        android:layout_marginTop="12dp"
         android:clickable="true"
         android:focusable="true"
         app:backgroundTint="#FFFFFF"
         app:fabSize="normal"
-        app:layout_constraintStart_toEndOf="@+id/Today_historyH"
-        app:layout_constraintTop_toBottomOf="@+id/view5"
+        app:layout_constraintBottom_toTopOf="@+id/textViewHistory"
+        app:layout_constraintEnd_toStartOf="@+id/guideline8"
+        app:layout_constraintStart_toEndOf="@+id/guideline7"
+        app:layout_constraintTop_toBottomOf="@+id/guideline51"
         app:srcCompat="@drawable/ic_history" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/Profile_historyH"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="43dp"
-        android:layout_marginTop="12dp"
         android:clickable="true"
         android:focusable="true"
         app:backgroundTint="#FFFFFF"
         app:fabSize="normal"
-        app:layout_constraintEnd_toStartOf="@+id/guideline41"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/History_health"
-        app:layout_constraintTop_toBottomOf="@+id/view5"
+        app:layout_constraintBottom_toTopOf="@+id/textViewProfile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/guideline8"
+        app:layout_constraintTop_toBottomOf="@+id/guideline51"
         app:srcCompat="@drawable/profile" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -293,6 +282,33 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent=".25" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.25" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.50" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.75" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline51"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="100dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
