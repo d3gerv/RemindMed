@@ -9,10 +9,9 @@ import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -25,7 +24,6 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
@@ -39,20 +37,14 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.SetOptions;
 
 import java.sql.Time;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -164,7 +156,18 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
                 user.put("EndDate", EndDate);
                 startAlarm(c);
 
-
+                if (TextUtils.isEmpty(Medication)) {
+                    medication.setError("This field is required");
+                    return;
+                }
+                if (TextUtils.isEmpty(Dosage)) {
+                    dosage.setError("This field is required");
+                    return;
+                }
+                if (TextUtils.isEmpty(Inventory)) {
+                    inventory.setError("This field is required");
+                    return;
+                }
 
                 fstore.collection("users").document(userId).collection("New Medications")
                         .add(user)
@@ -291,11 +294,13 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
             public void onTimeSet(TimePicker timePicker, int i, int i1) {
                 hour = i;
                 minute = i1;
-                .
+                //String time = hour + ":" + minute;
                 timeButtonmedtst.setText(String.format(Locale.getDefault(), "%02d:%02d", hour, minute));
             }
         };
+
         int style = AlertDialog.THEME_HOLO_DARK;
+
         TimePickerDialog timePickerDialog = new TimePickerDialog(this, style, onTimeSetListener, hour, minute, false);
         timePickerDialog.setTitle("Set Time");
         timePickerDialog.show();
@@ -306,9 +311,33 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
         calendar.set(Calendar.MINUTE, minute);
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MILLISECOND, 0);
-        Log.d("class", "msg" + calendar);
-    }*/
+    }
+
+    private void initDatePicker()
+    {
+        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener()
+        {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day)
+            {
+                month+=1;
+                String date = makeDateString(day, month, year);
+                dateButton.setText(date);
+            }
+        };
 
 
+        datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
+        //datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
 
 
+    private String makeDateString(int day, int month, int year)
+    {
+        return month + "/" + day + "/" + year;
+    }
+
+    public void openDatePicker(View view)
+    {
+        datePickerDialog.show();
+    }
+}
