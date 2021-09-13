@@ -5,16 +5,17 @@ import com.google.firebase.firestore.Exclude;
 import java.io.Serializable;
 
 public class medication_info implements Serializable {
-    String Medication, InventoryMeds, Dosage, StartDate, Time;
+    String Medication, InventoryMeds, Dosage, StartDate, Time ,EndDate;
     @Exclude  private String id;
     public medication_info() {}
 
-    public medication_info(String Medication, String InventoryMeds,  String StartDate, String Time  )
+    public medication_info(String Medication, String InventoryMeds,  String StartDate, String Time, String EndDate )
     {
         this.Medication = Medication;
         this.InventoryMeds = InventoryMeds;
         this.StartDate = StartDate;
         this.Time = Time;
+        this.EndDate = EndDate;
         this.id = id;
     }
 
@@ -66,6 +67,11 @@ public class medication_info implements Serializable {
         this.Time = Time;
     }
 
+    public String getEndDate() {
+        return EndDate;
+    }
 
-
+    public void setEndDate(String endDate) {
+        EndDate = endDate;
+    }
 }

@@ -24,7 +24,7 @@ import java.util.List;
 
 public class intake_confirmation extends AppCompatActivity{
     TextView medName, medAmount;
-    String title, amount, time, date;
+    String title, amount, time, date, enddate;
     int medicationAmount;
     int inventoryInt;
     Button confirm;
@@ -79,7 +79,7 @@ public class intake_confirmation extends AppCompatActivity{
         inv -= 1;
         amount= Integer.toString(inv);
 
-            medication_info m = new medication_info(title, amount, date, time);
+            medication_info m =     new medication_info(title, amount, date, time, enddate);
             db.collection("users").document(currentFirebaseUser.getUid()).collection("New Medications")
                     .document(medication_info.getId()).update("InventoryMeds", m.getInventoryMeds())
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
