@@ -28,15 +28,12 @@ public class MyMedicationAdapter extends RecyclerView.Adapter<MyMedicationAdapte
         this.userArrayList = userArrayList;
     }
 
-
-
     @NonNull
     @Override
     public MyMedicationAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.items_today_medication, parent, false);
         return new MyViewHolder(v);
     }
-
     @Override
     public void onBindViewHolder(@NonNull MyMedicationAdapter.MyViewHolder holder, int position) {
         medication_info medication_info = userArrayList.get(position);
@@ -66,6 +63,7 @@ public class MyMedicationAdapter extends RecyclerView.Adapter<MyMedicationAdapte
                 intent.putExtra("pill", medication_info.InventoryMeds);
                 intent.putExtra("startdate", medication_info.StartDate);
                 intent.putExtra("time", medication_info.Time);
+                intent.putExtra("enddate", medication_info.EndDate);
                 intent.putExtra("medication_info", medication_info);
                 context.startActivity(intent);
             }

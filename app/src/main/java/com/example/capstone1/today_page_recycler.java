@@ -114,9 +114,10 @@ public class today_page_recycler extends AppCompatActivity {
                         m.setId(dc.getDocument().getId());
                         if(myArrayList != null)
                         {
-                            if(date.equals(m.getStartDate()))
+                            if(date.equals(m.getStartDate()) || date.equals(m.getEndDate()))
                             {
                                 myArrayList.add(m);
+                                Log.d("message", "Hello World");
                             }
                         }
                     }

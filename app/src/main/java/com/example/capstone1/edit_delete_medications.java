@@ -37,8 +37,8 @@ import java.util.Locale;
 
 public class edit_delete_medications extends AppCompatActivity {
     EditText medName, medInventory;
-    String title, amount, time, date;
-    Button timeButtonEdit, dateFormat, delete, change;
+    String title, amount, time, date, enddate;
+    Button timeButtonEdit, dateFormat, delete, change, enddatebutton;
     FirebaseFirestore db;
     private DatePickerDialog datePickerDialog;
     int hour, minute;
@@ -55,6 +55,8 @@ public class edit_delete_medications extends AppCompatActivity {
         delete = findViewById(R.id.deleteBtn);
         change = findViewById(R.id.save_changes);
         dateFormat = findViewById(R.id.startButton_oneM);
+        enddatebutton = findViewById(R.id.endButton_oneM);
+
         medName = findViewById(R.id.medicine_Box);
         medInventory = findViewById(R.id.inventoryBox);
         final Calendar calendar = Calendar.getInstance();
@@ -152,11 +154,10 @@ public class edit_delete_medications extends AppCompatActivity {
             amount = getIntent().getStringExtra("pill");
             time = getIntent().getStringExtra("time");
             date = getIntent().getStringExtra("startdate");
-
+            enddate = getIntent().getStringExtra("enddate");
         }else{
             Toast.makeText(this, "No Data", Toast.LENGTH_SHORT).show();
         }
-
     }
 
     private void initDatePicker()
@@ -171,13 +172,11 @@ public class edit_delete_medications extends AppCompatActivity {
                 dateFormat.setText(date);
             }
         };
-
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
         int month = cal.get(Calendar.MONTH);
         int day = cal.get(Calendar.DAY_OF_MONTH);
         int style = AlertDialog.THEME_HOLO_LIGHT;
-
         datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
         //datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
     }
@@ -221,7 +220,8 @@ public class edit_delete_medications extends AppCompatActivity {
         amount = medInventory.getText().toString().trim();
         date = dateFormat.getText().toString().trim();
         time = timeButtonEdit.getText().toString().trim();
-        medication_info m = new medication_info(title, amount, date, time);
+        enddate = enddatebutton.getText().toString().trim();
+        medication_info m = new medication_info(title, amount, date, time, enddate);
         db.collection("users").document(currentFirebaseUser.getUid()).collection("New Medications")
                 .document(medication_info.getId()).update("Medication", m.getMedication(),
                 "InventoryMeds", m.getInventoryMeds(), "StartDate", m.getStartDate(), "Time", m.getTime()).addOnSuccessListener(new OnSuccessListener<Void>() {

@@ -25,38 +25,55 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
+import com.example.capstone1.databinding.ActivityNewMedicationsBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.datepicker.CalendarConstraints;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.timepicker.MaterialTimePicker;
+import com.google.android.material.timepicker.TimeFormat;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-public class new_medications extends AppCompatActivity {
+public class new_medications extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
     EditText medication, dosage, inventory;
     Button buttonsavemedication;
     FirebaseAuth rootAuthen;
     FirebaseFirestore fstore;
-    String userId;
+    final int start = 1;
+    final int end = 2;
+    String userId, startdate;
     Spinner spinnertypeunit, spinnerfrequencymedication;
-    private Calendar calendar;
+    Calendar calendar = Calendar.getInstance();;
     private AlarmManager alarmManager;
     private PendingIntent pendingIntent;
-    private DatePickerDialog datePickerDialog;
-    private Button dateButton;
+    private DatePickerDialog datePickerDialog, datePickerDialog2;
+    private Button dateButton, endDateButton;
+    Calendar c;
     FloatingActionButton timeSetBtn;
+    ActivityNewMedicationsBinding binding;
+    private MaterialTimePicker picker;
 
     //CollectionReference reference = fstore.collection("Users");
 
     Button timeButtonmedtst, dateformat;
     int hour, minute;
-    int year, month, day;
+    int year, month, day, choice;
+    String dateToday = String.valueOf(android.text.format.DateFormat.format("M/dd/yyyy", new java.util.Date()));
 
 
     private static final String TAG = "new_medications";
@@ -73,6 +90,7 @@ public class new_medications extends AppCompatActivity {
         dosage = findViewById(R.id.DosageBox);
         inventory = findViewById(R.id.inventoryBox);
         dateButton = findViewById(R.id.startButton_date);
+        endDateButton = findViewById(R.id.endButton_one);
         spinnertypeunit = findViewById(R.id.type_spinner_one);
         spinnerfrequencymedication = findViewById(R.id.frequency_spinner_ten);
         buttonsavemedication = findViewById(R.id.save_medication_button);
@@ -80,7 +98,6 @@ public class new_medications extends AppCompatActivity {
         fstore = FirebaseFirestore.getInstance();
         timeButtonmedtst = findViewById(R.id.timeButtonmed);
         userId = rootAuthen.getCurrentUser().getUid();
-        initDatePicker();
         ArrayAdapter<String> myAdapter2 = new ArrayAdapter<String>(new_medications.this,
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.frequency));
         myAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -91,20 +108,53 @@ public class new_medications extends AppCompatActivity {
         myAdapterTwo.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnertypeunit.setAdapter(myAdapterTwo);
 
+
+        dateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                choice = 1;
+                initDatePicker();
+                openDatePicker();
+            }
+        });
+        endDateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                choice = 2;
+                initDatePicker();
+                openDatePicker();
+            }
+        });
+
+        timeButtonmedtst.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment timePicker = new TimePickerFragment();
+                timePicker.show(getSupportFragmentManager(), "time picker");
+            }
+        });
+
+
+
+
         buttonsavemedication.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String Medication = medication.getText().toString().trim();
                 String Dosage = dosage.getText().toString().trim();
                 String Inventory = inventory.getText().toString().trim();
                 String Time = timeButtonmedtst.getText().toString().trim();
-                String StartDate = dateButton.getText().toString().trim();
+                String StartDate =  dateButton.getText().toString().trim();
+                String EndDate = endDateButton.getText().toString().trim();
                 Map<String, Object> user = new HashMap<>();
                 user.put("Medication", Medication);
                 user.put("Dosage", Dosage);
                 user.put("InventoryMeds", Inventory);
                 user.put("Time", Time);
                 user.put("StartDate", StartDate);
+                user.put("EndDate", EndDate);
+                startAlarm(c);
 
                 if (TextUtils.isEmpty(Medication)) {
                     medication.setError("This field is required");
@@ -133,12 +183,10 @@ public class new_medications extends AppCompatActivity {
                                 Log.d(TAG, "onSuccess: failed");
                             }
                         });
-                setAlarm();
+                Log.d("class", "Hour and minute" + dateToday);
+
             }
-
         });
-
-
     }
 
 
@@ -151,17 +199,6 @@ public class new_medications extends AppCompatActivity {
         Intent intent = new Intent(new_medications.this, optical_character_recognition.class);
         startActivity(intent);
     }
-
-    private void setAlarm() {
-        alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-
-        Intent intent = new Intent(this, alarmreceiver.class);
-        pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
-        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
-        Toast.makeText(this, "Alarm Set Succesfully", Toast.LENGTH_SHORT).show();
-
-    }
-
 
     private void createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -176,28 +213,105 @@ public class new_medications extends AppCompatActivity {
 
     }
 
-    public void popTimePicker(View view) {
+
+    private void setAlarm() {
+        alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(this, alarmreceiver.class);
+        pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),  pendingIntent);
+        Toast.makeText(this, "Alarm Set Succesfully", Toast.LENGTH_SHORT).show();
+    }
+
+    private void initDatePicker()
+    {
+        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener()
+        {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day)
+            {
+                month+=1;
+                if (choice == start)
+                {
+                    startdate = makeDateString(day, month, year);
+                    dateButton.setText(startdate);
+                }
+                else if (choice == end)
+                {
+                    String enddate = makeDateString(day, month, year);
+                    endDateButton.setText(enddate);
+
+                }
+            }
+        };
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH);
+        int style = AlertDialog.THEME_HOLO_LIGHT;
+        datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
+
+        //datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+    }
+    private String makeDateString(int day, int month, int year)
+    {
+        return month + "/" + day + "/" + year;
+    }
+
+    public void openDatePicker() {
+        datePickerDialog.show();
+    }
+
+
+    @Override
+    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+        c = Calendar.getInstance();
+        c.set(Calendar.HOUR_OF_DAY, hourOfDay);
+        c.set(Calendar.MINUTE, minute);
+        c.set(Calendar.SECOND, 0);
+        c.set(Calendar.MILLISECOND, 0);
+        updateTimeText(c);
+    }
+
+    private void updateTimeText(Calendar c)
+    {
+        String timeText = DateFormat.getTimeInstance(DateFormat.SHORT).format(c.getTime());
+        timeButtonmedtst.setText(timeText);
+    }
+
+    private void startAlarm(Calendar c)
+    {
+        if(dateToday.equals(dateButton.getText().toString()))
+        {
+            AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+            Intent intent = new Intent(this, alarmreceiver.class);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 123, intent, 0);
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
+        }
+    }
+}
+
+  /*  public void popTimePicker (View view) {
         TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int i, int i1) {
                 hour = i;
                 minute = i1;
+                //String time = hour + ":" + minute;
                 timeButtonmedtst.setText(String.format(Locale.getDefault(), "%02d:%02d", hour, minute));
             }
         };
 
-        int style = AlertDialog.THEME_HOLO_LIGHT;
+        int style = AlertDialog.THEME_HOLO_DARK;
 
         TimePickerDialog timePickerDialog = new TimePickerDialog(this, style, onTimeSetListener, hour, minute, false);
         timePickerDialog.setTitle("Set Time");
         timePickerDialog.show();
         calendar = Calendar.getInstance();
+        Log.d("class", "Hour and minute" + calendar);
+        month = calendar.get(Calendar.MONTH);
         calendar.set(Calendar.HOUR_OF_DAY, hour);
         calendar.set(Calendar.MINUTE, minute);
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MILLISECOND, 0);
     }
-
 
     private void initDatePicker()
     {
@@ -209,21 +323,12 @@ public class new_medications extends AppCompatActivity {
                 month+=1;
                 String date = makeDateString(day, month, year);
                 dateButton.setText(date);
-
-                }
+            }
         };
-
-        Calendar cal = Calendar.getInstance();
-        int year = cal.get(Calendar.YEAR);
-        int month = cal.get(Calendar.MONTH);
-        int style = AlertDialog.THEME_HOLO_LIGHT;
-
 
 
         datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
         //datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
-
-    }
 
 
     private String makeDateString(int day, int month, int year)
@@ -235,5 +340,4 @@ public class new_medications extends AppCompatActivity {
     {
         datePickerDialog.show();
     }
-}
-
+}*/

@@ -36,7 +36,7 @@ public class history_page extends AppCompatActivity {
         setContentView(R.layout.activity_history_page);
 
         progressDialog = new ProgressDialog(this);
-        progressDialog.setCancelable(false);
+        progressDialog.setCancelable(true);
         progressDialog.setMessage("Fetching Data...");
         progressDialog.show();
 

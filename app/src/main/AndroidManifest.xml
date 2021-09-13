@@ -143,7 +143,9 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".alarmreceiver" />
+        <receiver android:name=".alarmreceiver"
+            android:enabled="true"
+            android:exported="true"/>
 
         <meta-data
             android:name="com.google.mlkit.vision.DEPENDENCIES"
