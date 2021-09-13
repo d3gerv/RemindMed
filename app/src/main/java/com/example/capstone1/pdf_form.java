@@ -33,7 +33,9 @@ import com.google.firebase.firestore.Query;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class pdf_form extends AppCompatActivity {
@@ -66,7 +68,9 @@ public class pdf_form extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 list = findViewById(R.id.list_medication);
-                listtime = findViewById(R.id.list_time);
+                //listtime = findViewById(R.id.list_time);
+                firestorerecyclerView.setAdapter(adapter);
+
                 /*
                 for (int i = 0; i< adapter.getItemCount();i++){
                     View view=firestorerecyclerView.getChildAt(i);
@@ -83,7 +87,7 @@ public class pdf_form extends AppCompatActivity {
                 String Firstname = firstname.getText().toString().trim();
                 String Lastname = lastname.getText().toString().trim();
                 String Medication = list.getText().toString().trim();
-                String Time = listtime.getText().toString().trim();
+                //String Time = listtime.getText().toString().trim();
 
                 //String Mema = firestorerecyclerView.getText.toString.trim();
                 /*
@@ -98,7 +102,7 @@ public class pdf_form extends AppCompatActivity {
                 user.put("firstname", Firstname);
                 user.put("lastname",Lastname);
                 user.put("Medication",Medication);
-                user.put("MedicationTime",Time);
+                //user.put("MedicationTime",Time);
                 //user.put("Medication", Mema);
                 //user.put("gender",Gender);
                 //user.put("birthyr",Birthyr);
@@ -207,7 +211,7 @@ public class pdf_form extends AppCompatActivity {
         canvas.drawText("Name: " + firstname.getText(),20,80,paint);
         canvas.drawText("" + lastname.getText(),85,80,paint);
         canvas.drawText("Medication: " + list.getText(),20,90,paint);
-        canvas.drawText("Time: " + listtime.getText(),20,100,paint);
+        //canvas.drawText("Time: " + listtime.getText(),20,100,paint);
             /*
             canvas.drawText("Gender: " + spinner.getSelectedItem(),20,90,paint);
             canvas.drawText("Year of birth: " + birthyr.getText(),20,100,paint);
