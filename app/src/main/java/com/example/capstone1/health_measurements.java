@@ -136,4 +136,12 @@ public class health_measurements extends AppCompatActivity {
         Intent intent = new Intent(health_measurements.this, user_information.class);
         startActivity(intent);
     }
+    public void Health_To_Today (View view){
+        Intent intent = new Intent(health_measurements.this, today_page_recycler.class);
+        startActivity(intent);
+    }
+    public void Health_To_History (View view){
+        Intent intent = new Intent(health_measurements.this, history_page.class);
+        startActivity(intent);
+    }
 }
