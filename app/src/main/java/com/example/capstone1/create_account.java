@@ -97,6 +97,9 @@ public class create_account extends AppCompatActivity {
                     emailInput.setError("Email is required");
                     return;
                 }
+                if(!Patterns.EMAIL_ADDRESS.matcher(Email).matches()){
+                    emailInput.setError("Enter a valid email");
+                }
                 if (TextUtils.isEmpty(Confirm_Password)) {
                     confirm.setError("Confirm Password is required");
                     return;
@@ -107,6 +110,10 @@ public class create_account extends AppCompatActivity {
                 }
                 if (Password.length() < 6) {
                     password.setError("Password must be at least 6 characters");
+                    return;
+                }
+                if (!Password.equals(Confirm_Password)){
+                    confirm.setError("Password does not match");
                     return;
                 }
 
