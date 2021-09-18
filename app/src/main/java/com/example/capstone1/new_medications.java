@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -36,6 +37,7 @@ import com.google.android.material.datepicker.CalendarConstraints;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -45,6 +47,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -59,21 +62,16 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
     String userId, startdate;
     Spinner spinnertypeunit, spinnerfrequencymedication;
     Calendar calendar = Calendar.getInstance();;
-    private AlarmManager alarmManager;
-    private PendingIntent pendingIntent;
     private DatePickerDialog datePickerDialog, datePickerDialog2;
     private Button dateButton, endDateButton;
     Calendar c;
-    FloatingActionButton timeSetBtn;
-    ActivityNewMedicationsBinding binding;
-    private MaterialTimePicker picker;
-
-    //CollectionReference reference = fstore.collection("Users");
-
-    Button timeButtonmedtst, dateformat;
+    static final SimpleDateFormat format = new SimpleDateFormat("M/d/yyyy");
+    Button timeButtonmedtst;
     int hour, minute;
-    int year, month, day, choice;
+    int year, month, day, choice, typechoice;
     String dateToday = String.valueOf(android.text.format.DateFormat.format("M/dd/yyyy", new java.util.Date()));
+
+
 
 
     private static final String TAG = "new_medications";
@@ -98,15 +96,30 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
         fstore = FirebaseFirestore.getInstance();
         timeButtonmedtst = findViewById(R.id.timeButtonmed);
         userId = rootAuthen.getCurrentUser().getUid();
-        ArrayAdapter<String> myAdapter2 = new ArrayAdapter<String>(new_medications.this,
-                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.frequency));
-        myAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerfrequencymedication.setAdapter(myAdapter2);
 
-        ArrayAdapter<String> myAdapterTwo = new ArrayAdapter<String>(new_medications.this,
+        ArrayAdapter<String> adapterFrequency = new ArrayAdapter<String>(new_medications.this,
+                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array
+                .frequency));
+        adapterFrequency.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerfrequencymedication.setAdapter(adapterFrequency);
+
+        ArrayAdapter<String> adapterUnit = new ArrayAdapter<String>(new_medications.this,
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.type));
-        myAdapterTwo.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnertypeunit.setAdapter(myAdapterTwo);
+
+        adapterUnit.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnertypeunit.setAdapter(adapterUnit);
+
+        spinnertypeunit.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                typechoice = position;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
 
         dateButton.setOnClickListener(new View.OnClickListener() {
@@ -134,15 +147,12 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
             }
         });
 
-
-
-
         buttonsavemedication.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 String Medication = medication.getText().toString().trim();
-                String Dosage = dosage.getText().toString().trim();
+                String Dosage = dosage.getText().toString();
                 String Inventory = inventory.getText().toString().trim();
                 String Time = timeButtonmedtst.getText().toString().trim();
                 String StartDate =  dateButton.getText().toString().trim();
@@ -152,15 +162,16 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
                 user.put("Dosage", Dosage);
                 user.put("InventoryMeds", Inventory);
                 user.put("Time", Time);
-                user.put("StartDate", StartDate);
-                user.put("EndDate", EndDate);
+                user.put("StartDate", getDateFromString(StartDate));
+                user.put("EndDate", getDateFromString(EndDate));
+                user.put("MedicineType", typechoice);
                 startAlarm(c);
 
                 if (TextUtils.isEmpty(Medication)) {
                     medication.setError("This field is required");
                     return;
                 }
-                if (TextUtils.isEmpty(Dosage)) {
+                if (TextUtils.isEmpty(Dosage) ){
                     dosage.setError("This field is required");
                     return;
                 }
@@ -210,17 +221,8 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
         }
-
     }
 
-
-    private void setAlarm() {
-        alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(this, alarmreceiver.class);
-        pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
-        alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),  pendingIntent);
-        Toast.makeText(this, "Alarm Set Succesfully", Toast.LENGTH_SHORT).show();
-    }
 
     private void initDatePicker()
     {
@@ -243,13 +245,15 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
                 }
             }
         };
-        year = calendar.get(Calendar.YEAR);
-        month = calendar.get(Calendar.MONTH);
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
         int style = AlertDialog.THEME_HOLO_LIGHT;
         datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
-
-        //datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+        datePickerDialog.getDatePicker().setMinDate(calendar.getTimeInMillis());
     }
+
     private String makeDateString(int day, int month, int year)
     {
         return month + "/" + day + "/" + year;
@@ -284,6 +288,15 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
             Intent intent = new Intent(this, alarmreceiver.class);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 123, intent, 0);
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
+        }
+    }
+
+    public Date getDateFromString(String dateToSave) {
+        try {
+            Date date = format.parse(dateToSave);
+            return date ;
+        } catch (ParseException e){
+            return null ;
         }
     }
 }

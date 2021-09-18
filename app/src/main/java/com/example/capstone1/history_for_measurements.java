@@ -50,7 +50,7 @@ public class history_for_measurements extends AppCompatActivity {
 
 
         myAdapter = new measurementAdapter(history_for_measurements.this, myArrayList);
-        bloodpressureEvent();
+        showMeasurementHistory();
         recyclerView.setAdapter(myAdapter);
         FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -61,7 +61,7 @@ public class history_for_measurements extends AppCompatActivity {
 
     }
 
-    private void bloodpressureEvent()
+    private void showMeasurementHistory()
     {
         measurement = getResources().getStringArray(R.array.measurements);
         FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();

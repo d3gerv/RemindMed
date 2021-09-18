@@ -1,5 +1,7 @@
 package com.example.capstone1;
 
+import static com.example.capstone1.intake_confirmation.dateFormat;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -41,8 +43,6 @@ public class home_page extends AppCompatActivity {
     Button addMed, addHM, changeLayout;
     int layout = 1;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,7 +70,6 @@ public class home_page extends AppCompatActivity {
         myArrayList = new ArrayList<medication_info>();
         myAdapter = new myHomeAdpater(home_page.this, myArrayList);
         EventChangeListener();
-
 
         changeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,6 +134,7 @@ public class home_page extends AppCompatActivity {
                 for(DocumentChange dc : queryDocumentSnapshots.getDocumentChanges())
                 {
                     if(dc.getType() == DocumentChange.Type.ADDED) {
+
                         medication_info m = dc.getDocument().toObject(medication_info.class);
                         m.setId(dc.getDocument().getId());
                         myArrayList.add(m);
@@ -163,5 +163,4 @@ public class home_page extends AppCompatActivity {
         addHM.setVisibility(View.GONE);
         layout = 0;
     }
-
 }

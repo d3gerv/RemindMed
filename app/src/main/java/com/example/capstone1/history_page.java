@@ -24,8 +24,8 @@ import java.util.ArrayList;
 
 public class history_page extends AppCompatActivity {
     RecyclerView recyclerView1;
-    ArrayList<medication_info> myArrayList;
-    MyMedicationAdapter myAdapter;
+    ArrayList<medication_history_info> myArrayList;
+    medication_history_adapter myAdapter;
     FirebaseFirestore db;
     ProgressDialog progressDialog;
 
@@ -44,8 +44,8 @@ public class history_page extends AppCompatActivity {
         recyclerView1.setHasFixedSize(true);
         recyclerView1.setLayoutManager(new LinearLayoutManager(this));
         db = FirebaseFirestore.getInstance();
-        myArrayList = new ArrayList<medication_info>();
-        myAdapter = new MyMedicationAdapter(history_page.this, myArrayList);
+        myArrayList = new ArrayList<medication_history_info>();
+        myAdapter = new medication_history_adapter(history_page.this, myArrayList);
 
         recyclerView1.setAdapter(myAdapter);
         EventChangeListener();
@@ -75,7 +75,7 @@ public class history_page extends AppCompatActivity {
 
         FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        db.document("users/" + currentFirebaseUser.getUid()).collection("New Medications").orderBy("Medication", Query.Direction.ASCENDING).addSnapshotListener(new EventListener<QuerySnapshot>() {
+        db.document("users/" + currentFirebaseUser.getUid()).collection("Medication History").orderBy("StartDate", Query.Direction.ASCENDING).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
 
@@ -88,7 +88,7 @@ public class history_page extends AppCompatActivity {
 
                 for (DocumentChange dc : queryDocumentSnapshots.getDocumentChanges()) {
                     if (dc.getType() == DocumentChange.Type.ADDED) {
-                        myArrayList.add(dc.getDocument().toObject(medication_info.class));
+                        myArrayList.add(dc.getDocument().toObject(medication_history_info.class));
                     }
 
                     myAdapter.notifyDataSetChanged();

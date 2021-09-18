@@ -1,7 +1,14 @@
 package com.example.capstone1;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -10,7 +17,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -20,27 +30,43 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class intake_confirmation extends AppCompatActivity{
-    TextView medName, medAmount;
-    String title, amount, time, date, enddate;
-    int medicationAmount;
-    int inventoryInt;
-    Button confirm;
+public class intake_confirmation extends AppCompatActivity {
+    TextView medName, medAmount, dateTakentxt;
+    String title, amount, time, date, enddate, dosage, userId;
+    Date myDate;
+    static final SimpleDateFormat dateFormat = new SimpleDateFormat("M/d/yyyy");
+    Button confirm, skip;
     FirebaseFirestore db;
+    FirebaseAuth rootAuthen;
     FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-    private medication_info  medication_info;
+    private medication_info medication_info;
+    private static final String TAG = "intake_confirmation";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)  {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intake_confirmation);
+        createNotificationChannel();
         medication_info = (medication_info) getIntent().getSerializableExtra("medication_info");
-        db  = FirebaseFirestore.getInstance();
+        db = FirebaseFirestore.getInstance();
         medName = findViewById(R.id.medNameConfirmTv);
         medAmount = findViewById(R.id.medInventoryTV);
         confirm = findViewById(R.id.confirm_btn);
+        skip = findViewById(R.id.skip_btn);
+        dateTakentxt = findViewById(R.id.dateTaken);
+        rootAuthen = FirebaseAuth.getInstance();
+        userId = rootAuthen.getCurrentUser().getUid();
+
 
         getData();
         setData();
@@ -48,45 +74,163 @@ public class intake_confirmation extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 decrementMedication();
+                moveStartDate();
+                saveToHistory();
+                startActivity(new Intent(intake_confirmation.this, today_page_recycler.class));
+                finish();
+            }
+        });
+
+        skip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                medication_info m = new medication_info(title, amount, getDateFromString(date), time, getDateFromString(enddate));
+                String strDate = dateFormat.format(m.getStartDate());
+                myDate = getDateFromString(strDate);
+                //myDate = DateUtil.addDays(myDate, 1);
+
+                Log.d("class", "end " + enddate);
+                Log.d("class", "start " + date);
             }
         });
 
     }
 
-    private void getData()
-    {
-        if(getIntent().hasExtra("description") && getIntent().hasExtra("pill"))
-        {
+    private void getData() {
+        if (getIntent().hasExtra("description") && getIntent().hasExtra("pill")) {
             title = getIntent().getStringExtra("description");
             amount = getIntent().getStringExtra("pill");
             time = getIntent().getStringExtra("time");
             date = getIntent().getStringExtra("startdate");
+            enddate = getIntent().getStringExtra("enddate");
+            dosage = getIntent().getStringExtra("Dosage");
 
-        }else{
+        } else {
             Toast.makeText(this, "No Data", Toast.LENGTH_SHORT).show();
         }
     }
-    private void setData()
-    {
+
+    private void setData() {
         medName.setText(title);
         medAmount.setText(amount);
+        dateTakentxt.setText(date);
+
     }
 
-    private void decrementMedication()
-    {
+    private void decrementMedication() {
         getData();
         int inv = Integer.parseInt(amount);
-        inv -= 1;
-        amount= Integer.toString(inv);
+        int doseInt = Integer.parseInt(dosage);
+        int type = medication_info.getMedicineType();
 
-            medication_info m =     new medication_info(title, amount, date, time, enddate);
+        if (type < 4) {
+            inv -= 1;
+
+        } else {
+            inv -= doseInt;
+        }
+        amount = Integer.toString(inv);
+        medication_info m = new medication_info(title, amount, getDateFromString(date), time, getDateFromString(enddate));
+
+        db.collection("users").document(currentFirebaseUser.getUid()).collection("New Medications")
+                .document(medication_info.getId()).update("InventoryMeds", m.getInventoryMeds())
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void avoid) {
+                        Toast.makeText(intake_confirmation.this, "Confirmed Intake", Toast.LENGTH_LONG).show();
+                    }
+                });
+    }
+
+    private void moveStartDate() {
+        getData();
+        myDate = getDateFromString(date);
+        myDate = DateUtil.addDays(myDate, 1);
+
+        medication_info m = new medication_info(title, amount, getDateFromString(date), time, getDateFromString(enddate));
+        if (date.equals(enddate)) {
+            db.collection("users").document(currentFirebaseUser.getUid()).collection("New Medications").document(medication_info.getId()).delete()
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(intake_confirmation.this, "Deleted Alarm", Toast.LENGTH_LONG).show();
+                                finish();
+
+                            }
+                        }
+                    });
+
+        } else {
             db.collection("users").document(currentFirebaseUser.getUid()).collection("New Medications")
-                    .document(medication_info.getId()).update("InventoryMeds", m.getInventoryMeds())
+                    .document(medication_info.getId()).update("StartDate", myDate)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void avoid) {
-                            Toast.makeText(intake_confirmation.this, "Confirmed Intake", Toast.LENGTH_LONG);
+                            Toast.makeText(intake_confirmation.this, "Confirmed Intake", Toast.LENGTH_LONG).show();
+                            finish();
                         }
                     });
+        }
+    }
+
+    private void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "Critical Levels";
+            String description = "Alerts for low medication inventory";
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel channel = new NotificationChannel("CriticalLevels", name, importance);
+            channel.setDescription(description);
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+
+    public Date getDateFromString(String dateToSave) {
+        try {
+            Date date = dateFormat.parse(dateToSave);
+            return date;
+        } catch (ParseException e) {
+            return null;
+        }
+    }
+
+    public void saveToHistory() {
+        getData();
+        String Medication = medication_info.getMedication();
+        String Time = medication_info.getTime();
+        String StartDate = date;
+        Map<String, Object> user = new HashMap<>();
+        user.put("Medication", Medication);
+        user.put("Time", Time);
+        user.put("StartDate",  StartDate);
+
+        db.collection("users").document(userId).collection("Medication History")
+                .add(user)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Toast.makeText(intake_confirmation.this, "New Medication added", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d(TAG, "onSuccess: failed");
+                    }
+                });
+
+
+    }
+}
+
+class DateUtil
+{
+    public static Date addDays(Date date, int days)
+    {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.DATE, days); //minus number would decrement the days
+        return cal.getTime();
     }
 }

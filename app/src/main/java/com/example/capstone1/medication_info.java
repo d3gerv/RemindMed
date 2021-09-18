@@ -1,15 +1,22 @@
 package com.example.capstone1;
 
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.Exclude;
 
 import java.io.Serializable;
+import java.sql.Time;
+import java.util.Date;
 
 public class medication_info implements Serializable {
-    String Medication, InventoryMeds, Dosage, StartDate, Time ,EndDate;
+    String Medication, InventoryMeds, Dosage, Time;
+    Date StartDate, EndDate;
+    int MedicineType;
     @Exclude  private String id;
     public medication_info() {}
 
-    public medication_info(String Medication, String InventoryMeds,  String StartDate, String Time, String EndDate )
+
+
+    public medication_info(String Medication, String InventoryMeds, Date StartDate, String Time, Date EndDate )
     {
         this.Medication = Medication;
         this.InventoryMeds = InventoryMeds;
@@ -51,11 +58,11 @@ public class medication_info implements Serializable {
         this.Dosage = Dosage;
     }
 
-    public String getStartDate() {
+    public Date getStartDate() {
         return StartDate;
     }
 
-    public void setStartDate(String StartDate) {
+    public void setStartDate(Date StartDate) {
         this.StartDate = StartDate;
     }
 
@@ -67,11 +74,19 @@ public class medication_info implements Serializable {
         this.Time = Time;
     }
 
-    public String getEndDate() {
+    public Date getEndDate() {
         return EndDate;
     }
 
-    public void setEndDate(String endDate) {
+    public void setEndDate(Date endDate) {
         EndDate = endDate;
+    }
+
+    public int getMedicineType() {
+        return MedicineType;
+    }
+
+    public void setMedicineType(int medicineType) {
+        MedicineType = medicineType;
     }
 }

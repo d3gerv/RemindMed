@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class myHomeAdpater extends RecyclerView.Adapter<myHomeAdpater.MyViewHolder> {
@@ -37,11 +39,16 @@ public class myHomeAdpater extends RecyclerView.Adapter<myHomeAdpater.MyViewHold
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, edit_delete_medications.class);
+                DateFormat dateFormat = new SimpleDateFormat("M/dd/yyyy");
                 medication_info medication_info = userArrayList.get(position);
+                String strDate = dateFormat.format(medication_info.StartDate);
+                String strEndDate = dateFormat.format(medication_info.EndDate);
+
                 intent.putExtra("description", medication_info.Medication);
                 intent.putExtra("pill", medication_info.InventoryMeds);
-                intent.putExtra("startdate", medication_info.StartDate);
+                intent.putExtra("startdate", strDate);
                 intent.putExtra("time", medication_info.Time);
+                intent.putExtra("enddate", strEndDate);
                 intent.putExtra("medication_info", medication_info);
                 context.startActivity(intent);
             }

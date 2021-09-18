@@ -22,12 +22,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -37,7 +39,10 @@ import java.util.Locale;
 
 public class edit_delete_medications extends AppCompatActivity {
     EditText medName, medInventory;
-    String title, amount, time, date, enddate;
+    static final SimpleDateFormat format = new SimpleDateFormat("M/d/yyyy");
+    String title, amount, time,  strDate, strEnd;
+    Date startdate, enddate;
+
     Button timeButtonEdit, dateFormat, delete, change, enddatebutton;
     FirebaseFirestore db;
     private DatePickerDialog datePickerDialog;
@@ -109,7 +114,6 @@ public class edit_delete_medications extends AppCompatActivity {
         getData();
         setData();
 
-
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -132,18 +136,14 @@ public class edit_delete_medications extends AppCompatActivity {
                 });
                 AlertDialog ad = builder.create();
                 ad.show();
-
             }
         });
-
         change.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 updateAlarm();
-
             }
         });
-
     }
 
     private void getData()
@@ -153,13 +153,13 @@ public class edit_delete_medications extends AppCompatActivity {
             title = getIntent().getStringExtra("description");
             amount = getIntent().getStringExtra("pill");
             time = getIntent().getStringExtra("time");
-            date = getIntent().getStringExtra("startdate");
-            enddate = getIntent().getStringExtra("enddate");
+            strDate = getIntent().getStringExtra("startdate");
+            strEnd = getIntent().getStringExtra("enddate");
+
         }else{
             Toast.makeText(this, "No Data", Toast.LENGTH_SHORT).show();
         }
     }
-
     private void initDatePicker()
     {
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener()
@@ -173,11 +173,11 @@ public class edit_delete_medications extends AppCompatActivity {
             }
         };
         Calendar cal = Calendar.getInstance();
-        int year = cal.get(Calendar.YEAR);
-        int month = cal.get(Calendar.MONTH);
-        int day = cal.get(Calendar.DAY_OF_MONTH);
+        int currentYear = cal.get(Calendar.YEAR);
+        int currenTmonth = cal.get(Calendar.MONTH);
+        int currentDay = cal.get(Calendar.DAY_OF_MONTH);
         int style = AlertDialog.THEME_HOLO_LIGHT;
-        datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
+        datePickerDialog = new DatePickerDialog(this, style, dateSetListener, currentYear, currenTmonth, currentDay);
         //datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
     }
     private String makeDateString(int day, int month, int year)
@@ -189,16 +189,13 @@ public class edit_delete_medications extends AppCompatActivity {
     {
         datePickerDialog.show();
     }
-
-
     private void setData()
     {
         medName.setText(title);
+        dateFormat.setText(strDate);
         medInventory.setText(amount);
-        dateFormat.setText(date);
         timeButtonEdit.setText(time);
     }
-
     private void deleteMedication() {
         db.collection("users").document(currentFirebaseUser.getUid()).collection("New Medications").document(medication_info.getId()).delete()
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -207,29 +204,41 @@ public class edit_delete_medications extends AppCompatActivity {
                         if(task.isSuccessful())
                         {
                             Toast.makeText(edit_delete_medications.this, "Deleted Alarm", Toast.LENGTH_LONG).show();
-                            finish();
                             startActivity(new Intent(edit_delete_medications.this, home_page.class));
+                            finish();
+
                         }
                     }
                 });
     }
-
     private void updateAlarm() {
         getData();
         title = medName.getText().toString().trim();
         amount = medInventory.getText().toString().trim();
-        date = dateFormat.getText().toString().trim();
+        startdate = getDateFromString(strDate);
         time = timeButtonEdit.getText().toString().trim();
-        enddate = enddatebutton.getText().toString().trim();
-        medication_info m = new medication_info(title, amount, date, time, enddate);
+        enddate = getDateFromString(strEnd);
+        medication_info m = new medication_info(title, amount, startdate, time, enddate);
         db.collection("users").document(currentFirebaseUser.getUid()).collection("New Medications")
                 .document(medication_info.getId()).update("Medication", m.getMedication(),
                 "InventoryMeds", m.getInventoryMeds(), "StartDate", m.getStartDate(), "Time", m.getTime()).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void avoid) {
-                        Toast.makeText(edit_delete_medications.this, "Medications Changed", Toast.LENGTH_LONG);
-
+                        Toast.makeText(edit_delete_medications.this, "Medications Changed", Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(edit_delete_medications.this, home_page.class));
+                        finish();
                     }
                 });
     }
+
+    public Date getDateFromString(String dateToSave) {
+        try {
+            Date date = format.parse(dateToSave);
+            return date ;
+        } catch (ParseException e){
+            return null ;
+        }
+    }
+
+
 }

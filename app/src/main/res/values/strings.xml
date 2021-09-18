@@ -23,12 +23,9 @@
         <item>Pills</item>
         <item>Capsule</item>
         <item>Tablet</item>
-        <item>Teaspoon(5ml)</item>
         <item>Tablespoon(15ml)</item>
-        <item>mg(1000mg = 1g)</item>
-        <item>mcg(1000mcg = 1mg)</item>
-        <item>ml(1000ml = 1L)</item>
-        <item>cc(1cc = 1ml)</item>
+        <item>ml</item>
+
     </string-array>
 
     <string-array name="frequency">

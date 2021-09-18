@@ -31,8 +31,12 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class today_page_recycler extends AppCompatActivity {
@@ -40,7 +44,10 @@ public class today_page_recycler extends AppCompatActivity {
     ArrayList<medication_info> myArrayList;
     MyMedicationAdapter myAdapter;
     FirebaseFirestore db;
+    DateFormat dateFormat = new SimpleDateFormat("M/dd/yyyy");
+    Date dateSelected;
     ProgressDialog progressDialog;
+    static final SimpleDateFormat format = new SimpleDateFormat("M/d/yyyy");
     String date;
     medication_info medication_info;
     private CalendarView calendarView;
@@ -69,6 +76,7 @@ public class today_page_recycler extends AppCompatActivity {
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 month +=1;
                 date = month + "/" + dayOfMonth +"/"+year;
+                dateSelected = getDateFromString(date);
                 Log.d("Calendar", "Selected day change" + date );
                 Log.d("Calendar", "Selected day change" + myArrayList.size() );
 
@@ -112,12 +120,14 @@ public class today_page_recycler extends AppCompatActivity {
                     if(dc.getType() == DocumentChange.Type.ADDED) {
                         medication_info m = dc.getDocument().toObject(medication_info.class);
                         m.setId(dc.getDocument().getId());
+                        String strDate = dateFormat.format(m.getStartDate());
+                        String strEnd = dateFormat.format(m.getEndDate());
                         if(myArrayList != null)
                         {
-                            if(date.equals(m.getStartDate()) || date.equals(m.getEndDate()))
+                            if(date.equals(strDate) || date.equals(strEnd) || dateSelected.after(m.getStartDate()) && dateSelected.before(m.getEndDate()))
                             {
                                 myArrayList.add(m);
-                                Log.d("message", "Hello World");
+                                Log.d("message", "hello" + m.getStartDate());
                             }
                         }
                     }
@@ -128,7 +138,18 @@ public class today_page_recycler extends AppCompatActivity {
                 }
             }
         });
+
+        //
     }
+    public Date getDateFromString(String dateToSave) {
+        try {
+            Date date = format.parse(dateToSave);
+            return date ;
+        } catch (ParseException e){
+            return null ;
+        }
+    }
+
 
 
 
