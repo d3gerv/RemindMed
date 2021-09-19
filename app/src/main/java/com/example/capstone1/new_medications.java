@@ -179,6 +179,16 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
                     inventory.setError("This field is required");
                     return;
                 }
+                if(spinnertypeunit.getSelectedItemPosition()==0){
+                    Toast.makeText(getApplicationContext(), "Please select type", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(spinnerfrequencymedication.getSelectedItemPosition()==0){
+                    Toast.makeText(getApplicationContext(), "Please select frequency", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+
 
                 fstore.collection("users").document(userId).collection("New Medications")
                         .add(user)
