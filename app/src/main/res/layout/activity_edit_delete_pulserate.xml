@@ -7,6 +7,24 @@
     tools:context=".edit_delete_pulserate">
 
 
+    <Button
+        android:id="@+id/delete_editPR"
+        android:layout_width="247dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="82dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="82dp"
+        android:background="@drawable/editttextcancel"
+        android:fontFamily="@font/viga"
+        android:text="Delete"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#000000"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnsavepulserateedit" />
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -188,7 +206,7 @@
         android:id="@+id/canceleditPR"
         android:layout_width="247dp"
         android:layout_height="49dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="13dp"
         android:background="@drawable/editttextcancel"
         android:fontFamily="@font/viga"
         android:onClick="Pulserate_To_Health"
@@ -199,7 +217,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnsavepulserateedit" />
+        app:layout_constraintTop_toBottomOf="@+id/delete_editPR" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline24"

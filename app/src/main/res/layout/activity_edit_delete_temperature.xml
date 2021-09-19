@@ -7,6 +7,24 @@
     tools:context=".edit_delete_temperature">
 
 
+    <Button
+        android:id="@+id/deleteBtn2"
+        android:layout_width="247dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="82dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="82dp"
+        android:background="@drawable/editttextcancel"
+        android:fontFamily="@font/viga"
+        android:text="Delete"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#000000"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnsavetemperatureedit" />
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -187,7 +205,7 @@
         android:id="@+id/canceleditTemp"
         android:layout_width="247dp"
         android:layout_height="49dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/editttextcancel"
         android:fontFamily="@font/viga"
         android:onClick="Temperature_To_Health"
@@ -198,7 +216,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnsavetemperatureedit" />
+        app:layout_constraintTop_toBottomOf="@+id/deleteBtn2" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline24"
