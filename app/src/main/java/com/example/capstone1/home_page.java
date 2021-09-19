@@ -113,8 +113,8 @@ public class home_page extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void Home_To_Pdf(View view) {
-        Intent intent = new Intent(home_page.this, pdf_form.class);
+    public void Home_To_Home(View view) {
+        Intent intent = new Intent(home_page.this, home_page.class);
         startActivity(intent);
     }
 

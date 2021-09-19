@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -24,6 +27,12 @@ import java.util.ArrayList;
 
 public class history_page extends AppCompatActivity {
     RecyclerView recyclerView1;
+
+    FirebaseFirestore fstore = FirebaseFirestore.getInstance();
+    TextView firstname;
+    FirebaseAuth rootAuthen;
+    String userId;
+
     ArrayList<medication_history_info> myArrayList;
     medication_history_adapter myAdapter;
     FirebaseFirestore db;
@@ -34,6 +43,16 @@ public class history_page extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history_page);
+        firstname = findViewById(R.id.firstnameview);
+        rootAuthen = FirebaseAuth.getInstance();
+        userId = rootAuthen.getCurrentUser().getUid();
+        DocumentReference documentReference = fstore.collection("users").document(userId);
+        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                firstname.setText(value.getString("firstname"));
+            }
+        });
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(true);
