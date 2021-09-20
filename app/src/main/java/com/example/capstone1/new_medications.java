@@ -187,6 +187,18 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
                     Toast.makeText(getApplicationContext(), "Please select frequency", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                if(timeButtonmedtst.getText().toString().equals("Set Time")){
+                    Toast.makeText(getApplicationContext(), "Please select Time", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(dateButton.getText().toString().equals("Start")){
+                    Toast.makeText(getApplicationContext(), "Please select Start Date", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(endDateButton.getText().toString().equals("End")){
+                    Toast.makeText(getApplicationContext(), "Please select End Date", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
 
 

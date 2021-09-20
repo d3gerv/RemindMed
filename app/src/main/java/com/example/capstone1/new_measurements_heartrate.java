@@ -112,6 +112,10 @@ public class new_measurements_heartrate extends AppCompatActivity {
                     heartrate.setError("This field is required");
                     return;
                 }
+                if(timeButtonheart.getText().toString().equals("Set Time")){
+                    Toast.makeText(getApplicationContext(), "Please select Time", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 fstore.collection("users").document(userId).collection("New Health Measurements").document("Heartrate").collection("Heartrate")
                         .add(user)

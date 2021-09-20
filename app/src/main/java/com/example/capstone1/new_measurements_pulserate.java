@@ -111,6 +111,10 @@ public class new_measurements_pulserate extends AppCompatActivity {
                     pulserate.setError("This field is required");
                     return;
                 }
+                if(timeButtonpulse.getText().toString().equals("Set Time")){
+                    Toast.makeText(getApplicationContext(), "Please select Time", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 fstore.collection("users").document(userId).collection("New Health Measurements").document("Pulserate").collection("Pulserate")
                         .add(user)
