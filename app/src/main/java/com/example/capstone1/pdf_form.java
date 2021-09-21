@@ -1,17 +1,33 @@
 package com.example.capstone1;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.DashPathEffect;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
+import android.os.Environment;
+import android.print.PrintAttributes;
+import android.print.PrintDocumentAdapter;
+import android.print.PrintJob;
+import android.print.PrintManager;
+import android.util.Log;
+import android.util.LruCache;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TableLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,215 +39,191 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.annotations.NotNull;
+import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.uttampanchasara.pdfgenerator.CreatePdf;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class pdf_form extends AppCompatActivity {
-    TextView firstname, lastname, medication,list, listtime;
-    Button buttonpdf;
-    private FirebaseFirestore fstore;
-    private RecyclerView firestorerecyclerView;
-    private FirestoreRecyclerAdapter adapter;
-    FirebaseAuth rootAuthen;
-    String userId;
+    RecyclerView recyclerView;
+    ArrayList<measurment_info> myArrayList;
+    pdfAdapter myAdapter;
+    FirebaseFirestore db;
+    ProgressDialog progressDialog;
+    TableLayout tableLayout;
+    Button savePDF;
+    Context context;
+
+    private WebView mWebView;
+    private File mFolder;
+    private File mFile;
+    private Context mContext;
+    Bitmap bitmap;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pdf_form);
+        tableLayout = (TableLayout) findViewById(R.id.tableLayoutHeader);
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage("Fetching Data...");
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        db = FirebaseFirestore.getInstance();
+        myArrayList = new ArrayList<measurment_info>();
+        myAdapter = new pdfAdapter(pdf_form.this, myArrayList);
+        showBPTable();
+        recyclerView.setAdapter(myAdapter);
 
-        buttonpdf = findViewById(R.id.btnSavePDF);
-        list = findViewById(R.id.list_medication);
-        listtime = findViewById(R.id.list_time);
+        tableLayout.setDrawingCacheEnabled(true);
+        tableLayout.layout(0, 0, tableLayout.getWidth(), tableLayout.getHeight());
+        tableLayout.buildDrawingCache(true);
 
-        firstname = findViewById(R.id.firstview);
-        lastname = findViewById(R.id.lastview);
-        medication = findViewById(R.id.medicationview);
 
-        firestorerecyclerView = findViewById(R.id.firestore_list);
-        fstore = FirebaseFirestore.getInstance();
-
-        //para sa pdf
-        buttonpdf.setOnClickListener(new View.OnClickListener() {
+        savePDF = (Button) findViewById(R.id.btnSavePDF);
+        savePDF.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                list = findViewById(R.id.list_medication);
-                //listtime = findViewById(R.id.list_time);
-                firestorerecyclerView.setAdapter(adapter);
-
-                /*
-                for (int i = 0; i< adapter.getItemCount();i++){
-                    View view=firestorerecyclerView.getChildAt(i);
-                    if(view!=null)
-                    {
-                        list = findViewById(R.id.list_medication);
-                        list.getText().toString().trim();
-                    }
-                }
-
-                 */
-
-
-                String Firstname = firstname.getText().toString().trim();
-                String Lastname = lastname.getText().toString().trim();
-                String Medication = list.getText().toString().trim();
-                //String Time = listtime.getText().toString().trim();
-
-                //String Mema = firestorerecyclerView.getText.toString.trim();
-                /*
-                String Gender = spinner.getSelectedItem().toString().trim();
-                String Birthyr = birthyr.getText().toString().trim();
-                String Height = height.getText().toString().trim();
-                String Weight = weight.getText().toString().trim();
-
-                 */
-
-                Map<String,Object> user = new HashMap<>();
-                user.put("firstname", Firstname);
-                user.put("lastname",Lastname);
-                user.put("Medication",Medication);
-                //user.put("MedicationTime",Time);
-                //user.put("Medication", Mema);
-                //user.put("gender",Gender);
-                //user.put("birthyr",Birthyr);
-                //user.put("height",Height);
-                //user.put("weight",Weight);
-
-                printPDF();
-            }
-        //hanggang dito pdf
-
-    });
-//end ng method ng pdf
-
-
-        //displayname
-        FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        DocumentReference documentReference = fstore.collection("users").document(currentFirebaseUser.getUid());
-        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                firstname.setText(value.getString("firstname"));
-                lastname.setText(value.getString("lastname"));
-                //list.setText(value.getString("Medication"));
+                Bitmap b = Bitmap.createBitmap(tableLayout.getDrawingCache());
+                createPdf( v, getScreenshotFromRecyclerView(recyclerView), b);
             }
         });
 
-        //query
-        FirebaseUser currentFirebaseUser1 = FirebaseAuth.getInstance().getCurrentUser();
-        Query query = fstore.collection("users/").document(currentFirebaseUser1.getUid()).collection("New Medications");
-        //recycler options
-        FirestoreRecyclerOptions<MedicationsModel> options = new FirestoreRecyclerOptions.Builder<MedicationsModel>()
-                .setQuery(query, MedicationsModel.class)
-                .build();
-
-         adapter = new FirestoreRecyclerAdapter<MedicationsModel, MedicationsViewHolder>(options) {
-            @NonNull
-            @Override
-            public MedicationsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_single, parent, false);
-                return new MedicationsViewHolder(view);
-            }
-
-            @Override
-            protected void onBindViewHolder(@NonNull MedicationsViewHolder holder, int position, @NonNull MedicationsModel model) {
-                holder.list_medications.setText(model.getMedication());
-                holder.list_time.setText(model.getTimeMedication());
-                holder.list_inventory.setText(model.getInventoryMeds());
-
-
-            }
-        };
-         firestorerecyclerView.setHasFixedSize(true);
-         firestorerecyclerView.setLayoutManager(new LinearLayoutManager(this));
-         firestorerecyclerView.setAdapter(adapter);
-
-        //view holder
 
     }
 
-    private class MedicationsViewHolder extends RecyclerView.ViewHolder {
-        private TextView list_medications;
-        private TextView list_time;
-        private TextView list_inventory;
+    private void showBPTable() {
+        FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        db.document("users/" + currentFirebaseUser.getUid()).collection("New Health Measurements").document("Bloodpressure").collection("Bloodpressure")
+                .orderBy("Time", Query.Direction.ASCENDING).addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                if (e != null) {
+                    if (progressDialog.isShowing())
+                        progressDialog.dismiss();
+                    Log.e("Firestore error", e.getMessage());
+                    return;
+                }
+                for (DocumentChange dc : queryDocumentSnapshots.getDocumentChanges()) {
+                    if (dc.getType() == DocumentChange.Type.ADDED) {
+                        myArrayList.add(dc.getDocument().toObject(measurment_info.class));
+                    }
+                    myAdapter.notifyDataSetChanged();
+                    if (progressDialog.isShowing()) {
+                        progressDialog.dismiss();
+                    }
+                }
+            }
+        });
+    }
 
-        public MedicationsViewHolder(@NonNull View itemView) {
-            super(itemView);
+    public Bitmap getScreenshotFromRecyclerView(RecyclerView view) {
+        RecyclerView.Adapter adapter = view.getAdapter();
+        Bitmap bigBitmap = null;
+        if (adapter != null) {
+            int size = adapter.getItemCount();
+            int height = 0;
+            Paint paint = new Paint();
+            int iHeight = 0;
+            final int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
 
-            list_medications = itemView.findViewById(R.id.list_medication);
-            list_time = itemView.findViewById(R.id.list_time);
-            list_inventory = itemView.findViewById(R.id.list_inventory);
+            // Use 1/8th of the available memory for this memory cache.
+            final int cacheSize = maxMemory / 8;
+            LruCache<String, Bitmap> bitmaCache = new LruCache<>(cacheSize);
+            for (int i = 0; i < size; i++) {
+                RecyclerView.ViewHolder holder = adapter.createViewHolder(view, adapter.getItemViewType(i));
+                adapter.onBindViewHolder(holder, i);
+                holder.itemView.measure(View.MeasureSpec.makeMeasureSpec(view.getWidth(), View.MeasureSpec.EXACTLY),
+                        View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+                holder.itemView.layout(0, 0, holder.itemView.getMeasuredWidth(), holder.itemView.getMeasuredHeight());
+                holder.itemView.setDrawingCacheEnabled(true);
+                holder.itemView.buildDrawingCache();
+                Bitmap drawingCache = holder.itemView.getDrawingCache();
+                if (drawingCache != null) {
+
+                    bitmaCache.put(String.valueOf(i), drawingCache);
+                }
+//                holder.itemView.setDrawingCacheEnabled(false);
+//                holder.itemView.destroyDrawingCache();
+                height += holder.itemView.getMeasuredHeight();
+            }
+            bigBitmap = Bitmap.createBitmap(view.getMeasuredWidth(), height, Bitmap.Config.ARGB_8888);
+            Canvas bigCanvas = new Canvas(bigBitmap);
+            bigCanvas.drawColor(Color.WHITE);
+
+            for (int i = 0; i < size; i++) {
+                Bitmap bitmap = bitmaCache.get(String.valueOf(i));
+                bigCanvas.drawBitmap(bitmap, 0f, iHeight, paint);
+                iHeight += bitmap.getHeight();
+                bitmap.recycle();
+            }
+
         }
+        return bigBitmap;
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        adapter.stopListening();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        adapter.startListening();
-    }
-
-    //start ng method ng pdf
-    private void printPDF() {
-        PdfDocument myPdfDocument = new PdfDocument();
-        Paint paint = new Paint();
+    private void createPdf(View title, Bitmap measurements, Bitmap header){
+        // create a new document
+        PdfDocument document = new PdfDocument();
+        // crate a page description
+        int height = title.getHeight() + measurements.getHeight();
+        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(measurements.getWidth(), height, 1).create();
+        // start a page
+        PdfDocument.Page page = document.startPage(pageInfo);
+        Canvas canvas = page.getCanvas();
         Paint forLinePaint = new Paint();
-        PdfDocument.PageInfo myPageInfo = new PdfDocument.PageInfo.Builder(250,350,1).create();
-        PdfDocument.Page myPage = myPdfDocument.startPage(myPageInfo);
-        Canvas canvas = myPage.getCanvas();
+        Paint paint = new Paint();
 
-        paint.setTextSize(15.5f);
-        paint.setColor(Color.rgb(0,50,250));
-
-        canvas.drawText("RemindMed",20,20,paint);
-        paint.setTextSize(8.5f);
-        canvas.drawText("Testing lang kung gagana",20,40,paint);
+        paint.setColor(Color.BLACK);
+        paint.setTextSize(50f);
+        canvas.drawText("RemindMed",20,60,paint);
         forLinePaint.setStyle(Paint.Style.STROKE);
         forLinePaint.setPathEffect(new DashPathEffect(new float[]{5,5},0));
         forLinePaint.setStrokeWidth(2);
-        canvas.drawLine(20,65,230,65,forLinePaint);
+        canvas.drawLine(20,95,1000,95,forLinePaint);
+        canvas.drawBitmap(header, null, new Rect(0, 0, measurements.getWidth()-200,300), null);
+        canvas.drawBitmap(measurements, null, new Rect(0, title.getHeight()+100, measurements.getWidth()-200,measurements.getHeight()), null);
+        // finish the page
+        document.finishPage(page);
+        // draw text on the graphics object of the page
 
-        canvas.drawText("Name: " + firstname.getText(),20,80,paint);
-        canvas.drawText("" + lastname.getText(),85,80,paint);
-        canvas.drawText("Medication: " + list.getText(),20,90,paint);
-        //canvas.drawText("Time: " + listtime.getText(),20,100,paint);
-            /*
-            canvas.drawText("Gender: " + spinner.getSelectedItem(),20,90,paint);
-            canvas.drawText("Year of birth: " + birthyr.getText(),20,100,paint);
-            canvas.drawText("Height: " + height.getText(),20,110,paint);
-            canvas.drawText("Weight: " + weight.getText(),20,120,paint);
-
-             */
-
-
-        myPdfDocument.finishPage(myPage);
-        File file = new File(this.getExternalFilesDir("/"), "Remindmed.pdf");
-        //File file = new File(this.getExternalFilesDir("/"), "Remindmed.pdf");
-
-
-        try {
-            myPdfDocument.writeTo(new FileOutputStream(file));
-        } catch (IOException e) {
-            e.printStackTrace();
+        // write the document content
+        File folder = getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS);
+        File file = new File(folder,"RemindMed.pdf");
+        if (!file.exists()) {
+            file.mkdirs();
         }
-        myPdfDocument.close();
-
+        String targetPdf = folder + "RemindMed"  + ".pdf";
+        File filePath = new File(this.getExternalFilesDir("/"), "RemindMed.pdf");
+        try {
+            document.writeTo(new FileOutputStream(filePath));
+            Toast.makeText(this, "Exported to PDF", Toast.LENGTH_LONG).show();
+        } catch (IOException e) {
+            Log.e("main", "error "+e.toString());
+            Toast.makeText(this, "Something wrong: " + e.toString(),  Toast.LENGTH_LONG).show();
+        }
+        // close the document
+        document.close();
     }
+
+
 }

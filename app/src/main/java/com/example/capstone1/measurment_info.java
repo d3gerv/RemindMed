@@ -3,13 +3,16 @@ package com.example.capstone1;
 import java.io.Serializable;
 
 public class measurment_info implements Serializable {
-    String Record, Time, Name;
+    String Record, Time, Name, Date;
     public measurment_info() {}
 
-    public measurment_info(String record, String time, String name) {
+
+
+    public measurment_info(String record, String time, String name, String date) {
         this.Record = record;
         this.Time = time;
         this.Name = name;
+        this.Date = date;
     }
 
     public String getRecord() {
@@ -34,5 +37,13 @@ public class measurment_info implements Serializable {
 
     public void setName(String name) {
         Name = name;
+    }
+
+    public String getDate() {
+        return Date;
+    }
+
+    public void setDate(String date) {
+        Date = date;
     }
 }

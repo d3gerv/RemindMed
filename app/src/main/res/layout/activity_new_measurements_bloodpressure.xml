@@ -18,6 +18,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/buttonBPDialog"
+        android:layout_width="107dp"
+        android:layout_height="47dp"
+        android:background="@drawable/edittext3"
+        android:text="Set BP"
+
+        app:layout_constraintBottom_toTopOf="@+id/guideline21"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.349"
+        app:layout_constraintStart_toEndOf="@+id/bloodPressureView"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.522" />
 
     <ImageButton
         android:id="@+id/imageBack_bloodpressure"
@@ -158,19 +171,7 @@
         app:layout_constraintTop_toBottomOf="@+id/time_txt1"
         tools:ignore="OnClick" />
 
-    <EditText
-        android:id="@+id/blood_pressure_box"
-        android:layout_width="107dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="47dp"
-        android:background="@drawable/edittext3"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:paddingStart="10dp"
-        android:paddingRight="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline21"
-        app:layout_constraintStart_toEndOf="@+id/bloodPressureView"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
 
     <Button
         android:id="@+id/btnsavebloodpressure"

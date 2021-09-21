@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+
+            <TextView
+                android:id="@+id/measurementhistoryPDF"
+                android:layout_column="1"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="Blood Pressure"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/datehistoryPDF"
+                android:layout_column="1"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="Date"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/timehisoryPDF"
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="Time"
+                android:textSize="20dp" />
+
+        </TableRow>
+    </TableLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -25,16 +25,20 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
-public class new_measurements_bloodpressure extends AppCompatActivity {
+public class new_measurements_bloodpressure extends AppCompatActivity implements fragment_bp.BloodPressuretxt {
     EditText bloodpressure;
-    Button buttonsavesbloodpressure;
+    Button buttonsavesbloodpressure, bpDialog;
     FirebaseAuth rootAuthen;
     FirebaseFirestore fstore;
-    String userId;
+    String userId, dateToday;
+    private Calendar calendar;
+    Date c = Calendar.getInstance().getTime();
     Spinner spinnerbp;
 
     Button timeButtonbp;
@@ -48,6 +52,7 @@ public class new_measurements_bloodpressure extends AppCompatActivity {
         bloodpressure = findViewById(R.id.blood_pressure_box);
         buttonsavesbloodpressure = findViewById(R.id.btnsavebloodpressure);
         spinnerbp = findViewById(R.id.frequency_spinner_four);
+        bpDialog = findViewById(R.id.buttonBPDialog);
 
         rootAuthen = FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
@@ -62,6 +67,16 @@ public class new_measurements_bloodpressure extends AppCompatActivity {
         spinnerbp.setAdapter(myAdapter2);
 
         timeButtonbp = findViewById(R.id.time_btn_one);
+        bpDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openBPDialog();
+            }
+        });
+
+        SimpleDateFormat df = new SimpleDateFormat("M/dd/yyyy", Locale.getDefault());
+         dateToday = df.format(c);
+
 
         timeButtonbp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,7 +111,7 @@ public class new_measurements_bloodpressure extends AppCompatActivity {
         buttonsavesbloodpressure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String Record = bloodpressure.getText().toString().trim();
+                String Record = bpDialog.getText().toString().trim();
                 //String Frequency = spinnerbp.getSelectedItem().toString().trim();
                 String Time = timeButtonbp.getText().toString().trim();
 
@@ -104,12 +119,13 @@ public class new_measurements_bloodpressure extends AppCompatActivity {
                 user.put("Time", Time);
                 user.put("Record",Record);
                 user.put("Name", "Bloodpressure");
+                user.put("Date", dateToday);
                 //user.put("FrequencyBloodPrs",Frequency);
 
-                if (TextUtils.isEmpty(Record)) {
+               /* if (TextUtils.isEmpty(Record)) {
                     bloodpressure.setError("This field is required");
                     return;
-                }
+                }*/
 
                 fstore.collection("users").document(userId).collection("New Health Measurements")
                         .document("Bloodpressure").collection("Bloodpressure")
@@ -126,38 +142,25 @@ public class new_measurements_bloodpressure extends AppCompatActivity {
                                // Log.d(TAG,"onSuccess: failed");
                             }
                         });
-
-
-/*
-                fstore.collection("users").document(userId).collection("New Health Measurements").document("Bloodpressure").set(user, SetOptions.merge()).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(new_measurements_bloodpressure.this, "New blood pressure measurement added", Toast.LENGTH_SHORT).show();
-                    }
-                });
-
- */
-            }
-        });
-/*
-        DocumentReference documentReference = fstore.collection("users").document(userId).collection("New Health Measurements").document("Bloodpressure");
-        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                bloodpressure.setText(value.getString("Bloodpressure"));
-
             }
         });
 
- */
     }
 
     //added spinner and timePicker
     public void Bloodpressure_To_Health (View view){
         Intent intent = new Intent(new_measurements_bloodpressure.this, health_measurements.class);
         startActivity(intent);
-
-
     }
 
-};
+    public void openBPDialog()
+    {
+        fragment_bp fragment_bp = new fragment_bp();
+        fragment_bp.show(getSupportFragmentManager(), "BP Dialog");
+    }
+
+    @Override
+    public void applyBPtext(String bp) {
+        bpDialog.setText(bp);
+    }
+}

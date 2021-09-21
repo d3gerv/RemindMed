@@ -41,6 +41,44 @@
         app:layout_constraintHorizontal_bias="0.612"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <TableLayout
+        android:id="@+id/tableLayoutHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.081">
+
+        <TableRow>
+
+            <TextView
+                android:layout_column="1"
+                android:gravity="center"
+                android:padding="16dp"
+                android:text="Blood Pressure"
+                android:textSize="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_column="1"
+                android:gravity="center"
+                android:padding="25dp"
+                android:text="Date"
+                android:textSize="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:padding="25dp"
+                android:text="Time"
+                android:textSize="20dp" />
+        </TableRow>
+
+
+    </TableLayout>
+
     <TextView
         android:id="@+id/monthView"
         android:layout_width="wrap_content"
@@ -53,80 +91,6 @@
         app:layout_constraintHorizontal_bias="0.524"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/firestore_list"
-        android:layout_width="313dp"
-        android:layout_height="467dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:layout_constraintVertical_bias="0.435" />
-
-    <TextView
-        android:id="@+id/firstview"
-        android:layout_width="wrap_content"
-        android:layout_height="34dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="32dp"
-        android:fontFamily="@font/viga"
-        android:text="TextView"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/firestore_list"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/lastview"
-        android:layout_width="wrap_content"
-        android:layout_height="34dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginBottom="32dp"
-        android:fontFamily="@font/viga"
-        android:text="TextView"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/firestore_list"
-        app:layout_constraintStart_toEndOf="@+id/firstview" />
-
-    <TextView
-        android:id="@+id/viewmedication"
-        android:layout_width="87dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="76dp"
-        android:layout_marginBottom="8dp"
-        android:fontFamily="@font/viga"
-        android:text="Medication"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/firestore_list"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="87dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="8dp"
-        android:fontFamily="@font/viga"
-        android:text="Time"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/firestore_list"
-        app:layout_constraintEnd_toStartOf="@+id/viewdate"
-        app:layout_constraintHorizontal_bias="0.511"
-        app:layout_constraintStart_toEndOf="@+id/viewmedication" />
-
-    <TextView
-        android:id="@+id/viewdate"
-        android:layout_width="87dp"
-        android:layout_height="25dp"
-        android:layout_marginEnd="16dp"
-        android:fontFamily="@font/viga"
-        android:text="Date"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/textView13"
-        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/btnSavePDF"
@@ -138,23 +102,28 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#000000"
         android:textSize="22sp"
+
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.463"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/firestore_list"
-        app:layout_constraintVertical_bias="0.333" />
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView"
+        app:layout_constraintVertical_bias="0.371" />
 
-    <TextView
-        android:id="@+id/medicationview"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="370dp"
+        app:layout_constraintHeight_percent=".6"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayoutHeader"
+        tools:layout_editor_absoluteX="3dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline63"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/viewdate"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/monthView"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".95" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

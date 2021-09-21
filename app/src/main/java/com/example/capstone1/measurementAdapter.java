@@ -35,6 +35,7 @@ public class measurementAdapter extends RecyclerView.Adapter<measurementAdapter.
         holder.Record.setText(measurment_info.Record);
         holder.Time.setText(measurment_info.Time);
         holder.Name.setText(measurment_info.Name);
+        holder.Date.setText(measurment_info.Date);
     }
 
     @Override
@@ -43,13 +44,14 @@ public class measurementAdapter extends RecyclerView.Adapter<measurementAdapter.
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView Record, Time, Name;
+        TextView Record, Time, Name, Date;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             Record = itemView.findViewById(R.id.healthRecord);
             Time = itemView.findViewById(R.id.measurementTime);
             Name = itemView.findViewById(R.id.healthType);
+            Date = itemView.findViewById(R.id.dateHistoryMeasurement);
 
         }
 
