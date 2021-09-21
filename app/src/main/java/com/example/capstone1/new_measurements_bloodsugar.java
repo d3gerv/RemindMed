@@ -109,6 +109,10 @@ public class new_measurements_bloodsugar extends AppCompatActivity {
                     sugar.setError("This field is required");
                     return;
                 }
+                if(timeButtonbs.getText().toString().equals("Set Time")){
+                    Toast.makeText(getApplicationContext(), "Please select Time", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 //user.put("FrequencyBloodSgr",Frequency);
 

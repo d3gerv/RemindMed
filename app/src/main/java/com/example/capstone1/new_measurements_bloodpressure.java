@@ -122,10 +122,14 @@ public class new_measurements_bloodpressure extends AppCompatActivity implements
                 user.put("Date", dateToday);
                 //user.put("FrequencyBloodPrs",Frequency);
 
-               /* if (TextUtils.isEmpty(Record)) {
+               if (TextUtils.isEmpty(Record)) {
                     bloodpressure.setError("This field is required");
                     return;
-                }*/
+                }
+                if(timeButtonbp.getText().toString().equals("Set Time")){
+                    Toast.makeText(getApplicationContext(), "Please select Time", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 fstore.collection("users").document(userId).collection("New Health Measurements")
                         .document("Bloodpressure").collection("Bloodpressure")

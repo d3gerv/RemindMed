@@ -110,6 +110,10 @@ public class new_measurements_temperature extends AppCompatActivity {
                     temperature.setError("This field is required");
                     return;
                 }
+                if(timeButtontemp.getText().toString().equals("Set Time")){
+                    Toast.makeText(getApplicationContext(), "Please select Time", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 fstore.collection("users").document(userId).collection("New Health Measurements").document("Temperature").collection("Temperature")
                         .add(user)

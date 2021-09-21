@@ -113,6 +113,10 @@ public class new_measurements_cholesterol extends AppCompatActivity {
                     cholesterol.setError("This field is required");
                     return;
                 }
+                if(timeButtonchol.getText().toString().equals("Set Time")){
+                    Toast.makeText(getApplicationContext(), "Please select Time", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 fstore.collection("users").document(userId).collection("New Health Measurements").document("Cholesterol").collection("Cholesterol")
                         .add(user)

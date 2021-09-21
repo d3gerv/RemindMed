@@ -1,9 +1,12 @@
 package com.example.capstone1;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,6 +21,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -34,10 +39,26 @@ public class history_for_measurements extends AppCompatActivity {
     FirebaseFirestore db;
     ProgressDialog progressDialog;
     String measurement[];
+
+    FirebaseFirestore fstore = FirebaseFirestore.getInstance();
+    TextView firstname;
+    FirebaseAuth rootAuthen;
+    String userId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history_for_measurements);
+        firstname = findViewById(R.id.firstnameview);
+        rootAuthen = FirebaseAuth.getInstance();
+        userId = rootAuthen.getCurrentUser().getUid();
+        DocumentReference documentReference = fstore.collection("users").document(userId);
+        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                firstname.setText(value.getString("firstname"));
+            }
+        });
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
@@ -113,6 +134,26 @@ public class history_for_measurements extends AppCompatActivity {
 
             }
         });
+    }
+    public void HistoryHM_To_Home(View view) {
+        Intent intent = new Intent(history_for_measurements.this, home_page.class);
+        startActivity(intent);
+    }
+    public void HistoryHM_To_Today(View view) {
+        Intent intent = new Intent(history_for_measurements.this, today_page_recycler.class);
+        startActivity(intent);
+    }
+    public void HistoryHM_To_History(View view) {
+        Intent intent = new Intent(history_for_measurements.this, history_page.class);
+        startActivity(intent);
+    }
+    public void HistoryHM_To_User(View view) {
+        Intent intent = new Intent(history_for_measurements.this, user_information.class);
+        startActivity(intent);
+    }
+    public void HistoryHM_To_HistoryM(View view) {
+        Intent intent = new Intent(history_for_measurements.this, history_page.class);
+        startActivity(intent);
     }
 
 }

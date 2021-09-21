@@ -113,6 +113,10 @@ public class new_measurements_hours_of_sleep extends AppCompatActivity {
                     sleep.setError("This field is required");
                     return;
                 }
+                if(timeButtonsleep.getText().toString().equals("Set Time")){
+                    Toast.makeText(getApplicationContext(), "Please select Time", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 fstore.collection("users").document(userId).collection("New Health Measurements").document("Sleep").collection("Sleep")
                         .add(user)

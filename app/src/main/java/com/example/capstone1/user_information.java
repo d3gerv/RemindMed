@@ -84,6 +84,11 @@ public class user_information extends AppCompatActivity {
                 String Height = height.getText().toString().trim();
                 String Weight = weight.getText().toString().trim();
 
+                if(spinner.getSelectedItemPosition()==0){
+                    Toast.makeText(getApplicationContext(), "Please select gender", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 Map<String,Object> user = new HashMap<>();
                 user.put("gender",Gender);
                 user.put("birthyr",Birthyr);

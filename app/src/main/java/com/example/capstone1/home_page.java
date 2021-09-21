@@ -2,11 +2,6 @@ package com.example.capstone1;
 
 import static com.example.capstone1.intake_confirmation.dateFormat;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,10 +9,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentChange;
@@ -113,8 +110,8 @@ public class home_page extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void Home_To_Pdf(View view) {
-        Intent intent = new Intent(home_page.this, pdf_form.class);
+    public void Home_To_Home(View view) {
+        Intent intent = new Intent(home_page.this, home_page.class);
         startActivity(intent);
     }
 
