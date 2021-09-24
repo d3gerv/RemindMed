@@ -18,15 +18,53 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Capstone1">
+
+
+        <activity
+            android:name=".set_later_temperature"
+            android:exported="true"/>
+        <activity
+            android:name=".set_later_pulse_rate"
+            android:exported="true"/>
+        <activity
+            android:name=".set_later_hours_of_sleep"
+            android:exported="true"/>
+        <activity
+            android:name=".set_later_heart_rate"
+            android:exported="true"/>
+        <activity
+            android:name=".set_later_cholesterol"
+            android:exported="true"/>
+        <activity
+            android:name=".set_later_blood_sugar"
+            android:exported="true"/>
+        <activity
+            android:name=".set_later_blood_pressure"
+            android:exported="true"/>
+        <activity
+            android:name=".set_now_temperature"
+            android:exported="true" />
+        <activity
+            android:name=".set_now_pulse_rate"
+            android:exported="true" />
+        <activity
+            android:name=".set_now_hours_of_sleep"
+            android:exported="true" />
+        <activity
+            android:name=".set_now_heart_rate"
+            android:exported="true" />
+        <activity
+            android:name=".set_now_cholesterol"
+            android:exported="true" />
+        <activity
+            android:name=".set_now_blood_sugar"
+            android:exported="true" />
+        <activity
+            android:name=".set_now_blood_pressure"
+            android:exported="true" />
         <activity
             android:name=".edit_delete_schedule_activity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".change_password"
             android:exported="true" />
