@@ -30,7 +30,6 @@
 
     <string-array name="frequency">
         <item>Choose one</item>
-        <item>Hours</item>
         <item>Days</item>
         <item>Weeks</item>
     </string-array>

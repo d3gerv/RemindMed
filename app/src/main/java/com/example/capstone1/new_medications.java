@@ -68,7 +68,7 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
     static final SimpleDateFormat format = new SimpleDateFormat("M/d/yyyy");
     Button timeButtonmedtst;
     int hour, minute;
-    int year, month, day, choice, typechoice;
+    int year, month, day, choice, typechoice, frequencychoide;
     String dateToday = String.valueOf(android.text.format.DateFormat.format("M/dd/yyyy", new java.util.Date()));
 
 
@@ -121,6 +121,18 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
             }
         });
 
+        spinnerfrequencymedication.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                frequencychoide = position;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
 
         dateButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -165,6 +177,7 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
                 user.put("StartDate", getDateFromString(StartDate));
                 user.put("EndDate", getDateFromString(EndDate));
                 user.put("MedicineType", typechoice);
+                user.put("Frequency", frequencychoide);
                 startAlarm(c);
 
                 if (TextUtils.isEmpty(Medication)) {

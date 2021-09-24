@@ -69,7 +69,6 @@ public class myHomeAdpater extends RecyclerView.Adapter<myHomeAdpater.MyViewHold
             Medication = itemView.findViewById(R.id.medNameHome);
             Time = itemView.findViewById(R.id.medTimeHome);
             edit = itemView.findViewById(R.id.buttonEdit);
-            delete = itemView.findViewById(R.id.buttonDelete);
         }
 
 

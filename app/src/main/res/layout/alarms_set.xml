@@ -64,24 +64,12 @@
                 android:layout_height="0dp"
                 android:text="Edit"
                 android:textSize="10dp"
-                app:layout_constraintBottom_toTopOf="@+id/buttonDelete"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="1:.5"
                 app:layout_constraintEnd_toStartOf="@+id/guideline17"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="@+id/guideline18"
                 app:layout_constraintTop_toTopOf="parent" />
-
-            <Button
-                android:id="@+id/buttonDelete"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:text="Delete"
-                android:textSize="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintDimensionRatio="1:.5"
-                app:layout_constraintEnd_toStartOf="@+id/guideline17"
-                app:layout_constraintStart_toStartOf="@+id/guideline18"
-                app:layout_constraintTop_toBottomOf="@+id/buttonEdit" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline17"

@@ -36,6 +36,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -51,6 +52,7 @@ public class today_page_recycler extends AppCompatActivity {
     ProgressDialog progressDialog;
     static final SimpleDateFormat format = new SimpleDateFormat("M/d/yyyy");
     String date;
+    int day;
     medication_info medication_info;
     private CalendarView calendarView;
 
@@ -91,10 +93,13 @@ public class today_page_recycler extends AppCompatActivity {
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                Calendar c = Calendar.getInstance();
                 month +=1;
                 date = month + "/" + dayOfMonth +"/"+year;
                 dateSelected = getDateFromString(date);
-                Log.d("Calendar", "Selected day change" + date );
+                c.setTime(dateSelected);
+                day = c.get(Calendar.DAY_OF_WEEK);
+                Log.d("Calendar", "Selected day change " + day );
                 Log.d("Calendar", "Selected day change" + myArrayList.size() );
 
                 EventChangeListener();
@@ -137,14 +142,26 @@ public class today_page_recycler extends AppCompatActivity {
                     if(dc.getType() == DocumentChange.Type.ADDED) {
                         medication_info m = dc.getDocument().toObject(medication_info.class);
                         m.setId(dc.getDocument().getId());
+
+                        Calendar c = Calendar.getInstance();
                         String strDate = dateFormat.format(m.getStartDate());
                         String strEnd = dateFormat.format(m.getEndDate());
+                        c.setTime(m.getStartDate());
+                        int start = c.get(Calendar.DAY_OF_WEEK);
+
+
                         if(myArrayList != null)
                         {
-                            if(date.equals(strDate) || date.equals(strEnd) || dateSelected.after(m.getStartDate()) && dateSelected.before(m.getEndDate()))
+                            if(date.equals(strDate) || date.equals(strEnd) || dateSelected.after(m.getStartDate())
+                                    && dateSelected.before(m.getEndDate()) && m.getFrequency() == 1)
                             {
                                 myArrayList.add(m);
                                 Log.d("message", "hello" + m.getStartDate());
+                            }
+                            else if(date.equals(strDate) || date.equals(strEnd) && m.getFrequency() == 2
+                                     || dateSelected.after(m.getStartDate()) && dateSelected.before(m.getEndDate()) && start == day)
+                            {
+                                myArrayList.add(m);
                             }
                         }
                     }

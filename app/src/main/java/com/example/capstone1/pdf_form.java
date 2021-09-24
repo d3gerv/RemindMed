@@ -48,7 +48,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.uttampanchasara.pdfgenerator.CreatePdf;
 
 import java.io.File;
 import java.io.FileOutputStream;
