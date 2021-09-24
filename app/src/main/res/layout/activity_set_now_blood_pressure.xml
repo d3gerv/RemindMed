@@ -12,28 +12,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="137dp"
         android:fontFamily="@font/viga"
         android:text="Value"
         android:textColor="#000000"
         android:textSize="21sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline21"
+        app:layout_constraintEnd_toStartOf="@+id/bp_set_now"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:layout_constraintVertical_bias="0.516" />
+        app:layout_constraintVertical_bias="0.5" />
 
     <EditText
         android:id="@+id/bp_set_now"
         android:layout_width="122dp"
         android:layout_height="48dp"
-        android:layout_marginStart="145dp"
+        android:layout_marginEnd="83dp"
         android:background="@drawable/edittext3"
         android:ems="10"
         android:inputType="textPersonName"
         android:paddingStart="10dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline21"
-        app:layout_constraintStart_toEndOf="@+id/textView21"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:layout_constraintVertical_bias="0.54" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/guideline24"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -90,7 +92,7 @@
         android:id="@+id/cancel_set_now_bp"
         android:layout_width="247dp"
         android:layout_height="49dp"
-        android:layout_marginBottom="134dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/editttextcancel"
         android:fontFamily="@font/viga"
         android:text="Cancel"
@@ -98,18 +100,17 @@
         android:textColor="#000000"
         android:textSize="22sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/guideline25"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/save_set_now_bp"
-        app:layout_constraintVertical_bias="0.928" />
+        app:layout_constraintTop_toBottomOf="@+id/save_set_now_bp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline21"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="190dp" />
+       app:layout_constraintGuide_percent="0.30" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline24"
@@ -123,14 +124,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="549dp" />
+        app:layout_constraintGuide_percent=".80" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline27"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="439dp" />
+        app:layout_constraintGuide_percent="0.6" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

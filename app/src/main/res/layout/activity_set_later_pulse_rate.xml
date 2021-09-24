@@ -13,12 +13,14 @@
         android:layout_height="51dp"
         android:layout_marginStart="1dp"
         android:layout_marginTop="20dp"
+        android:layout_marginBottom="27dp"
         android:width="125dp"
         android:height="50dp"
         android:background="@drawable/edittext3"
         android:onClick="popTimePicker"
         android:text="Set Time"
         android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline21"
         app:layout_constraintEnd_toStartOf="@+id/guideline24"
         app:layout_constraintHorizontal_bias="0.45"
         app:layout_constraintStart_toEndOf="@+id/textView13"
@@ -65,14 +67,15 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="20dp"
         android:text="Pulse rate"
         android:textColor="#FFFFFF"
         android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.341"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toEndOf="@+id/imageBack_bloodpressure" />
+
 
     <Button
         android:id="@+id/duration_start_pr_later"
@@ -91,13 +94,13 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline24"
         app:layout_constraintHorizontal_bias="0.305"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView19"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/textView22" />
 
     <Button
         android:id="@+id/duration_end_pr_later"
         android:layout_width="145dp"
         android:layout_height="48dp"
+        android:layout_marginBottom="16dp"
         android:width="125dp"
         android:height="50dp"
         android:background="@drawable/edittext3"
@@ -110,11 +113,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.166"
         app:layout_constraintStart_toEndOf="@+id/guideline24"
-        app:layout_constraintTop_toTopOf="@+id/guideline23"
-        app:layout_constraintVertical_bias="0.809" />
+        app:layout_constraintTop_toBottomOf="@+id/textView22" />
 
     <TextView
-        android:id="@+id/textView19"
+        android:id="@+id/textView22"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -123,8 +125,10 @@
         android:text="Duration"
         android:textColor="#000000"
         android:textSize="21sp"
+        app:layout_constraintBottom_toTopOf="@+id/duration_start_pr_later"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline23" />
+        app:layout_constraintTop_toTopOf="@+id/guideline23"
+        app:layout_constraintVertical_bias="0.125" />
 
     <TextView
         android:id="@+id/frequency_txt1"
@@ -156,7 +160,6 @@
         android:id="@+id/save_pr_later"
         android:layout_width="247dp"
         android:layout_height="49dp"
-        android:layout_marginTop="148dp"
         android:background="@drawable/edit_round"
         android:fontFamily="@font/viga"
         android:text="Save"
@@ -166,13 +169,12 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline23" />
+        app:layout_constraintTop_toBottomOf="@id/guideline26" />
 
     <Button
         android:id="@+id/cancel_pr_later"
         android:layout_width="247dp"
         android:layout_height="49dp"
-        android:layout_marginBottom="134dp"
         android:background="@drawable/editttextcancel"
         android:fontFamily="@font/viga"
         android:text="Cancel"
@@ -183,7 +185,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.928" />
+        app:layout_constraintTop_toBottomOf="@+id/save_pr_later" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline21"
@@ -207,11 +209,11 @@
         app:layout_constraintGuide_percent="0.5" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline25"
+        android:id="@+id/guideline26"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="549dp" />
+        app:layout_constraintGuide_percent="0.8" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline27"
