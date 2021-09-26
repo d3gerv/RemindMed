@@ -265,8 +265,8 @@
 
     <Button
         android:id="@+id/changeLayout"
-        android:layout_width="247dp"
-        android:layout_height="49dp"
+        android:layout_width="168dp"
+        android:layout_height="55dp"
         android:layout_marginTop="31dp"
         android:background="@drawable/edit_round2"
         android:fontFamily="@font/viga"
