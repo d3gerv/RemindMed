@@ -54,6 +54,12 @@
             android:name=".set_now_heart_rate"
             android:exported="true" />
         <activity
+            android:name=".schedule_measurements"
+            android:exported="true" />
+        <activity
+            android:name=".setLaterHM"
+            android:exported="true" />
+        <activity
             android:name=".set_now_cholesterol"
             android:exported="true" />
         <activity

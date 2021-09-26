@@ -154,6 +154,10 @@ public class history_for_measurements extends AppCompatActivity {
     public void HistoryHM_To_HistoryM(View view) {
         Intent intent = new Intent(history_for_measurements.this, history_page.class);
         startActivity(intent);
+
+    }  public void to_pdf(View view) {
+        Intent intent = new Intent(history_for_measurements.this, pdf_form.class);
+        startActivity(intent);
     }
 
 }

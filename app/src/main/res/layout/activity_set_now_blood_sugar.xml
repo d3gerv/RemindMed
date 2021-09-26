@@ -57,7 +57,6 @@
         android:layout_width="64dp"
         android:layout_height="68dp"
         android:backgroundTint="#E73927"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/backarrow" />
@@ -81,13 +80,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="137dp"
         android:fontFamily="@font/viga"
         android:text="Value"
         android:textColor="#000000"
         android:textSize="21sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline21"
-        app:layout_constraintEnd_toStartOf="@+id/bs_value"
+        app:layout_constraintEnd_toStartOf="@+id/guideline24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:layout_constraintVertical_bias="0.516" />
@@ -99,13 +97,14 @@
         android:layout_marginEnd="83dp"
         android:background="@drawable/edittext3"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:paddingStart="10dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline21"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/guideline24"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintVertical_bias="0.506" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline21"

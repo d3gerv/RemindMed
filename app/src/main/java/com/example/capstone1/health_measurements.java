@@ -101,15 +101,15 @@ public class health_measurements extends AppCompatActivity {
  */
     }
     public void Health_To_Cholesterol (View view){
-        Intent intent = new Intent(health_measurements.this, new_measurements_cholesterol.class);
+        Intent intent = new Intent(health_measurements.this, set_now_cholesterol.class);
         startActivity(intent);
     }
     public void Health_To_Sugar (View view){
-        Intent intent = new Intent(health_measurements.this, new_measurements_bloodsugar.class);
+        Intent intent = new Intent(health_measurements.this, set_now_blood_sugar.class);
         startActivity(intent);
     }
     public void Health_To_Temperature (View view){
-        Intent intent = new Intent(health_measurements.this, new_measurements_temperature.class);
+        Intent intent = new Intent(health_measurements.this, set_now_temperature.class);
         startActivity(intent);
     }
     public void Health_To_Heartrate (View view){
@@ -117,7 +117,7 @@ public class health_measurements extends AppCompatActivity {
         startActivity(intent);
     }
     public void Health_To_Sleep (View view){
-        Intent intent = new Intent(health_measurements.this, new_measurements_hours_of_sleep.class);
+        Intent intent = new Intent(health_measurements.this, set_now_hours_of_sleep.class);
         startActivity(intent);
     }
     public void Health_To_Pulserate (View view){
@@ -125,7 +125,7 @@ public class health_measurements extends AppCompatActivity {
         startActivity(intent);
     }
     public void Health_To_Bloodpressure (View view){
-        Intent intent = new Intent(health_measurements.this, new_measurements_bloodpressure.class);
+        Intent intent = new Intent(health_measurements.this, set_now_blood_pressure.class);
         startActivity(intent);
     }
     public void Health_To_Home (View view){

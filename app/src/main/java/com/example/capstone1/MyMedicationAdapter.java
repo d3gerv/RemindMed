@@ -57,6 +57,7 @@ public class MyMedicationAdapter extends RecyclerView.Adapter<MyMedicationAdapte
         {
             holder.constraintLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.red1));
         }
+
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

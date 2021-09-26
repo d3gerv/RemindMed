@@ -24,7 +24,6 @@
         android:layout_height="47dp"
         android:background="@drawable/edittext3"
         android:text="Set BP"
-
         app:layout_constraintBottom_toTopOf="@+id/guideline21"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.349"

@@ -214,8 +214,10 @@
         android:id="@+id/recyclerViewToday"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintDimensionRatio="1:0.34"
         app:layout_constraintEnd_toEndOf="@id/guideline35"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline5"
         app:layout_constraintTop_toBottomOf="@+id/textViewSched" />
 
@@ -267,6 +269,30 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_end="100dp" />
+
+    <Button
+        android:id="@+id/switchToday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerViewToday"
+        app:layout_constraintEnd_toStartOf="@+id/guideline35"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline8"
+        app:layout_constraintTop_toBottomOf="@+id/calendarViewTD"
+        app:layout_constraintVertical_bias="0.285" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/todayMeasurement"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:visibility="invisible"
+        app:layout_constraintDimensionRatio="1:0.34"
+        app:layout_constraintEnd_toEndOf="@id/guideline35"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline5"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSched" /> />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

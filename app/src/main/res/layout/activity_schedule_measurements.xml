@@ -22,13 +22,14 @@
         android:id="@+id/set_now_btn"
         android:layout_width="314dp"
         android:layout_height="146dp"
-        android:layout_marginStart="48dp"
         android:layout_marginTop="110dp"
         android:background="@drawable/edit_round2"
         android:fontFamily="@font/open_sans_bold"
         android:text="Set now"
+        android:onClick="set_now"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
@@ -36,13 +37,14 @@
         android:id="@+id/set_later_btn"
         android:layout_width="314dp"
         android:layout_height="146dp"
-        android:layout_marginStart="48dp"
         android:layout_marginTop="73dp"
         android:background="@drawable/edit_round2"
         android:fontFamily="@font/open_sans_bold"
         android:text="Set later"
+        android:onClick="set_later"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/set_now_btn" />
 

@@ -54,7 +54,6 @@ public class pdf_form extends AppCompatActivity {
     private Context mContext;
     Bitmap bitmap;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +68,7 @@ public class pdf_form extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         myArrayList = new ArrayList<measurment_info>();
         myAdapter = new pdfAdapter(pdf_form.this, myArrayList);
+
         showBPTable();
         recyclerView.setAdapter(myAdapter);
 
