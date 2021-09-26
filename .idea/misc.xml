@@ -180,6 +180,12 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_today_page_recycler.xml" value="0.176" />
         <entry key="..\:/Users/User/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_user_information.xml" value="0.1" />
         <entry key="..\:/Users/User/AndroidStudioProjects/RemindMed/app/src/main/res/layout/items_today_medication.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/gabri/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_history_for_measurements.xml" value="0.11865942028985507" />
+        <entry key="..\:/Users/gabri/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_history_for_medications.xml" value="0.1" />
+        <entry key="..\:/Users/gabri/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_history_page.xml" value="0.11865942028985507" />
+        <entry key="..\:/Users/gabri/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_home_page.xml" value="0.11865942028985507" />
+        <entry key="..\:/Users/gabri/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_pdf_form.xml" value="0.11865942028985507" />
+        <entry key="..\:/Users/gabri/AndroidStudioProjects/RemindMed/app/src/main/res/layout/table_layout_history.xml" value="0.1" />
       </map>
     </option>
   </component>
