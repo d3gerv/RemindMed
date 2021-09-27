@@ -249,6 +249,17 @@
         app:layout_constraintEnd_toEndOf="@id/guideline53"
         app:layout_constraintVertical_bias="1.0" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewHomeMeasurement"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/guideline44"
+        app:layout_constraintStart_toStartOf="@+id/guideline54"
+        app:layout_constraintTop_toTopOf="@+id/guideline39"
+        app:layout_constraintEnd_toEndOf="@id/guideline53"
+        app:layout_constraintVertical_bias="1.0" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline39"
         android:layout_width="wrap_content"
@@ -278,6 +289,42 @@
         app:layout_constraintBottom_toBottomOf="@+id/view5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_measurements_btn" />
+
+    <Button
+        android:id="@+id/changeLayout2"
+        android:layout_width="168dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="31dp"
+        android:background="@drawable/edit_round2"
+        android:fontFamily="@font/viga"
+        android:text="Edit/Delete"
+        android:visibility="invisible"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#000000"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/view5"
+        app:layout_constraintEnd_toStartOf="@+id/guideline7"
+        app:layout_constraintStart_toStartOf="@+id/guideline54"
+        app:layout_constraintTop_toBottomOf="@+id/add_measurements_btn" />
+
+    <Button
+        android:id="@+id/switchMeasurement"
+        android:layout_width="168dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="31dp"
+        android:background="@drawable/edit_round2"
+        android:fontFamily="@font/viga"
+        android:text="Measurements"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#000000"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/view5"
+        app:layout_constraintEnd_toStartOf="@+id/guideline53"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
         app:layout_constraintTop_toBottomOf="@+id/add_measurements_btn" />
 
     <androidx.constraintlayout.widget.Guideline

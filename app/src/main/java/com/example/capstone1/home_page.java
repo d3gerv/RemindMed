@@ -34,11 +34,14 @@ public class home_page extends AppCompatActivity {
     String userId;
     TextView firstname;
     myHomeAdpater myAdapter;
-    RecyclerView recyclerView;
+    myHomeAdapaterMeasurement measurementAdapter;
+    RecyclerView recyclerView, recyclerviewMeasurement;
     ArrayList<medication_info> myArrayList;
+    ArrayList<measurement_info_today> myMeasurementArrayList;
     ProgressDialog progressDialog;
-    Button addMed, addHM, changeLayout;
+    Button addMed, addHM, changeLayout, changeLayout2, switchMeasurement;
     int layout = 1;
+    int recyclerlayout = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,10 +50,13 @@ public class home_page extends AppCompatActivity {
         addMed = (Button) findViewById(R.id.add_medications_btn);
         addHM = (Button) findViewById(R.id.add_measurements_btn);
         changeLayout = (Button) findViewById(R.id.changeLayout);
+        changeLayout2 = (Button) findViewById(R.id.changeLayout2);
+        switchMeasurement = (Button) findViewById(R.id.switchMeasurement);
+
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
         progressDialog.setMessage("Fetching Data...");
-      //  progressDialog.show();
+      // progressDialog.show();
         firstname = findViewById(R.id.firstnameview);
         rootAuthen = FirebaseAuth.getInstance();
         userId = rootAuthen.getCurrentUser().getUid();
@@ -62,22 +68,58 @@ public class home_page extends AppCompatActivity {
             }
         });
         recyclerView = findViewById(R.id.recyclerViewHome);
+        recyclerviewMeasurement = findViewById(R.id.recyclerViewHomeMeasurement);
+
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
         myArrayList = new ArrayList<medication_info>();
         myAdapter = new myHomeAdpater(home_page.this, myArrayList);
+
+        recyclerviewMeasurement.setHasFixedSize(true);
+        recyclerviewMeasurement.setLayoutManager(new LinearLayoutManager(this));
+
+        myMeasurementArrayList = new ArrayList<measurement_info_today>();
+        measurementAdapter = new myHomeAdapaterMeasurement(home_page.this, myMeasurementArrayList);
+
         EventChangeListener();
+        measureEventChangeListener();
+        recyclerviewMeasurement.setAdapter(measurementAdapter);
+
 
         changeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (layout == 0) {
                     recyclerGone();
+
                 }
                 else if(layout == 1)
                 {
                     recyclerVisible();
                     recyclerView.setAdapter(myAdapter);
+
+                }
+            }
+        });
+
+        changeLayout2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                recyclerGone();
+            }
+        });
+
+        switchMeasurement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(recyclerlayout == 1)
+                {
+                    switchRecyclerMeasurement();
+                }
+                else
+                {
+                    switchRecyclerMedication();
 
                 }
             }
@@ -146,18 +188,73 @@ public class home_page extends AppCompatActivity {
         });
     }
 
+    private void measureEventChangeListener() {
+        FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        fstore.document("users/"+currentFirebaseUser.getUid()).collection("Health Measurement Alarm")
+                .orderBy("HMName", Query.Direction.ASCENDING).addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                if(e != null)
+                {
+                    if(progressDialog.isShowing())
+                        progressDialog.dismiss();
+                    Log.e("Firestore error", e.getMessage());
+                    return;
+                }
+                for(DocumentChange dc : queryDocumentSnapshots.getDocumentChanges())
+                {
+                    if(dc.getType() == DocumentChange.Type.ADDED) {
+
+                        measurement_info_today m = dc.getDocument().toObject(measurement_info_today.class);
+                        m.setId(dc.getDocument().getId());
+                        myMeasurementArrayList.add(m);
+
+                    }
+                    measurementAdapter.notifyDataSetChanged();
+                    if(progressDialog.isShowing()) {
+                        progressDialog.dismiss();
+                    }
+                }
+            }
+        });
+    }
+
+
     private void recyclerGone()
     {
         recyclerView.setVisibility(View.GONE);
+        recyclerviewMeasurement.setVisibility(View.GONE);
+        changeLayout2.setVisibility(View.GONE);
+        switchMeasurement.setVisibility(View.GONE);
+        changeLayout.setVisibility(View.VISIBLE);
         addMed.setVisibility(View.VISIBLE);
         addHM.setVisibility(View.VISIBLE);
         layout = 1 ;
+        recyclerlayout = 1;
     }
     private void recyclerVisible()
     {
         recyclerView.setVisibility(View.VISIBLE);
+        changeLayout2.setVisibility(View.VISIBLE);
+        switchMeasurement.setVisibility(View.VISIBLE);
+        changeLayout.setVisibility(View.GONE);
         addMed.setVisibility(View.GONE);
         addHM.setVisibility(View.GONE);
         layout = 0;
+    }
+
+    private void switchRecyclerMeasurement()
+    {
+        recyclerView.setVisibility(View.GONE);
+        recyclerviewMeasurement.setVisibility(View.VISIBLE);
+        recyclerlayout = 0;
+
+    }
+
+    private void switchRecyclerMedication()
+    {
+        recyclerView.setVisibility(View.VISIBLE);
+        recyclerviewMeasurement.setVisibility(View.GONE);
+        recyclerlayout = 1;
     }
 }
