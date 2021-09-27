@@ -49,7 +49,46 @@ public class myHomeAdapaterMeasurement extends RecyclerView.Adapter<myHomeAdapat
                 Intent intent;
                 if(measurement.HMName.equals("Bloodpressure"))
                 {
-                    intent = new Intent(context, set_later_blood_pressure.class);
+                    intent = new Intent(context, edit_delete_bloodpressure.class);
+                    intent.putExtra("Time", measurement.Time);
+                    intent.putExtra("Date", strStart);
+                    intent.putExtra("EndDate", strEnd);
+                    intent.putExtra("Frequency", measurement.Frequency);
+                    intent.putExtra("FrequencyTitle", measurement.FrequencyTitle);
+                    intent.putExtra("measurement_info", measurement);
+                    intent.putExtra("fromToday", 1);
+                    context.startActivity(intent);
+                }
+                else if(measurement.HMName.equals("Cholesterol"))
+                {
+                    intent = new Intent(context, edit_delete_cholesterol.class);
+                    intent.putExtra("Time", measurement.Time);
+                    intent.putExtra("Date", strStart);
+                    intent.putExtra("EndDate", strEnd);
+                    intent.putExtra("fromToday", 1);
+                    context.startActivity(intent);
+                }
+                else if(measurement.HMName.equals("Bloodsugar"))
+                {
+                    intent = new Intent(context, edit_delete_bloodsugar.class);
+                    intent.putExtra("Time", measurement.Time);
+                    intent.putExtra("Date", strStart);
+                    intent.putExtra("EndDate", strEnd);
+                    intent.putExtra("fromToday", 1);
+                    context.startActivity(intent);
+                }
+                else if(measurement.HMName.equals("Sleep"))
+                {
+                    intent = new Intent(context, edit_delete_hours_of_sleep.class);
+                    intent.putExtra("Time", measurement.Time);
+                    intent.putExtra("Date", strStart);
+                    intent.putExtra("EndDate", strEnd);
+                    intent.putExtra("fromToday", 1);
+                    context.startActivity(intent);
+                }
+                else if(measurement.HMName.equals("Temperature"))
+                {
+                    intent = new Intent(context, edit_delete_temperature.class);
                     intent.putExtra("Time", measurement.Time);
                     intent.putExtra("Date", strStart);
                     intent.putExtra("EndDate", strEnd);

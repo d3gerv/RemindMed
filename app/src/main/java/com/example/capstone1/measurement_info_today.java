@@ -5,8 +5,8 @@ import com.google.firebase.firestore.Exclude;
 import java.io.Serializable;
 import java.util.Date;
 
-public class measurement_info_today implements Serializable{
-    String HMName, Time;
+public class  measurement_info_today implements Serializable{
+    String HMName, Time, FrequencyTitle;
     Date StartDate, EndDate;
     int  Frequency;
     @Exclude
@@ -17,12 +17,13 @@ public class measurement_info_today implements Serializable{
     public measurement_info_today() {}
 
 
-    public measurement_info_today(String HMName, String time, Date startDate, Date endDate, int frequency) {
+    public measurement_info_today(String HMName, String time, Date startDate, Date endDate, int frequency, String frequencyTitle) {
         this.HMName = HMName;
         this.Time = time;
         this.StartDate = startDate;
         this.EndDate = endDate;
         this.Frequency = frequency;
+        this.FrequencyTitle = frequencyTitle;
         this.id = id;
 
     }
@@ -73,5 +74,13 @@ public class measurement_info_today implements Serializable{
 
     public void setFrequency(int frequency) {
         Frequency = frequency;
+    }
+
+    public String getFrequencyTitle() {
+        return FrequencyTitle;
+    }
+
+    public void setFrequencyTitle(String frequencyTitle) {
+        FrequencyTitle = frequencyTitle;
     }
 }

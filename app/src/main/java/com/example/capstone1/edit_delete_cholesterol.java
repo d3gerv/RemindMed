@@ -31,65 +31,6 @@ public class edit_delete_cholesterol extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_delete_cholesterol);
 
-        //added calendar for startButton
-        dateFormatcholesterol = findViewById(R.id.startButtonC);
-        final Calendar calendar = Calendar.getInstance();
-        dateFormatcholesterol.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                year = calendar.get((Calendar.YEAR));
-                month = calendar.get((Calendar.MONTH));
-                day = calendar.get((Calendar.DAY_OF_MONTH));
-                DatePickerDialog datePickerDialog = new DatePickerDialog(edit_delete_cholesterol.this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-                        dateFormatcholesterol.setText(SimpleDateFormat.getDateInstance().format(calendar.getTime()));
-
-                    }
-                }, year, month, day);
-                datePickerDialog.show();
-            }
-        });
-
-
-        Spinner my_spinner = (Spinner) findViewById(R.id.frequency_spinner_editbs);
-
-        ArrayAdapter<String> myAdapter2 = new ArrayAdapter<String>(edit_delete_cholesterol.this,
-                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.frequency));
-        myAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        my_spinner.setAdapter(myAdapter2);
-
-        timeButtonEditcholesterol = findViewById(R.id.time_btn_editC);
-
-        timeButtonEditcholesterol.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                TimePickerDialog timePickerDialog = new TimePickerDialog(edit_delete_cholesterol.this,
-                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                        new TimePickerDialog.OnTimeSetListener() {
-                            @Override
-                            public void onTimeSet(TimePicker timePicker, int i, int i1) {
-                                hour = i;
-                                minute = i1;
-                                String time = hour + ":" + minute;
-                                SimpleDateFormat f24Hours = new SimpleDateFormat("HH:mm"
-                                );
-                                try {
-                                    Date date = f24Hours.parse(time);
-                                    SimpleDateFormat f12Hours = new SimpleDateFormat("hh:mm aa"
-                                    );
-                                    timeButtonEditcholesterol.setText(f12Hours.format(date));
-                                } catch (ParseException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        }, 12, 0, false
-                );
-                timePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                timePickerDialog.updateTime(hour, minute);
-                timePickerDialog.show();
-            }
-        });
     }
 
 }

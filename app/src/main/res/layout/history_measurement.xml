@@ -7,7 +7,12 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="#FDCB00"
+        app:cardCornerRadius="20dp"
+        app:cardMaxElevation="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -26,9 +31,9 @@
                 android:id="@+id/healthRecord"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
+                android:text="Value"
                 android:textColor="#000000"
-                android:textSize="20dp"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/guideline59"
                 app:layout_constraintEnd_toStartOf="@+id/guideline57"
                 app:layout_constraintStart_toStartOf="@+id/guideline56"
@@ -38,8 +43,9 @@
                 android:id="@+id/healthType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
+                android:text="measurement name"
                 android:textColor="#000000"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/guideline57"
                 app:layout_constraintStart_toStartOf="@+id/guideline56"
@@ -49,8 +55,9 @@
                 android:id="@+id/dateHistoryMeasurement"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
+                android:text="Date"
                 android:textColor="#000000"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guideline57"
                 app:layout_constraintTop_toTopOf="@+id/guideline59" />
@@ -59,8 +66,9 @@
                 android:id="@+id/measurementTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
+                android:text="Time"
                 android:textColor="#000000"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/guideline59"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guideline57" />

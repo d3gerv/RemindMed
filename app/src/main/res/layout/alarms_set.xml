@@ -4,15 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="8dp">
+    android:layout_margin="8dp"
+    >
 
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        app:cardBackgroundColor="#FDCB00"
         app:layout_constraintDimensionRatio="1:.3"
         app:cardPreventCornerOverlap="false"
         app:cardUseCompatPadding="true"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,7 +31,9 @@
                 android:layout_height="wrap_content"
                 android:text="TextView"
                 android:textSize="32dp"
+                app:layout_constraintBottom_toTopOf="@+id/medTimeHome"
                 app:layout_constraintEnd_toStartOf="@+id/guideline16"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="@+id/guideline6"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_chainStyle="spread" />
@@ -41,6 +46,7 @@
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/guideline16"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="@+id/guideline6"
                 app:layout_constraintTop_toBottomOf="@+id/medNameHome" />
 
@@ -49,14 +55,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent=".03" />
+                app:layout_constraintGuide_percent=".10" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent=".40" />
+                app:layout_constraintGuide_percent=".60" />
 
             <Button
                 android:id="@+id/buttonEdit"
@@ -64,6 +70,8 @@
                 android:layout_height="0dp"
                 android:text="Edit"
                 android:textSize="10dp"
+                android:background="#E73927"
+                android:fontFamily="@font/viga"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="1:.5"
                 app:layout_constraintEnd_toStartOf="@+id/guideline17"

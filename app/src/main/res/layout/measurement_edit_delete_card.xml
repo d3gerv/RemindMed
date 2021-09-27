@@ -8,7 +8,10 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="#FDCB00"
+        app:cardCornerRadius="20dp"
+        app:cardMaxElevation="20dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -68,15 +71,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent=".75" />
+                app:layout_constraintGuide_percent=".65" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline66"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent=".95" />
 
             <Button
                 android:id="@+id/editHealthM"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Button"
+                android:layout_height="33dp"
+                android:background="#E73927"
+                android:fontFamily="@font/viga"
+                android:text="Edit"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/guideline66"
                 app:layout_constraintStart_toStartOf="@+id/guideline65"
                 app:layout_constraintTop_toTopOf="parent" />
 
