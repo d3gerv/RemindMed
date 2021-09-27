@@ -35,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:text="Edit Measurements"
+        android:text="Blood pressure"
         android:textColor="#FFFFFF"
         android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
@@ -48,6 +48,7 @@
         android:id="@+id/startButton_bp"
         android:layout_width="147dp"
         android:layout_height="51dp"
+        android:layout_marginBottom="72dp"
         android:width="125dp"
         android:height="50dp"
         android:background="@drawable/edittext3"
@@ -56,15 +57,15 @@
         android:text="Start"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline25"
+        app:layout_constraintBottom_toTopOf="@+id/guideline27"
         app:layout_constraintEnd_toStartOf="@+id/guideline24"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guideline27" />
+        app:layout_constraintHorizontal_bias="0.271"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/endButton_newBP"
-        android:layout_width="145dp"
-        android:layout_height="48dp"
+        android:layout_width="149dp"
+        android:layout_height="53dp"
         android:width="125dp"
         android:height="50dp"
         android:background="@drawable/edittext3"
@@ -73,10 +74,12 @@
         android:text="End"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline25"
+        app:layout_constraintBottom_toTopOf="@+id/guideline27"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toEndOf="@+id/guideline24"
-        app:layout_constraintTop_toBottomOf="@+id/guideline27" />
+        app:layout_constraintTop_toTopOf="@+id/guideline23"
+        app:layout_constraintVertical_bias="0.014" />
 
     <TextView
         android:id="@+id/duration_txt1"
@@ -92,32 +95,15 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/bloodPressureView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:fontFamily="@font/viga"
-        android:text="Blood Pressure"
-        android:textColor="#000000"
-        android:textSize="21sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline21"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
-
-    <TextView
         android:id="@+id/time_txt1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
         android:fontFamily="@font/viga"
         android:text="Time"
         android:textColor="#000000"
         android:textSize="21sp"
-        app:layout_constraintBottom_toTopOf="@+id/timeButton_editBP"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guideline21"
-        app:layout_constraintVertical_bias="0.45" />
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="116dp" />
 
     <TextView
         android:id="@+id/frequency_txt1"
@@ -131,21 +117,21 @@
         android:textSize="21sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline23"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timeButton_editBP" />
+        app:layout_constraintTop_toBottomOf="@+id/timeButton_editBP"
+        app:layout_constraintVertical_bias="0.162" />
+
 
     <Spinner
         android:id="@+id/frequency_spinner_edit_oneBP"
         android:layout_width="143dp"
         android:layout_height="54dp"
+        android:layout_marginTop="12dp"
         android:background="@drawable/edittext3"
         android:backgroundTint="#FDCB00"
-        app:layout_constraintBottom_toTopOf="@+id/duration_txt1"
         app:layout_constraintEnd_toEndOf="@id/guideline24"
-        app:layout_constraintHorizontal_bias="0.46"
+        app:layout_constraintHorizontal_bias="0.253"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frequency_txt1"
-        app:layout_constraintVertical_bias="0.236" />
-
+        app:layout_constraintTop_toBottomOf="@+id/frequency_txt1" />
 
     <Button
         android:id="@+id/timeButton_editBP"
@@ -157,25 +143,11 @@
         android:onClick="popTimePicker"
         android:text="Set Time"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/frequency_txt1"
         app:layout_constraintEnd_toEndOf="@id/guideline24"
-        app:layout_constraintHorizontal_bias="0.358"
+        app:layout_constraintHorizontal_bias="0.901"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/time_txt1"
-        tools:ignore="OnClick" />
-
-    <EditText
-        android:id="@+id/blood_pressure_box"
-        android:layout_width="107dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="47dp"
-        android:background="@drawable/edittext3"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:paddingStart="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline21"
-        app:layout_constraintStart_toEndOf="@+id/bloodPressureView"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        tools:ignore="OnClick"
+        tools:layout_editor_absoluteY="105dp" />
 
     <Button
         android:id="@+id/save_changes_button"
@@ -241,7 +213,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.5" />
+        app:layout_constraintGuide_percent="0.48" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline24"

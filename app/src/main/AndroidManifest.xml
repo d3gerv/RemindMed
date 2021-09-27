@@ -19,28 +19,33 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Capstone1">
 
-
+        <activity
+            android:name=".cardview_edit_measurements"
+            android:exported="true"/>
+        <activity
+            android:name=".cardview_history_medication"
+            android:exported="true"/>
+        <activity
+            android:name=".cardview_history_measurements"
+            android:exported="true"/>
         <activity
             android:name=".set_later_temperature"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".set_later_pulse_rate"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".set_later_hours_of_sleep"
-            android:exported="true"/>
-        <activity
-            android:name=".set_later_heart_rate"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".set_later_cholesterol"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".set_later_blood_sugar"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".set_later_blood_pressure"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".set_now_temperature"
             android:exported="true" />
@@ -49,9 +54,6 @@
             android:exported="true" />
         <activity
             android:name=".set_now_hours_of_sleep"
-            android:exported="true" />
-        <activity
-            android:name=".set_now_heart_rate"
             android:exported="true" />
         <activity
             android:name=".schedule_measurements"
@@ -85,9 +87,6 @@
             android:exported="true" />
         <activity
             android:name=".edit_delete_hours_of_sleep"
-            android:exported="true" />
-        <activity
-            android:name=".edit_delete_heartrate"
             android:exported="true" />
         <activity
             android:name=".edit_delete_cholesterol"

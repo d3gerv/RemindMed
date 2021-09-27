@@ -49,7 +49,7 @@ public class new_measurements_bloodpressure extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_measurements_bloodpressure);
 
-        bloodpressure = findViewById(R.id.blood_pressure_box);
+
         buttonsavesbloodpressure = findViewById(R.id.btnsavebloodpressure);
         spinnerbp = findViewById(R.id.frequency_spinner_four);
         bpDialog = findViewById(R.id.buttonBPDialog);

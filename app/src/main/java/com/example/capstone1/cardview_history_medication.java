@@ -4,11 +4,11 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class set_now_heart_rate extends AppCompatActivity {
+public class cardview_history_medication extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_set_now_heart_rate);
+        setContentView(R.layout.activity_cardview_history_medication);
     }
 }
