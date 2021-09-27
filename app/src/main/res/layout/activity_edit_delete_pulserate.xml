@@ -51,7 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="28dp"
-        android:text="Edit Measurements"
+        android:text="Pulse rate"
         android:textColor="#FFFFFF"
         android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
@@ -74,15 +74,17 @@
         android:text="Start"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline64"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/duration_txt1" />
+        app:layout_constraintTop_toBottomOf="@+id/duration_txt1"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/endButtonPR"
-        android:layout_width="143dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="293dp"
+        android:layout_width="142dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="56dp"
         android:width="125dp"
         android:height="50dp"
         android:background="@drawable/edittext3"
@@ -91,15 +93,17 @@
         android:text="End"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline64"
         app:layout_constraintStart_toEndOf="@+id/startButtonPR"
-        app:layout_constraintTop_toBottomOf="@+id/pulse_rate_editBox" />
+        app:layout_constraintTop_toTopOf="@+id/guideline27"
+        app:layout_constraintVertical_bias="0.021" />
 
     <TextView
         android:id="@+id/duration_txt1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="21dp"
+        android:layout_marginTop="36dp"
         android:fontFamily="@font/viga"
         android:text="Duration"
         android:textColor="#000000"
@@ -108,37 +112,24 @@
         app:layout_constraintTop_toBottomOf="@+id/frequency_spinner_editPR" />
 
     <TextView
-        android:id="@+id/pulserateView"
+        android:id="@+id/time_txt1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="37dp"
         android:fontFamily="@font/viga"
-        android:text="Pulse Rate"
+        android:text="Time"
         android:textColor="#000000"
         android:textSize="21sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <TextView
-        android:id="@+id/time_txt1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="23dp"
-        android:fontFamily="@font/viga"
-        android:text="Time"
-        android:textColor="#000000"
-        android:textSize="21sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pulserateView" />
-
-    <TextView
         android:id="@+id/frequency_txt1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="31dp"
         android:fontFamily="@font/viga"
         android:text="Frequency"
         android:textColor="#000000"
@@ -161,8 +152,8 @@
         android:id="@+id/time_btn_editPR"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="25dp"
         android:width="125dp"
         android:height="50dp"
         android:background="@drawable/edittext3"
@@ -170,27 +161,13 @@
         android:text="Set Time"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/time_txt1"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
         tools:ignore="OnClick" />
-
-    <EditText
-        android:id="@+id/pulse_rate_editBox"
-        android:layout_width="107dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="91dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/edittext3"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:paddingStart="10dp"
-        app:layout_constraintStart_toEndOf="@+id/pulserateView"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <Button
         android:id="@+id/btnsavepulserateedit"
         android:layout_width="247dp"
         android:layout_height="49dp"
-        android:layout_marginTop="50dp"
         android:background="@drawable/edit_round"
         android:fontFamily="@font/viga"
         android:text="Save Changes"
@@ -200,7 +177,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startButtonPR" />
+        tools:layout_editor_absoluteY="547dp" />
 
     <Button
         android:id="@+id/canceleditPR"
@@ -234,11 +211,18 @@
         app:layout_constraintGuide_percent="0.75" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline27"
+        android:id="@+id/guideline64"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.65" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline27"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.44" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,17 +1,13 @@
 package com.example.capstone1;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -20,7 +16,6 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -42,7 +37,7 @@ public class set_now_blood_pressure extends AppCompatActivity implements fragmen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_now_blood_pressure);
 
-        bloodpressure = findViewById(R.id.blood_pressure_box);
+
         saveBPNow = findViewById(R.id.save_set_now_bp);
         bpDialog = findViewById(R.id.bp_set_now);
         rootAuthen = FirebaseAuth.getInstance();
