@@ -8,7 +8,7 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        android:layout_width="421dp"
+        android:layout_width="match_parent"
         android:layout_height="92dp"
         android:layout_marginBottom="20dp"
         android:background="#E73927"
@@ -70,7 +70,7 @@
         android:layout_height="90dp"
         android:layout_marginStart="24dp"
         android:layout_marginBottom="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/measurementsView"
+        app:layout_constraintBottom_toTopOf="@+id/measurementsViewTxt"
         app:layout_constraintStart_toEndOf="@+id/firstnameview"
         app:srcCompat="@drawable/pills" />
 
@@ -132,7 +132,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline6"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Home_historyH" />
+        app:layout_constraintTop_toBottomOf="@+id/Home_historyHM" />
 
     <TextView
         android:id="@+id/textViewToday"
@@ -144,7 +144,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintStart_toEndOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/Today_historyH"/>
+        app:layout_constraintTop_toBottomOf="@+id/Today_historyHM"/>
 
     <TextView
         android:id="@+id/textViewHistory"
@@ -156,7 +156,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline8"
         app:layout_constraintStart_toEndOf="@+id/guideline7"
-        app:layout_constraintTop_toBottomOf="@+id/History_health"
+        app:layout_constraintTop_toBottomOf="@+id/History_healthM"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -169,7 +169,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/guideline8"
-        app:layout_constraintTop_toBottomOf="@+id/Profile_historyH"
+        app:layout_constraintTop_toBottomOf="@+id/Profile_historyHM"
         app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -315,9 +315,11 @@
             android:layout_height="80dp"
             android:layout_marginStart="21dp"
             android:layout_marginTop="214dp"
+            android:layout_marginEnd="22dp"
             app:cardBackgroundColor="#FDCB00"
             app:cardCornerRadius="20dp"
             app:cardMaxElevation="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 

@@ -11,9 +11,7 @@
         android:id="@+id/delete_editPR"
         android:layout_width="247dp"
         android:layout_height="49dp"
-        android:layout_marginStart="82dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginEnd="82dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/editttextcancel"
         android:fontFamily="@font/viga"
         android:text="Delete"
@@ -21,6 +19,7 @@
         android:textColor="#000000"
         android:textSize="22sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/canceleditPR"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnsavepulserateedit" />
@@ -168,6 +167,8 @@
         android:id="@+id/btnsavepulserateedit"
         android:layout_width="247dp"
         android:layout_height="49dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/edit_round"
         android:fontFamily="@font/viga"
         android:text="Save Changes"
@@ -175,15 +176,16 @@
         android:textColor="#FFFFFF"
         android:textSize="22sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/delete_editPR"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="547dp" />
+        app:layout_constraintTop_toBottomOf="@+id/guideline25" />
 
     <Button
         android:id="@+id/canceleditPR"
         android:layout_width="247dp"
         android:layout_height="49dp"
-        android:layout_marginTop="13dp"
+        android:layout_marginBottom="50dp"
         android:background="@drawable/editttextcancel"
         android:fontFamily="@font/viga"
         android:onClick="Pulserate_To_Health"
@@ -192,6 +194,7 @@
         android:textColor="#000000"
         android:textSize="22sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/delete_editPR" />

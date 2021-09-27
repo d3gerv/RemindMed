@@ -12,8 +12,8 @@
         android:layout_width="247dp"
         android:layout_height="49dp"
         android:layout_marginStart="82dp"
-        android:layout_marginTop="12dp"
         android:layout_marginEnd="82dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/editttextcancel"
         android:fontFamily="@font/viga"
         android:text="Delete"
@@ -21,6 +21,7 @@
         android:textColor="#000000"
         android:textSize="22sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/canceleditTemp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnsavetemperatureedit" />
@@ -116,18 +117,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="37dp"
         android:fontFamily="@font/viga"
         android:text="Time"
         android:textColor="#000000"
         android:textSize="21sp"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="125dp" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <TextView
         android:id="@+id/frequency_txt1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="31dp"
         android:fontFamily="@font/viga"
         android:text="Frequency"
         android:textColor="#000000"
@@ -166,6 +169,8 @@
         android:id="@+id/btnsavetemperatureedit"
         android:layout_width="247dp"
         android:layout_height="49dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/edit_round"
         android:fontFamily="@font/viga"
         android:text="Save Changes"
@@ -173,15 +178,16 @@
         android:textColor="#FFFFFF"
         android:textSize="22sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/deleteBtn2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="550dp" />
+        app:layout_constraintTop_toBottomOf="@+id/guideline25" />
 
     <Button
         android:id="@+id/canceleditTemp"
         android:layout_width="247dp"
         android:layout_height="49dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginBottom="50dp"
         android:background="@drawable/editttextcancel"
         android:fontFamily="@font/viga"
         android:onClick="Temperature_To_Health"
@@ -190,6 +196,7 @@
         android:textColor="#000000"
         android:textSize="22sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/deleteBtn2" />
