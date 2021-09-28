@@ -75,17 +75,17 @@
         android:text="Start"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline73"
+        app:layout_constraintBottom_toTopOf="@+id/guideline27"
+        app:layout_constraintEnd_toStartOf="@+id/guideline24"
+        app:layout_constraintHorizontal_bias="0.3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/duration_txt1"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/duration_txt1" />
 
     <Button
         android:id="@+id/endButtonTemp"
-        android:layout_width="144dp"
+        android:layout_width="142dp"
         android:layout_height="51dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginBottom="16dp"
         android:width="125dp"
         android:height="50dp"
         android:background="@drawable/edittext3"
@@ -94,36 +94,41 @@
         android:text="End"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline73"
-        app:layout_constraintStart_toEndOf="@+id/startButtonTemp"
-        app:layout_constraintTop_toTopOf="@+id/guideline27"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintBottom_toTopOf="@+id/guideline27"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.16"
+        app:layout_constraintStart_toEndOf="@+id/guideline24"
+        app:layout_constraintTop_toBottomOf="@+id/duration_txt1"
+        app:layout_constraintVertical_bias="0.5" />
 
     <TextView
         android:id="@+id/duration_txt1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="36dp"
         android:fontFamily="@font/viga"
         android:text="Duration"
         android:textColor="#000000"
         android:textSize="21sp"
+        app:layout_constraintBottom_toTopOf="@+id/startButtonTemp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frequency_spinner_editTemp" />
+        app:layout_constraintTop_toBottomOf="@+id/guideline23" />
 
     <TextView
         android:id="@+id/time_txt1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="37dp"
+        android:layout_marginTop="27dp"
         android:fontFamily="@font/viga"
         android:text="Time"
         android:textColor="#000000"
         android:textSize="21sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline21"
+        app:layout_constraintEnd_toStartOf="@+id/time_btn_editTemp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.078" />
 
     <TextView
         android:id="@+id/frequency_txt1"
@@ -134,18 +139,19 @@
         android:text="Frequency"
         android:textColor="#000000"
         android:textSize="21sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline27"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/time_btn_editTemp" />
+        app:layout_constraintTop_toBottomOf="@+id/guideline21" />
 
     <Spinner
         android:id="@+id/frequency_spinner_editTemp"
         android:layout_width="143dp"
         android:layout_height="54dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="13dp"
+        android:layout_marginBottom="24dp"
         android:background="@drawable/edittext3"
         android:backgroundTint="#FDCB00"
+        app:layout_constraintBottom_toTopOf="@+id/guideline23"
+        app:layout_constraintEnd_toEndOf="@id/guideline24"
+        app:layout_constraintHorizontal_bias="0.28"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frequency_txt1" />
 
@@ -153,16 +159,16 @@
         android:id="@+id/time_btn_editTemp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="8dp"
         android:width="125dp"
         android:height="50dp"
         android:background="@drawable/edittext3"
         android:onClick="popTimePicker"
         android:text="Set Time"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline24"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/guideline21"
+        app:layout_constraintEnd_toEndOf="@id/guideline24"
+        app:layout_constraintStart_toEndOf="@+id/time_txt1"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         tools:ignore="OnClick" />
 
@@ -203,6 +209,20 @@
         app:layout_constraintTop_toBottomOf="@+id/deleteBtn2" />
 
     <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.26" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.42" />
+
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline24"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -214,21 +234,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.75" />
+        app:layout_constraintGuide_percent="0.7" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline73"
+        android:id="@+id/guideline64"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.64" />
+        app:layout_constraintGuide_percent="0.65" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline27"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.43" />
+        app:layout_constraintGuide_percent="0.6" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
