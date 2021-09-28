@@ -47,6 +47,7 @@
         android:id="@+id/startButtonSleep"
         android:layout_width="147dp"
         android:layout_height="51dp"
+        android:layout_marginBottom="16dp"
         android:width="125dp"
         android:height="50dp"
         android:background="@drawable/edittext3"
@@ -57,10 +58,9 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline27"
         app:layout_constraintEnd_toStartOf="@+id/guideline24"
-        app:layout_constraintHorizontal_bias="0.271"
+        app:layout_constraintHorizontal_bias="0.3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline23"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/duration_txt1" />
 
     <Button
         android:id="@+id/endButtonSleep"
@@ -76,70 +76,71 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline27"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.322"
+        app:layout_constraintHorizontal_bias="0.16"
         app:layout_constraintStart_toEndOf="@+id/guideline24"
-        app:layout_constraintTop_toTopOf="@+id/guideline23"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/duration_txt1"
+        app:layout_constraintVertical_bias="0.5" />
 
     <TextView
         android:id="@+id/duration_txt1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="20dp"
         android:fontFamily="@font/viga"
         android:text="Duration"
         android:textColor="#000000"
         android:textSize="21sp"
         app:layout_constraintBottom_toTopOf="@+id/startButtonSleep"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guideline23" />
 
     <TextView
         android:id="@+id/time_txt1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginTop="27dp"
         android:fontFamily="@font/viga"
         android:text="Time"
         android:textColor="#000000"
         android:textSize="21sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline21"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/time_btn_editSleep"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.078"/>
 
     <TextView
         android:id="@+id/frequency_txt1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="22dp"
         android:fontFamily="@font/viga"
         android:text="Frequency"
         android:textColor="#000000"
         android:textSize="21sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline23"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/time_btn_editSleep"
-        app:layout_constraintVertical_bias="0.083" />
+        app:layout_constraintTop_toBottomOf="@+id/guideline21" />
+
 
     <Spinner
         android:id="@+id/frequency_spinner_editSleep"
         android:layout_width="143dp"
         android:layout_height="54dp"
+        android:layout_marginBottom="24dp"
         android:background="@drawable/edittext3"
         android:backgroundTint="#FDCB00"
-        app:layout_constraintBottom_toTopOf="@+id/duration_txt1"
+        app:layout_constraintBottom_toTopOf="@+id/guideline23"
         app:layout_constraintEnd_toEndOf="@id/guideline24"
-        app:layout_constraintHorizontal_bias="0.253"
+        app:layout_constraintHorizontal_bias="0.28"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frequency_txt1"
-        app:layout_constraintVertical_bias="0.48" />
+        app:layout_constraintTop_toBottomOf="@+id/frequency_txt1" />
 
     <Button
         android:id="@+id/time_btn_editSleep"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="17dp"
+        android:layout_marginStart="8dp"
         android:width="125dp"
         android:height="50dp"
         android:background="@drawable/edittext3"
@@ -148,10 +149,9 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline21"
         app:layout_constraintEnd_toEndOf="@id/guideline24"
-        app:layout_constraintHorizontal_bias="0.901"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/time_txt1"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.5"
         tools:ignore="OnClick" />
 
     <Button
@@ -211,14 +211,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.25" />
+        app:layout_constraintGuide_percent="0.26" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline23"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.46" />
+        app:layout_constraintGuide_percent="0.42" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline24"
@@ -232,14 +232,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.75" />
+        app:layout_constraintGuide_percent="0.7" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline27"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.65" />
+        app:layout_constraintGuide_percent="0.6" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
