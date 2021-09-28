@@ -117,12 +117,14 @@ public class set_later_blood_sugar extends AppCompatActivity implements TimePick
                 String Time = timeButtonBPLater.getText().toString().trim();
                 String StartDate =  dateButton.getText().toString().trim();
                 String EndDate = endDateButton.getText().toString().trim();
+                String frequencyName = frequencyBP.getSelectedItem().toString();
                 Map<String, Object> user = new HashMap<>();
                 user.put("HMName", "Bloodsugar");
                 user.put("Time", Time);
                 user.put("StartDate", getDateFromString(StartDate));
                 user.put("EndDate", getDateFromString(EndDate));
                 user.put("Frequency", frequencychoide);
+                user.put("FrequencyTitle", frequencyName);
 
                 fstore.collection("users").document(userId).collection("Health Measurement Alarm")
                         .add(user)

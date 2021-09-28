@@ -65,6 +65,9 @@ public class myHomeAdapaterMeasurement extends RecyclerView.Adapter<myHomeAdapat
                     intent.putExtra("Time", measurement.Time);
                     intent.putExtra("Date", strStart);
                     intent.putExtra("EndDate", strEnd);
+                    intent.putExtra("Frequency", measurement.Frequency);
+                    intent.putExtra("FrequencyTitle", measurement.FrequencyTitle);
+                    intent.putExtra("measurement_info", measurement);
                     intent.putExtra("fromToday", 1);
                     context.startActivity(intent);
                 }
@@ -74,6 +77,9 @@ public class myHomeAdapaterMeasurement extends RecyclerView.Adapter<myHomeAdapat
                     intent.putExtra("Time", measurement.Time);
                     intent.putExtra("Date", strStart);
                     intent.putExtra("EndDate", strEnd);
+                    intent.putExtra("Frequency", measurement.Frequency);
+                    intent.putExtra("FrequencyTitle", measurement.FrequencyTitle);
+                    intent.putExtra("measurement_info", measurement);
                     intent.putExtra("fromToday", 1);
                     context.startActivity(intent);
                 }
@@ -83,6 +89,9 @@ public class myHomeAdapaterMeasurement extends RecyclerView.Adapter<myHomeAdapat
                     intent.putExtra("Time", measurement.Time);
                     intent.putExtra("Date", strStart);
                     intent.putExtra("EndDate", strEnd);
+                    intent.putExtra("Frequency", measurement.Frequency);
+                    intent.putExtra("FrequencyTitle", measurement.FrequencyTitle);
+                    intent.putExtra("measurement_info", measurement);
                     intent.putExtra("fromToday", 1);
                     context.startActivity(intent);
                 }
@@ -92,6 +101,9 @@ public class myHomeAdapaterMeasurement extends RecyclerView.Adapter<myHomeAdapat
                     intent.putExtra("Time", measurement.Time);
                     intent.putExtra("Date", strStart);
                     intent.putExtra("EndDate", strEnd);
+                    intent.putExtra("Frequency", measurement.Frequency);
+                    intent.putExtra("FrequencyTitle", measurement.FrequencyTitle);
+                    intent.putExtra("measurement_info", measurement);
                     intent.putExtra("fromToday", 1);
                     context.startActivity(intent);
                 }

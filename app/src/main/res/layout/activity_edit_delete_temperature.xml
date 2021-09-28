@@ -84,7 +84,7 @@
         android:id="@+id/endButtonTemp"
         android:layout_width="144dp"
         android:layout_height="51dp"
-        android:layout_marginStart="64dp"
+        android:layout_marginStart="68dp"
         android:layout_marginTop="52dp"
         android:width="125dp"
         android:height="50dp"
@@ -97,7 +97,7 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline73"
         app:layout_constraintStart_toEndOf="@+id/startButtonTemp"
         app:layout_constraintTop_toTopOf="@+id/guideline27"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.64" />
 
     <TextView
         android:id="@+id/duration_txt1"

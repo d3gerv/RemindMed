@@ -212,9 +212,9 @@ public class edit_delete_bloodpressure extends AppCompatActivity implements Time
     private void updateAlarm() {
         getData();
         fname = frequencyBP.getSelectedItem().toString();
-        startDate = getDateFromString(strDate);
+        startDate = getDateFromString(dateButton.getText().toString());
         time = timeButtonBPLater.getText().toString().trim();
-        endDate = getDateFromString(strEnd);
+        endDate = getDateFromString(endDateButton.getText().toString());
         measurement_info_today m = new measurement_info_today(placeholderName, time, startDate, endDate, frequencychoide, fname);
         fstore.collection("users").document(currentFirebaseUser.getUid()).collection("Health Measurement Alarm")
                 .document(measurement_info_today.getId()).update("Frequency", m.getFrequency(),
