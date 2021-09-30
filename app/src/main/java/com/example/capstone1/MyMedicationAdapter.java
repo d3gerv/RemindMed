@@ -2,6 +2,7 @@ package com.example.capstone1;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,14 +47,19 @@ public class MyMedicationAdapter extends RecyclerView.Adapter<MyMedicationAdapte
         holder.Time.setText(medication_info.Time);
 
 
-        String inventory = medication_info.getInventoryMeds();
+        Integer inventory = medication_info.getPillStatic();
+        Log.d("text", "test" + inventory);
 
-        int intInv = Integer.parseInt(inventory);
-        if (Integer.parseInt(medication_info.getInventoryMeds())  > 1)
+        int intInv = inventory;
+        if (Integer.parseInt(medication_info.getInventoryMeds())  > intInv/2 )
         {
             holder.constraintLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.green));
         }
-        else if(Integer.parseInt(medication_info.getInventoryMeds())   == 1)
+        else if(Integer.parseInt(medication_info.getInventoryMeds()) <= 5 && Integer.parseInt(medication_info.getInventoryMeds()) > 1 )
+        {
+            holder.constraintLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.orange));
+        }
+        else if(Integer.parseInt(medication_info.getInventoryMeds())  == 1)
         {
             holder.constraintLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.red1));
         }

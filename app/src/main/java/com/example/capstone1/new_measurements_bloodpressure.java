@@ -164,7 +164,7 @@ public class new_measurements_bloodpressure extends AppCompatActivity implements
     }
 
     @Override
-    public void applyBPtext(String bp) {
+    public void applyBPtext(String bp, int sys, int dia, int pulse) {
         bpDialog.setText(bp);
     }
 }

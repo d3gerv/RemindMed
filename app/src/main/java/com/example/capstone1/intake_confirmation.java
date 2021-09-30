@@ -1,8 +1,10 @@
 package com.example.capstone1;
 
+import android.app.AlertDialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,6 +18,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -70,14 +74,58 @@ public class intake_confirmation extends AppCompatActivity {
 
         getData();
         setData();
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+        {
+            NotificationChannel channel = new NotificationChannel
+                    ("abnormalbp", "abnormalbp", NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+
+        }
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 decrementMedication();
                 moveStartDate();
                 saveToHistory();
-                startActivity(new Intent(intake_confirmation.this, today_page_recycler.class));
-                finish();
+                if(Integer.parseInt(medication_info.getInventoryMeds())  <= medication_info.getPillStatic()/2)
+                {
+                    NotificationCompat.Builder mBuilder = (NotificationCompat.Builder)
+                            new NotificationCompat.Builder(intake_confirmation.this, "abnormalbp");
+                    mBuilder.setSmallIcon(R.drawable.ic_launcher_background);
+                    mBuilder.setContentTitle("Inventory Halfway");
+                    mBuilder.setContentText(medication_info.getMedication() + " is halfway with its inventory!");
+                    mBuilder.setAutoCancel(true);
+
+                    NotificationManagerCompat notificationManager = NotificationManagerCompat.from(intake_confirmation.this);
+                    notificationManager.notify(7, mBuilder.build());
+
+                    AlertDialog.Builder aBuilder = new AlertDialog.Builder(intake_confirmation.this);
+                    aBuilder.setCancelable(true);
+                    aBuilder.setTitle("Medication Alert");
+                    aBuilder.setMessage("You have gone halfway with your medication refill it soon before you run out");
+
+                    aBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                            startActivity(new Intent(intake_confirmation.this, today_page_recycler.class));
+
+                        }
+                    });
+
+                    aBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            startActivity(new Intent(intake_confirmation.this, today_page_recycler.class));
+                        }
+                    });
+
+                    aBuilder.show();
+
+
+                }
+
             }
         });
 
@@ -155,8 +203,6 @@ public class intake_confirmation extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
                                 Toast.makeText(intake_confirmation.this, "Deleted Alarm", Toast.LENGTH_LONG).show();
-                                finish();
-
                             }
                         }
                     });
@@ -168,7 +214,6 @@ public class intake_confirmation extends AppCompatActivity {
                         @Override
                         public void onSuccess(Void avoid) {
                             Toast.makeText(intake_confirmation.this, "Confirmed Intake", Toast.LENGTH_LONG).show();
-                            finish();
                         }
                     });
         }

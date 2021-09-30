@@ -103,7 +103,7 @@ public class health_measurements extends AppCompatActivity {
         startActivity(intent);
     }
     public void Health_To_Pulserate (View view){
-        Intent intent = new Intent(health_measurements.this, new_measurements_pulserate.class);
+        Intent intent = new Intent(health_measurements.this, set_now_pulse_rate.class);
         startActivity(intent);
     }
     public void Health_To_Bloodpressure (View view){

@@ -1,5 +1,8 @@
 package com.example.capstone1;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,6 +12,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -56,6 +61,7 @@ public class set_now_blood_sugar extends AppCompatActivity {
             public void onClick(View v) {
 
                 String Record = bsVal.getText().toString().trim();
+                int recordInt = Integer.parseInt(Record);
                 Map<String,Object> user =new HashMap<>();
                 getData();
                 if (choice == 1)
@@ -72,6 +78,44 @@ public class set_now_blood_sugar extends AppCompatActivity {
                     user.put("Record",Record);
                     user.put("Date", dateToday);
                     user.put("Time", timeToday);
+                }
+
+                if(recordInt > 180)
+                {
+                    NotificationCompat.Builder mBuilder = (NotificationCompat.Builder)
+                            new NotificationCompat.Builder(set_now_blood_sugar.this, "abnormalbp");
+                    mBuilder.setSmallIcon(R.drawable.ic_launcher_background);
+                    mBuilder.setContentTitle("Abnormal Measurement");
+                    mBuilder.setContentText("You have recently recorded an abnormal measurement");
+                    mBuilder.setAutoCancel(true);
+
+                    NotificationManagerCompat notificationManager = NotificationManagerCompat.from(set_now_blood_sugar.this);
+                    notificationManager.notify(7, mBuilder.build());
+
+                    AlertDialog.Builder aBuilder = new AlertDialog.Builder(set_now_blood_sugar.this);
+                    aBuilder.setCancelable(true);
+                    aBuilder.setTitle("Abnormal Measurement");
+                    aBuilder.setMessage("You have recently recorded an abnormal measurement for your blood pressure click ok to see some recommendations to normalize it");
+
+                    aBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+
+                        }
+                    });
+
+                    aBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(set_now_blood_sugar.this, recommendations.class);
+                            startActivity(intent);
+                        }
+                    });
+
+                    aBuilder.show();
+
+
                 }
 
 

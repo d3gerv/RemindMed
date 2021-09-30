@@ -31,6 +31,7 @@ public class fragment_bp extends AppCompatDialogFragment {
         builder.setTitle("Bloodpressure Values");
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.blood_pressure_dialog, null);
+
         sys = view.findViewById(R.id.sysNP);
         dia = view.findViewById(R.id.diaNP);
         pulse = view.findViewById(R.id.pulseNP);
@@ -83,7 +84,7 @@ public class fragment_bp extends AppCompatDialogFragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 String bpValues = sysInt + "/" + diaInt + "/" + pulseInt;
-                listener.applyBPtext(bpValues);
+                listener.applyBPtext(bpValues, sysInt, diaInt, pulseInt);
             }
         });
         bpText = view.findViewById(R.id.buttonBPDialog);
@@ -102,7 +103,7 @@ public class fragment_bp extends AppCompatDialogFragment {
 
     public interface BloodPressuretxt
     {
-        void applyBPtext(String bp);
+        void applyBPtext(String bp, int sys, int dia, int pulse);
 
     }
 }

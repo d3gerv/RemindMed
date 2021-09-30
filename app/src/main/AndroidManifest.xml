@@ -29,6 +29,9 @@
             android:name=".cardview_history_measurements"
             android:exported="true"/>
         <activity
+            android:name=".recommendations"
+            android:exported="true"/>
+        <activity
             android:name=".set_later_temperature"
             android:exported="true" />
         <activity

@@ -3,11 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/RemindMed/app/src/main/res/drawable/bullet.xml" value="0.378125" />
         <entry key="..\:/RemindMed/app/src/main/res/layout/activity_edit_delete_bloodpressure.xml" value="0.28306159420289856" />
         <entry key="..\:/RemindMed/app/src/main/res/layout/activity_edit_delete_bloodsugar.xml" value="0.33" />
         <entry key="..\:/RemindMed/app/src/main/res/layout/activity_edit_delete_cholesterol.xml" value="0.271286231884058" />
         <entry key="..\:/RemindMed/app/src/main/res/layout/activity_edit_delete_hours_of_sleep.xml" value="0.25769927536231885" />
         <entry key="..\:/RemindMed/app/src/main/res/layout/activity_edit_delete_temperature.xml" value="0.271286231884058" />
+        <entry key="..\:/RemindMed/app/src/main/res/layout/activity_health_measurements.xml" value="0.12273550724637682" />
         <entry key="..\:/RemindMed/app/src/main/res/layout/activity_history_page.xml" value="0.33" />
         <entry key="..\:/RemindMed/app/src/main/res/layout/activity_home_page.xml" value="0.2957427536231884" />
         <entry key="..\:/RemindMed/app/src/main/res/layout/activity_intake_confirmation.xml" value="0.5" />
@@ -16,9 +18,17 @@
         <entry key="..\:/RemindMed/app/src/main/res/layout/activity_new_medications.xml" value="0.5" />
         <entry key="..\:/RemindMed/app/src/main/res/layout/activity_optical_character_recognition.xml" value="0.28940217391304346" />
         <entry key="..\:/RemindMed/app/src/main/res/layout/activity_optical_character_recognition_one.xml" value="0.28940217391304346" />
+        <entry key="..\:/RemindMed/app/src/main/res/layout/activity_recommendations.xml" value="0.5" />
+        <entry key="..\:/RemindMed/app/src/main/res/layout/activity_set_now_blood_pressure.xml" value="0.5" />
+        <entry key="..\:/RemindMed/app/src/main/res/layout/activity_set_now_blood_sugar.xml" value="0.33242753623188404" />
+        <entry key="..\:/RemindMed/app/src/main/res/layout/activity_set_now_cholesterol.xml" value="0.17603850050658562" />
+        <entry key="..\:/RemindMed/app/src/main/res/layout/activity_set_now_hours_of_sleep.xml" value="0.17603850050658562" />
+        <entry key="..\:/RemindMed/app/src/main/res/layout/activity_set_now_pulse_rate.xml" value="0.25" />
+        <entry key="..\:/RemindMed/app/src/main/res/layout/activity_set_now_temperature.xml" value="0.17603850050658562" />
         <entry key="..\:/RemindMed/app/src/main/res/layout/activity_today_page_recycler.xml" value="0.2957427536231884" />
         <entry key="..\:/RemindMed/app/src/main/res/layout/items_today_medication.xml" value="0.33" />
         <entry key="..\:/RemindMed/app/src/main/res/layout/list_item_single.xml" value="0.20520833333333333" />
+        <entry key="..\:/RemindMed/app/src/main/res/layout/recommendation_layout.xml" value="0.5" />
         <entry key="..\:/RemindMed/app/src/main/res/xml/file_paths.xml" value="0.28940217391304346" />
         <entry key="..\:/Users/Arah/Desktop/RemindMed-Frontend_Backend/app/src/main/res/layout/activity_alarm_notification.xml" value="0.2" />
         <entry key="..\:/Users/Arah/Desktop/RemindMed-Frontend_Backend/app/src/main/res/layout/activity_change_name.xml" value="0.25" />

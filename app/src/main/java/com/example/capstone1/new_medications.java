@@ -178,6 +178,7 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
                 user.put("EndDate", getDateFromString(EndDate));
                 user.put("MedicineType", typechoice);
                 user.put("Frequency", frequencychoide);
+                user.put("PillStatic", Integer.parseInt(Inventory));
                 startAlarm(c);
 
                 if (TextUtils.isEmpty(Medication)) {
