@@ -65,7 +65,7 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
     private DatePickerDialog datePickerDialog, datePickerDialog2;
     private Button dateButton, endDateButton;
     Calendar c;
-    static final SimpleDateFormat format = new SimpleDateFormat("M/d/yyyy");
+    static final SimpleDateFormat format = new SimpleDateFormat("M/dd/yyyy");
     Button timeButtonmedtst;
     int hour, minute;
     int year, month, day, choice, typechoice, frequencychoide;
@@ -270,6 +270,7 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
                 month+=1;
                 if (choice == start)
                 {
+
                     startdate = makeDateString(day, month, year);
                     dateButton.setText(startdate);
                 }
@@ -292,7 +293,17 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
 
     private String makeDateString(int day, int month, int year)
     {
-        return month + "/" + day + "/" + year;
+
+
+        if (day<10)
+        {
+            return month + "/" +"0" +day + "/" + year;
+        }
+        else
+        {
+            return month + "/"  +day + "/" + year;
+        }
+
     }
 
     public void openDatePicker() {

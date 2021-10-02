@@ -109,6 +109,7 @@ public class set_now_temperature extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             Intent intent = new Intent(set_now_temperature.this, recommendations.class);
+                            intent.putExtra("description", "Temperature");
                             startActivity(intent);
                         }
                     });

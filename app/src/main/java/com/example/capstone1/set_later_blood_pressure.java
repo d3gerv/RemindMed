@@ -6,9 +6,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
+import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -29,24 +35,32 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class set_later_blood_pressure extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener{
     int choice, frequencychoide;
     private Button dateButton, endDateButton, timeButtonBPLater, saveBPbutton;
     final int start = 1;
     final int end = 2;
+    int id ;
     private DatePickerDialog datePickerDialog;
     String userId, startdate;
-    Calendar calendar = Calendar.getInstance();
+    int alarmYear, alarmMonth, alarmDay,alarmHour,alarmMin;
     Calendar c;
+    Calendar myAlarmDate = Calendar.getInstance();
     Spinner frequencyBP;
     FirebaseAuth rootAuthen;
     FirebaseFirestore fstore;
     static final SimpleDateFormat format = new SimpleDateFormat("M/d/yyyy");
+    String dateToday = String.valueOf(android.text.format.DateFormat.format("M/dd/yyyy", new java.util.Date()));
+
 
 
 
@@ -63,6 +77,9 @@ public class set_later_blood_pressure extends AppCompatActivity implements TimeP
         rootAuthen = FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
         userId = rootAuthen.getCurrentUser().getUid();
+
+
+
 
 
 
@@ -120,12 +137,16 @@ public class set_later_blood_pressure extends AppCompatActivity implements TimeP
                 String EndDate = endDateButton.getText().toString().trim();
                 String frequencyName = frequencyBP.getSelectedItem().toString();
                 Map<String, Object> user = new HashMap<>();
+                startAlarm(myAlarmDate);
                 user.put("HMName", "Bloodpressure");
                 user.put("Time", Time);
+                user.put("Hour", c.get(Calendar.HOUR_OF_DAY));
+                user.put("Minute", c.get(Calendar.MINUTE));
                 user.put("StartDate", getDateFromString(StartDate));
                 user.put("EndDate", getDateFromString(EndDate));
                 user.put("Frequency", frequencychoide);
                 user.put("FrequencyTitle", frequencyName);
+                Log.d(TAG, "onSuccess:" + alarmYear + " " + alarmMonth + " " + alarmDay + " " + alarmHour + " " + alarmMin);
 
                 fstore.collection("users").document(userId).collection("Health Measurement Alarm")
                         .add(user)
@@ -141,8 +162,23 @@ public class set_later_blood_pressure extends AppCompatActivity implements TimeP
                                 Log.d(TAG, "onSuccess: failed");
                             }
                         });
+                finish();
             }
         });
+    }
+
+    private void startAlarm(Calendar c)
+    {
+
+        myAlarmDate.setTimeInMillis(System.currentTimeMillis());
+        myAlarmDate.set(alarmYear, alarmMonth, alarmDay, alarmHour, alarmMin);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        ArrayList<PendingIntent> intentArray = new ArrayList<PendingIntent>();
+        Intent intent = new Intent(this, alarmreceiver.class);
+        id = (int) System.currentTimeMillis();
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, id, intent, 0);
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
+        intentArray.add(pendingIntent);
     }
 
 
@@ -158,11 +194,19 @@ public class set_later_blood_pressure extends AppCompatActivity implements TimeP
                 {
                     startdate = makeDateString(day, month, year);
                     dateButton.setText(startdate);
+                    alarmYear = year;
+                    alarmMonth = month-1;
+                    alarmDay = day;
+
                 }
                 else if (choice == end)
                 {
                     String enddate = makeDateString(day, month, year);
                     endDateButton.setText(enddate);
+                    alarmYear = year;
+                    alarmMonth = month-1;
+                    alarmDay = day;
+
 
                 }
             }
@@ -173,12 +217,21 @@ public class set_later_blood_pressure extends AppCompatActivity implements TimeP
         int day = cal.get(Calendar.DAY_OF_MONTH);
         int style = AlertDialog.THEME_HOLO_LIGHT;
         datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
-        datePickerDialog.getDatePicker().setMinDate(calendar.getTimeInMillis());
+        //datePickerDialog.getDatePicker().setMinDate(calendar.getTimeInMillis());
+
     }
 
     private String makeDateString(int day, int month, int year)
     {
-        return month + "/" + day + "/" + year;
+        if (day<10)
+        {
+            return month + "/" +"0" +day + "/" + year;
+        }
+        else
+        {
+            return month + "/"  +day + "/" + year;
+        }
+
     }
 
     public void openDatePicker() {
@@ -198,6 +251,8 @@ public class set_later_blood_pressure extends AppCompatActivity implements TimeP
         c.set(Calendar.MINUTE, minute);
         c.set(Calendar.SECOND, 0);
         c.set(Calendar.MILLISECOND, 0);
+        alarmHour = hourOfDay;
+        alarmMin = minute;
         updateTimeText(c);
     }
     public Date getDateFromString(String dateToSave) {
@@ -207,5 +262,11 @@ public class set_later_blood_pressure extends AppCompatActivity implements TimeP
         } catch (ParseException e){
             return null ;
         }
+    }
+    
+    private void scheduleAlarm()
+    {
+        int alarmID = new Random().nextInt(Integer.MAX_VALUE);
+
     }
 }

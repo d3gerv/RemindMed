@@ -17,6 +17,12 @@ public class recommendations extends AppCompatActivity {
     recommendation_Adapter adapter;
     String bptext[] = { "reduce excess stress" , "eat Low salt and low fat food", "Eat high fiber foods", "proper rest and exercise" };
     String chotext[] = { "eat healthy foods" , "Low fat and oily", "moderate exercise" };
+    String bstext[] = { "Reduce carb" , "Remove fiber", "Drink advisable amount of water", "Maintain body weight",
+            "Metformin when blood sugar level is high", "Chemlin for low", "exercise regularly", "get enough sleep"};
+    String tempText[] = { "Drink medicine e.g. paracetamol and ibuprofen" , "Have some rest", "Keep hydrated", "eat healthy foods like vegetables and fruits" };
+    String sleepText[] = { "eat healthy foods" , "Low fat and oily", "moderate exercise" };
+    String pulseText[] = { "Keep hydrated" , "Avoid caffeine", "monitored yung cholesterol levels" };
+
 
 
 
@@ -35,6 +41,26 @@ public class recommendations extends AppCompatActivity {
         {
             adapter = new recommendation_Adapter(recommendations.this, chotext);
         }
+        else if (HmName.equals("Bloodsugar"))
+        {
+            adapter = new recommendation_Adapter(recommendations.this, bstext);
+        }
+        else if (HmName.equals("Sleep"))
+        {
+            adapter = new recommendation_Adapter(recommendations.this, sleepText);
+        }
+        else if (HmName.equals("Temperature"))
+        {
+            adapter = new recommendation_Adapter(recommendations.this, tempText);
+
+        }
+        else if (HmName.equals("Pulserate"))
+        {
+            adapter = new recommendation_Adapter(recommendations.this, pulseText);
+        }
+
+
+
 
         recommendationRecyclerView.setLayoutManager(new LinearLayoutManager(recommendations.this));
         recommendationRecyclerView.setAdapter(adapter);

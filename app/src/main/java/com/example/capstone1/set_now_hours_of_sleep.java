@@ -108,6 +108,7 @@ public class set_now_hours_of_sleep extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             Intent intent = new Intent(set_now_hours_of_sleep.this, recommendations.class);
+                            intent.putExtra("description", "Sleep");
                             startActivity(intent);
                         }
                     });

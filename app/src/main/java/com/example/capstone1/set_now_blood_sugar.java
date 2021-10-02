@@ -109,6 +109,7 @@ public class set_now_blood_sugar extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             Intent intent = new Intent(set_now_blood_sugar.this, recommendations.class);
+                            intent.putExtra("description", "Cholesterol");
                             startActivity(intent);
                         }
                     });

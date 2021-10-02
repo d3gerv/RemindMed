@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/RemindMed/app/src/main/res/drawable/bullet.xml" value="0.378125" />
+        <entry key="..\:/RemindMed/app/src/main/res/layout/activity_alarm_notification.xml" value="0.17603850050658562" />
         <entry key="..\:/RemindMed/app/src/main/res/layout/activity_edit_delete_bloodpressure.xml" value="0.28306159420289856" />
         <entry key="..\:/RemindMed/app/src/main/res/layout/activity_edit_delete_bloodsugar.xml" value="0.33" />
         <entry key="..\:/RemindMed/app/src/main/res/layout/activity_edit_delete_cholesterol.xml" value="0.271286231884058" />

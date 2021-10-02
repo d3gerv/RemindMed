@@ -35,6 +35,9 @@
             android:name=".set_later_temperature"
             android:exported="true" />
         <activity
+            android:name=".alarm_notification"
+            android:exported="true" />
+        <activity
             android:name=".set_later_pulse_rate"
             android:exported="true" />
         <activity

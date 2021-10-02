@@ -108,6 +108,7 @@ public class set_now_pulse_rate extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             Intent intent = new Intent(set_now_pulse_rate.this, recommendations.class);
+                            intent.putExtra("description", "Pulserate");
                             startActivity(intent);
                         }
                     });

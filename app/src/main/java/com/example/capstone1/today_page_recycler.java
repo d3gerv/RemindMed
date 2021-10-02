@@ -50,11 +50,12 @@ public class today_page_recycler extends AppCompatActivity {
     ArrayList<measurement_info_today> measurementArrayList;
     HMAdapterToday measurementAdapter;
     FirebaseFirestore db;
+    String single;
     DateFormat dateFormat = new SimpleDateFormat("M/dd/yyyy");
     Date dateSelected;
     ProgressDialog progressDialog;
     Button switchDisplay;
-    static final SimpleDateFormat format = new SimpleDateFormat("M/d/yyyy");
+    static final SimpleDateFormat format = new SimpleDateFormat("M/dd/yyyy");
     String date;
     int day;
     medication_info medication_info;
@@ -118,11 +119,20 @@ public class today_page_recycler extends AppCompatActivity {
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 Calendar c = Calendar.getInstance();
                 month +=1;
-                date = month + "/" + dayOfMonth +"/"+year;
+                if (dayOfMonth < 10)
+                {
+                    single = "0" + dayOfMonth;
+                    date = month + "/" + single +"/"+year;
+                }
+                else
+                {
+                    date = month + "/" + dayOfMonth +"/"+year;
+                }
+
                 dateSelected = getDateFromString(date);
                 c.setTime(dateSelected);
                 day = c.get(Calendar.DAY_OF_WEEK);
-                //Log.d("Calendar", "Selected day change " + day );
+                Log.d("Calendar", "Selected day change " + date );
                 //Log.d("Calendar", "Selected day change" + medicationArrayList.size() );
 
                 EventChangeListener();
