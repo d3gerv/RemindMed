@@ -87,7 +87,7 @@
         android:layout_marginBottom="16dp"
         android:clickable="true"
         android:focusable="true"
-        android:onClick="later_to_PR"
+        android:onClick="later_to_pulse"
         app:backgroundTint="#FFFFFF"
         app:fabSize="mini"
         app:layout_constraintBottom_toTopOf="@+id/buttonLaterHOS"
