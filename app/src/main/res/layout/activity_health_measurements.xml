@@ -71,24 +71,11 @@
         android:onClick="Health_To_Temperature"
         app:backgroundTint="#FFFFFF"
         app:fabSize="mini"
-        app:layout_constraintBottom_toTopOf="@+id/heartRate_button"
+        app:layout_constraintBottom_toTopOf="@+id/pulseRate_button"
         app:layout_constraintEnd_toStartOf="@+id/guideline31"
         app:layout_constraintTop_toBottomOf="@+id/bloodSugar_button"
         app:srcCompat="@drawable/ic_arrow_next" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/heartRate_button"
-        android:layout_width="41dp"
-        android:layout_height="41dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:onClick="Health_To_Heartrate"
-        app:backgroundTint="#FFFFFF"
-        app:fabSize="mini"
-        app:layout_constraintBottom_toTopOf="@+id/pulseRate_button"
-        app:layout_constraintEnd_toStartOf="@+id/guideline31"
-        app:layout_constraintTop_toBottomOf="@+id/temperature_button"
-        app:srcCompat="@drawable/ic_arrow_next" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/pulseRate_button"
@@ -101,7 +88,7 @@
         app:fabSize="mini"
         app:layout_constraintBottom_toTopOf="@+id/sleep_button"
         app:layout_constraintEnd_toStartOf="@+id/guideline31"
-        app:layout_constraintTop_toBottomOf="@+id/heartRate_button"
+        app:layout_constraintTop_toBottomOf="@+id/temperature_button"
         app:srcCompat="@drawable/ic_arrow_next" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -202,21 +189,6 @@
         app:layout_constraintEnd_toEndOf="@id/guideline30"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@id/guideline29"
-        app:layout_constraintTop_toBottomOf="@+id/heart_rate_txt" />
-
-    <TextView
-        android:id="@+id/heart_rate_txt"
-
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="Heart Rate"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/pulse_rate_txt"
-        app:layout_constraintDimensionRatio="5:1"
-        app:layout_constraintEnd_toEndOf="@id/guideline30"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@id/guideline29"
         app:layout_constraintTop_toBottomOf="@+id/body_temperature_txt" />
 
     <TextView
@@ -226,7 +198,7 @@
         android:text="Body Temperature"
         android:textColor="#000000"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/heart_rate_txt"
+        app:layout_constraintBottom_toTopOf="@+id/pulse_rate_txt"
         app:layout_constraintDimensionRatio="5:1"
         app:layout_constraintEnd_toEndOf="@id/guideline30"
         app:layout_constraintHorizontal_bias="0.5"

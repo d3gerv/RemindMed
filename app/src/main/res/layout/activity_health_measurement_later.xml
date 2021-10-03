@@ -7,7 +7,7 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        android:layout_width="421dp"
+        android:layout_width="match_parent"
         android:layout_height="92dp"
         android:background="#E73927"
         android:minHeight="?attr/actionBarSize"
@@ -75,25 +75,40 @@
         android:onClick="later_to_Temp"
         app:backgroundTint="#FFFFFF"
         app:fabSize="mini"
-        app:layout_constraintBottom_toTopOf="@+id/buttonLaterHOS"
+        app:layout_constraintBottom_toTopOf="@+id/buttonLaterPR"
         app:layout_constraintEnd_toStartOf="@+id/guideline31"
         app:layout_constraintTop_toBottomOf="@+id/buttonLaterBS"
+        app:srcCompat="@drawable/ic_arrow_next" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/buttonLaterPR"
+        android:layout_width="41dp"
+        android:layout_height="41dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="later_to_PR"
+        app:backgroundTint="#FFFFFF"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toTopOf="@+id/buttonLaterHOS"
+        app:layout_constraintEnd_toStartOf="@+id/guideline31"
+        app:layout_constraintTop_toBottomOf="@+id/buttonLaterTemp"
         app:srcCompat="@drawable/ic_arrow_next" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/buttonLaterHOS"
         android:layout_width="41dp"
         android:layout_height="41dp"
-        android:layout_marginBottom="64dp"
+        android:layout_marginBottom="32dp"
         android:clickable="true"
         android:focusable="true"
-        android:onClick="later_to_HOS"
 
+        android:onClick="later_to_HOS"
         app:backgroundTint="#FFFFFF"
         app:fabSize="mini"
         app:layout_constraintBottom_toTopOf="@+id/view4"
         app:layout_constraintEnd_toStartOf="@+id/guideline31"
-        app:layout_constraintTop_toBottomOf="@+id/buttonLaterTemp"
+        app:layout_constraintTop_toBottomOf="@+id/buttonLaterPR"
         app:srcCompat="@drawable/ic_arrow_next" />
 
     <ImageButton
@@ -110,16 +125,14 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
         android:text="Health Measurements"
         android:textColor="#FFFFFF"
         android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/healthMeasurement_back" />
+        app:layout_constraintHorizontal_bias="0.66"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/blood_pressure_txt"
@@ -141,7 +154,7 @@
         android:id="@+id/hours_of_sleep"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="64dp"
+        android:layout_marginBottom="24dp"
         android:text="Hours of Sleep"
         android:textColor="#000000"
         android:textSize="18sp"
@@ -150,7 +163,7 @@
         app:layout_constraintEnd_toEndOf="@id/guideline30"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/guideline29"
-        app:layout_constraintTop_toBottomOf="@+id/body_temperature_txt" />
+        app:layout_constraintTop_toBottomOf="@+id/pulse_rate_txt" />
 
     <TextView
         android:id="@+id/body_temperature_txt"
@@ -160,12 +173,28 @@
         android:text="Body Temperature"
         android:textColor="#000000"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/hours_of_sleep"
+        app:layout_constraintBottom_toTopOf="@+id/pulse_rate_txt"
         app:layout_constraintDimensionRatio="5:1"
         app:layout_constraintEnd_toEndOf="@id/guideline30"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/guideline29"
         app:layout_constraintTop_toBottomOf="@+id/blood_sugar_txt" />
+
+    <TextView
+        android:id="@+id/pulse_rate_txt"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
+        android:text="Pulserate"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/hours_of_sleep"
+        app:layout_constraintDimensionRatio="5:1"
+        app:layout_constraintEnd_toEndOf="@id/guideline30"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/guideline29"
+        app:layout_constraintTop_toBottomOf="@+id/body_temperature_txt" />
+
 
     <TextView
         android:id="@+id/blood_sugar_txt"
@@ -195,7 +224,7 @@
         app:layout_constraintBottom_toTopOf="@+id/blood_sugar_txt"
         app:layout_constraintDimensionRatio="5:1"
         app:layout_constraintEnd_toEndOf="@id/guideline30"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/guideline29"
         app:layout_constraintTop_toBottomOf="@+id/blood_pressure_txt" />
 
@@ -329,7 +358,7 @@
         android:id="@+id/imageView"
         android:layout_width="278dp"
         android:layout_height="180dp"
-        android:layout_marginStart="128dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:srcCompat="@drawable/recordmeasurements" />
