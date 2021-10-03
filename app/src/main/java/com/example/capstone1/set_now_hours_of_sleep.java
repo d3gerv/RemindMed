@@ -147,4 +147,12 @@ public class set_now_hours_of_sleep extends AppCompatActivity {
 
         }
     }
+    public void nowsleep_To_hm(View view) {
+        Intent intent = new Intent(set_now_hours_of_sleep.this, health_measurements.class);
+        startActivity(intent);
+    }
+    public void nowsleep_To_hm1(View view) {
+        Intent intent = new Intent(set_now_hours_of_sleep.this, health_measurements.class);
+        startActivity(intent);
+    }
 }

@@ -153,4 +153,12 @@ public class set_now_cholesterol extends AppCompatActivity {
 
         }
     }
+    public void nowchol_To_hm(View view) {
+        Intent intent = new Intent(set_now_cholesterol.this, health_measurements.class);
+        startActivity(intent);
+    }
+    public void nowchol_To_hm1(View view) {
+        Intent intent = new Intent(set_now_cholesterol.this, health_measurements.class);
+        startActivity(intent);
+    }
 }

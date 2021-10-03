@@ -9,6 +9,7 @@ import androidx.fragment.app.DialogFragment;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -206,5 +207,9 @@ public class set_later_hours_of_sleep extends AppCompatActivity implements TimeP
         } catch (ParseException e){
             return null ;
         }
+    }
+    public void latersleep_To_lhm(View view) {
+        Intent intent = new Intent(set_later_hours_of_sleep.this, setLaterHM.class);
+        startActivity(intent);
     }
 }

@@ -146,4 +146,12 @@ public class set_now_pulse_rate extends AppCompatActivity {
 
         }
     }
+    public void nowpulse_To_hm(View view) {
+        Intent intent = new Intent(set_now_pulse_rate.this, health_measurements.class);
+        startActivity(intent);
+    }
+    public void nowpulse_To_hm1(View view) {
+        Intent intent = new Intent(set_now_pulse_rate.this, health_measurements.class);
+        startActivity(intent);
+    }
 }

@@ -55,6 +55,7 @@
         android:layout_width="64dp"
         android:layout_height="68dp"
         android:backgroundTint="#E73927"
+        android:onClick="edmed_To_home"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/backarrow" />

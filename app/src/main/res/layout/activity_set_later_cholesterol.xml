@@ -59,7 +59,7 @@
         android:layout_width="64dp"
         android:layout_height="68dp"
         android:backgroundTint="#E73927"
-        android:onClick="Bloodpressure_To_Health"
+        android:onClick="laterchol_To_lhm"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/backarrow" />
@@ -179,6 +179,7 @@
         android:background="@drawable/editttextcancel"
         android:fontFamily="@font/viga"
         android:text="Cancel"
+        android:onClick="laterchol_To_lhm"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#000000"
         android:textSize="22sp"

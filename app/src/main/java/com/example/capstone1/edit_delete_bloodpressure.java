@@ -292,4 +292,8 @@ public class edit_delete_bloodpressure extends AppCompatActivity implements Time
             return null ;
         }
     }
+    public void edbp_To_home(View view) {
+        Intent intent = new Intent(edit_delete_bloodpressure.this, home_page.class);
+        startActivity(intent);
+    }
 }

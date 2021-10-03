@@ -149,4 +149,12 @@ public class set_now_temperature extends AppCompatActivity {
 
         }
     }
+    public void nowtemp_To_hm(View view) {
+        Intent intent = new Intent(set_now_temperature.this, health_measurements.class);
+        startActivity(intent);
+    }
+    public void nowtemp_To_hm1(View view) {
+        Intent intent = new Intent(set_now_temperature.this, health_measurements.class);
+        startActivity(intent);
+    }
 }

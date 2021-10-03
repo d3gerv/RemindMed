@@ -151,4 +151,12 @@ public class set_now_blood_sugar extends AppCompatActivity {
 
         }
     }
+    public void nowbs_To_hm(View view) {
+        Intent intent = new Intent(set_now_blood_sugar.this, health_measurements.class);
+        startActivity(intent);
+    }
+    public void nowbs_To_hm1(View view) {
+        Intent intent = new Intent(set_now_blood_sugar.this, health_measurements.class);
+        startActivity(intent);
+    }
 }

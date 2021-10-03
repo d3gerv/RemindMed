@@ -9,6 +9,7 @@ import androidx.fragment.app.DialogFragment;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -204,5 +205,9 @@ public class set_later_blood_sugar extends AppCompatActivity implements TimePick
         } catch (ParseException e){
             return null ;
         }
+    }
+    public void laterbs_To_lhm(View view) {
+        Intent intent = new Intent(set_later_blood_sugar.this, setLaterHM.class);
+        startActivity(intent);
     }
 }

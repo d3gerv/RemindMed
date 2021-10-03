@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -89,6 +90,10 @@ public class edit_delete_pulserate extends AppCompatActivity {
                 timePickerDialog.show();
             }
         });
+    }
+    public void edpulse_To_home(View view) {
+        Intent intent = new Intent(edit_delete_pulserate.this, home_page.class);
+        startActivity(intent);
     }
 
 }

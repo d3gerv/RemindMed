@@ -39,5 +39,21 @@ public class setLaterHM extends AppCompatActivity {
         Intent intent = new Intent(setLaterHM.this, set_later_temperature.class);
         startActivity(intent);
     }
+    public void laterhm_To_home(View view) {
+        Intent intent = new Intent(setLaterHM.this, home_page.class);
+        startActivity(intent);
+    }
+    public void laterhm_To_today(View view) {
+        Intent intent = new Intent(setLaterHM.this, today_page_recycler.class);
+        startActivity(intent);
+    }
+    public void laterhm_To_history(View view) {
+        Intent intent = new Intent(setLaterHM.this, history_page.class);
+        startActivity(intent);
+    }
+    public void laterhm_To_user(View view) {
+        Intent intent = new Intent(setLaterHM.this, user_information.class);
+        startActivity(intent);
+    }
 
 }

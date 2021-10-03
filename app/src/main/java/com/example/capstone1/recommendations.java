@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -99,5 +100,9 @@ public class recommendations extends AppCompatActivity {
             HmName = getIntent().getStringExtra("description");
 
         }
+    }
+    public void Recommendations_To_Home(View view) {
+        Intent intent = new Intent(recommendations.this, home_page.class);
+        startActivity(intent);
     }
 }

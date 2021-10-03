@@ -287,4 +287,8 @@ public class edit_delete_hours_of_sleep extends AppCompatActivity implements Tim
             return null ;
         }
     }
+    public void edsleep_To_home(View view) {
+        Intent intent = new Intent(edit_delete_hours_of_sleep.this, home_page.class);
+        startActivity(intent);
+    }
 }

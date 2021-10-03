@@ -285,5 +285,9 @@ public class edit_delete_bloodsugar extends AppCompatActivity implements TimePic
             return null ;
         }
     }
+    public void edbs_To_home(View view) {
+        Intent intent = new Intent(edit_delete_bloodsugar.this, home_page.class);
+        startActivity(intent);
+    }
 
 }

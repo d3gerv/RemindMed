@@ -24,7 +24,7 @@
         android:layout_width="64dp"
         android:layout_height="68dp"
         android:backgroundTint="#E73927"
-
+        android:onClick="edsleep_To_home"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/backarrow" />
@@ -197,6 +197,7 @@
         android:background="@drawable/editttextcancel"
         android:fontFamily="@font/viga"
         android:text="Cancel"
+        android:onClick="edsleep_To_home"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#000000"
         android:textSize="22sp"

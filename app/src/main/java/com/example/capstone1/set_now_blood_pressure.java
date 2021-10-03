@@ -201,5 +201,13 @@ public class set_now_blood_pressure extends AppCompatActivity implements fragmen
         pulseInt = pulse;
 
     }
+    public void nowbp_To_hm(View view) {
+        Intent intent = new Intent(set_now_blood_pressure.this, health_measurements.class);
+        startActivity(intent);
+    }
+    public void nowbp_To_hm1(View view) {
+        Intent intent = new Intent(set_now_blood_pressure.this, health_measurements.class);
+        startActivity(intent);
+    }
 
 }

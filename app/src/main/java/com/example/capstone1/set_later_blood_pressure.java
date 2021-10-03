@@ -269,4 +269,8 @@ public class set_later_blood_pressure extends AppCompatActivity implements TimeP
         int alarmID = new Random().nextInt(Integer.MAX_VALUE);
 
     }
+    public void laterbp_To_lhm(View view) {
+        Intent intent = new Intent(set_later_blood_pressure.this, setLaterHM.class);
+        startActivity(intent);
+    }
 }

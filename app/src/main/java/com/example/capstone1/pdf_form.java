@@ -2,6 +2,7 @@ package com.example.capstone1;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -202,6 +203,9 @@ public class pdf_form extends AppCompatActivity {
         // close the document
         document.close();
     }
-
+    public void pdf_To_hhm(View view) {
+        Intent intent = new Intent(pdf_form.this, history_for_measurements.class);
+        startActivity(intent);
+    }
 
 }

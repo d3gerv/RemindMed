@@ -239,6 +239,9 @@ public class edit_delete_medications extends AppCompatActivity {
             return null ;
         }
     }
-
+    public void edmed_To_home(View view) {
+        Intent intent = new Intent(edit_delete_medications.this, home_page.class);
+        startActivity(intent);
+    }
 
 }

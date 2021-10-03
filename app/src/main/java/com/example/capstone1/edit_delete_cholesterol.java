@@ -285,4 +285,8 @@ public class edit_delete_cholesterol extends AppCompatActivity implements TimePi
             return null ;
         }
     }
+    public void edchol_To_home(View view) {
+        Intent intent = new Intent(edit_delete_cholesterol.this, home_page.class);
+        startActivity(intent);
+    }
 }

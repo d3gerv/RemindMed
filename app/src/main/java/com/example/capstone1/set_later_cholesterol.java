@@ -5,6 +5,7 @@ import static com.example.capstone1.user_information.TAG;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -207,6 +208,10 @@ public class set_later_cholesterol extends AppCompatActivity implements TimePick
         } catch (ParseException e){
             return null ;
         }
+    }
+    public void laterchol_To_lhm(View view) {
+        Intent intent = new Intent(set_later_cholesterol.this, setLaterHM.class);
+        startActivity(intent);
     }
 
 
