@@ -34,6 +34,10 @@ public class setLaterHM extends AppCompatActivity {
         Intent intent = new Intent(setLaterHM.this, set_later_hours_of_sleep.class);
         startActivity(intent);
     }
+    public void later_to_pulse (View view){
+        Intent intent = new Intent(setLaterHM.this, set_later_pulse_rate.class);
+        startActivity(intent);
+    }
 
     public void later_to_Temp (View view){
         Intent intent = new Intent(setLaterHM.this, set_later_temperature.class);
