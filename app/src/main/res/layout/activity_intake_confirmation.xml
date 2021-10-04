@@ -171,7 +171,7 @@
     </androidx.cardview.widget.CardView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton2"
+        android:id="@+id/ttsButton"
         android:layout_width="52dp"
         android:layout_height="42dp"
         android:layout_marginStart="13dp"

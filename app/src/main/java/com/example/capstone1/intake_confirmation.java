@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.speech.tts.TextToSpeech;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -25,6 +26,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -42,14 +44,17 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class intake_confirmation extends AppCompatActivity {
     TextView medName, medAmount, dateTakentxt;
-    String title, amount, time, date, enddate, dosage, userId;
+    String title, amount, time, date, enddate, dosage, userId, text;
     Date myDate;
     static final SimpleDateFormat dateFormat = new SimpleDateFormat("M/d/yyyy");
+    TextToSpeech textToSpeech;
     Button confirm, skip;
+    FloatingActionButton tts;
     FirebaseFirestore db;
     FirebaseAuth rootAuthen;
     FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -70,6 +75,7 @@ public class intake_confirmation extends AppCompatActivity {
         dateTakentxt = findViewById(R.id.dateTaken);
         rootAuthen = FirebaseAuth.getInstance();
         userId = rootAuthen.getCurrentUser().getUid();
+        tts = findViewById(R.id.ttsButton);
 
 
         getData();
@@ -82,6 +88,37 @@ public class intake_confirmation extends AppCompatActivity {
             manager.createNotificationChannel(channel);
 
         }
+
+        textToSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status == TextToSpeech.SUCCESS)
+                {
+                    int result = textToSpeech.setLanguage(Locale.US);
+
+                    if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED)
+                    {
+                        Log.e("TTS", "Language not supported");
+                    }
+                    else
+                    {
+                        tts.setEnabled(true);
+                    }
+                }
+                else
+                {
+                    Log.e("TTS", "Iniitialization failed");
+                }
+            }
+        });
+
+        tts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                text = "The medication you are taking is " + title;
+                speak();
+            }
+        });
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -264,7 +301,11 @@ public class intake_confirmation extends AppCompatActivity {
                         Log.d(TAG, "onSuccess: failed");
                     }
                 });
+    }
 
+    private void speak() {
+
+        textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null);
 
     }
 }

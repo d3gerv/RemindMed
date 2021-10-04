@@ -92,12 +92,12 @@ public class home_page extends AppCompatActivity {
             public void onClick(View v) {
                 if (layout == 0) {
                     recyclerGone();
-
                 }
                 else if(layout == 1)
                 {
                     recyclerVisible();
                     recyclerView.setAdapter(myAdapter);
+                    switchMeasurement.setText("Measurements");
 
                 }
             }
@@ -116,10 +116,13 @@ public class home_page extends AppCompatActivity {
                 if(recyclerlayout == 1)
                 {
                     switchRecyclerMeasurement();
+                    switchMeasurement.setText("Medication");
                 }
                 else
                 {
                     switchRecyclerMedication();
+                    switchMeasurement.setText("Measurements");
+
 
                 }
             }
@@ -229,6 +232,7 @@ public class home_page extends AppCompatActivity {
         changeLayout.setVisibility(View.VISIBLE);
         addMed.setVisibility(View.VISIBLE);
         addHM.setVisibility(View.VISIBLE);
+
         layout = 1 ;
         recyclerlayout = 1;
     }
@@ -248,7 +252,6 @@ public class home_page extends AppCompatActivity {
         recyclerView.setVisibility(View.GONE);
         recyclerviewMeasurement.setVisibility(View.VISIBLE);
         recyclerlayout = 0;
-
     }
 
     private void switchRecyclerMedication()

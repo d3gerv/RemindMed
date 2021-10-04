@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -38,9 +39,9 @@ import java.util.List;
 import java.util.Locale;
 
 public class edit_delete_medications extends AppCompatActivity {
-    EditText medName, medInventory;
+    EditText medName, medInventory, dosageBoxET;
     static final SimpleDateFormat format = new SimpleDateFormat("M/d/yyyy");
-    String title, amount, time,  strDate, strEnd;
+    String title, amount, time,  strDate, strEnd, frequencyDB, medTypeDB, dosage;
     Date startdate, enddate;
 
     Button timeButtonEdit, dateFormat, delete, change, enddatebutton;
@@ -61,7 +62,7 @@ public class edit_delete_medications extends AppCompatActivity {
         change = findViewById(R.id.save_changes);
         dateFormat = findViewById(R.id.startButton_oneM);
         enddatebutton = findViewById(R.id.endButton_oneM);
-
+        dosageBoxET = findViewById(R.id.DosageBox);
         medName = findViewById(R.id.medicine_Box);
         medInventory = findViewById(R.id.inventoryBox);
         final Calendar calendar = Calendar.getInstance();
@@ -76,10 +77,15 @@ public class edit_delete_medications extends AppCompatActivity {
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mySpinner.setAdapter(myAdapter);
 
+
         ArrayAdapter<String> myAdapter2 = new ArrayAdapter<String>(edit_delete_medications.this,
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.frequency));
         myAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mySpinnertwo.setAdapter(myAdapter2);
+
+
+
+
         timeButtonEdit = findViewById(R.id.timeButton_edit);
         timeButtonEdit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,6 +119,22 @@ public class edit_delete_medications extends AppCompatActivity {
 
         getData();
         setData();
+
+        if(frequencyDB!=null)
+        {
+            int pos = myAdapter2.getPosition(frequencyDB);
+            mySpinnertwo.setSelection(pos);
+        }
+
+        if(medTypeDB!=null)
+        {
+            int pos = myAdapter.getPosition(medTypeDB);
+            mySpinner.setSelection(pos);
+        }
+        Log.d("helo", "frequency " + frequencyDB);
+        Log.d("helo", "frequency " + medTypeDB);
+
+
 
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -155,6 +177,10 @@ public class edit_delete_medications extends AppCompatActivity {
             time = getIntent().getStringExtra("time");
             strDate = getIntent().getStringExtra("startdate");
             strEnd = getIntent().getStringExtra("enddate");
+            frequencyDB = getIntent().getStringExtra("FrequencyTitle");
+            medTypeDB = getIntent().getStringExtra("MedicineTitle");
+            dosage = getIntent().getStringExtra("dosage");
+
 
         }else{
             Toast.makeText(this, "No Data", Toast.LENGTH_SHORT).show();
@@ -193,8 +219,10 @@ public class edit_delete_medications extends AppCompatActivity {
     {
         medName.setText(title);
         dateFormat.setText(strDate);
+        enddatebutton.setText(strEnd);
         medInventory.setText(amount);
         timeButtonEdit.setText(time);
+        dosageBoxET.setText(dosage);
     }
     private void deleteMedication() {
         db.collection("users").document(currentFirebaseUser.getUid()).collection("New Medications").document(medication_info.getId()).delete()

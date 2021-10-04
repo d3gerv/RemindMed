@@ -8,7 +8,7 @@ import java.sql.Time;
 import java.util.Date;
 
 public class medication_info implements Serializable {
-    String Medication, InventoryMeds, Dosage, Time;
+    String Medication, InventoryMeds, Dosage, Time, FrequencyName, MedicineTypeName;
     Date StartDate, EndDate;
     int MedicineType, Frequency, PillStatic;
     @Exclude  private String id;
@@ -104,5 +104,21 @@ public class medication_info implements Serializable {
 
     public void setPillStatic(int pillStatic) {
         PillStatic = pillStatic;
+    }
+
+    public String getFrequencyName() {
+        return FrequencyName;
+    }
+
+    public void setFrequencyName(String frequencyName) {
+        FrequencyName = frequencyName;
+    }
+
+    public String getMedicineTypeName() {
+        return MedicineTypeName;
+    }
+
+    public void setMedicineTypeName(String medicineTypeName) {
+        MedicineTypeName = medicineTypeName;
     }
 }

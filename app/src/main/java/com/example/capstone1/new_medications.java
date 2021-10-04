@@ -53,7 +53,7 @@ import java.util.Locale;
 import java.util.Map;
 
 public class new_medications extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
-    EditText medication, dosage, inventory;
+    EditText  dosage, inventory;
     Button buttonsavemedication;
     FirebaseAuth rootAuthen;
     FirebaseFirestore fstore;
@@ -70,6 +70,7 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
     int hour, minute;
     int year, month, day, choice, typechoice, frequencychoide;
     String dateToday = String.valueOf(android.text.format.DateFormat.format("M/dd/yyyy", new java.util.Date()));
+    static EditText medication;
 
 
 
@@ -165,6 +166,8 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
 
                 String Medication = medication.getText().toString().trim();
                 String Dosage = dosage.getText().toString();
+                String frequencyName = spinnerfrequencymedication.getSelectedItem().toString();
+                String medicationTypeName = spinnertypeunit.getSelectedItem().toString();
                 String Inventory = inventory.getText().toString().trim();
                 String Time = timeButtonmedtst.getText().toString().trim();
                 String StartDate =  dateButton.getText().toString().trim();
@@ -177,7 +180,9 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
                 user.put("StartDate", getDateFromString(StartDate));
                 user.put("EndDate", getDateFromString(EndDate));
                 user.put("MedicineType", typechoice);
+                user.put("MedicineTypeName", medicationTypeName );
                 user.put("Frequency", frequencychoide);
+                user.put("FrequencyName", frequencyName);
                 user.put("PillStatic", Integer.parseInt(Inventory));
                 startAlarm(c);
 

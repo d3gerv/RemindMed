@@ -2,9 +2,12 @@ package com.example.capstone1;
 
 import static com.example.capstone1.user_information.TAG;
 
+import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,20 +33,25 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 public class set_later_cholesterol extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
     int choice, frequencychoide;
     private Button dateButton, endDateButton, timeButtonBPLater, saveCholbutton;
     final int start = 1;
     final int end = 2;
+    int id ;
     private DatePickerDialog datePickerDialog;
     String userId, startdate;
+    int alarmYear, alarmMonth, alarmDay,alarmHour,alarmMin;
     Calendar calendar = Calendar.getInstance();
     Calendar c;
+    Calendar myAlarmDate = Calendar.getInstance();
     Spinner frequencyBP;
     FirebaseAuth rootAuthen;
     FirebaseFirestore fstore;
@@ -121,6 +129,7 @@ public class set_later_cholesterol extends AppCompatActivity implements TimePick
                 String EndDate = endDateButton.getText().toString().trim();
                 String frequencyName = frequencyBP.getSelectedItem().toString();
                 Map<String, Object> user = new HashMap<>();
+                startAlarm(myAlarmDate);
                 user.put("HMName", "Cholesterol");
                 user.put("Time", Time);
                 user.put("StartDate", getDateFromString(StartDate));
@@ -144,6 +153,20 @@ public class set_later_cholesterol extends AppCompatActivity implements TimePick
                         });
             }
         });
+    }
+
+    private void startAlarm(Calendar c)
+    {
+
+        myAlarmDate.setTimeInMillis(System.currentTimeMillis());
+        myAlarmDate.set(alarmYear, alarmMonth, alarmDay, alarmHour, alarmMin);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        ArrayList<PendingIntent> intentArray = new ArrayList<PendingIntent>();
+        Intent intent = new Intent(this, alarmreceiver.class);
+        id = new Random().nextInt(1000000);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, id, intent, 0);
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
+        intentArray.add(pendingIntent);
     }
 
 

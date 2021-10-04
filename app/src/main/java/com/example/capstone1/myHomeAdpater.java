@@ -49,6 +49,9 @@ public class myHomeAdpater extends RecyclerView.Adapter<myHomeAdpater.MyViewHold
                 intent.putExtra("startdate", strDate);
                 intent.putExtra("time", medication_info.Time);
                 intent.putExtra("enddate", strEndDate);
+                intent.putExtra("dosage", medication_info.Dosage);
+                intent.putExtra("FrequencyTitle", medication_info.FrequencyName);
+                intent.putExtra("MedicineTitle", medication_info.MedicineTypeName);
                 intent.putExtra("medication_info", medication_info);
                 context.startActivity(intent);
             }

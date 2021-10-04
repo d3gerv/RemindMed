@@ -30,8 +30,8 @@
 
     <string-array name="frequency">
         <item>Choose one</item>
-        <item>Days</item>
-        <item>Weeks</item>
+        <item>Daily</item>
+        <item>Weekly</item>
     </string-array>
 
     <string-array name="gender">

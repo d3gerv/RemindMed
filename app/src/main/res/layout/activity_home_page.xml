@@ -278,7 +278,6 @@
         android:id="@+id/changeLayout"
         android:layout_width="168dp"
         android:layout_height="55dp"
-        android:layout_marginTop="31dp"
         android:background="@drawable/edit_round2"
         android:fontFamily="@font/viga"
         android:text="Edit/Delete"
@@ -289,31 +288,29 @@
         app:layout_constraintBottom_toBottomOf="@+id/view5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_measurements_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewHome" />
 
     <Button
         android:id="@+id/changeLayout2"
         android:layout_width="168dp"
         android:layout_height="55dp"
-        android:layout_marginTop="31dp"
         android:background="@drawable/edit_round2"
         android:fontFamily="@font/viga"
-        android:text="Edit/Delete"
-        android:visibility="invisible"
+        android:text="Add"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#000000"
         android:textSize="22sp"
         android:textStyle="bold"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/view5"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintStart_toStartOf="@+id/guideline54"
-        app:layout_constraintTop_toBottomOf="@+id/add_measurements_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewHome" />
 
     <Button
         android:id="@+id/switchMeasurement"
         android:layout_width="168dp"
         android:layout_height="55dp"
-        android:layout_marginTop="31dp"
         android:background="@drawable/edit_round2"
         android:fontFamily="@font/viga"
         android:text="Measurements"
@@ -324,8 +321,9 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/view5"
         app:layout_constraintEnd_toStartOf="@+id/guideline53"
+        app:layout_constraintHorizontal_bias="0.44"
         app:layout_constraintStart_toStartOf="@+id/guideline7"
-        app:layout_constraintTop_toBottomOf="@+id/add_measurements_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewHome" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline53"

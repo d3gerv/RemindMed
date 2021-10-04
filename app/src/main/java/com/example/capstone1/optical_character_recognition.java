@@ -33,12 +33,13 @@ import java.io.File;
 import java.io.IOException;
 
 public class optical_character_recognition extends AppCompatActivity {
-    Button captureImage;
+    Button captureImage, saveText;
     ImageView viewImage;
     Uri imageUri;
     String currentPhotoPath;
     int REQUEST_IMAGE_CAPTURE = 1;
     int REQUEST_IMAGE_COUNT = 3;
+    TextView displayText;
 
 
     @Override
@@ -47,6 +48,8 @@ public class optical_character_recognition extends AppCompatActivity {
         setContentView(R.layout.activity_optical_character_recognition);
 
         captureImage = (Button) findViewById(R.id.captureButton);
+        saveText = (Button) findViewById(R.id.buttonTxttoEditTxt);
+
         captureImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,6 +70,15 @@ public class optical_character_recognition extends AppCompatActivity {
             }
         });
 
+        saveText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new_medications.medication.setText(displayText.getText().toString());
+                finish();
+            }
+        });
+
+
 
     }
 
@@ -74,7 +86,7 @@ public class optical_character_recognition extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         int rotationDegree = 0;
-        final TextView displayText = (TextView) findViewById(R.id.medNameTV);
+        displayText = (TextView) findViewById(R.id.medNameTV);
         if (resultCode == RESULT_OK) {
             if (requestCode == REQUEST_IMAGE_CAPTURE) {
                 CropImage.activity(imageUri).setGuidelines(CropImageView.Guidelines.ON).start(this);

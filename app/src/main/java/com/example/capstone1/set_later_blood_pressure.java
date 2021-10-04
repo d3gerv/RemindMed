@@ -146,6 +146,7 @@ public class set_later_blood_pressure extends AppCompatActivity implements TimeP
                 user.put("EndDate", getDateFromString(EndDate));
                 user.put("Frequency", frequencychoide);
                 user.put("FrequencyTitle", frequencyName);
+                user.put("idCode", id);
                 Log.d(TAG, "onSuccess:" + alarmYear + " " + alarmMonth + " " + alarmDay + " " + alarmHour + " " + alarmMin);
 
                 fstore.collection("users").document(userId).collection("Health Measurement Alarm")
@@ -175,7 +176,7 @@ public class set_later_blood_pressure extends AppCompatActivity implements TimeP
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         ArrayList<PendingIntent> intentArray = new ArrayList<PendingIntent>();
         Intent intent = new Intent(this, alarmreceiver.class);
-        id = (int) System.currentTimeMillis();
+        id = new Random().nextInt(1000000);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, id, intent, 0);
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
         intentArray.add(pendingIntent);
@@ -203,9 +204,6 @@ public class set_later_blood_pressure extends AppCompatActivity implements TimeP
                 {
                     String enddate = makeDateString(day, month, year);
                     endDateButton.setText(enddate);
-                    alarmYear = year;
-                    alarmMonth = month-1;
-                    alarmDay = day;
 
 
                 }
