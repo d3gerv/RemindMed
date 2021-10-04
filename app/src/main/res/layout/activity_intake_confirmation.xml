@@ -114,13 +114,14 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
-        android:layout_width="115dp"
-        android:layout_height="53dp"
+        android:layout_width="126dp"
+        android:layout_height="55dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         app:cardBackgroundColor="#FDCB00"
+        app:cardCornerRadius="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/time_txt1" >
+        app:layout_constraintTop_toBottomOf="@+id/time_txt1">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -147,7 +148,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="13dp"
         app:cardBackgroundColor="#FDCB00"
-        app:cardCornerRadius="2dp"
+        app:cardCornerRadius="20dp"
         app:layout_constraintBottom_toTopOf="@+id/view6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/medNameConfirmTv">
