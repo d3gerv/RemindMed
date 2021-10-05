@@ -43,7 +43,6 @@ public class myHomeAdpater extends RecyclerView.Adapter<myHomeAdpater.MyViewHold
                 medication_info medication_info = userArrayList.get(position);
                 String strDate = dateFormat.format(medication_info.StartDate);
                 String strEndDate = dateFormat.format(medication_info.EndDate);
-
                 intent.putExtra("description", medication_info.Medication);
                 intent.putExtra("pill", medication_info.InventoryMeds);
                 intent.putExtra("startdate", strDate);

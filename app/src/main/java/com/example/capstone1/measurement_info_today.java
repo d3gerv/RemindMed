@@ -8,7 +8,7 @@ import java.util.Date;
 public class  measurement_info_today implements Serializable{
     String HMName, Time, FrequencyTitle;
     Date StartDate, EndDate;
-    int  Frequency;
+    int  Frequency, idCode;
     @Exclude
     private String id;
 
@@ -82,5 +82,13 @@ public class  measurement_info_today implements Serializable{
 
     public void setFrequencyTitle(String frequencyTitle) {
         FrequencyTitle = frequencyTitle;
+    }
+
+    public int getIdCode() {
+        return idCode;
+    }
+
+    public void setIdCode(int idCode) {
+        this.idCode = idCode;
     }
 }
