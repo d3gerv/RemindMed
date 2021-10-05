@@ -308,6 +308,10 @@ public class intake_confirmation extends AppCompatActivity {
         textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null);
 
     }
+    public void intake_To_Today(View view) {
+        Intent intent = new Intent(intake_confirmation.this, today_page_recycler.class);
+        startActivity(intent);
+    }
 }
 
 class DateUtil
