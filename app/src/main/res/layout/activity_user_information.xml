@@ -190,6 +190,24 @@
         app:layout_constraintTop_toBottomOf="@+id/btnSave" />
 
     <Button
+        android:id="@+id/btnDeleteAcc"
+        android:layout_width="247dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="19dp"
+        android:background="@drawable/edit_round"
+        android:fontFamily="@font/viga"
+
+        android:text="Delete Account"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#FFFFFF"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnLogout" />
+
+
+    <Button
         android:id="@+id/btnSave"
         android:layout_width="247dp"
         android:layout_height="49dp"

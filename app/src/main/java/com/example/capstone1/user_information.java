@@ -2,8 +2,10 @@ package com.example.capstone1;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -40,7 +42,7 @@ import android.widget.Spinner;
 public class user_information extends AppCompatActivity {
     public static final String TAG = "TAG";
     EditText gender, birthyr, height, weight;
-    Button buttonSave, buttonLogout;
+    Button buttonSave, buttonLogout, buttonDeleteAcc;
     TextView email, firstname, lastname;
     FirebaseAuth rootAuthen;
     FirebaseFirestore fstore;
@@ -64,6 +66,7 @@ public class user_information extends AppCompatActivity {
         weight = findViewById(R.id.editTextweight);
         buttonSave = findViewById(R.id.btnSave);
         buttonLogout = findViewById(R.id.btnLogout);
+        buttonDeleteAcc = findViewById(R.id.btnDeleteAcc);
 
         rootAuthen = FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
@@ -130,6 +133,47 @@ public class user_information extends AppCompatActivity {
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
+            }
+        });
+
+        //delete account
+        buttonDeleteAcc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder dialog = new AlertDialog.Builder(user_information.this);
+                dialog.setTitle("Are you sure?");
+                dialog.setMessage("Deleting this account will permanently remove your account from the system");
+                dialog.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        firebaseUser.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if(task.isSuccessful()){
+                                    Toast.makeText(user_information.this,"Account Deleted", Toast.LENGTH_LONG).show();
+
+                                    Intent intent = new Intent(user_information.this, main_page.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(intent);
+                                }
+                                else{
+                                    Toast.makeText(user_information.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+
+                                }
+                            }
+                        });
+                    }
+                });
+
+                dialog.setNegativeButton("Dismiss", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                AlertDialog alertDialog = dialog.create();
+                alertDialog.show();
             }
         });
     }

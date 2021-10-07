@@ -179,7 +179,9 @@
         <entry key="..\:/Users/gabri/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_health_measurements.xml" value="0.16485507246376813" />
         <entry key="..\:/Users/gabri/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_history_for_measurements.xml" value="0.16485507246376813" />
         <entry key="..\:/Users/gabri/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_history_page.xml" value="0.16485507246376813" />
+        <entry key="..\:/Users/gabri/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_home_page.xml" value="0.16304347826086957" />
         <entry key="..\:/Users/gabri/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_intake_confirmation.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/gabri/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_optical_character_recognition.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/gabri/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_pdf_form.xml" value="0.16485507246376813" />
         <entry key="..\:/Users/gabri/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_recommendations.xml" value="0.1897644927536232" />
         <entry key="..\:/Users/gabri/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_schedule_measurements.xml" value="0.1897644927536232" />
@@ -195,6 +197,8 @@
         <entry key="..\:/Users/gabri/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_set_now_hours_of_sleep.xml" value="0.1897644927536232" />
         <entry key="..\:/Users/gabri/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_set_now_pulse_rate.xml" value="0.1897644927536232" />
         <entry key="..\:/Users/gabri/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_set_now_temperature.xml" value="0.1897644927536232" />
+        <entry key="..\:/Users/gabri/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_today_page_recycler.xml" value="0.16304347826086957" />
+        <entry key="..\:/Users/gabri/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_user_information.xml" value="0.25" />
         <entry key="..\:/Users/gabri/AndroidStudioProjects/RemindMed/app/src/main/res/layout/recommendation_layout.xml" value="0.1897644927536232" />
       </map>
     </option>
