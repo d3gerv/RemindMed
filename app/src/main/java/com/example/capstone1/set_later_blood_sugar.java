@@ -150,6 +150,9 @@ public class set_later_blood_sugar extends AppCompatActivity implements TimePick
                                 Log.d(TAG, "onSuccess: failed");
                             }
                         });
+
+                startActivity(new Intent(set_later_blood_sugar.this, home_page.class));
+
             }
         });
     }

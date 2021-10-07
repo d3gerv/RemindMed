@@ -52,7 +52,7 @@ public class set_now_blood_sugar extends AppCompatActivity {
         SimpleDateFormat df = new SimpleDateFormat("M/dd/yyyy", Locale.getDefault());
         dateToday = df.format(c);
 
-        SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm aa");
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
         timeToday = timeFormat.format(c);
 
 
@@ -117,7 +117,12 @@ public class set_now_blood_sugar extends AppCompatActivity {
                     aBuilder.show();
 
 
+                }else{
+                    startActivity(new Intent(set_now_blood_sugar.this, home_page.class));
+
                 }
+
+
 
 
                 Log.d("Calendar", "Selected day change " + timeToday );

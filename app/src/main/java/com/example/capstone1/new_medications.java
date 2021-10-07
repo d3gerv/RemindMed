@@ -163,7 +163,7 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
         buttonsavemedication.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(new_medications.this, home_page.class);
                 String Medication = medication.getText().toString().trim();
                 String Dosage = dosage.getText().toString();
                 String frequencyName = spinnerfrequencymedication.getSelectedItem().toString();
@@ -236,8 +236,9 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
                             }
                         });
                 Log.d("class", "Hour and minute" + dateToday);
-
+                startActivity(intent);
             }
+
         });
     }
 

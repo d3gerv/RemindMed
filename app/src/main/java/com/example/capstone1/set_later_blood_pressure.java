@@ -132,7 +132,7 @@ public class set_later_blood_pressure extends AppCompatActivity implements TimeP
         saveBPbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(set_later_blood_pressure.this, home_page.class);
                 String Time = timeButtonBPLater.getText().toString().trim();
                 String StartDate =  dateButton.getText().toString().trim();
                 String EndDate = endDateButton.getText().toString().trim();
@@ -164,8 +164,7 @@ public class set_later_blood_pressure extends AppCompatActivity implements TimeP
                                 Log.d(TAG, "onSuccess: failed");
                             }
                         });
-                finish();
-
+                startActivity(intent);
             }
         });
     }
@@ -180,7 +179,7 @@ public class set_later_blood_pressure extends AppCompatActivity implements TimeP
         id = new Random().nextInt(1000000);
         i.putExtra("userID", id);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, id, intent, 0);
-        alarmManager.setExact(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), pendingIntent);
+        //alarmManager.setExact(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), pendingIntent);
       //  alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), 24*60*60*1000, pendingIntent);
     }
 

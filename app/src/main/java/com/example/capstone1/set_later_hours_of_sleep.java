@@ -151,6 +151,9 @@ public class set_later_hours_of_sleep extends AppCompatActivity implements TimeP
                                 Log.d(TAG, "onSuccess: failed");
                             }
                         });
+
+                startActivity(new Intent(set_later_hours_of_sleep.this, home_page.class));
+
             }
         });
     }
@@ -165,7 +168,7 @@ public class set_later_hours_of_sleep extends AppCompatActivity implements TimeP
         Intent intent = new Intent(this, alarmreceiver.class);
         id = new Random().nextInt(1000000);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, id, intent, 0);
-        alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
+        //alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
         intentArray.add(pendingIntent);
     }
 

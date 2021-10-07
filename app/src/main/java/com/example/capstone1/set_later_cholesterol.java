@@ -151,6 +151,8 @@ public class set_later_cholesterol extends AppCompatActivity implements TimePick
                                 Log.d(TAG, "onSuccess: failed");
                             }
                         });
+                startActivity(new Intent(set_later_cholesterol.this, home_page.class));
+
             }
         });
     }
@@ -165,7 +167,7 @@ public class set_later_cholesterol extends AppCompatActivity implements TimePick
         Intent intent = new Intent(this, alarmreceiver.class);
         id = new Random().nextInt(1000000);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, id, intent, 0);
-        alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
+       //alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
         intentArray.add(pendingIntent);
     }
 
