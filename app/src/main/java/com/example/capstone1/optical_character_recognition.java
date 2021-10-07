@@ -129,5 +129,9 @@ public class optical_character_recognition extends AppCompatActivity {
         }
 
         }
+    public void ocr_To_med(View view) {
+        Intent intent = new Intent(optical_character_recognition.this, new_medications.class);
+        startActivity(intent);
+    }
 
     }
