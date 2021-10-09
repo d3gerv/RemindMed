@@ -14,10 +14,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Calendar;
+
 
 public class alarm_notification extends AppCompatActivity {
     Button stopAlarm, snooze;
-
+    Calendar c = Calendar.getInstance();;
+    Calendar myAlarmDate = Calendar.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +30,7 @@ public class alarm_notification extends AppCompatActivity {
         snooze.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                snoozeAlarm();
             }
         });
         stopAlarm.setOnClickListener(new View.OnClickListener() {
@@ -38,16 +41,31 @@ public class alarm_notification extends AppCompatActivity {
         });
     }
 
-    private void stopAlarm()
+      private void stopAlarm()
     {
         Intent intent = new Intent(this, alarmreceiver.class);
         Intent intentpage = new Intent(this, today_page_recycler.class );
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-        //alarmManager.cancel(pendingIntent);
+        alarmManager.cancel(pendingIntent);
         Ringtone ringtone = alarmreceiver.ringtone;
         ringtone.stop();
         startActivity(intentpage);
     }
+
+    private void snoozeAlarm()
+    {
+        c.setTimeInMillis(System.currentTimeMillis());
+        c.add(Calendar.MINUTE, 5);
+        Intent intent = new Intent(this, alarmreceiver.class);
+        Intent intentpage = new Intent(this, today_page_recycler.class );
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
+        Ringtone ringtone = alarmreceiver.ringtone;
+        ringtone.stop();
+        startActivity(intentpage);
+    }
+
 
 }

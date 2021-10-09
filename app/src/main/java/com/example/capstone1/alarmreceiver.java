@@ -26,8 +26,7 @@ public class alarmreceiver extends BroadcastReceiver {
         mediaPlayer.start();
         Intent i = new Intent(context, alarm_notification.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, i , 0 );
-        ringtone = RingtoneManager.getRingtone(context, RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE));
-        ringtone.play();
+       ;
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         NotificationCompat.Builder builder =  new NotificationCompat.Builder(context, "MyApp")
                 .setSmallIcon(R.drawable.ic_launcher_background)
@@ -40,6 +39,8 @@ public class alarmreceiver extends BroadcastReceiver {
 
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(context);
         notificationManagerCompat.notify(123, builder.build());
+        ringtone = RingtoneManager.getRingtone(context, RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE));
+        ringtone.play();
         context.startActivity(i);
 
 

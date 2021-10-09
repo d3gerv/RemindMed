@@ -16,13 +16,16 @@ public class medication_info implements Serializable {
 
 
 
-    public medication_info(String Medication, String InventoryMeds, Date StartDate, String Time, Date EndDate )
+    public medication_info(String Medication, String InventoryMeds, Date StartDate,
+                           String Time, Date EndDate, String MedicineTypeMame, String FrequencyName )
     {
         this.Medication = Medication;
         this.InventoryMeds = InventoryMeds;
         this.StartDate = StartDate;
         this.Time = Time;
         this.EndDate = EndDate;
+        this.MedicineTypeName = MedicineTypeMame;
+        this.FrequencyName = FrequencyName;
         this.id = id;
     }
 

@@ -16,9 +16,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class MyMedicationAdapter extends RecyclerView.Adapter<MyMedicationAdapter.MyViewHolder> {
     Context context;
+    String dateToday, dateselectedString;
+    Date c = Calendar.getInstance().getTime();
     ArrayList<medication_info> userArrayList;
     private  static final int LAYOUT_ONE = 0;
     private static final int LAYOUT_TWO = 1;
@@ -64,6 +69,14 @@ public class MyMedicationAdapter extends RecyclerView.Adapter<MyMedicationAdapte
             holder.constraintLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.red1));
         }
 
+        SimpleDateFormat df = new SimpleDateFormat("M/dd/yyyy", Locale.getDefault());
+        dateToday = df.format(c);
+        dateselectedString = df.format(today_page_recycler.dateSelected);
+
+        if(dateselectedString.equals(dateToday))
+        {
+
+        }
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,9 +90,11 @@ public class MyMedicationAdapter extends RecyclerView.Adapter<MyMedicationAdapte
                 intent.putExtra("enddate", strEnd);
                 intent.putExtra("Dosage", medication_info.Dosage);
                 intent.putExtra("medication_info", medication_info);
+                intent.putExtra("frequency", medication_info.Frequency);
                 context.startActivity(intent);
             }
         });
+
     }
 
 

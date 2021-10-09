@@ -115,6 +115,31 @@ public class pdf_form extends AppCompatActivity {
         });
     }
 
+    private void showChoTable() {
+        FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        db.document("users/" + currentFirebaseUser.getUid()).collection("New Health Measurements").document("Cholesterol").collection("Cholesterol")
+                .orderBy("Time", Query.Direction.ASCENDING).addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                if (e != null) {
+                    if (progressDialog.isShowing())
+                        progressDialog.dismiss();
+                    Log.e("Firestore error", e.getMessage());
+                    return;
+                }
+                for (DocumentChange dc : queryDocumentSnapshots.getDocumentChanges()) {
+                    if (dc.getType() == DocumentChange.Type.ADDED) {
+                        myArrayList.add(dc.getDocument().toObject(measurment_info.class));
+                    }
+                    myAdapter.notifyDataSetChanged();
+                    if (progressDialog.isShowing()) {
+                        progressDialog.dismiss();
+                    }
+                }
+            }
+        });
+    }
+
     public Bitmap getScreenshotFromRecyclerView(RecyclerView view) {
         RecyclerView.Adapter adapter = view.getAdapter();
         Bitmap bigBitmap = null;

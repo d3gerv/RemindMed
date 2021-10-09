@@ -70,7 +70,6 @@ public class set_now_temperature extends AppCompatActivity {
                     user.put("Record",Record);
                     user.put("Date", startdate);
                     user.put("Time", time);
-
                 }
                 else
                 {

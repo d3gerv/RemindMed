@@ -179,7 +179,7 @@ public class set_later_blood_pressure extends AppCompatActivity implements TimeP
         id = new Random().nextInt(1000000);
         i.putExtra("userID", id);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, id, intent, 0);
-        //alarmManager.setExact(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), pendingIntent);
+         alarmManager.setExact(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), pendingIntent);
       //  alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), 24*60*60*1000, pendingIntent);
     }
 
@@ -205,7 +205,6 @@ public class set_later_blood_pressure extends AppCompatActivity implements TimeP
                 {
                     String enddate = makeDateString(day, month, year);
                     endDateButton.setText(enddate);
-
 
                 }
             }
@@ -262,12 +261,7 @@ public class set_later_blood_pressure extends AppCompatActivity implements TimeP
             return null ;
         }
     }
-    
-    private void scheduleAlarm()
-    {
-        int alarmID = new Random().nextInt(Integer.MAX_VALUE);
 
-    }
     public void laterbp_To_lhm(View view) {
         Intent intent = new Intent(set_later_blood_pressure.this, setLaterHM.class);
         startActivity(intent);

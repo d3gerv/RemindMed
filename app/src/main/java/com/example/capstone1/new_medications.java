@@ -218,9 +218,6 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
                     Toast.makeText(getApplicationContext(), "Please select End Date", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
-
-
                 fstore.collection("users").document(userId).collection("New Medications")
                         .add(user)
                         .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -264,7 +261,6 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
             notificationManager.createNotificationChannel(channel);
         }
     }
-
 
     private void initDatePicker()
     {
@@ -354,56 +350,3 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
     }
 }
 
-  /*  public void popTimePicker (View view) {
-        TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
-            @Override
-            public void onTimeSet(TimePicker timePicker, int i, int i1) {
-                hour = i;
-                minute = i1;
-                //String time = hour + ":" + minute;
-                timeButtonmedtst.setText(String.format(Locale.getDefault(), "%02d:%02d", hour, minute));
-            }
-        };
-
-        int style = AlertDialog.THEME_HOLO_DARK;
-
-        TimePickerDialog timePickerDialog = new TimePickerDialog(this, style, onTimeSetListener, hour, minute, false);
-        timePickerDialog.setTitle("Set Time");
-        timePickerDialog.show();
-        calendar = Calendar.getInstance();
-        Log.d("class", "Hour and minute" + calendar);
-        month = calendar.get(Calendar.MONTH);
-        calendar.set(Calendar.HOUR_OF_DAY, hour);
-        calendar.set(Calendar.MINUTE, minute);
-        calendar.set(Calendar.SECOND, 0);
-        calendar.set(Calendar.MILLISECOND, 0);
-    }
-
-    private void initDatePicker()
-    {
-        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener()
-        {
-            @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int day)
-            {
-                month+=1;
-                String date = makeDateString(day, month, year);
-                dateButton.setText(date);
-            }
-        };
-
-
-        datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
-        //datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
-
-
-    private String makeDateString(int day, int month, int year)
-    {
-        return month + "/" + day + "/" + year;
-    }
-
-    public void openDatePicker(View view)
-    {
-        datePickerDialog.show();
-    }
-}*/

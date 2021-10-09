@@ -51,12 +51,14 @@ public class intake_confirmation extends AppCompatActivity {
     TextView medName, medAmount, dateTakentxt;
     String title, amount, time, date, enddate, dosage, userId, text;
     Date myDate;
+    int freq;
     static final SimpleDateFormat dateFormat = new SimpleDateFormat("M/d/yyyy");
     TextToSpeech textToSpeech;
     Button confirm, skip;
     FloatingActionButton tts;
     FirebaseFirestore db;
     FirebaseAuth rootAuthen;
+    String frequency, medtype;
     FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
     private medication_info medication_info;
     private static final String TAG = "intake_confirmation";
@@ -119,11 +121,20 @@ public class intake_confirmation extends AppCompatActivity {
                 speak();
             }
         });
+
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 decrementMedication();
-                moveStartDate();
+                if (freq == 1)
+                {
+                    moveStartDate();
+
+                }
+                else if (freq == 2)
+                {
+                    moveStartDateWeek();
+                }
                 saveToHistory();
                 if(Integer.parseInt(medication_info.getInventoryMeds())  <= medication_info.getPillStatic()/2)
                 {
@@ -172,13 +183,18 @@ public class intake_confirmation extends AppCompatActivity {
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                medication_info m = new medication_info(title, amount, getDateFromString(date), time, getDateFromString(enddate));
+                medication_info m = new medication_info(title, amount, getDateFromString(date), time, getDateFromString(enddate), medtype, frequency);
                 String strDate = dateFormat.format(m.getStartDate());
                 myDate = getDateFromString(strDate);
                 //myDate = DateUtil.addDays(myDate, 1);
 
                 Log.d("class", "end " + enddate);
                 Log.d("class", "start " + date);
+                Log.d("class", "start " + freq);
+
+
+                Log.d("msg" , " text" + daysBetween(dateToCalendar(getDateFromString(date)), dateToCalendar(getDateFromString(enddate)) ));
+
             }
         });
 
@@ -192,6 +208,7 @@ public class intake_confirmation extends AppCompatActivity {
             date = getIntent().getStringExtra("startdate");
             enddate = getIntent().getStringExtra("enddate");
             dosage = getIntent().getStringExtra("Dosage");
+            freq = getIntent().getIntExtra("frequency", 0);
 
         } else {
             Toast.makeText(this, "No Data", Toast.LENGTH_SHORT).show();
@@ -201,7 +218,7 @@ public class intake_confirmation extends AppCompatActivity {
     private void setData() {
         medName.setText(title);
         medAmount.setText(amount);
-        dateTakentxt.setText(date);
+        dateTakentxt.setText(time);
 
     }
 
@@ -218,7 +235,7 @@ public class intake_confirmation extends AppCompatActivity {
             inv -= doseInt;
         }
         amount = Integer.toString(inv);
-        medication_info m = new medication_info(title, amount, getDateFromString(date), time, getDateFromString(enddate));
+        medication_info m = new medication_info(title, amount, getDateFromString(date), time, getDateFromString(enddate), medtype, frequency);
 
         db.collection("users").document(currentFirebaseUser.getUid()).collection("New Medications")
                 .document(medication_info.getId()).update("InventoryMeds", m.getInventoryMeds())
@@ -230,12 +247,53 @@ public class intake_confirmation extends AppCompatActivity {
                 });
     }
 
-    private void moveStartDate() {
+    private void moveStartDate(){
         getData();
         myDate = getDateFromString(date);
-        myDate = DateUtil.addDays(myDate, 1);
+        if (!date.equals(enddate))
+        {
+            myDate = DateUtil.addDays(myDate, 1);
+        }
 
-        medication_info m = new medication_info(title, amount, getDateFromString(date), time, getDateFromString(enddate));
+
+
+        medication_info m = new medication_info(title, amount, getDateFromString(date), time, getDateFromString(enddate), medtype, frequency);
+        if (date.equals(enddate)) {
+            db.collection("users").document(currentFirebaseUser.getUid()).collection("New Medications").document(medication_info.getId()).delete()
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(intake_confirmation.this, "Deleted Alarm", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
+
+        } else {
+            db.collection("users").document(currentFirebaseUser.getUid()).collection("New Medications")
+                    .document(medication_info.getId()).update("StartDate", myDate)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void avoid) {
+                            Toast.makeText(intake_confirmation.this, "Confirmed Intake", Toast.LENGTH_LONG).show();
+                        }
+                    });
+        }
+    }
+
+    private void moveStartDateWeek() {
+        getData();
+        myDate = getDateFromString(date);
+        if (!date.equals(enddate) && daysBetween(dateToCalendar(getDateFromString(date)), dateToCalendar(getDateFromString(enddate))) > 7)
+        {
+            myDate = DateUtil.addDays(myDate, 7);
+        }
+        else
+        {
+            myDate = getDateFromString(enddate);
+        }
+
+        medication_info m = new medication_info(title, amount, getDateFromString(date), time, getDateFromString(enddate), medtype, frequency);
         if (date.equals(enddate)) {
             db.collection("users").document(currentFirebaseUser.getUid()).collection("New Medications").document(medication_info.getId()).delete()
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -315,15 +373,34 @@ public class intake_confirmation extends AppCompatActivity {
         Intent intent = new Intent(intake_confirmation.this, today_page_recycler.class);
         startActivity(intent);
     }
+
+    public static long daysBetween(Calendar startDate, Calendar endDate) {
+        Calendar date = (Calendar) startDate.clone();
+        long daysBetween = 0;
+        while (date.before(endDate)) {
+            date.add(Calendar.DAY_OF_MONTH, 1);
+            daysBetween++;
+        }
+        return daysBetween;
+    }
+
+    private Calendar dateToCalendar(Date date) {
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        return calendar;
+
+    }
+
 }
 
-class DateUtil
-{
-    public static Date addDays(Date date, int days)
-    {
+class DateUtil {
+    public static Date addDays(Date date, int days) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         cal.add(Calendar.DATE, days); //minus number would decrement the days
         return cal.getTime();
     }
 }
+
+

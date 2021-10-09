@@ -66,14 +66,14 @@
 
     <CalendarView
         android:id="@+id/calendarViewTD"
-        android:layout_width="371dp"
-        android:layout_height="305dp"
+        android:layout_width="365dp"
+        android:layout_height="338dp"
         android:layout_marginStart="27dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/bg_calendar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.435"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 

@@ -9,6 +9,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -47,8 +48,9 @@ public class edit_delete_medications extends AppCompatActivity {
     Button timeButtonEdit, dateFormat, delete, change, enddatebutton;
     FirebaseFirestore db;
     private DatePickerDialog datePickerDialog;
-    int hour, minute;
+    int hour, minute, typechoice, frequencychoide;
     int year, month, day;
+    Spinner mySpinnerfrequency, mySpinnertype;
     FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
     private medication_info  medication_info;
 
@@ -69,22 +71,43 @@ public class edit_delete_medications extends AppCompatActivity {
         initDatePicker();
 
         //added spinner
-        Spinner mySpinner = (Spinner) findViewById(R.id.type_spinner_two);
-        Spinner mySpinnertwo = (Spinner) findViewById(R.id.frequency_spinner_two);
+         mySpinnertype = (Spinner) findViewById(R.id.type_spinner_two);
+         mySpinnerfrequency = (Spinner) findViewById(R.id.frequency_spinner_two);
 
         ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(edit_delete_medications.this,
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.type));
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mySpinner.setAdapter(myAdapter);
+        mySpinnertype.setAdapter(myAdapter);
 
 
         ArrayAdapter<String> myAdapter2 = new ArrayAdapter<String>(edit_delete_medications.this,
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.frequency));
         myAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mySpinnertwo.setAdapter(myAdapter2);
+        mySpinnerfrequency.setAdapter(myAdapter2);
 
+        mySpinnertype.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                typechoice = position;
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
+            }
+        });
+
+        mySpinnerfrequency.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                frequencychoide = position;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         timeButtonEdit = findViewById(R.id.timeButton_edit);
         timeButtonEdit.setOnClickListener(new View.OnClickListener() {
@@ -123,18 +146,14 @@ public class edit_delete_medications extends AppCompatActivity {
         if(frequencyDB!=null)
         {
             int pos = myAdapter2.getPosition(frequencyDB);
-            mySpinnertwo.setSelection(pos);
+            mySpinnerfrequency.setSelection(pos);
         }
 
         if(medTypeDB!=null)
         {
             int pos = myAdapter.getPosition(medTypeDB);
-            mySpinner.setSelection(pos);
+            mySpinnertype.setSelection(pos);
         }
-        Log.d("helo", "frequency " + frequencyDB);
-        Log.d("helo", "frequency " + medTypeDB);
-
-
 
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -246,10 +265,15 @@ public class edit_delete_medications extends AppCompatActivity {
         startdate = getDateFromString(strDate);
         time = timeButtonEdit.getText().toString().trim();
         enddate = getDateFromString(strEnd);
-        medication_info m = new medication_info(title, amount, startdate, time, enddate);
+        String frequencyName = mySpinnerfrequency.getSelectedItem().toString();
+        String medicationTypeName = mySpinnertype.getSelectedItem().toString();
+
+        medication_info m = new medication_info(title, amount, startdate, time, enddate, medicationTypeName, frequencyName);
         db.collection("users").document(currentFirebaseUser.getUid()).collection("New Medications")
                 .document(medication_info.getId()).update("Medication", m.getMedication(),
-                "InventoryMeds", m.getInventoryMeds(), "StartDate", m.getStartDate(), "Time", m.getTime()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                "InventoryMeds", m.getInventoryMeds(), "StartDate", m.getStartDate(),
+                "Time", m.getTime(), "EndDate", m.getEndDate(), "FrequencyName", m.getFrequencyName(),
+                "MedicineTypeName", m.getMedicineTypeName()).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void avoid) {
                         Toast.makeText(edit_delete_medications.this, "Medications Changed", Toast.LENGTH_LONG).show();

@@ -52,7 +52,7 @@ public class today_page_recycler extends AppCompatActivity {
     FirebaseFirestore db;
     String single;
     DateFormat dateFormat = new SimpleDateFormat("M/dd/yyyy");
-    Date dateSelected;
+    static Date dateSelected;
     ProgressDialog progressDialog;
     Button switchDisplay;
     static final SimpleDateFormat format = new SimpleDateFormat("M/dd/yyyy");
@@ -177,7 +177,6 @@ public class today_page_recycler extends AppCompatActivity {
                     if(dc.getType() == DocumentChange.Type.ADDED) {
                         medication_info m = dc.getDocument().toObject(medication_info.class);
                         m.setId(dc.getDocument().getId());
-
                         Calendar c = Calendar.getInstance();
                         String strDate = dateFormat.format(m.getStartDate());
                         String strEnd = dateFormat.format(m.getEndDate());

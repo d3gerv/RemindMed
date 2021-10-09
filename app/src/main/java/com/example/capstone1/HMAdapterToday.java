@@ -14,10 +14,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class HMAdapterToday extends RecyclerView.Adapter<HMAdapterToday.MyViewHolder> {
     Context context;
+    String dateToday, dateselectedString;
     ArrayList<measurement_info_today> userArrayList;
+    Date c = Calendar.getInstance().getTime();
+
 
     public HMAdapterToday(Context context, ArrayList<measurement_info_today> userArrayList)
     {
@@ -40,60 +46,65 @@ public class HMAdapterToday extends RecyclerView.Adapter<HMAdapterToday.MyViewHo
         holder.HMName.setText(measurement_info_today.HMName);
         holder.Time.setText(measurement_info_today.Time);
 
-        holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                measurement_info_today measurement_info_today = userArrayList.get(position);
-                Intent intent;
-                if(measurement_info_today.HMName.equals("Bloodpressure"))
-                {
-                    intent = new Intent(context, set_now_blood_pressure.class);
-                    intent.putExtra("Time", measurement_info_today.Time);
-                    intent.putExtra("Date", strDate);
-                    intent.putExtra("EndDate", strEnd);
-                    intent.putExtra("fromToday", 1);
-                    context.startActivity(intent);
+        SimpleDateFormat df = new SimpleDateFormat("M/dd/yyyy", Locale.getDefault());
+        dateToday = df.format(c);
+        dateselectedString = df.format(today_page_recycler.dateSelected);
+        if(dateselectedString.equals(dateToday))
+            holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    measurement_info_today measurement_info_today = userArrayList.get(position);
+                    Intent intent;
+                    if(measurement_info_today.HMName.equals("Bloodpressure"))
+                    {
+                        intent = new Intent(context, set_now_blood_pressure.class);
+                        intent.putExtra("Time", measurement_info_today.Time);
+                        intent.putExtra("Date", strDate);
+                        intent.putExtra("EndDate", strEnd);
+                        intent.putExtra("fromToday", 1);
+                        context.startActivity(intent);
+
+                    }
+                    else if(measurement_info_today.HMName.equals("Cholesterol"))
+                    {
+                        intent = new Intent(context, set_now_cholesterol.class);
+                        intent.putExtra("Time", measurement_info_today.Time);
+                        intent.putExtra("Date", strDate);
+                        intent.putExtra("EndDate", strEnd);
+                        intent.putExtra("fromToday", 1);
+                        context.startActivity(intent);
+                    }
+                    else if(measurement_info_today.HMName.equals("Bloodsugar"))
+                    {
+                        intent = new Intent(context, set_now_blood_sugar.class);
+                        intent.putExtra("Time", measurement_info_today.Time);
+                        intent.putExtra("Date", strDate);
+                        intent.putExtra("EndDate", strEnd);
+                        intent.putExtra("fromToday", 1);
+                        context.startActivity(intent);
+                    }
+                    else if(measurement_info_today.HMName.equals("Temperature"))
+                    {
+                        intent = new Intent(context, set_now_temperature.class);
+                        intent.putExtra("Time", measurement_info_today.Time);
+                        intent.putExtra("Date", strDate);
+                        intent.putExtra("EndDate", strEnd);
+                        intent.putExtra("fromToday", 1);
+                        context.startActivity(intent);
+                    }
+                    else if(measurement_info_today.HMName.equals("Sleep"))
+                    {
+                        intent = new Intent(context, set_now_hours_of_sleep.class);
+                        intent.putExtra("Time", measurement_info_today.Time);
+                        intent.putExtra("Date", strDate);
+                        intent.putExtra("EndDate", strEnd);
+                        intent.putExtra("fromToday", 1);
+                        context.startActivity(intent);
+                    }
 
                 }
-                else if(measurement_info_today.HMName.equals("Cholesterol"))
-                {
-                    intent = new Intent(context, set_now_cholesterol.class);
-                    intent.putExtra("Time", measurement_info_today.Time);
-                    intent.putExtra("Date", strDate);
-                    intent.putExtra("EndDate", strEnd);
-                    intent.putExtra("fromToday", 1);
-                    context.startActivity(intent);
-                }
-                else if(measurement_info_today.HMName.equals("Bloodsugar"))
-                {
-                    intent = new Intent(context, set_now_blood_sugar.class);
-                    intent.putExtra("Time", measurement_info_today.Time);
-                    intent.putExtra("Date", strDate);
-                    intent.putExtra("EndDate", strEnd);
-                    intent.putExtra("fromToday", 1);
-                    context.startActivity(intent);
-                }
-                else if(measurement_info_today.HMName.equals("Temperature"))
-                {
-                    intent = new Intent(context, set_now_temperature.class);
-                    intent.putExtra("Time", measurement_info_today.Time);
-                    intent.putExtra("Date", strDate);
-                    intent.putExtra("EndDate", strEnd);
-                    intent.putExtra("fromToday", 1);
-                    context.startActivity(intent);
-                }
-                else if(measurement_info_today.HMName.equals("Sleep"))
-                {
-                    intent = new Intent(context, set_now_hours_of_sleep.class);
-                    intent.putExtra("Time", measurement_info_today.Time);
-                    intent.putExtra("Date", strDate);
-                    intent.putExtra("EndDate", strEnd);
-                    intent.putExtra("fromToday", 1);
-                    context.startActivity(intent);
-                }
+            });
 
-            }
-        });
     }
 
     @Override
