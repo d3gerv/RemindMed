@@ -1,8 +1,8 @@
 package com.example.capstone1;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class health_measurement_pdf_choices extends AppCompatActivity {
 
