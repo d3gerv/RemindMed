@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".pdf_form">
+    tools:context=".pdf_hours_of_sleep">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -25,7 +25,6 @@
         android:layout_marginEnd="344dp"
         android:layout_marginBottom="24dp"
         android:backgroundTint="#E73927"
-        android:onClick="pdf_To_hhm"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/backarrow" />
@@ -34,13 +33,14 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="RemindMed Report "
+        android:layout_marginBottom="36dp"
+        android:text="RemindMed Report"
         android:textColor="#FFFFFF"
-        android:textSize="23sp"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.612"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="30dp" />
+        app:layout_constraintHorizontal_bias="0.611"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TableLayout
         android:id="@+id/tableLayoutHeader"
@@ -58,7 +58,7 @@
                 android:layout_column="1"
                 android:gravity="center"
                 android:padding="16dp"
-                android:text="Blood Pressure"
+                android:text="Hours of Sleep"
                 android:textColor="#000000"
                 android:textSize="20dp" />
 
@@ -85,16 +85,16 @@
 
 
     <Button
-        android:id="@+id/btnSavePDF"
+        android:id="@+id/btnSavePDF_HOS"
         android:layout_width="247dp"
         android:layout_height="49dp"
         android:background="@drawable/edit_round2"
+
         android:fontFamily="@font/viga"
         android:text="Save as PDF"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#000000"
         android:textSize="22sp"
-
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

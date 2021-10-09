@@ -4,11 +4,11 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class medication_edit_delete_card extends AppCompatActivity {
+public class pdf_hours_of_sleep extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_medication_edit_delete_card);
+        setContentView(R.layout.activity_pdf_hours_of_sleep);
     }
 }
