@@ -1,8 +1,8 @@
 package com.example.capstone1;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class medication_edit_delete_card extends AppCompatActivity {
 

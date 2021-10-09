@@ -34,13 +34,13 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="RemindMed monthly report for "
+        android:text="RemindMed Report"
         android:textColor="#FFFFFF"
-        android:textSize="23sp"
-        app:layout_constraintBottom_toTopOf="@+id/monthView"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.612"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.611"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="16dp" />
 
     <TableLayout
         android:id="@+id/tableLayoutHeader"
@@ -59,6 +59,7 @@
                 android:gravity="center"
                 android:padding="16dp"
                 android:text="Blood Pressure"
+                android:textColor="#000000"
                 android:textSize="20dp" />
 
             <TextView
@@ -67,6 +68,7 @@
                 android:gravity="center"
                 android:padding="25dp"
                 android:text="Date"
+                android:textColor="#000000"
                 android:textSize="20dp" />
 
             <TextView
@@ -74,23 +76,12 @@
                 android:gravity="center"
                 android:padding="25dp"
                 android:text="Time"
+                android:textColor="#000000"
                 android:textSize="20dp" />
         </TableRow>
 
 
     </TableLayout>
-
-    <TextView
-        android:id="@+id/monthView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="month"
-        android:textColor="#FFFFFF"
-        android:textSize="23sp"
-        app:layout_constraintBottom_toBottomOf="@id/toolbar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.524"
-        app:layout_constraintStart_toStartOf="parent" />
 
 
     <Button
@@ -123,14 +114,11 @@
         android:id="@+id/guideline63"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.537"
-        app:layout_constraintStart_toEndOf="@+id/monthView"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.878"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent=".95" />
+        app:layout_constraintGuide_percent=".95"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
