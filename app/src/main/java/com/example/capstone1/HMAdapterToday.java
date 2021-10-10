@@ -62,6 +62,11 @@ public class HMAdapterToday extends RecyclerView.Adapter<HMAdapterToday.MyViewHo
                         intent.putExtra("Date", strDate);
                         intent.putExtra("EndDate", strEnd);
                         intent.putExtra("fromToday", 1);
+                        intent.putExtra("Frequency", measurement_info_today.Frequency);
+                        intent.putExtra("Hour", measurement_info_today.Hour);
+                        intent.putExtra("Minute", measurement_info_today.Minute);
+                        intent.putExtra("measuremy_info_today", measurement_info_today);
+
                         context.startActivity(intent);
 
                     }
@@ -72,6 +77,11 @@ public class HMAdapterToday extends RecyclerView.Adapter<HMAdapterToday.MyViewHo
                         intent.putExtra("Date", strDate);
                         intent.putExtra("EndDate", strEnd);
                         intent.putExtra("fromToday", 1);
+                        intent.putExtra("Frequency", measurement_info_today.Frequency);
+                        intent.putExtra("Hour", measurement_info_today.Hour);
+                        intent.putExtra("Minute", measurement_info_today.Minute);
+                        intent.putExtra("measuremy_info_today", measurement_info_today);;
+
                         context.startActivity(intent);
                     }
                     else if(measurement_info_today.HMName.equals("Bloodsugar"))
@@ -81,6 +91,11 @@ public class HMAdapterToday extends RecyclerView.Adapter<HMAdapterToday.MyViewHo
                         intent.putExtra("Date", strDate);
                         intent.putExtra("EndDate", strEnd);
                         intent.putExtra("fromToday", 1);
+                        intent.putExtra("Frequency", measurement_info_today.Frequency);
+                        intent.putExtra("measuremy_info_today", measurement_info_today);
+                        intent.putExtra("Hour", measurement_info_today.Hour);
+                        intent.putExtra("Minute", measurement_info_today.Minute);
+
                         context.startActivity(intent);
                     }
                     else if(measurement_info_today.HMName.equals("Temperature"))
@@ -90,6 +105,11 @@ public class HMAdapterToday extends RecyclerView.Adapter<HMAdapterToday.MyViewHo
                         intent.putExtra("Date", strDate);
                         intent.putExtra("EndDate", strEnd);
                         intent.putExtra("fromToday", 1);
+                        intent.putExtra("Frequency", measurement_info_today.Frequency);
+                        intent.putExtra("measuremy_info_today", measurement_info_today);
+                        intent.putExtra("Hour", measurement_info_today.Hour);
+                        intent.putExtra("Minute", measurement_info_today.Minute);
+
                         context.startActivity(intent);
                     }
                     else if(measurement_info_today.HMName.equals("Sleep"))
@@ -99,6 +119,25 @@ public class HMAdapterToday extends RecyclerView.Adapter<HMAdapterToday.MyViewHo
                         intent.putExtra("Date", strDate);
                         intent.putExtra("EndDate", strEnd);
                         intent.putExtra("fromToday", 1);
+                        intent.putExtra("Frequency", measurement_info_today.Frequency);
+                        intent.putExtra("measuremy_info_today", measurement_info_today);
+                        intent.putExtra("Hour", measurement_info_today.Hour);
+                        intent.putExtra("Minute", measurement_info_today.Minute);
+
+                        context.startActivity(intent);
+                    }
+                    else if(measurement_info_today.HMName.equals("Pulserate"))
+                    {
+                        intent = new Intent(context, set_now_hours_of_sleep.class);
+                        intent.putExtra("Time", measurement_info_today.Time);
+                        intent.putExtra("Date", strDate);
+                        intent.putExtra("EndDate", strEnd);
+                        intent.putExtra("fromToday", 1);
+                        intent.putExtra("Frequency", measurement_info_today.Frequency);
+                        intent.putExtra("measuremy_info_today", measurement_info_today);
+                        intent.putExtra("Hour", measurement_info_today.Hour);
+                        intent.putExtra("Minute", measurement_info_today.Minute);
+
                         context.startActivity(intent);
                     }
 

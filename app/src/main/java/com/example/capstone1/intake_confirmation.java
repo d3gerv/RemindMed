@@ -1,9 +1,11 @@
 package com.example.capstone1;
 
+import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
@@ -11,6 +13,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.speech.tts.TextToSpeech;
 import android.text.TextUtils;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -36,7 +39,6 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -46,12 +48,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Random;
 
 public class intake_confirmation extends AppCompatActivity {
     TextView medName, medAmount, dateTakentxt;
     String title, amount, time, date, enddate, dosage, userId, text;
     Date myDate;
-    int freq;
+    int alarmYear, alarmMonth, alarmDay,alarmHour,alarmMin, id ,freq;
+    Calendar myAlarmDate = Calendar.getInstance();
     static final SimpleDateFormat dateFormat = new SimpleDateFormat("M/d/yyyy");
     TextToSpeech textToSpeech;
     Button confirm, skip;
@@ -129,11 +133,15 @@ public class intake_confirmation extends AppCompatActivity {
                 if (freq == 1)
                 {
                     moveStartDate();
+                    startAlarm(myAlarmDate);
+
 
                 }
                 else if (freq == 2)
                 {
                     moveStartDateWeek();
+                    startAlarm(myAlarmDate);
+
                 }
                 saveToHistory();
                 if(Integer.parseInt(medication_info.getInventoryMeds())  <= medication_info.getPillStatic()/2)
@@ -186,15 +194,16 @@ public class intake_confirmation extends AppCompatActivity {
                 medication_info m = new medication_info(title, amount, getDateFromString(date), time, getDateFromString(enddate), medtype, frequency);
                 String strDate = dateFormat.format(m.getStartDate());
                 myDate = getDateFromString(strDate);
-                //myDate = DateUtil.addDays(myDate, 1);
-
-                Log.d("class", "end " + enddate);
-                Log.d("class", "start " + date);
-                Log.d("class", "start " + freq);
-
-
-                Log.d("msg" , " text" + daysBetween(dateToCalendar(getDateFromString(date)), dateToCalendar(getDateFromString(enddate)) ));
-
+                //startAlarm(myAlarmDate);
+               //myDate = DateUtil.addDays(myDate, 1);
+                //Log.d("class", "end " + enddate);
+               // Log.d("class", "start " + date);
+               // Log.d("class", "start " + freq);
+                 Log.d("class", "start hour" + alarmMin);
+                 Log.d("class", "start min" + alarmHour);
+              //  Log.d("class", "start " + alarmDay);
+                Log.d("class", "start month " + alarmMonth);
+                Log.d("class", "start year " + alarmYear);
             }
         });
 
@@ -209,6 +218,8 @@ public class intake_confirmation extends AppCompatActivity {
             enddate = getIntent().getStringExtra("enddate");
             dosage = getIntent().getStringExtra("Dosage");
             freq = getIntent().getIntExtra("frequency", 0);
+            alarmHour = getIntent().getIntExtra("Hour", 0);
+            alarmMin =getIntent().getIntExtra("Minute", 0);
 
         } else {
             Toast.makeText(this, "No Data", Toast.LENGTH_SHORT).show();
@@ -255,6 +266,14 @@ public class intake_confirmation extends AppCompatActivity {
             myDate = DateUtil.addDays(myDate, 1);
         }
 
+        String month = (String) DateFormat.format("MM", myDate);
+        String day = (String) DateFormat.format("dd", myDate);
+        String year = (String) DateFormat.format("yyyy", myDate);
+
+        alarmMonth = Integer.parseInt(month);
+        alarmDay = Integer.parseInt(day);
+        alarmYear = Integer.parseInt(year);
+
 
 
         medication_info m = new medication_info(title, amount, getDateFromString(date), time, getDateFromString(enddate), medtype, frequency);
@@ -292,7 +311,13 @@ public class intake_confirmation extends AppCompatActivity {
         {
             myDate = getDateFromString(enddate);
         }
+        String month = (String) DateFormat.format("MM", myDate);
+        String day = (String) DateFormat.format("dd", myDate);
+        String year = (String) DateFormat.format("yyyy", myDate);
 
+        alarmMonth = Integer.parseInt(month);
+        alarmDay = Integer.parseInt(day);
+        alarmYear = Integer.parseInt(year);
         medication_info m = new medication_info(title, amount, getDateFromString(date), time, getDateFromString(enddate), medtype, frequency);
         if (date.equals(enddate)) {
             db.collection("users").document(currentFirebaseUser.getUid()).collection("New Medications").document(medication_info.getId()).delete()
@@ -364,11 +389,34 @@ public class intake_confirmation extends AppCompatActivity {
                 });
     }
 
+    private void startAlarm(Calendar c)
+    {
+        getData();
+        String month = (String) DateFormat.format("MM", myDate);
+        String day = (String) DateFormat.format("dd", myDate);
+        String year = (String) DateFormat.format("yyyy", myDate);
+
+        alarmMonth = Integer.parseInt(month);
+        alarmDay = Integer.parseInt(day);
+        alarmYear = Integer.parseInt(year);
+        myAlarmDate.setTimeInMillis(System.currentTimeMillis());
+        myAlarmDate.set(alarmYear, alarmMonth-1, alarmDay, alarmHour, alarmMin);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(this, alarmreceiver.class);
+        Intent i = new Intent(this, alarm_notification.class);
+        id = new Random().nextInt(1000000);
+        i.putExtra("userID", id);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, id, intent, 0);
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), pendingIntent);
+        //  alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), 24*60*60*1000, pendingIntent);
+    }
+
     private void speak() {
 
         textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null);
 
     }
+
     public void intake_To_Today(View view) {
         Intent intent = new Intent(intake_confirmation.this, today_page_recycler.class);
         startActivity(intent);

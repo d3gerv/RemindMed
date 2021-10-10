@@ -91,6 +91,10 @@ public class MyMedicationAdapter extends RecyclerView.Adapter<MyMedicationAdapte
                 intent.putExtra("Dosage", medication_info.Dosage);
                 intent.putExtra("medication_info", medication_info);
                 intent.putExtra("frequency", medication_info.Frequency);
+                intent.putExtra("Hour", medication_info.Hour);
+                intent.putExtra("Minute", medication_info.Minute);
+
+
                 context.startActivity(intent);
             }
         });

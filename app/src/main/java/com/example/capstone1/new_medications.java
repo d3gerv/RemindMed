@@ -51,6 +51,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Random;
 
 public class new_medications extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
     EditText  dosage, inventory;
@@ -65,10 +66,10 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
     private DatePickerDialog datePickerDialog, datePickerDialog2;
     private Button dateButton, endDateButton;
     Calendar c;
+    Calendar myAlarmDate = Calendar.getInstance();
     static final SimpleDateFormat format = new SimpleDateFormat("M/dd/yyyy");
     Button timeButtonmedtst;
-    int hour, minute;
-    int year, month, day, choice, typechoice, frequencychoide;
+    int alarmYear, alarmMonth, alarmDay,alarmHour,alarmMin, choice, typechoice, frequencychoide, id;
     String dateToday = String.valueOf(android.text.format.DateFormat.format("M/dd/yyyy", new java.util.Date()));
     static EditText medication;
 
@@ -173,6 +174,7 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
                 String StartDate =  dateButton.getText().toString().trim();
                 String EndDate = endDateButton.getText().toString().trim();
                 Map<String, Object> user = new HashMap<>();
+                startAlarm(myAlarmDate);
                 user.put("Medication", Medication);
                 user.put("Dosage", Dosage);
                 user.put("InventoryMeds", Inventory);
@@ -184,7 +186,11 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
                 user.put("Frequency", frequencychoide);
                 user.put("FrequencyName", frequencyName);
                 user.put("PillStatic", Integer.parseInt(Inventory));
-                startAlarm(c);
+                user.put("Hour", alarmHour);
+                user.put("Minute", alarmMin);
+
+                Log.d("class", "start " + alarmHour);
+
 
                 if (TextUtils.isEmpty(Medication)) {
                     medication.setError("This field is required");
@@ -274,6 +280,9 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
                 {
 
                     startdate = makeDateString(day, month, year);
+                    alarmYear = year ;
+                    alarmMonth = month - 1;
+                    alarmDay = day;
                     dateButton.setText(startdate);
                 }
                 else if (choice == end)
@@ -320,6 +329,8 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
         c.set(Calendar.MINUTE, minute);
         c.set(Calendar.SECOND, 0);
         c.set(Calendar.MILLISECOND, 0);
+        alarmHour = hourOfDay;
+        alarmMin = minute;
         updateTimeText(c);
     }
 
@@ -331,13 +342,16 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
 
     private void startAlarm(Calendar c)
     {
-        if(dateToday.equals(dateButton.getText().toString()))
-        {
-            AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-            Intent intent = new Intent(this, alarmreceiver.class);
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 123, intent, 0);
-            alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
-        }
+        myAlarmDate.setTimeInMillis(System.currentTimeMillis());
+        myAlarmDate.set(alarmYear, alarmMonth, alarmDay, alarmHour, alarmMin);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(this, alarmreceiver.class);
+        Intent i = new Intent(this, alarm_notification.class);
+        id = new Random().nextInt(1000000);
+        i.putExtra("userID", id);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, id, intent, 0);
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), pendingIntent);
+        //  alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), 24*60*60*1000, pendingIntent);
     }
 
     public Date getDateFromString(String dateToSave) {

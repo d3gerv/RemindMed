@@ -135,6 +135,8 @@ public class set_later_temperature extends AppCompatActivity implements TimePick
                 user.put("EndDate", getDateFromString(EndDate));
                 user.put("Frequency", frequencychoide);
                 user.put("FrequencyTitle", frequencyName);
+                user.put("Hour", c.get(Calendar.HOUR_OF_DAY));
+                user.put("Minute", c.get(Calendar.MINUTE));
 
 
                 fstore.collection("users").document(userId).collection("Health Measurement Alarm")
@@ -168,7 +170,7 @@ public class set_later_temperature extends AppCompatActivity implements TimePick
         Intent intent = new Intent(this, alarmreceiver.class);
         id = new Random().nextInt(1000000);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, id, intent, 0);
-        //alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
         intentArray.add(pendingIntent);
     }
 

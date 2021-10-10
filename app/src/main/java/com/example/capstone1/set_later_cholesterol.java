@@ -136,6 +136,8 @@ public class set_later_cholesterol extends AppCompatActivity implements TimePick
                 user.put("EndDate", getDateFromString(EndDate));
                 user.put("Frequency", frequencychoide);
                 user.put("FrequencyTitle", frequencyName);
+                user.put("Hour", c.get(Calendar.HOUR_OF_DAY));
+                user.put("Minute", c.get(Calendar.MINUTE));
 
                 fstore.collection("users").document(userId).collection("Health Measurement Alarm")
                         .add(user)

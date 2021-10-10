@@ -131,6 +131,8 @@ public class set_later_blood_sugar extends AppCompatActivity implements TimePick
                 startAlarm(myAlarmDate);
                 user.put("HMName", "Bloodsugar");
                 user.put("Time", Time);
+                user.put("Hour", c.get(Calendar.HOUR_OF_DAY));
+                user.put("Minute", c.get(Calendar.MINUTE));
                 user.put("StartDate", getDateFromString(StartDate));
                 user.put("EndDate", getDateFromString(EndDate));
                 user.put("Frequency", frequencychoide);

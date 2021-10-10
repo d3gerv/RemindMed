@@ -160,7 +160,7 @@ public class history_for_measurements extends AppCompatActivity {
         startActivity(intent);
     }
     public void HistoryHM_To_PDF(View view) {
-        Intent intent = new Intent(history_for_measurements.this, pdf_form.class);
+        Intent intent = new Intent(history_for_measurements.this, health_measurement_pdf_choices.class);
         startActivity(intent);
     }
 
