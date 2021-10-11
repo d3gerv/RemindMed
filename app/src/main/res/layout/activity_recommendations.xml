@@ -41,7 +41,8 @@
         app:layout_constraintBottom_toTopOf="@+id/imageView14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.62"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recommendationRecycler"
@@ -59,6 +60,7 @@
         android:id="@+id/imageView14"
         android:layout_width="410dp"
         android:layout_height="314dp"
+        app:layout_constraintBottom_toTopOf="@+id/recommendationRecycler"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
