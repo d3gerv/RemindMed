@@ -40,5 +40,9 @@ public class health_measurement_pdf_choices extends AppCompatActivity {
         Intent intent = new Intent(health_measurement_pdf_choices.this, pdf_bodyTemp.class);
         startActivity(intent);
     }
+    public void pdfchoice_hm(View view) {
+        Intent intent = new Intent(health_measurement_pdf_choices.this, history_for_measurements.class);
+        startActivity(intent);
+    }
 
 }

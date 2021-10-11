@@ -58,7 +58,7 @@ public class user_information extends AppCompatActivity {
         setContentView(R.layout.activity_user_information);
 
 
-        email = findViewById(R.id.emailview);
+        email = (TextView) findViewById(R.id.emailview);
 
         spinner = findViewById(R.id.gender_spinner);
         birthyr = findViewById(R.id.editTextbirth);

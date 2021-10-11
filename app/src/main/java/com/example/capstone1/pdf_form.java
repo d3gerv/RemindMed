@@ -206,7 +206,7 @@ public class pdf_form extends AppCompatActivity {
         document.close();
     }
     public void pdf_To_hhm(View view) {
-        Intent intent = new Intent(pdf_form.this, history_for_measurements.class);
+        Intent intent = new Intent(pdf_form.this, health_measurement_pdf_choices.class);
         startActivity(intent);
     }
 

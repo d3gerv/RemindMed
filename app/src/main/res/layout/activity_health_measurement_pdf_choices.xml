@@ -124,6 +124,7 @@
         android:layout_height="68dp"
         android:layout_marginTop="4dp"
         android:backgroundTint="#E73927"
+        android:onClick="pdfchoice_hm"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/backarrow" />

@@ -1,6 +1,7 @@
 package com.example.capstone1;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -195,5 +196,9 @@ public class pdf_cholesterol extends AppCompatActivity {
         }
         // close the document
         document.close();
+    }
+    public void pdfchol_To_hhm(View view) {
+        Intent intent = new Intent(pdf_cholesterol.this, health_measurement_pdf_choices.class);
+        startActivity(intent);
     }
 }
