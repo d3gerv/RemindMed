@@ -16,6 +16,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -30,13 +31,17 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 //import com.google.firebase.database.FirebaseDatabase;
 
 public class create_account extends AppCompatActivity {
     public static final String TAG = "TAG";
     EditText first, last, password, confirm, emailInput, gender, birthyr, height, weight;
+    TextView result, resultem;
     Button buttonSignUp;
     Button buttonSave;
     //String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
@@ -72,6 +77,9 @@ public class create_account extends AppCompatActivity {
         weight = findViewById(R.id.editTextweight);
         buttonSave = findViewById(R.id.btnSave);
 
+        result = findViewById(R.id.textViewresult);
+        resultem = findViewById(R.id.textViewresultem);
+
         //root = FirebaseDatabase.getInstance();
         // reference = root.getReference("User");
         rootAuthen = FirebaseAuth.getInstance();
@@ -86,11 +94,15 @@ public class create_account extends AppCompatActivity {
         buttonSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                computeMD5Hash(password.toString());
+                //computeMD5Hashem(emailInput.toString());
                 String Email = emailInput.getText().toString().trim();
                 String Password = password.getText().toString().trim();
                 String Confirm_Password = confirm.getText().toString().trim();
                 String firstname = first.getText().toString().trim();
                 String lastname = last.getText().toString().trim();
+                String empass = result.getText().toString().trim();
+                //String empass1 = resultem.getText().toString().trim();
 
 
                 if (TextUtils.isEmpty(Email)) {
@@ -128,7 +140,7 @@ public class create_account extends AppCompatActivity {
                             user.put("firstname",firstname);
                             user.put("lastname",lastname);
                             user.put("email",Email);
-                            user.put("password",Password);
+                            user.put("password",empass);
 
 
                             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -148,6 +160,50 @@ public class create_account extends AppCompatActivity {
             }
         });
     }
+    public void computeMD5Hash(String password)
+    {
+        try {
+            // Create MD5 Hash
+            MessageDigest digest = java.security.MessageDigest.getInstance("MD5");
+            digest.update(password.getBytes());
+            byte messageDigest[] = digest.digest();
+
+            StringBuffer MD5Hash = new StringBuffer();
+            for (int i = 0; i < messageDigest.length; i++) {
+                String h = Integer.toHexString(0xFF & messageDigest[1]);
+                while (h.length() < 2)
+                    h = "0" + h;
+                MD5Hash.append(h);
+            }
+            result.setText( MD5Hash);
+        }
+        catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+    }
+/*
+    public void computeMD5Hashem(String password)
+    {
+        try {
+            // Create MD5 Hash
+            MessageDigest digest = java.security.MessageDigest.getInstance("MD5");
+            digest.update(password.getBytes());
+            byte messageDigest[] = digest.digest();
+
+            StringBuffer MD5Hash = new StringBuffer();
+            for (int i = 0; i < messageDigest.length; i++) {
+                String h = Integer.toHexString(0xFF & messageDigest[1]);
+                while (h.length() < 2)
+                    h = "0" + h;
+                MD5Hash.append(h);
+            }
+            resultem.setText( MD5Hash);
+        }
+        catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+    }
+*/
     public void Create_To_Main(View view) {
         Intent intent = new Intent(create_account.this, main_page.class);
         startActivity(intent);
