@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".history_page">
 
+    <TextView
+        android:id="@+id/clearAll_medications"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="8dp"
+        android:text="Clear All"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/today_history_two"
         android:layout_width="wrap_content"
@@ -235,9 +247,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintGuide_begin="20dp"
-        app:layout_constraintGuide_percent="0.95"
-        app:layout_constraintHorizontal_bias="0.5" />
+        app:layout_constraintGuide_begin="388dp"
+        app:layout_constraintGuide_percent="0.95" />
 
 
     <androidx.constraintlayout.widget.Guideline
@@ -249,14 +260,13 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleViewHistoryMed"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="369dp"
+        android:layout_height="372dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline51"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/view2"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.431" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline6"
