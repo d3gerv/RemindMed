@@ -104,6 +104,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="92dp"
+        android:layout_marginEnd="2dp"
         android:background="#E73927"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
@@ -113,16 +114,19 @@
 
     <ImageButton
         android:id="@+id/healthMeasurement_backPdf"
-        android:layout_width="64dp"
+        android:layout_width="40dp"
         android:layout_height="68dp"
         android:layout_marginTop="4dp"
         android:backgroundTint="#E73927"
         android:onClick="pdfchoice_hm"
+        app:layout_constraintEnd_toStartOf="@+id/health_measurementstxt"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/backarrow" />
 
     <TextView
+        android:id="@+id/health_measurementstxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
@@ -131,8 +135,7 @@
         android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.66"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toEndOf="@+id/healthMeasurement_backPdf" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
