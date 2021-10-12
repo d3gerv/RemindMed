@@ -20,28 +20,29 @@
 
     <ImageButton
         android:id="@+id/imageBack"
-        android:layout_width="64dp"
+        android:layout_width="40dp"
         android:layout_height="68dp"
-        android:layout_marginEnd="344dp"
-        android:layout_marginBottom="24dp"
         android:backgroundTint="#E73927"
         android:onClick="pdfpulse_To_hhm"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbar"
         app:srcCompat="@drawable/backarrow" />
 
 
     <TextView
+        android:id="@+id/textViewreport"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="36dp"
+        android:layout_marginStart="24dp"
         android:text="RemindMed Report"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.611"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toStartOf="+id/guideline63"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toEndOf="@+id/imageBack"
+        app:layout_constraintTop_toTopOf="@+id/toolbar" />
 
     <TableLayout
         android:id="@+id/tableLayoutHeader"
