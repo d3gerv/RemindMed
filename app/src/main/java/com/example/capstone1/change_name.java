@@ -3,6 +3,7 @@ package com.example.capstone1;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -64,6 +65,9 @@ public class change_name extends AppCompatActivity {
                 {
                     Toast.makeText(change_name.this, "Fields are empty", Toast.LENGTH_SHORT).show();
                     return;
+                }
+                if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                    editemail.setError("Enter a valid email");
                 }
                 String email = editemail.getText().toString();
                 user.updateEmail(email).addOnSuccessListener(new OnSuccessListener<Void>() {
