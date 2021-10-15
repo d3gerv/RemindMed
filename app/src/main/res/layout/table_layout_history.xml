@@ -19,11 +19,14 @@
                 android:padding="16dp"
                 android:text="Blood Pressure"
                 android:textColor="#000000"
+                android:fontFamily="@font/viga"
                 android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/datehistoryPDF"
+                android:layout_width="116dp"
                 android:layout_column="1"
+                android:fontFamily="@font/viga"
                 android:gravity="center"
                 android:padding="16dp"
                 android:text="Date"
@@ -32,7 +35,8 @@
 
             <TextView
                 android:id="@+id/timehisoryPDF"
-                android:layout_width="wrap_content"
+                android:layout_width="107dp"
+                android:fontFamily="@font/viga"
                 android:gravity="center"
                 android:padding="16dp"
                 android:text="Time"

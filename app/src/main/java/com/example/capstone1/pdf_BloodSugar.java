@@ -176,8 +176,10 @@ public class pdf_BloodSugar extends AppCompatActivity {
         Paint paint = new Paint();
 
         paint.setColor(Color.BLACK);
-        paint.setTextSize(50f);
+        paint.setTextSize(60f);
         canvas.drawText("RemindMed",20,60,paint);
+        paint.setTextSize(30.5f);
+        canvas.drawText("Monthly report for Blood Sugar",20,90,paint);
         forLinePaint.setStyle(Paint.Style.STROKE);
         forLinePaint.setPathEffect(new DashPathEffect(new float[]{5,5},0));
         forLinePaint.setStrokeWidth(2);
@@ -190,7 +192,7 @@ public class pdf_BloodSugar extends AppCompatActivity {
 
         // write the document content
         File folder = getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS);
-        File file = new File(folder,"RemindMed.pdf");
+        File file = new File(folder,"RemindMedBS.pdf");
         if (!file.exists()) {
             file.mkdirs();
         }
