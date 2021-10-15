@@ -66,9 +66,6 @@ public class change_name extends AppCompatActivity {
                     Toast.makeText(change_name.this, "Fields are empty", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-                    editemail.setError("Enter a valid email");
-                }
                 String email = editemail.getText().toString();
                 user.updateEmail(email).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
