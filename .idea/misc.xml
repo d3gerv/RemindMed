@@ -168,7 +168,7 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_new_measurements_pulserate.xml" value="0.20108695652173914" />
         <entry key="..\:/Users/User/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_new_measurements_temperature.xml" value="0.20108695652173914" />
         <entry key="..\:/Users/User/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_new_medications.xml" value="0.176" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_pdf_blood_sugar.xml" value="0.2" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_pdf_blood_sugar.xml" value="0.38125" />
         <entry key="..\:/Users/User/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_pdf_body_temp.xml" value="0.38125" />
         <entry key="..\:/Users/User/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_pdf_cholesterol.xml" value="0.38125" />
         <entry key="..\:/Users/User/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_pdf_form.xml" value="0.18290854572713644" />
@@ -204,6 +204,16 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/RemindMed/app/src/main/res/layout/measurement_edit_delete_card.xml" value="0.38125" />
         <entry key="..\:/Users/User/AndroidStudioProjects/RemindMed/app/src/main/res/layout/medication_history.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/User/AndroidStudioProjects/RemindMed/app/src/main/res/layout/recommendation_layout.xml" value="0.38125" />
+        <entry key="..\:/Users/gabri/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_create_account.xml" value="0.14583333333333334" />
+        <entry key="..\:/Users/gabri/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_home_page.xml" value="0.14628623188405798" />
+        <entry key="..\:/Users/gabri/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_pdf_blood_sugar.xml" value="0.14628623188405798" />
+        <entry key="..\:/Users/gabri/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_pdf_body_temp.xml" value="0.14628623188405798" />
+        <entry key="..\:/Users/gabri/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_pdf_cholesterol.xml" value="0.14628623188405798" />
+        <entry key="..\:/Users/gabri/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_pdf_form.xml" value="0.14628623188405798" />
+        <entry key="..\:/Users/gabri/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_pdf_hours_of_sleep.xml" value="0.14628623188405798" />
+        <entry key="..\:/Users/gabri/AndroidStudioProjects/RemindMed/app/src/main/res/layout/activity_pdf_pulserate.xml" value="0.14628623188405798" />
+        <entry key="..\:/Users/gabri/AndroidStudioProjects/RemindMed/app/src/main/res/layout/recommendation_layout.xml" value="0.33" />
+        <entry key="..\:/Users/gabri/AndroidStudioProjects/RemindMed/app/src/main/res/layout/table_layout_history.xml" value="0.20416666666666666" />
       </map>
     </option>
   </component>

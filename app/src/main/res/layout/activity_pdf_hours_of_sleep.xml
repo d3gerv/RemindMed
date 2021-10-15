@@ -61,12 +61,14 @@
                 android:gravity="center"
                 android:padding="16dp"
                 android:text="Hours of Sleep"
+                android:fontFamily="@font/viga"
                 android:textColor="#000000"
                 android:textSize="20dp" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="125dp"
                 android:layout_column="1"
+                android:fontFamily="@font/viga"
                 android:gravity="center"
                 android:padding="25dp"
                 android:text="Date"
@@ -74,7 +76,8 @@
                 android:textSize="20dp" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="117dp"
+                android:fontFamily="@font/viga"
                 android:gravity="center"
                 android:padding="25dp"
                 android:text="Time"
@@ -108,6 +111,7 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="370dp"
+        android:fontFamily="@font/viga"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent=".6"
         app:layout_constraintStart_toStartOf="parent"
