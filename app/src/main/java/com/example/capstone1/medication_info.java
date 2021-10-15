@@ -10,14 +10,15 @@ import java.util.Date;
 public class medication_info implements Serializable {
     String Medication, InventoryMeds, Dosage, Time, FrequencyName, MedicineTypeName;
     Date StartDate, EndDate;
-    int MedicineType, Frequency, PillStatic, Hour, Minute;
+    int MedicineType, Frequency, PillStatic, Hour, Minute, AlarmID;
     @Exclude  private String id;
     public medication_info() {}
 
 
 
     public medication_info(String Medication, String InventoryMeds, Date StartDate,
-                           String Time, Date EndDate, String MedicineTypeMame, String FrequencyName )
+                           String Time, Date EndDate, String MedicineTypeMame,
+                           String FrequencyName, int Hour, int Minute, int AlarmID )
     {
         this.Medication = Medication;
         this.InventoryMeds = InventoryMeds;
@@ -26,6 +27,11 @@ public class medication_info implements Serializable {
         this.EndDate = EndDate;
         this.MedicineTypeName = MedicineTypeMame;
         this.FrequencyName = FrequencyName;
+        this.Hour = Hour;
+        this.Minute = Minute;
+        this.AlarmID = AlarmID;
+
+
         this.id = id;
     }
 
@@ -124,7 +130,6 @@ public class medication_info implements Serializable {
     public void setMedicineTypeName(String medicineTypeName) {
         MedicineTypeName = medicineTypeName;
     }
-
     public int getHour() {
         return Hour;
     }
@@ -139,5 +144,13 @@ public class medication_info implements Serializable {
 
     public void setMinute(int minute) {
         Minute = minute;
+    }
+
+    public int getAlarmID() {
+        return AlarmID;
+    }
+
+    public void setAlarmID(int alarmID) {
+        AlarmID = alarmID;
     }
 }

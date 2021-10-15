@@ -70,7 +70,7 @@ public class pdf_pulserate extends AppCompatActivity {
         tableLayout.buildDrawingCache(true);
 
 
-        savePDF = (Button) findViewById(R.id.btnSavePDF_HOS);
+        savePDF = (Button) findViewById(R.id.btnSavePDF_PR);
         savePDF.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

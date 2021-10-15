@@ -54,7 +54,7 @@ public class intake_confirmation extends AppCompatActivity {
     TextView medName, medAmount, dateTakentxt;
     String title, amount, time, date, enddate, dosage, userId, text;
     Date myDate;
-    int alarmYear, alarmMonth, alarmDay,alarmHour,alarmMin, id ,freq;
+    int alarmYear, alarmMonth, alarmDay,alarmHour,alarmMin, id ,freq, alarmID;
     Calendar myAlarmDate = Calendar.getInstance();
     static final SimpleDateFormat dateFormat = new SimpleDateFormat("M/d/yyyy");
     TextToSpeech textToSpeech;
@@ -191,19 +191,7 @@ public class intake_confirmation extends AppCompatActivity {
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                medication_info m = new medication_info(title, amount, getDateFromString(date), time, getDateFromString(enddate), medtype, frequency);
-                String strDate = dateFormat.format(m.getStartDate());
-                myDate = getDateFromString(strDate);
-                //startAlarm(myAlarmDate);
-               //myDate = DateUtil.addDays(myDate, 1);
-                //Log.d("class", "end " + enddate);
-               // Log.d("class", "start " + date);
-               // Log.d("class", "start " + freq);
-                 Log.d("class", "start hour" + alarmMin);
-                 Log.d("class", "start min" + alarmHour);
-              //  Log.d("class", "start " + alarmDay);
-                Log.d("class", "start month " + alarmMonth);
-                Log.d("class", "start year " + alarmYear);
+
             }
         });
 
@@ -246,7 +234,7 @@ public class intake_confirmation extends AppCompatActivity {
             inv -= doseInt;
         }
         amount = Integer.toString(inv);
-        medication_info m = new medication_info(title, amount, getDateFromString(date), time, getDateFromString(enddate), medtype, frequency);
+        medication_info m = new medication_info(title, amount, getDateFromString(date), time, getDateFromString(enddate), medtype, frequency, alarmHour, alarmMin, alarmID);
 
         db.collection("users").document(currentFirebaseUser.getUid()).collection("New Medications")
                 .document(medication_info.getId()).update("InventoryMeds", m.getInventoryMeds())
@@ -276,7 +264,7 @@ public class intake_confirmation extends AppCompatActivity {
 
 
 
-        medication_info m = new medication_info(title, amount, getDateFromString(date), time, getDateFromString(enddate), medtype, frequency);
+        medication_info m = new medication_info(title, amount, getDateFromString(date), time, getDateFromString(enddate), medtype, frequency, alarmHour, alarmMin, alarmID);
         if (date.equals(enddate)) {
             db.collection("users").document(currentFirebaseUser.getUid()).collection("New Medications").document(medication_info.getId()).delete()
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -318,7 +306,7 @@ public class intake_confirmation extends AppCompatActivity {
         alarmMonth = Integer.parseInt(month);
         alarmDay = Integer.parseInt(day);
         alarmYear = Integer.parseInt(year);
-        medication_info m = new medication_info(title, amount, getDateFromString(date), time, getDateFromString(enddate), medtype, frequency);
+        medication_info m = new medication_info(title, amount, getDateFromString(date), time, getDateFromString(enddate), medtype, frequency,alarmHour, alarmMin, alarmID);
         if (date.equals(enddate)) {
             db.collection("users").document(currentFirebaseUser.getUid()).collection("New Medications").document(medication_info.getId()).delete()
                     .addOnCompleteListener(new OnCompleteListener<Void>() {

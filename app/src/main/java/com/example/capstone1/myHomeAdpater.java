@@ -52,6 +52,11 @@ public class myHomeAdpater extends RecyclerView.Adapter<myHomeAdpater.MyViewHold
                 intent.putExtra("FrequencyTitle", medication_info.FrequencyName);
                 intent.putExtra("MedicineTitle", medication_info.MedicineTypeName);
                 intent.putExtra("medication_info", medication_info);
+                intent.putExtra("AlarmID", medication_info.AlarmID);
+                intent.putExtra("Hour", medication_info.Hour);
+                intent.putExtra("Minute", medication_info.Minute);
+
+
                 context.startActivity(intent);
             }
         });

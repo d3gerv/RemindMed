@@ -1,7 +1,10 @@
 package com.example.capstone1;
+import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -20,6 +23,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -38,18 +42,22 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 
-public class edit_delete_medications extends AppCompatActivity {
+public class edit_delete_medications extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
     EditText medName, medInventory, dosageBoxET;
     static final SimpleDateFormat format = new SimpleDateFormat("M/d/yyyy");
     String title, amount, time,  strDate, strEnd, frequencyDB, medTypeDB, dosage;
     Date startdate, enddate;
-
+    final int start = 1;
+    final int end = 2;
+    Calendar calendar = Calendar.getInstance();
+    Calendar c;
+    Calendar myAlarmDate = Calendar.getInstance();
     Button timeButtonEdit, dateFormat, delete, change, enddatebutton;
     FirebaseFirestore db;
     private DatePickerDialog datePickerDialog;
-    int hour, minute, typechoice, frequencychoide;
-    int year, month, day;
+    int hour, minuteDB, typechoice, frequencychoide, choice, alarmIDdb, alarmID, alarmYear, alarmMonth, alarmDay;
     Spinner mySpinnerfrequency, mySpinnertype;
     FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
     private medication_info  medication_info;
@@ -69,6 +77,11 @@ public class edit_delete_medications extends AppCompatActivity {
         medInventory = findViewById(R.id.inventoryBox);
         final Calendar calendar = Calendar.getInstance();
         initDatePicker();
+        getData();
+        getHourandMin();
+
+        Log.d("K", "Hour" +hour+" " + minuteDB);
+
 
         //added spinner
          mySpinnertype = (Spinner) findViewById(R.id.type_spinner_two);
@@ -109,40 +122,37 @@ public class edit_delete_medications extends AppCompatActivity {
             }
         });
 
-        timeButtonEdit = findViewById(R.id.timeButton_edit);
-        timeButtonEdit.setOnClickListener(new View.OnClickListener() {
+        dateFormat.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                TimePickerDialog timePickerDialog = new TimePickerDialog(edit_delete_medications.this,
-                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                        new TimePickerDialog.OnTimeSetListener() {
-                            @Override
-                            public void onTimeSet(TimePicker timePicker, int i, int i1) {
-                                hour = i;
-                                minute = i1;
-                                String time = hour + ":" + minute;
-                                SimpleDateFormat f24Hours = new SimpleDateFormat("HH:mm"
-                                );
-                                try {
-                                    Date date = f24Hours.parse(time);
-                                    SimpleDateFormat f12Hours = new SimpleDateFormat("hh:mm aa"
-                                    );
-                                    timeButtonEdit.setText(f12Hours.format(date));
-                                } catch (ParseException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        }, 12, 0, false
-                );
-                timePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                timePickerDialog.updateTime(hour, minute);
-                timePickerDialog.show();
+            public void onClick(View v) {
+                choice = 1;
+                initDatePicker();
+                openDatePicker();
+            }
+        });
+        enddatebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                choice = 2;
+                initDatePicker();
+                openDatePicker();
             }
         });
 
-        getData();
-        setData();
 
+
+        timeButtonEdit = findViewById(R.id.timeButton_edit);
+        timeButtonEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment timePicker = new TimePickerFragment();
+                timePicker.show(getSupportFragmentManager(), "time picker");
+                Log.d("K", "helo" +" " +alarmYear +" " + alarmMonth +" " + alarmDay +" " + hour+" " + minuteDB);
+
+            }
+        });
+
+        setData();
         if(frequencyDB!=null)
         {
             int pos = myAdapter2.getPosition(frequencyDB);
@@ -179,12 +189,16 @@ public class edit_delete_medications extends AppCompatActivity {
                 ad.show();
             }
         });
+
         change.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 updateAlarm();
+                startAlarm(myAlarmDate);
             }
         });
+
+        Log.d("K", "helo" +" " +alarmYear +" " + alarmMonth +" " + alarmDay +" " + hour+" " + minuteDB);
     }
 
     private void getData()
@@ -201,10 +215,25 @@ public class edit_delete_medications extends AppCompatActivity {
             dosage = getIntent().getStringExtra("dosage");
 
 
+
         }else{
             Toast.makeText(this, "No Data", Toast.LENGTH_SHORT).show();
         }
     }
+
+    private void getHourandMin()
+    {
+        if(getIntent().hasExtra("Hour") && getIntent().hasExtra("Minute"))
+        {
+
+            hour = getIntent().getIntExtra("Hour", 0);
+            minuteDB = getIntent().getIntExtra("Minute", 0);
+
+        }else{
+            Toast.makeText(this, "No Data", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     private void initDatePicker()
     {
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener()
@@ -213,27 +242,41 @@ public class edit_delete_medications extends AppCompatActivity {
             public void onDateSet(DatePicker datePicker, int year, int month, int day)
             {
                 month+=1;
-                String date = makeDateString(day, month, year);
-                dateFormat.setText(date);
+                if (choice == start)
+                {
+                    String startdate = makeDateString(day, month, year);
+                    alarmYear = year ;
+                    alarmMonth = month - 1;
+                    alarmDay = day;
+                    dateFormat.setText(startdate);
+                }
+                else if (choice == end)
+                {
+                    String enddate = makeDateString(day, month, year);
+                    enddatebutton.setText(enddate);
+
+                }
             }
         };
+
         Calendar cal = Calendar.getInstance();
-        int currentYear = cal.get(Calendar.YEAR);
-        int currenTmonth = cal.get(Calendar.MONTH);
-        int currentDay = cal.get(Calendar.DAY_OF_MONTH);
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
         int style = AlertDialog.THEME_HOLO_LIGHT;
-        datePickerDialog = new DatePickerDialog(this, style, dateSetListener, currentYear, currenTmonth, currentDay);
-        //datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+        datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
+        datePickerDialog.getDatePicker().setMinDate(calendar.getTimeInMillis());
     }
+
     private String makeDateString(int day, int month, int year)
     {
         return month + "/" + day + "/" + year;
     }
 
-    public void openDatePicker(View view)
-    {
+    public void openDatePicker() {
         datePickerDialog.show();
     }
+
     private void setData()
     {
         medName.setText(title);
@@ -262,18 +305,18 @@ public class edit_delete_medications extends AppCompatActivity {
         getData();
         title = medName.getText().toString().trim();
         amount = medInventory.getText().toString().trim();
-        startdate = getDateFromString(strDate);
+        startdate = getDateFromString(dateFormat.getText().toString());
         time = timeButtonEdit.getText().toString().trim();
-        enddate = getDateFromString(strEnd);
+        enddate = getDateFromString(enddatebutton.getText().toString());
         String frequencyName = mySpinnerfrequency.getSelectedItem().toString();
         String medicationTypeName = mySpinnertype.getSelectedItem().toString();
 
-        medication_info m = new medication_info(title, amount, startdate, time, enddate, medicationTypeName, frequencyName);
+        medication_info m = new medication_info(title, amount, startdate, time, enddate, medicationTypeName, frequencyName, hour, minuteDB, alarmID);
         db.collection("users").document(currentFirebaseUser.getUid()).collection("New Medications")
                 .document(medication_info.getId()).update("Medication", m.getMedication(),
                 "InventoryMeds", m.getInventoryMeds(), "StartDate", m.getStartDate(),
                 "Time", m.getTime(), "EndDate", m.getEndDate(), "FrequencyName", m.getFrequencyName(),
-                "MedicineTypeName", m.getMedicineTypeName()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                "MedicineTypeName", m.getMedicineTypeName(), "Hour", m.getHour(), "Minute", m.getMinute(), "AlarmID", m.getAlarmID()).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void avoid) {
                         Toast.makeText(edit_delete_medications.this, "Medications Changed", Toast.LENGTH_LONG).show();
@@ -296,4 +339,43 @@ public class edit_delete_medications extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @Override
+    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+        c = Calendar.getInstance();
+        c.set(Calendar.HOUR_OF_DAY, hourOfDay);
+        c.set(Calendar.MINUTE, minute);
+        c.set(Calendar.SECOND, 0);
+        c.set(Calendar.MILLISECOND, 0);
+        hour = hourOfDay;
+        minuteDB = minute;
+        updateTimeText(c);
+    }
+
+    private void startAlarm(Calendar c)
+    {
+        getData();
+        String month = (String) android.text.format.DateFormat.format("MM", startdate);
+        String day = (String) android.text.format.DateFormat.format("dd", startdate);
+        String year = (String) android.text.format.DateFormat.format("yyyy", startdate);
+
+        alarmMonth = Integer.parseInt(month);
+        alarmDay = Integer.parseInt(day);
+        alarmYear = Integer.parseInt(year);
+        Intent intent = new Intent(this, alarmreceiver.class);
+        myAlarmDate.setTimeInMillis(System.currentTimeMillis());
+        myAlarmDate.set(alarmYear, alarmMonth-1, alarmDay, hour, minuteDB);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        alarmID = new Random().nextInt(1000000);
+        PendingIntent pendingDB = PendingIntent.getBroadcast(this, alarmIDdb, intent, 0);
+        alarmManager.cancel(pendingDB);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, alarmID, intent, 0);
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), pendingIntent);
+        //  alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), 24*60*60*1000, pendingIntent);
+    }
+
+    private void updateTimeText(Calendar c)
+    {
+        String timeText = DateFormat.getTimeInstance(DateFormat.SHORT).format(c.getTime());
+        timeButtonEdit.setText(timeText);
+    }
 }

@@ -185,10 +185,10 @@ public class pdf_hours_of_sleep extends AppCompatActivity {
             file.mkdirs();
         }
         String targetPdf = folder + "RemindMed"  + ".pdf";
-        File filePath = new File(this.getExternalFilesDir("/"), "RemindMed.pdf");
+        File filePath = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) , "RemindMed.pdf");
         try {
             document.writeTo(new FileOutputStream(filePath));
-            Toast.makeText(this, "Exported to PDF", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Exported PDF to downloads folder", Toast.LENGTH_LONG).show();
         } catch (IOException e) {
             Log.e("main", "error "+e.toString());
             Toast.makeText(this, "Something wrong: " + e.toString(),  Toast.LENGTH_LONG).show();

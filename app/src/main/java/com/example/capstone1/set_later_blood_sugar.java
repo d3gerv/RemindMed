@@ -184,6 +184,9 @@ public class set_later_blood_sugar extends AppCompatActivity implements TimePick
                 if (choice == start)
                 {
                     startdate = makeDateString(day, month, year);
+                    alarmYear = year;
+                    alarmMonth = month-1;
+                    alarmDay = day;
                     dateButton.setText(startdate);
                 }
                 else if (choice == end)
@@ -225,6 +228,8 @@ public class set_later_blood_sugar extends AppCompatActivity implements TimePick
         c.set(Calendar.MINUTE, minute);
         c.set(Calendar.SECOND, 0);
         c.set(Calendar.MILLISECOND, 0);
+        alarmHour = hourOfDay;
+        alarmMin = minute;
         updateTimeText(c);
     }
     public Date getDateFromString(String dateToSave) {

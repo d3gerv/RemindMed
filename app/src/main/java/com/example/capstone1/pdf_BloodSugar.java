@@ -182,8 +182,8 @@ public class pdf_BloodSugar extends AppCompatActivity {
         forLinePaint.setPathEffect(new DashPathEffect(new float[]{5,5},0));
         forLinePaint.setStrokeWidth(2);
         canvas.drawLine(20,95,1000,95,forLinePaint);
-        canvas.drawBitmap(header, null, new Rect(0, 0, measurements.getWidth()-200,300), null);
-        canvas.drawBitmap(measurements, null, new Rect(0, title.getHeight()+100, measurements.getWidth()-200,measurements.getHeight()), null);
+        canvas.drawBitmap(header, null, new Rect(0, 75, measurements.getWidth()-200,200), null);
+        canvas.drawBitmap(measurements, null, new Rect(20, title.getHeight()+20, measurements.getWidth()-200,measurements.getHeight()+100), null);
         // finish the page
         document.finishPage(page);
         // draw text on the graphics object of the page
@@ -195,7 +195,7 @@ public class pdf_BloodSugar extends AppCompatActivity {
             file.mkdirs();
         }
         String targetPdf = folder + "RemindMed"  + ".pdf";
-        File filePath = new File(this.getExternalFilesDir("/"), "RemindMed.pdf");
+        File filePath = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),  "RemindMedBS.pdf");
         try {
             document.writeTo(new FileOutputStream(filePath));
             Toast.makeText(this, "Exported to PDF", Toast.LENGTH_LONG).show();

@@ -48,7 +48,7 @@
 
     <string-array name="measurements">
         <item>Bloodpressure</item>
-        <item>BloodSugar</item>
+        <item>Bloodsugar</item>
         <item>Cholesterol</item>
         <item>Heartrate</item>
         <item>Pulserate</item>

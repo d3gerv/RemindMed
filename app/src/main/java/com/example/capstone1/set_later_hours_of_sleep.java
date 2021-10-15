@@ -170,7 +170,7 @@ public class set_later_hours_of_sleep extends AppCompatActivity implements TimeP
         Intent intent = new Intent(this, alarmreceiver.class);
         id = new Random().nextInt(1000000);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, id, intent, 0);
-        //alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
         intentArray.add(pendingIntent);
     }
 
@@ -185,6 +185,9 @@ public class set_later_hours_of_sleep extends AppCompatActivity implements TimeP
                 if (choice == start)
                 {
                     startdate = makeDateString(day, month, year);
+                    alarmYear = year;
+                    alarmMonth = month-1;
+                    alarmDay = day;
                     dateButton.setText(startdate);
                 }
                 else if (choice == end)
@@ -226,6 +229,8 @@ public class set_later_hours_of_sleep extends AppCompatActivity implements TimeP
         c.set(Calendar.MINUTE, minute);
         c.set(Calendar.SECOND, 0);
         c.set(Calendar.MILLISECOND, 0);
+        alarmHour = hourOfDay;
+        alarmMin = minute;
         updateTimeText(c);
     }
     public Date getDateFromString(String dateToSave) {

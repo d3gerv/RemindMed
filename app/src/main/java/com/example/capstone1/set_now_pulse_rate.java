@@ -120,7 +120,7 @@ public class set_now_pulse_rate extends AppCompatActivity {
                     AlertDialog.Builder aBuilder = new AlertDialog.Builder(set_now_pulse_rate.this);
                     aBuilder.setCancelable(true);
                     aBuilder.setTitle("Abnormal Measurement");
-                    aBuilder.setMessage("You have recently recorded an abnormal measurement for your blood pressure click ok to see some recommendations to normalize it");
+                    aBuilder.setMessage("You have recently recorded an abnormal measurement for your pulse rate click ok to see some recommendations to normalize it");
 
                     aBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                         @Override
@@ -194,7 +194,7 @@ public class set_now_pulse_rate extends AppCompatActivity {
         alarmDay = Integer.parseInt(day);
         alarmYear = Integer.parseInt(year);
 
-        measurement_info_today measurement = new measurement_info_today("Bloodpressure", time, getDateFromString(startdate),
+        measurement_info_today measurement = new measurement_info_today("Pulserate", time, getDateFromString(startdate),
                 getDateFromString(enddate),choice, "Daily");
         if (startdate.equals(enddate)) {
             fstore.collection("users").document(userId).collection("Health Measurement Alarm").document(measurement_info_today.getId()).delete()

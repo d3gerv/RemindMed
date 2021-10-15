@@ -185,7 +185,7 @@ public class pdf_bodyTemp extends AppCompatActivity {
             file.mkdirs();
         }
         String targetPdf = folder + "RemindMed"  + ".pdf";
-        File filePath = new File(this.getExternalFilesDir("/"), "RemindMed.pdf");
+        File filePath = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "RemindMed.pdf");
         try {
             document.writeTo(new FileOutputStream(filePath));
             Toast.makeText(this, "Exported to PDF", Toast.LENGTH_LONG).show();

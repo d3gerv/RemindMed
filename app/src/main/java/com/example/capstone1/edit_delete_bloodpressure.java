@@ -218,7 +218,8 @@ public class edit_delete_bloodpressure extends AppCompatActivity implements Time
         measurement_info_today m = new measurement_info_today(placeholderName, time, startDate, endDate, frequencychoide, fname);
         fstore.collection("users").document(currentFirebaseUser.getUid()).collection("Health Measurement Alarm")
                 .document(measurement_info_today.getId()).update("Frequency", m.getFrequency(),
-                "FrequencyTitle", m.getFrequencyTitle(), "StartDate", m.getStartDate(), "Time", m.getTime(), "EndDate", m.getEndDate()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                "FrequencyTitle", m.getFrequencyTitle(), "StartDate", m.getStartDate(),
+                "Time", m.getTime(), "EndDate", m.getEndDate()).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void avoid) {
                 Toast.makeText(edit_delete_bloodpressure.this, "Medications Changed", Toast.LENGTH_LONG).show();

@@ -41,7 +41,6 @@
         android:textColor="#FFFFFF"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
-        app:layout_constraintEnd_toStartOf="+id/guideline63"
         app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toEndOf="@+id/imageBack"
         app:layout_constraintTop_toTopOf="@+id/toolbar" />

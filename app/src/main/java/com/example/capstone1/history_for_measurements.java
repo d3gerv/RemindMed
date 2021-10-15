@@ -1,6 +1,8 @@
 package com.example.capstone1;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -41,7 +43,7 @@ public class history_for_measurements extends AppCompatActivity {
     String measurement[];
 
     FirebaseFirestore fstore = FirebaseFirestore.getInstance();
-    TextView firstname;
+    TextView firstname, clear;
     FirebaseAuth rootAuthen;
     String userId;
 
@@ -52,6 +54,8 @@ public class history_for_measurements extends AppCompatActivity {
         firstname = findViewById(R.id.firstnameview);
         rootAuthen = FirebaseAuth.getInstance();
         userId = rootAuthen.getCurrentUser().getUid();
+        clear = findViewById(R.id.clearAll_measurements);
+
         DocumentReference documentReference = fstore.collection("users").document(userId);
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
@@ -59,6 +63,8 @@ public class history_for_measurements extends AppCompatActivity {
                 firstname.setText(value.getString("firstname"));
             }
         });
+        measurement = getResources().getStringArray(R.array.measurements);
+
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
@@ -76,7 +82,38 @@ public class history_for_measurements extends AppCompatActivity {
         FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
 
+        clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                AlertDialog.Builder alert = new AlertDialog.Builder(history_for_measurements.this);
+                alert.setTitle("Delete")
+                        .setMessage("Are you sure you want to clear your history")
+                        .setNegativeButton("No", null)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                for(String i : measurement)
+                                {
+                                    db.document("users/" + currentFirebaseUser.getUid()).collection("New Health Measurements")
+                                            .document(i).collection(i).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                            for (QueryDocumentSnapshot snapshot: task.getResult())
+                                            {
+                                                db.document("users/" + currentFirebaseUser.getUid()).collection("New Health Measurements")
+                                                        .document(i).collection(i).document(snapshot.getId()).delete();
+                                            }
+                                        }
+                                    });
+                                }
+                                myAdapter.notifyDataSetChanged();
+
+                            }
+                        });
+                alert.show();
+            }
+        });
 
 
 

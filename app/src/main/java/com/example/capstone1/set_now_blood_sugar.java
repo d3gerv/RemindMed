@@ -197,7 +197,7 @@ public class set_now_blood_sugar extends AppCompatActivity {
         alarmDay = Integer.parseInt(day);
         alarmYear = Integer.parseInt(year);
 
-        measurement_info_today measurement = new measurement_info_today("Bloodpressure", time, getDateFromString(startdate),
+        measurement_info_today measurement = new measurement_info_today("Bloodsugar", time, getDateFromString(startdate),
                 getDateFromString(enddate),choice, "Daily");
         if (startdate.equals(enddate)) {
             fstore.collection("users").document(userId).collection("Health Measurement Alarm").document(measurement_info_today.getId()).delete()
