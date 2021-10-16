@@ -75,10 +75,9 @@
 
     <Button
         android:id="@+id/buttonsave"
-        android:layout_width="216dp"
-        android:layout_height="34dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
+        android:layout_width="218dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/edit_round"
         android:fontFamily="@font/viga"
         android:text="Save Changes"
@@ -86,32 +85,30 @@
         android:textColor="#FFFFFF"
         android:textSize="22sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/cancelBtn"
         app:layout_constraintEnd_toStartOf="@+id/guideline31"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="@+id/guideline30"
         app:layout_constraintTop_toBottomOf="@+id/editemail" />
 
     <Button
         android:id="@+id/buttonchangepass"
-        android:layout_width="216dp"
-        android:layout_height="34dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginBottom="5dp"
+        android:layout_width="219dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="13dp"
         android:background="@drawable/edit_round"
         android:fontFamily="@font/viga"
-        android:text="Change Password"
         android:onClick="Change_To_Reset"
+        android:text="Change Password"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/cancelBtn"
         app:layout_constraintEnd_toStartOf="@+id/guideline31"
-        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="@+id/guideline30"
-        app:layout_constraintTop_toBottomOf="@+id/editemail"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonsave" />
 
     <TextView
         android:id="@+id/textView"
@@ -208,10 +205,10 @@
 
     <Button
         android:id="@+id/cancelBtn"
-        android:layout_width="216dp"
-        android:layout_height="34dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="18dp"
+        android:layout_width="217dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="76dp"
+        android:layout_marginBottom="22dp"
         android:background="@drawable/editttextcancel"
         android:fontFamily="@font/viga"
         android:onClick="Change_To_User"
@@ -222,10 +219,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline31"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="@+id/guideline30"
         app:layout_constraintTop_toBottomOf="@+id/buttonsave"
-        app:layout_constraintVertical_bias="0.135" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline30"
