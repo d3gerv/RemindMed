@@ -294,9 +294,9 @@ public class edit_delete_temperature extends AppCompatActivity implements TimePi
     private void startAlarm(Calendar c)
     {
         getData();
-        String month = (String) android.text.format.DateFormat.format("MM", getDateFromString(startdate));
-        String day = (String) android.text.format.DateFormat.format("dd", getDateFromString(startdate));
-        String year = (String) android.text.format.DateFormat.format("yyyy", getDateFromString(startdate));
+        String month = (String) android.text.format.DateFormat.format("MM",startDate);
+        String day = (String) android.text.format.DateFormat.format("dd", startDate);
+        String year = (String) android.text.format.DateFormat.format("yyyy", startDate);
 
         alarmMonth = Integer.parseInt(month);
         alarmDay = Integer.parseInt(day);

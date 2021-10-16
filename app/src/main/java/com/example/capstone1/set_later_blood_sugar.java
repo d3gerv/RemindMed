@@ -137,6 +137,8 @@ public class set_later_blood_sugar extends AppCompatActivity implements TimePick
                 user.put("EndDate", getDateFromString(EndDate));
                 user.put("Frequency", frequencychoide);
                 user.put("FrequencyTitle", frequencyName);
+                user.put("idCode", id);
+
 
                 fstore.collection("users").document(userId).collection("Health Measurement Alarm")
                         .add(user)

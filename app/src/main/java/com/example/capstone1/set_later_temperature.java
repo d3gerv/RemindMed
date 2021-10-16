@@ -137,6 +137,8 @@ public class set_later_temperature extends AppCompatActivity implements TimePick
                 user.put("FrequencyTitle", frequencyName);
                 user.put("Hour", c.get(Calendar.HOUR_OF_DAY));
                 user.put("Minute", c.get(Calendar.MINUTE));
+                user.put("idCode", id);
+
 
 
                 fstore.collection("users").document(userId).collection("Health Measurement Alarm")

@@ -111,7 +111,7 @@ public class set_now_pulse_rate extends AppCompatActivity {
                     user.put("Time", timeToday);
                 }
 
-                if(recordInt > 37)
+                if(recordInt< 100 && recordInt > 60)
                 {
                     NotificationCompat.Builder mBuilder = (NotificationCompat.Builder)
                             new NotificationCompat.Builder(set_now_pulse_rate.this, "abnormalbp");
