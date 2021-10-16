@@ -4,9 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
+import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -35,11 +38,12 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Random;
 
 public class edit_delete_cholesterol extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
 
     Button timeButtonEditM, deleteBP;
-    int  frequencychoide, choice;
+    int  frequencychoide, choice, alarmID, alarmIIDdb, alarmYear, alarmMonth, alarmDay, alarmHour, alarmMin;
     private Button dateButton, endDateButton, timeButtonBPLater, saveBPbutton;
     final int start = 1;
     final int end = 2;
@@ -47,6 +51,7 @@ public class edit_delete_cholesterol extends AppCompatActivity implements TimePi
     String userId, time, strDate, strEnd, startdate, frequencyDB, fname, placeholderName;
     Calendar calendar = Calendar.getInstance();
     Calendar c;
+    Calendar myAlarmDate = Calendar.getInstance();
     Spinner frequencyBP;
     FirebaseAuth rootAuthen;
     FirebaseFirestore fstore;
@@ -72,6 +77,7 @@ public class edit_delete_cholesterol extends AppCompatActivity implements TimePi
         deleteBP = findViewById(R.id.deleteBtn);
 
         getData();
+        getHourandMin();
         setData();
 
         ArrayAdapter<String> adapterFrequency = new ArrayAdapter<String>(edit_delete_cholesterol.this,
@@ -133,6 +139,7 @@ public class edit_delete_cholesterol extends AppCompatActivity implements TimePi
             @Override
             public void onClick(View v) {
                 updateAlarm();
+                startAlarm(myAlarmDate);
             }
         });
 
@@ -171,6 +178,7 @@ public class edit_delete_cholesterol extends AppCompatActivity implements TimePi
             strDate = getIntent().getStringExtra("Date");
             strEnd = getIntent().getStringExtra("EndDate");
             frequencyDB = getIntent().getStringExtra("FrequencyTitle");
+            alarmIIDdb = getIntent().getIntExtra("AlarmID", 0);
 
 
         }else{
@@ -178,6 +186,18 @@ public class edit_delete_cholesterol extends AppCompatActivity implements TimePi
         }
     }
 
+    private void getHourandMin()
+    {
+        if(getIntent().hasExtra("Hour") && getIntent().hasExtra("Minute"))
+        {
+
+            alarmHour = getIntent().getIntExtra("Hour", 0);
+            alarmMin = getIntent().getIntExtra("Minute", 0);
+
+        }else{
+            Toast.makeText(this, "No Data", Toast.LENGTH_SHORT).show();
+        }
+    }
     private void setData()
     {
         dateButton.setText(strDate);
@@ -208,10 +228,12 @@ public class edit_delete_cholesterol extends AppCompatActivity implements TimePi
         startDate = getDateFromString(dateButton.getText().toString());
         time = timeButtonBPLater.getText().toString().trim();
         endDate = getDateFromString(endDateButton.getText().toString());
-        measurement_info_today m = new measurement_info_today(placeholderName, time, startDate, endDate, frequencychoide, fname);
+        measurement_info_today m = new measurement_info_today(placeholderName, time, startDate, endDate, frequencychoide, fname, alarmHour, alarmMin, alarmID);
         fstore.collection("users").document(currentFirebaseUser.getUid()).collection("Health Measurement Alarm")
                 .document(measurement_info_today.getId()).update("Frequency", m.getFrequency(),
-                "FrequencyTitle", m.getFrequencyTitle(), "StartDate", m.getStartDate(), "Time", m.getTime(), "EndDate", m.getEndDate()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                "FrequencyTitle", m.getFrequencyTitle(),
+                "StartDate", m.getStartDate(), "Time", m.getTime(), "EndDate", m.getEndDate(), "Hour", m.getHour(),
+                "Minute", m.getMinute(), "idCode", m.getIdCode()).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void avoid) {
                 Toast.makeText(edit_delete_cholesterol.this, "Medications Changed", Toast.LENGTH_LONG).show();
@@ -234,6 +256,9 @@ public class edit_delete_cholesterol extends AppCompatActivity implements TimePi
                 if (choice == start)
                 {
                     startdate = makeDateString(day, month, year);
+                    alarmYear = year ;
+                    alarmMonth = month;
+                    alarmDay = day;
                     dateButton.setText(startdate);
                 }
                 else if (choice == end)
@@ -268,6 +293,28 @@ public class edit_delete_cholesterol extends AppCompatActivity implements TimePi
         timeButtonBPLater.setText(timeText);
     }
 
+    private void startAlarm(Calendar c)
+    {
+        getData();
+        String month = (String) android.text.format.DateFormat.format("MM", getDateFromString(startdate));
+        String day = (String) android.text.format.DateFormat.format("dd", getDateFromString(startdate));
+        String year = (String) android.text.format.DateFormat.format("yyyy", getDateFromString(startdate));
+
+        alarmMonth = Integer.parseInt(month);
+        alarmDay = Integer.parseInt(day);
+        alarmYear = Integer.parseInt(year);
+        Intent intent = new Intent(this, alarmreceiver.class);
+        myAlarmDate.setTimeInMillis(System.currentTimeMillis());
+        myAlarmDate.set(alarmYear, alarmMonth-1, alarmDay, alarmHour, alarmMin);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        alarmID = new Random().nextInt(1000000);
+        PendingIntent pendingDB = PendingIntent.getBroadcast(this, alarmIIDdb, intent, 0);
+        alarmManager.cancel(pendingDB);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, alarmID, intent, 0);
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), pendingIntent);
+        //  alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), 24*60*60*1000, pendingIntent);
+    }
+
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         c = Calendar.getInstance();
@@ -275,6 +322,8 @@ public class edit_delete_cholesterol extends AppCompatActivity implements TimePi
         c.set(Calendar.MINUTE, minute);
         c.set(Calendar.SECOND, 0);
         c.set(Calendar.MILLISECOND, 0);
+        alarmHour = hourOfDay;
+        alarmMin = minute;
         updateTimeText(c);
     }
     public Date getDateFromString(String dateToSave) {

@@ -110,7 +110,10 @@ public class set_now_blood_pressure extends AppCompatActivity implements fragmen
                     user.put("Date", startdate);
                     user.put("Time", time);
                     moveStartDate();
-                    startAlarm(myAlarmDate);
+                    if(!startdate.equals(enddate))
+                    {
+                        startAlarm(myAlarmDate);
+                    }
 
                 }
                 else if(choice == 1 && freq == 2)
@@ -120,7 +123,10 @@ public class set_now_blood_pressure extends AppCompatActivity implements fragmen
                     user.put("Date", startdate);
                     user.put("Time", time);
                     moveStartDateWeek();
-                    startAlarm(myAlarmDate);
+                    if(!startdate.equals(enddate))
+                    {
+                        startAlarm(myAlarmDate);
+                    }
                 }
                 else
                 {
@@ -211,8 +217,6 @@ public class set_now_blood_pressure extends AppCompatActivity implements fragmen
             alarmHour = getIntent().getIntExtra("Hour", 0);
             alarmMin = getIntent().getIntExtra("Minute", 0);
 
-
-
         }
     }
 
@@ -238,8 +242,6 @@ public class set_now_blood_pressure extends AppCompatActivity implements fragmen
         alarmDay = Integer.parseInt(day);
         alarmYear = Integer.parseInt(year);
 
-        measurement_info_today measurement = new measurement_info_today("Bloodpressure", time, getDateFromString(startdate),
-                getDateFromString(enddate),choice, "Daily");
         if (startdate.equals(enddate)) {
             fstore.collection("users").document(userId).collection("Health Measurement Alarm").document(measurement_info_today.getId()).delete()
                     .addOnCompleteListener(new OnCompleteListener<Void>() {

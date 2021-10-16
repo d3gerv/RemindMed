@@ -17,13 +17,17 @@ public class  measurement_info_today implements Serializable{
     public measurement_info_today() {}
 
 
-    public measurement_info_today(String HMName, String time, Date startDate, Date endDate, int frequency, String frequencyTitle) {
+    public measurement_info_today(String HMName, String time, Date startDate, Date endDate,
+                                  int frequency, String frequencyTitle, int Hour, int Minute, int idCode) {
         this.HMName = HMName;
         this.Time = time;
         this.StartDate = startDate;
         this.EndDate = endDate;
         this.Frequency = frequency;
         this.FrequencyTitle = frequencyTitle;
+        this.Hour = Hour;
+        this.Minute = Minute;
+        this.idCode = idCode;
         this.id = id;
 
     }

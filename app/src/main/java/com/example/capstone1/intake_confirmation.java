@@ -133,14 +133,21 @@ public class intake_confirmation extends AppCompatActivity {
                 if (freq == 1)
                 {
                     moveStartDate();
-                    startAlarm(myAlarmDate);
+                    if(!date.equals(enddate))
+                    {
+                        startAlarm(myAlarmDate);
+                    }
 
 
                 }
                 else if (freq == 2)
                 {
                     moveStartDateWeek();
-                    startAlarm(myAlarmDate);
+                    if(!date.equals(enddate))
+                    {
+                        startAlarm(myAlarmDate);
+                    }
+
 
                 }
                 saveToHistory();

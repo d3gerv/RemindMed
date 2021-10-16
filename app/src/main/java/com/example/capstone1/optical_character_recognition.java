@@ -8,6 +8,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.speech.tts.TextToSpeech;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -21,6 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.mlkit.vision.common.InputImage;
 import com.google.mlkit.vision.text.Text;
 import com.google.mlkit.vision.text.TextRecognition;
@@ -31,12 +34,15 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Locale;
 
 public class optical_character_recognition extends AppCompatActivity {
     Button captureImage, saveText;
     ImageView viewImage;
     Uri imageUri;
-    String currentPhotoPath;
+    FloatingActionButton tts;
+    TextToSpeech textToSpeech;
+    String text;
     int REQUEST_IMAGE_CAPTURE = 1;
     int REQUEST_IMAGE_COUNT = 3;
     TextView displayText;
@@ -49,6 +55,38 @@ public class optical_character_recognition extends AppCompatActivity {
 
         captureImage = (Button) findViewById(R.id.captureButton);
         saveText = (Button) findViewById(R.id.buttonTxttoEditTxt);
+        tts = findViewById(R.id.ttsButtonSxan);
+
+        textToSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status == TextToSpeech.SUCCESS)
+                {
+                    int result = textToSpeech.setLanguage(Locale.US);
+
+                    if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED)
+                    {
+                        Log.e("TTS", "Language not supported");
+                    }
+                    else
+                    {
+                        tts.setEnabled(true);
+                    }
+                }
+                else
+                {
+                    Log.e("TTS", "Iniitialization failed");
+                }
+            }
+        });
+
+        tts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                text = displayText.getText().toString();
+                speak();
+            }
+        });
 
         captureImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,6 +167,12 @@ public class optical_character_recognition extends AppCompatActivity {
         }
 
         }
+
+    private void speak() {
+
+        textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+
+    }
     public void ocr_To_med(View view) {
         Intent intent = new Intent(optical_character_recognition.this, new_medications.class);
         startActivity(intent);

@@ -83,7 +83,10 @@ public class set_now_hours_of_sleep extends AppCompatActivity {
                     user.put("Date", startdate);
                     user.put("Time", time);
                     moveStartDate();
-                    startAlarm(myAlarmDate);
+                    if(!startdate.equals(enddate))
+                    {
+                        startAlarm(myAlarmDate);
+                    }
 
                 }
                 else if (choice == 1 && freq == 2)
@@ -93,7 +96,10 @@ public class set_now_hours_of_sleep extends AppCompatActivity {
                     user.put("Date", startdate);
                     user.put("Time", time);
                     moveStartDateWeek();
-                    startAlarm(myAlarmDate);
+                    if(!startdate.equals(enddate))
+                    {
+                        startAlarm(myAlarmDate);
+                    }
 
                 }
                 else
@@ -191,8 +197,7 @@ public class set_now_hours_of_sleep extends AppCompatActivity {
         alarmDay = Integer.parseInt(day);
         alarmYear = Integer.parseInt(year);
 
-        measurement_info_today measurement = new measurement_info_today("Sleep", time, getDateFromString(startdate),
-                getDateFromString(enddate),choice, "Daily");
+
         if (startdate.equals(enddate)) {
             fstore.collection("users").document(userId).collection("Health Measurement Alarm").document(measurement_info_today.getId()).delete()
                     .addOnCompleteListener(new OnCompleteListener<Void>() {

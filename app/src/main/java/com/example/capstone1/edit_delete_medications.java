@@ -246,7 +246,7 @@ public class edit_delete_medications extends AppCompatActivity implements TimePi
                 {
                     String startdate = makeDateString(day, month, year);
                     alarmYear = year ;
-                    alarmMonth = month - 1;
+                    alarmMonth = month;
                     alarmDay = day;
                     dateFormat.setText(startdate);
                 }

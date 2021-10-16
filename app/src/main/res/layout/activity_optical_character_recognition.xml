@@ -6,6 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".optical_character_recognition">
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/ttsButtonSxan"
+        android:layout_width="52dp"
+        android:layout_height="42dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:backgroundTint="#FFFFFF"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toTopOf="@+id/captureButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.304"
+        app:layout_constraintStart_toEndOf="@+id/medNameTV"
+        app:layout_constraintTop_toBottomOf="@+id/medImageView"
+        app:layout_constraintVertical_bias="0.612"
+        app:srcCompat="@drawable/ic_text_to_speech" />
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
