@@ -19,23 +19,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Capstone1">
         <activity
-            android:name=".pdf_hours_of_sleep"
+            android:name=".alarm_notification_measurements"
             android:exported="true"/>
+        <activity
+            android:name=".pdf_hours_of_sleep"
+            android:exported="true" />
         <activity
             android:name=".pdf_pulserate"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".pdf_bodyTemp"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".pdf_cholesterol"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".pdf_BloodSugar"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".health_measurement_pdf_choices"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".medication_edit_delete_card"
             android:exported="true" />

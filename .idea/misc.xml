@@ -74,7 +74,8 @@
         <entry key="..\:/Users/Arah/Desktop/RemindMed/app/src/main/res/drawable/ic_baseline_add.xml" value="0.17592592592592593" />
         <entry key="..\:/Users/Arah/Desktop/RemindMed/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.18055555555555555" />
         <entry key="..\:/Users/Arah/Desktop/RemindMed/app/src/main/res/drawable/ic_launcher_background.xml" value="0.240625" />
-        <entry key="..\:/Users/Arah/Desktop/RemindMed/app/src/main/res/layout/activity_alarm_notification.xml" value="0.12" />
+        <entry key="..\:/Users/Arah/Desktop/RemindMed/app/src/main/res/layout/activity_alarm_notification.xml" value="0.25" />
+        <entry key="..\:/Users/Arah/Desktop/RemindMed/app/src/main/res/layout/activity_alarm_notification_measurements.xml" value="0.16" />
         <entry key="..\:/Users/Arah/Desktop/RemindMed/app/src/main/res/layout/activity_cardview_edit_measurements.xml" value="0.33" />
         <entry key="..\:/Users/Arah/Desktop/RemindMed/app/src/main/res/layout/activity_cardview_history_medication.xml" value="0.10916919959473151" />
         <entry key="..\:/Users/Arah/Desktop/RemindMed/app/src/main/res/layout/activity_cardview_today_measurement.xml" value="0.22" />
