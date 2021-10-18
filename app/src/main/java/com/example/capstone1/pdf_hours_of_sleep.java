@@ -174,8 +174,8 @@ public class pdf_hours_of_sleep extends AppCompatActivity {
         forLinePaint.setPathEffect(new DashPathEffect(new float[]{5,5},0));
         forLinePaint.setStrokeWidth(2);
         canvas.drawLine(20,95,1000,95,forLinePaint);
-        canvas.drawBitmap(header, null, new Rect(0, 0, measurements.getWidth()-200,300), null);
-        canvas.drawBitmap(measurements, null, new Rect(0, title.getHeight()+100, measurements.getWidth()-200,measurements.getHeight()), null);
+        canvas.drawBitmap(header, null, new Rect(0, 0, measurements.getWidth()-200,250), null);
+        canvas.drawBitmap(measurements, null, new Rect(0, title.getHeight()+20, measurements.getWidth()-200,measurements.getHeight()+100), null);
         // finish the page
         document.finishPage(page);
         // draw text on the graphics object of the page

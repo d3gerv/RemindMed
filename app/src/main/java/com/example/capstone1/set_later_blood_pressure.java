@@ -174,10 +174,8 @@ public class set_later_blood_pressure extends AppCompatActivity implements TimeP
         myAlarmDate.setTimeInMillis(System.currentTimeMillis());
         myAlarmDate.set(alarmYear, alarmMonth, alarmDay, alarmHour, alarmMin);
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(this, alarmreceiver.class);
-        Intent i = new Intent(this, alarm_notification.class);
+        Intent intent = new Intent(this, alarmreceivermeasurement.class);
         id = new Random().nextInt(1000000);
-        i.putExtra("userID", id);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, id, intent, 0);
          alarmManager.setExact(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), pendingIntent);
       //  alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), 24*60*60*1000, pendingIntent);

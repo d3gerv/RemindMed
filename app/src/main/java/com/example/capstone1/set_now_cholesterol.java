@@ -80,7 +80,7 @@ public class set_now_cholesterol extends AppCompatActivity {
                 if (choice == 1 && freq ==1)
                 {
                     user.put("Name", "Cholesterol");
-                    user.put("Record",Record);
+                    user.put("Record",Record +" mmol/L");
                     user.put("Date", startdate);
                     user.put("Time", time);
                     moveStartDate();
@@ -93,7 +93,7 @@ public class set_now_cholesterol extends AppCompatActivity {
                 else if (choice == 1 && freq == 2)
                 {
                     user.put("Name", "Cholesterol");
-                    user.put("Record",Record);
+                    user.put("Record",Record +" mmol/L");
                     user.put("Date", startdate);
                     user.put("Time", time);
                     moveStartDateWeek();
@@ -105,7 +105,7 @@ public class set_now_cholesterol extends AppCompatActivity {
                 else
                 {
                     user.put("Name", "Cholesterol");
-                    user.put("Record",Record);
+                    user.put("Record",Record +" mmol/L");
                     user.put("Date", dateToday);
                     user.put("Time", timeToday);
 

@@ -81,7 +81,7 @@ public class set_now_temperature extends AppCompatActivity {
                 if (choice == 1 && freq == 1)
                 {
                     user.put("Name", "Temperature");
-                    user.put("Record",Record);
+                    user.put("Record",Record + " Celsius");
                     user.put("Date", startdate);
                     user.put("Time", time);
                     moveStartDate();
@@ -94,7 +94,7 @@ public class set_now_temperature extends AppCompatActivity {
                 {
 
                     user.put("Name", "Temperature");
-                    user.put("Record",Record);
+                    user.put("Record",Record + " Celsius");
                     user.put("Date", startdate);
                     user.put("Time", time);
                     moveStartDateWeek();
@@ -106,7 +106,7 @@ public class set_now_temperature extends AppCompatActivity {
                 else
                 {
                     user.put("Name", "Temperature");
-                    user.put("Record",Record);
+                    user.put("Record",Record + " Celsius");
                     user.put("Date", dateToday);
                     user.put("Time", timeToday);
                 }

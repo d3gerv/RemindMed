@@ -79,7 +79,7 @@ public class set_now_hours_of_sleep extends AppCompatActivity {
                 if (choice == 1 && freq == 1)
                 {
                     user.put("Name", "Sleep");
-                    user.put("Record",Record);
+                    user.put("Record",Record + " hours");
                     user.put("Date", startdate);
                     user.put("Time", time);
                     moveStartDate();
@@ -92,7 +92,7 @@ public class set_now_hours_of_sleep extends AppCompatActivity {
                 else if (choice == 1 && freq == 2)
                 {
                     user.put("Name", "Sleep");
-                    user.put("Record",Record);
+                    user.put("Record",Record + " hours");
                     user.put("Date", startdate);
                     user.put("Time", time);
                     moveStartDateWeek();
@@ -105,7 +105,7 @@ public class set_now_hours_of_sleep extends AppCompatActivity {
                 else
                 {
                     user.put("Name", "Sleep");
-                    user.put("Record",Record);
+                    user.put("Record",Record + " hours");
                     user.put("Date", dateToday);
                     user.put("Time", timeToday);
                 }

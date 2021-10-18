@@ -229,6 +229,11 @@
             android:enabled="true"
             android:exported="true" />
 
+        <receiver
+            android:name=".alarmreceivermeasurement"
+            android:enabled="true"
+            android:exported="true" />
+
         <meta-data
             android:name="com.google.mlkit.vision.DEPENDENCIES"
             android:value="ocr" />

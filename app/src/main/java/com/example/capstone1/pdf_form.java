@@ -183,8 +183,8 @@ public class pdf_form extends AppCompatActivity {
         forLinePaint.setPathEffect(new DashPathEffect(new float[]{5,5},0));
         forLinePaint.setStrokeWidth(2);
         canvas.drawLine(20,95,1000,95,forLinePaint);
-        canvas.drawBitmap(header, null, new Rect(0, 75, measurements.getWidth()-200,200), null);
-        canvas.drawBitmap(measurements, null, new Rect(20, title.getHeight()+20, measurements.getWidth()-200,measurements.getHeight()+100), null);
+        canvas.drawBitmap(header, null, new Rect(0, 0, measurements.getWidth()-200,250), null);
+        canvas.drawBitmap(measurements, null, new Rect(0, title.getHeight()+20, measurements.getWidth()-200,measurements.getHeight()+100), null);
         // finish the page
         document.finishPage(page);
         // draw text on the graphics object of the page

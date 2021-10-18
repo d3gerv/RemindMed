@@ -79,8 +79,8 @@ public class set_now_blood_sugar extends AppCompatActivity {
                 getData();
                 if (choice == 1 && freq == 1)
                 {
-                    user.put("Name", "Bloodsugar");
-                    user.put("Record",Record);
+                    user.put("Name", "Bloodsugar" );
+                    user.put("Record",Record + " mmol/L");
                     user.put("Date", startdate);
                     user.put("Time", time);
                     moveStartDate();
@@ -93,7 +93,7 @@ public class set_now_blood_sugar extends AppCompatActivity {
                 else if (choice == 1 && freq == 2)
                 {
                     user.put("Name", "Bloodsugar");
-                    user.put("Record",Record);
+                    user.put("Record",Record + " mmol/L");
                     user.put("Date", startdate);
                     user.put("Time", time);
                     moveStartDateWeek();
@@ -105,7 +105,7 @@ public class set_now_blood_sugar extends AppCompatActivity {
                 else
                 {
                     user.put("Name", "Bloodsugar");
-                    user.put("Record",Record);
+                    user.put("Record",Record + " mmol/L");
                     user.put("Date", dateToday);
                     user.put("Time", timeToday);
                 }

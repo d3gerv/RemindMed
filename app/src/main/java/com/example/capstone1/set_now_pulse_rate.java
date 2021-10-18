@@ -80,7 +80,7 @@ public class set_now_pulse_rate extends AppCompatActivity {
                 if (choice == 1 && freq == 2)
                 {
                     user.put("Name", "Pulserate");
-                    user.put("Record",Record);
+                    user.put("Record",Record + " BPM");
                     user.put("Date", startdate);
                     user.put("Time", time);
                     moveStartDate();
@@ -93,7 +93,7 @@ public class set_now_pulse_rate extends AppCompatActivity {
                 else if (choice == 1 && freq == 2)
                 {
                     user.put("Name", "Pulserate");
-                    user.put("Record",Record);
+                    user.put("Record",Record + " BPM");
                     user.put("Date", startdate);
                     user.put("Time", time);
                     moveStartDateWeek();
@@ -106,7 +106,7 @@ public class set_now_pulse_rate extends AppCompatActivity {
                 else
                 {
                     user.put("Name", "Pulserate");
-                    user.put("Record",Record);
+                    user.put("Record",Record + " BPM");
                     user.put("Date", dateToday);
                     user.put("Time", timeToday);
                 }

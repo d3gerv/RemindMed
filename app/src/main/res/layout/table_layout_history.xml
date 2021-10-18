@@ -14,34 +14,37 @@
 
             <TextView
                 android:id="@+id/measurementhistoryPDF"
+                android:layout_width="159dp"
                 android:layout_column="1"
+                android:fontFamily="@font/viga"
                 android:gravity="center"
                 android:padding="16dp"
                 android:text="Blood Pressure"
                 android:textColor="#000000"
-                android:fontFamily="@font/viga"
-                android:textSize="20dp" />
+                android:textSize="18dp" />
 
             <TextView
                 android:id="@+id/datehistoryPDF"
-                android:layout_width="116dp"
+                android:layout_width="109dp"
+                android:layout_height="match_parent"
                 android:layout_column="1"
                 android:fontFamily="@font/viga"
                 android:gravity="center"
                 android:padding="16dp"
                 android:text="Date"
                 android:textColor="#000000"
-                android:textSize="20dp" />
+                android:textSize="18dp" />
 
             <TextView
                 android:id="@+id/timehisoryPDF"
-                android:layout_width="107dp"
+                android:layout_width="91dp"
+                android:layout_height="match_parent"
                 android:fontFamily="@font/viga"
                 android:gravity="center"
                 android:padding="16dp"
                 android:text="Time"
                 android:textColor="#000000"
-                android:textSize="20dp" />
+                android:textSize="18dp" />
 
         </TableRow>
     </TableLayout>

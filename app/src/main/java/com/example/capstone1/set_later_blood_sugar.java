@@ -168,7 +168,7 @@ public class set_later_blood_sugar extends AppCompatActivity implements TimePick
         myAlarmDate.set(alarmYear, alarmMonth, alarmDay, alarmHour, alarmMin);
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         ArrayList<PendingIntent> intentArray = new ArrayList<PendingIntent>();
-        Intent intent = new Intent(this, alarmreceiver.class);
+        Intent intent = new Intent(this, alarmreceivermeasurement.class);
         id = new Random().nextInt(1000000);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, id, intent, 0);
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
