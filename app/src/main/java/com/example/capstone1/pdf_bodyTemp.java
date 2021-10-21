@@ -187,11 +187,11 @@ public class pdf_bodyTemp extends AppCompatActivity {
         if (!file.exists()) {
             file.mkdirs();
         }
-        String targetPdf = folder + "RemindMed"  + ".pdf";
-        File filePath = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "RemindMed.pdf");
+        String targetPdf = folder + "RemindMedTemp"  + ".pdf";
+        File filePath = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "RemindMedTemp.pdf");
         try {
             document.writeTo(new FileOutputStream(filePath));
-            Toast.makeText(this, "Exported to PDF", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Exported PDF to downloads folder", Toast.LENGTH_LONG).show();
         } catch (IOException e) {
             Log.e("main", "error "+e.toString());
             Toast.makeText(this, "Something wrong: " + e.toString(),  Toast.LENGTH_LONG).show();

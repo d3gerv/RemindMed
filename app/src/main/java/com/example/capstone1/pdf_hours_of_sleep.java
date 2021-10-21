@@ -186,8 +186,8 @@ public class pdf_hours_of_sleep extends AppCompatActivity {
         if (!file.exists()) {
             file.mkdirs();
         }
-        String targetPdf = folder + "RemindMed"  + ".pdf";
-        File filePath = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) , "RemindMed.pdf");
+        String targetPdf = folder + "RemindMedSleep"  + ".pdf";
+        File filePath = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) , "RemindMedSleep.pdf");
         try {
             document.writeTo(new FileOutputStream(filePath));
             Toast.makeText(this, "Exported PDF to downloads folder", Toast.LENGTH_LONG).show();
