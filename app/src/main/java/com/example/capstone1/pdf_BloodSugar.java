@@ -196,11 +196,11 @@ public class pdf_BloodSugar extends AppCompatActivity {
         if (!file.exists()) {
             file.mkdirs();
         }
-        String targetPdf = folder + "RemindMed"  + ".pdf";
+        String targetPdf = folder + "RemindMedBS"  + ".pdf";
         File filePath = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),  "RemindMedBS.pdf");
         try {
             document.writeTo(new FileOutputStream(filePath));
-            Toast.makeText(this, "Exported to PDF", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Exported PDF to downloads folder", Toast.LENGTH_LONG).show();
         } catch (IOException e) {
             Log.e("main", "error "+e.toString());
             Toast.makeText(this, "Something wrong: " + e.toString(),  Toast.LENGTH_LONG).show();
