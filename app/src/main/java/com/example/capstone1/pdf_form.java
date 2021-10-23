@@ -200,7 +200,7 @@ public class pdf_form extends AppCompatActivity {
         if (!file.exists()) {
             file.mkdirs();
         }
-        String targetPdf = folder + "RemindMed"  + ".pdf";
+        String targetPdf = folder + "RemindMedBP"  + ".pdf";
         File filePath = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) , "RemindMedBP.pdf");
         try {
             document.writeTo(new FileOutputStream(filePath));

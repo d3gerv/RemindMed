@@ -41,7 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="128dp"
-                android:layout_marginTop="14dp"
+                android:layout_marginTop="15dp"
                 android:text="time"
                 android:textColor="#000000"
                 app:layout_constraintStart_toStartOf="parent"

@@ -190,7 +190,7 @@ public class pdf_cholesterol extends AppCompatActivity {
         if (!file.exists()) {
             file.mkdirs();
         }
-        String targetPdf = folder + "RemindMed"  + ".pdf";
+        String targetPdf = folder + "RemindMedCHol"  + ".pdf";
         File filePath = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) , "RemindMedCholesterol.pdf");
         try {
             document.writeTo(new FileOutputStream(filePath));
