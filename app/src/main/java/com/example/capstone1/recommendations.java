@@ -16,13 +16,13 @@ public class recommendations extends AppCompatActivity {
     TextView hmTitle;
     RecyclerView recommendationRecyclerView;
     recommendation_Adapter adapter;
-    String bptext[] = { "reduce excess stress" , "eat Low salt and low fat food", "Eat high fiber foods", "proper rest and exercise" };
-    String chotext[] = { "eat healthy foods" , "Low fat and oily", "moderate exercise" };
+    String bptext[] = { "Reduce excess stress" , "Eat Low salt and low fat food", "Eat high fiber foods", "Proper rest and exercise" };
+    String chotext[] = { "Eat healthy foods" , "Low fat and oily", "Moderate exercise" };
     String bstext[] = { "Reduce carb" , "Remove fiber", "Drink advisable amount of water", "Maintain body weight",
-            "Metformin when blood sugar level is high", "Chemlin for low", "exercise regularly", "get enough sleep"};
-    String tempText[] = { "Drink medicine e.g. paracetamol and ibuprofen" , "Have some rest", "Keep hydrated", "eat healthy foods like vegetables and fruits" };
-    String sleepText[] = { "eat healthy foods" , "Low fat and oily", "moderate exercise" };
-    String pulseText[] = { "Keep hydrated" , "Avoid caffeine", "monitored yung cholesterol levels" };
+            "Metformin when blood sugar level is high", "Chemlin for low blodd sugar", "Exercise regularly", "Get enough sleep"};
+    String tempText[] = { "Drink medicine e.g. paracetamol and ibuprofen" , "Have some rest", "Keep hydrated", "Eat healthy foods like vegetables and fruits" };
+    String sleepText[] = { "Eat healthy foods" , "Low fat and oily", "Moderate exercise" };
+    String pulseText[] = { "Keep hydrated" , "Avoid caffeine", "Monitor cholesterol levels" };
 
 
 

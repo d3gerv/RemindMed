@@ -75,7 +75,12 @@ public class pdf_pulserate extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Bitmap b = Bitmap.createBitmap(tableLayout.getDrawingCache());
-                createPdf( v, getScreenshotFromRecyclerView(recyclerView), b);
+                try{
+                    createPdf( v, getScreenshotFromRecyclerView(recyclerView), b);
+                }catch (Exception e){
+                    Toast.makeText(pdf_pulserate.this, "No data to turn to PDF", Toast.LENGTH_SHORT).show();
+
+                }
             }
         });
     }
@@ -169,14 +174,13 @@ public class pdf_pulserate extends AppCompatActivity {
         paint.setTextSize(60f);
         canvas.drawText("RemindMed",20,60,paint);
         paint.setTextSize(30.5f);
-        canvas.drawText("Monthly report for Pulserate",20,90,paint);
+        canvas.drawText("Report for Pulserate",20,90,paint);
         forLinePaint.setStyle(Paint.Style.STROKE);
         forLinePaint.setPathEffect(new DashPathEffect(new float[]{5,5},0));
         forLinePaint.setStrokeWidth(2);
         canvas.drawLine(20,95,1000,95,forLinePaint);
-        canvas.drawBitmap(header, null, new Rect(0, 0, measurements.getWidth()-200,250), null);
-        canvas.drawBitmap(measurements, null, new Rect(0, title.getHeight()+20, measurements.getWidth()-200,measurements.getHeight()+100), null);
-        // finish the page
+        canvas.drawBitmap(header, null, new Rect(0, 30, measurements.getWidth()-200,280), null);
+        canvas.drawBitmap(measurements, null, new Rect(0, title.getHeight()+45, measurements.getWidth()-200,measurements.getHeight()+165), null);// finish the page
         document.finishPage(page);
         // draw text on the graphics object of the page
 
@@ -187,10 +191,10 @@ public class pdf_pulserate extends AppCompatActivity {
             file.mkdirs();
         }
         String targetPdf = folder + "RemindMedPulse"  + ".pdf";
-        File filePath = new File(this.getExternalFilesDir("/"), "RemindMedPulse.pdf");
+        File filePath = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "RemindMedPulse.pdf");
         try {
             document.writeTo(new FileOutputStream(filePath));
-            Toast.makeText(this, "Exported to PDF", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Exported PDF to downloads folder", Toast.LENGTH_LONG).show();
         } catch (IOException e) {
             Log.e("main", "error "+e.toString());
             Toast.makeText(this, "Something wrong: " + e.toString(),  Toast.LENGTH_LONG).show();

@@ -12,8 +12,13 @@ import android.provider.Settings;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class alarmreceivermeasurement extends BroadcastReceiver {
-    static Ringtone ringtone;
+    static Ringtone ringtone1;
+    Timer mTimer;
+
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -34,8 +39,18 @@ public class alarmreceivermeasurement extends BroadcastReceiver {
 
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(context);
         notificationManagerCompat.notify(123, builder.build());
-        ringtone = RingtoneManager.getRingtone(context, RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE));
-        ringtone.play();
+        ringtone1 = RingtoneManager.getRingtone(context, RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE));
+        ringtone1.play();
+        mTimer = new Timer();
+        mTimer.scheduleAtFixedRate(new TimerTask() {
+            public void run() {
+                if (!ringtone1.isPlaying()) {
+                    ringtone1.play();
+                }
+            }
+        }, 1000*1, 1000*1);
+
+
         context.startActivity(i);
     }
 }

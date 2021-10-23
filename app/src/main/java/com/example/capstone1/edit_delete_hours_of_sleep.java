@@ -138,7 +138,6 @@ public class edit_delete_hours_of_sleep extends AppCompatActivity implements Tim
         saveBPbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateAlarm();
                 startAlarm(myAlarmDate);
             }
         });
@@ -238,7 +237,7 @@ public class edit_delete_hours_of_sleep extends AppCompatActivity implements Tim
                 "Minute", m.getMinute(), "idCode", m.getIdCode()).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void avoid) {
-                Toast.makeText(edit_delete_hours_of_sleep.this, "Medications Changed", Toast.LENGTH_LONG).show();
+                Toast.makeText(edit_delete_hours_of_sleep.this, "Measurement Alarm Changed", Toast.LENGTH_LONG).show();
                 startActivity(new Intent(edit_delete_hours_of_sleep.this, home_page.class));
                 finish();
             }
@@ -306,7 +305,7 @@ public class edit_delete_hours_of_sleep extends AppCompatActivity implements Tim
         alarmMonth = Integer.parseInt(month);
         alarmDay = Integer.parseInt(day);
         alarmYear = Integer.parseInt(year);
-        Intent intent = new Intent(this, alarmreceiver.class);
+        Intent intent = new Intent(this, alarmreceivermeasurement.class);
         myAlarmDate.setTimeInMillis(System.currentTimeMillis());
         myAlarmDate.set(alarmYear, alarmMonth-1, alarmDay, alarmHour, alarmMin);
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
@@ -314,8 +313,14 @@ public class edit_delete_hours_of_sleep extends AppCompatActivity implements Tim
         PendingIntent pendingDB = PendingIntent.getBroadcast(this, alarmIIDdb, intent, 0);
         alarmManager.cancel(pendingDB);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, alarmID, intent, 0);
-        alarmManager.setExact(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), pendingIntent);
-        //  alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), 24*60*60*1000, pendingIntent);
+        if (myAlarmDate.getTimeInMillis() < System.currentTimeMillis()) {
+            Toast.makeText(edit_delete_hours_of_sleep.this, "Set the time and date to the future", Toast.LENGTH_LONG).show();
+        }
+        else
+        {
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), pendingIntent);
+            updateAlarm();
+        }        //  alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), 24*60*60*1000, pendingIntent);
     }
 
     @Override

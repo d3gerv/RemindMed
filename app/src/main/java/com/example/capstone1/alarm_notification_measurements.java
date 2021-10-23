@@ -9,8 +9,10 @@ import android.media.Ringtone;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.Calendar;
+import java.util.Timer;
 
 public class alarm_notification_measurements extends AppCompatActivity {
     Button stopAlarm, snooze;
@@ -26,6 +28,8 @@ public class alarm_notification_measurements extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 snoozeAlarm();
+                Toast.makeText(alarm_notification_measurements.this, "Alarm snoozed for 15 minutes", Toast.LENGTH_SHORT).show();
+
             }
         });
         stopAlarm.setOnClickListener(new View.OnClickListener() {
@@ -43,7 +47,9 @@ public class alarm_notification_measurements extends AppCompatActivity {
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         alarmManager.cancel(pendingIntent);
-        Ringtone ringtone = alarmreceivermeasurement.ringtone;
+        Ringtone ringtone = alarmreceivermeasurement.ringtone1;
+        Timer timer = alarmreceiver.mTimer;
+        timer.cancel();
         ringtone.stop();
         startActivity(intentpage);
     }
@@ -51,13 +57,13 @@ public class alarm_notification_measurements extends AppCompatActivity {
     private void snoozeAlarm()
     {
         c.setTimeInMillis(System.currentTimeMillis());
-        c.add(Calendar.MINUTE, 5);
+        c.add(Calendar.MINUTE, 15);
         Intent intent = new Intent(this, alarmreceivermeasurement.class);
         Intent intentpage = new Intent(this, today_page_recycler.class );
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
-        Ringtone ringtone = alarmreceivermeasurement.ringtone;
+        Ringtone ringtone = alarmreceivermeasurement.ringtone1;
         ringtone.stop();
         startActivity(intentpage);
     }

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.widget.Toast;
@@ -20,6 +21,8 @@ import java.util.TimerTask;
 
 public class alarmreceiver extends BroadcastReceiver {
     static Ringtone ringtone;
+    static Timer mTimer;
+
     @Override
     public void onReceive(Context context, Intent intent) {
         MediaPlayer mediaPlayer = MediaPlayer.create(context, Settings.System.DEFAULT_NOTIFICATION_URI);
@@ -39,8 +42,18 @@ public class alarmreceiver extends BroadcastReceiver {
 
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(context);
         notificationManagerCompat.notify(123, builder.build());
+
         ringtone = RingtoneManager.getRingtone(context, RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE));
         ringtone.play();
+        mTimer = new Timer();
+        mTimer.scheduleAtFixedRate(new TimerTask() {
+            public void run() {
+                if (!ringtone.isPlaying()) {
+                    ringtone.play();
+                }
+            }
+        }, 1000*1, 1000*1);
+
         context.startActivity(i);
 
 

@@ -124,8 +124,7 @@ public class history_for_measurements extends AppCompatActivity {
         measurement = getResources().getStringArray(R.array.measurements);
         FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         for ( String i : measurement) {
-            db.document("users/" + currentFirebaseUser.getUid()).collection("New Health Measurements").document(i).collection(i)
-                    .orderBy("Time", Query.Direction.ASCENDING).addSnapshotListener(new EventListener<QuerySnapshot>() {
+            db.document("users/" + currentFirebaseUser.getUid()).collection("New Health Measurements").document(i).collection(i).addSnapshotListener(new EventListener<QuerySnapshot>() {
                 @Override
                 public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
                     if (e != null) {

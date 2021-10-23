@@ -86,6 +86,7 @@ public class edit_delete_bloodpressure extends AppCompatActivity implements Time
         getHourandMin();
         setData();
 
+
         ArrayAdapter<String> adapterFrequency = new ArrayAdapter<String>(edit_delete_bloodpressure.this,
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array
                 .frequency));
@@ -144,7 +145,6 @@ public class edit_delete_bloodpressure extends AppCompatActivity implements Time
         saveBPbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateAlarm();
                 startAlarm(myAlarmDate);
             }
         });
@@ -244,7 +244,7 @@ public class edit_delete_bloodpressure extends AppCompatActivity implements Time
                 "Minute", m.getMinute(), "idCode", m.getIdCode()).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void avoid) {
-                Toast.makeText(edit_delete_bloodpressure.this, "Medications Changed", Toast.LENGTH_LONG).show();
+                Toast.makeText(edit_delete_bloodpressure.this, "Measurement Alarm Changed", Toast.LENGTH_LONG).show();
                 startActivity(new Intent(edit_delete_bloodpressure.this, home_page.class));
                 finish();
             }
@@ -289,6 +289,7 @@ public class edit_delete_bloodpressure extends AppCompatActivity implements Time
     private void startAlarm(Calendar c)
     {
         getData();
+        startDate = getDateFromString(dateButton.getText().toString());
         String month = (String) android.text.format.DateFormat.format("MM", startDate);
         String day = (String) android.text.format.DateFormat.format("dd", startDate);
         String year = (String) android.text.format.DateFormat.format("yyyy", startDate);
@@ -296,7 +297,7 @@ public class edit_delete_bloodpressure extends AppCompatActivity implements Time
         alarmMonth = Integer.parseInt(month);
         alarmDay = Integer.parseInt(day);
         alarmYear = Integer.parseInt(year);
-        Intent intent = new Intent(this, alarmreceiver.class);
+        Intent intent = new Intent(this, alarmreceivermeasurement.class);
         myAlarmDate.setTimeInMillis(System.currentTimeMillis());
         myAlarmDate.set(alarmYear, alarmMonth-1, alarmDay, alarmHour, alarmMin);
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
@@ -304,8 +305,14 @@ public class edit_delete_bloodpressure extends AppCompatActivity implements Time
         PendingIntent pendingDB = PendingIntent.getBroadcast(this, alarmIIDdb, intent, 0);
         alarmManager.cancel(pendingDB);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, alarmID, intent, 0);
-        alarmManager.setExact(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), pendingIntent);
-        //  alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), 24*60*60*1000, pendingIntent);
+        if (myAlarmDate.getTimeInMillis() < System.currentTimeMillis()) {
+            Toast.makeText(edit_delete_bloodpressure.this, "Set the time and date to the future", Toast.LENGTH_LONG).show();
+        }
+        else
+        {
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), pendingIntent);
+            updateAlarm();
+        }        //  alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), 24*60*60*1000, pendingIntent);
     }
 
     private String makeDateString(int day, int month, int year)

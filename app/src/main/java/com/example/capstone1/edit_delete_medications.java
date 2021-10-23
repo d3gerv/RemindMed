@@ -53,11 +53,11 @@ public class edit_delete_medications extends AppCompatActivity implements TimePi
     final int end = 2;
     Calendar calendar = Calendar.getInstance();
     Calendar c;
-    Calendar myAlarmDate = Calendar.getInstance();
+    Calendar myAlarmDate;
     Button timeButtonEdit, dateFormat, delete, change, enddatebutton;
     FirebaseFirestore db;
     private DatePickerDialog datePickerDialog;
-    int hour, minuteDB, typechoice, frequencychoide, choice, alarmIDdb, alarmID, alarmYear, alarmMonth, alarmDay;
+    int hour, minuteDB, typechoice, frequencychoide, choice, alarmIDdb, alarmID, alarmYear, alarmMonth, alarmDay, hourchange, minchange;
     Spinner mySpinnerfrequency, mySpinnertype;
     FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
     private medication_info  medication_info;
@@ -79,6 +79,7 @@ public class edit_delete_medications extends AppCompatActivity implements TimePi
         initDatePicker();
         getData();
         getHourandMin();
+
 
         Log.d("K", "Hour" +hour+" " + minuteDB);
 
@@ -193,12 +194,12 @@ public class edit_delete_medications extends AppCompatActivity implements TimePi
         change.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateAlarm();
                 startAlarm(myAlarmDate);
+
             }
         });
 
-        Log.d("K", "helo" +" " +alarmYear +" " + alarmMonth +" " + alarmDay +" " + hour+" " + minuteDB);
+        Log.d("K", "helo" +" " +alarmYear +" " + alarmMonth +" " + alarmDay +" " + hourchange+" " + minchange);
     }
 
     private void getData()
@@ -241,13 +242,16 @@ public class edit_delete_medications extends AppCompatActivity implements TimePi
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day)
             {
+                getData();
                 month+=1;
                 if (choice == start)
                 {
-                    String startdate = makeDateString(day, month, year);
+                    getData();
                     alarmYear = year ;
                     alarmMonth = month;
                     alarmDay = day;
+
+                    String startdate = makeDateString(day, month, year);
                     dateFormat.setText(startdate);
                 }
                 else if (choice == end)
@@ -311,7 +315,7 @@ public class edit_delete_medications extends AppCompatActivity implements TimePi
         String frequencyName = mySpinnerfrequency.getSelectedItem().toString();
         String medicationTypeName = mySpinnertype.getSelectedItem().toString();
 
-        medication_info m = new medication_info(title, amount, startdate, time, enddate, medicationTypeName, frequencyName, hour, minuteDB, alarmID);
+        medication_info m = new medication_info(title, amount, startdate, time, enddate, medicationTypeName, frequencyName, hourchange, minchange, alarmID);
         db.collection("users").document(currentFirebaseUser.getUid()).collection("New Medications")
                 .document(medication_info.getId()).update("Medication", m.getMedication(),
                 "InventoryMeds", m.getInventoryMeds(), "StartDate", m.getStartDate(),
@@ -319,7 +323,7 @@ public class edit_delete_medications extends AppCompatActivity implements TimePi
                 "MedicineTypeName", m.getMedicineTypeName(), "Hour", m.getHour(), "Minute", m.getMinute(), "AlarmID", m.getAlarmID()).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void avoid) {
-                        Toast.makeText(edit_delete_medications.this, "Medications Changed", Toast.LENGTH_LONG).show();
+                        Toast.makeText(edit_delete_medications.this, "Measurement Alarm Changed", Toast.LENGTH_LONG).show();
                         startActivity(new Intent(edit_delete_medications.this, home_page.class));
                         finish();
                     }
@@ -340,38 +344,93 @@ public class edit_delete_medications extends AppCompatActivity implements TimePi
     }
 
     @Override
-    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+    public void onTimeSet(TimePicker view, int hourOfDay , int minute) {
         c = Calendar.getInstance();
+
         c.set(Calendar.HOUR_OF_DAY, hourOfDay);
         c.set(Calendar.MINUTE, minute);
         c.set(Calendar.SECOND, 0);
         c.set(Calendar.MILLISECOND, 0);
-        hour = hourOfDay;
-        minuteDB = minute;
+        hourchange = hourOfDay;
+        minchange = minute;
         updateTimeText(c);
     }
 
     private void startAlarm(Calendar c)
     {
+        int dynYear, dynMonth, dynDay, dynHour , dynMin;
+        myAlarmDate = Calendar.getInstance();
         getData();
+        getHourandMin();
+        startdate = getDateFromString(dateFormat.getText().toString());
         String month = (String) android.text.format.DateFormat.format("MM", startdate);
         String day = (String) android.text.format.DateFormat.format("dd", startdate);
         String year = (String) android.text.format.DateFormat.format("yyyy", startdate);
+        if (hourchange == 0)
+        {
+            dynHour = hour;
+        }
+        else
+        {
+            dynHour = hourchange;
+        }
 
-        alarmMonth = Integer.parseInt(month);
-        alarmDay = Integer.parseInt(day);
-        alarmYear = Integer.parseInt(year);
+        if (minchange == 0)
+        {
+            dynMin = minuteDB;
+        }
+        else
+        {
+            dynMin = minchange;
+        }
+        if (alarmYear == 0)
+        {
+            dynYear = Integer.parseInt(year);
+        }
+        else
+        {
+            dynYear = alarmYear;
+        }
+
+        if (alarmMonth == 0)
+        {
+            dynMonth = Integer.parseInt(month);
+        }
+        else
+        {
+            dynMonth = alarmMonth;
+        }
+        if(alarmDay == 0)
+        {
+            dynDay = Integer.parseInt(day);
+        }
+        else
+        {
+            dynDay = alarmDay;
+        }
+        Log.d("K", "dynamic" +" " +dynYear +" " + dynMonth +" " + dynDay +" " + dynHour+" " + dynMin);
+
         Intent intent = new Intent(this, alarmreceiver.class);
         myAlarmDate.setTimeInMillis(System.currentTimeMillis());
-        myAlarmDate.set(alarmYear, alarmMonth-1, alarmDay, hour, minuteDB);
+        myAlarmDate.set(dynYear, dynMonth-1, dynDay, dynHour, dynMin);
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         alarmID = new Random().nextInt(1000000);
         PendingIntent pendingDB = PendingIntent.getBroadcast(this, alarmIDdb, intent, 0);
         alarmManager.cancel(pendingDB);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, alarmID, intent, 0);
-        alarmManager.setExact(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), pendingIntent);
+
+        if (myAlarmDate.getTimeInMillis() < System.currentTimeMillis()) {
+            Toast.makeText(edit_delete_medications.this, "Set the time and date to the future", Toast.LENGTH_LONG).show();
+        }
+        else
+        {
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), pendingIntent);
+            updateAlarm();
+        }
         //  alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), 24*60*60*1000, pendingIntent);
     }
+
+
 
     private void updateTimeText(Calendar c)
     {

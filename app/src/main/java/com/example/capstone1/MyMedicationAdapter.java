@@ -60,7 +60,7 @@ public class MyMedicationAdapter extends RecyclerView.Adapter<MyMedicationAdapte
         {
             holder.constraintLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.green));
         }
-        else if(Integer.parseInt(medication_info.getInventoryMeds()) <= 5 && Integer.parseInt(medication_info.getInventoryMeds()) > 1 )
+        else if(Integer.parseInt(medication_info.getInventoryMeds()) <= intInv/4  && Integer.parseInt(medication_info.getInventoryMeds()) > 1 )
         {
             holder.constraintLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.orange));
         }
