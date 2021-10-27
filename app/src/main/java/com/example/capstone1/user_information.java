@@ -41,13 +41,13 @@ import android.widget.Spinner;
 
 public class user_information extends AppCompatActivity {
     public static final String TAG = "TAG";
-    EditText gender, birthyr, height, weight;
+    EditText  birthyr, height, weight;
     Button buttonSave, buttonLogout, buttonDeleteAcc;
     TextView email, firstname, lastname;
     FirebaseAuth rootAuthen;
     FirebaseFirestore fstore;
     FirebaseUser firebaseUser;
-    String userId;
+    String userId, genderDB;
 
     Spinner spinner;
 
@@ -114,10 +114,20 @@ public class user_information extends AppCompatActivity {
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                if (error != null) {
+                    Log.w(TAG, "listen:error", error);
+                    return;
+                }
+
                 email.setText(value.getString("email"));
                 //firstname.setText(value.getString("firstname"));
                 //lastname.setText(value.getString("lastname"));
-                //gender.setText(value.getString("gender"));
+                genderDB = (value.getString("gender"));
+                if(genderDB!=null)
+                {
+                    int pos = myAdapter.getPosition(genderDB);
+                    spinner.setSelection(pos);
+                }
                 birthyr.setText(value.getString("birthyr"));
                 height.setText(value.getString("height"));
                 weight.setText(value.getString("weight"));

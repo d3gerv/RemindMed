@@ -38,7 +38,7 @@ import java.util.Random;
 
 public class set_now_hours_of_sleep extends AppCompatActivity {
     EditText hoursVal;
-    Button saveHourNow;
+    Button saveHourNow, cancel;
     FirebaseAuth rootAuthen;
     FirebaseFirestore fstore;
     String userId, dateToday, timeToday, time, startdate, enddate;
@@ -56,6 +56,7 @@ public class set_now_hours_of_sleep extends AppCompatActivity {
         setContentView(R.layout.activity_set_now_hours_of_sleep);
         measurement_info_today = (measurement_info_today) getIntent().getSerializableExtra("measuremy_info_today");
         saveHourNow = findViewById(R.id.save_set_now_hos);
+        cancel = findViewById(R.id.cancel_set_now_hos);
         hoursVal = findViewById(R.id.hos_value_set_now);
         rootAuthen = FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
@@ -66,6 +67,34 @@ public class set_now_hours_of_sleep extends AppCompatActivity {
 
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
         timeToday = timeFormat.format(c);
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder aBuilder = new AlertDialog.Builder(set_now_hours_of_sleep.this);
+                aBuilder.setCancelable(true);
+                aBuilder.setTitle("Cancel");
+                aBuilder.setMessage("Are you sure you want to cancel");
+
+                aBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+
+                    }
+                });
+
+                aBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(set_now_hours_of_sleep.this, home_page.class);
+                        startActivity(intent);
+                    }
+                });
+
+                aBuilder.show();            }
+        });
+
 
 
         saveHourNow.setOnClickListener(new View.OnClickListener() {

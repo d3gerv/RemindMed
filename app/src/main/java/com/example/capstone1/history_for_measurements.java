@@ -108,6 +108,9 @@ public class history_for_measurements extends AppCompatActivity {
                                     });
                                 }
                                 myAdapter.notifyDataSetChanged();
+                                Intent intent = new Intent(history_for_measurements.this, history_for_measurements.class);
+                                startActivity(intent);
+
 
                             }
                         });
@@ -149,28 +152,6 @@ public class history_for_measurements extends AppCompatActivity {
 
     }
 
-    private void getTypeofMeasurement()
-    {
-        FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-
-        db.document("users/"+currentFirebaseUser.getUid()).collection("New Health Measurements")
-                .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(@NonNull QuerySnapshot queryDocumentSnapshots) {
-                String data = " ";
-                for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots)
-                {
-                    types_of_measurements types_of_measurements = documentSnapshot.toObject(types_of_measurements.class);
-                    String Bloodpressure = types_of_measurements.getBloodpressure();
-
-                    data += Bloodpressure;
-                }
-                Log.d("Measurement", "This is your measurement" + data);
-
-
-            }
-        });
-    }
     public void HistoryHM_To_Home(View view) {
         Intent intent = new Intent(history_for_measurements.this, home_page.class);
         startActivity(intent);

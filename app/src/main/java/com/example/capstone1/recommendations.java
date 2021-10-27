@@ -16,13 +16,15 @@ public class recommendations extends AppCompatActivity {
     TextView hmTitle;
     RecyclerView recommendationRecyclerView;
     recommendation_Adapter adapter;
-    String bptext[] = { "Reduce excess stress" , "Eat Low salt and low fat food", "Eat high fiber foods", "Proper rest and exercise" };
-    String chotext[] = { "Eat healthy foods" , "Low fat and oily", "Moderate exercise" };
-    String bstext[] = { "Reduce carb" , "Remove fiber", "Drink advisable amount of water", "Maintain body weight",
-            "Metformin when blood sugar level is high", "Chemlin for low blodd sugar", "Exercise regularly", "Get enough sleep"};
-    String tempText[] = { "Drink medicine e.g. paracetamol and ibuprofen" , "Have some rest", "Keep hydrated", "Eat healthy foods like vegetables and fruits" };
-    String sleepText[] = { "Eat healthy foods" , "Low fat and oily", "Moderate exercise" };
-    String pulseText[] = { "Keep hydrated" , "Avoid caffeine", "Monitor cholesterol levels" };
+    String bptext[] = { "Reduce excess stress" , "Eat Low salt and low fat food", "Eat high fiber foods",
+            "Proper rest and exercise", "If you recorded an SBP of 130 to 150 take Losartan", "If you recorded an SBP of 160 or above take Clonidine" };
+    String chotext[] = { "Eat healthy foods" , "Consume high fiber", "Do moderate exercises"};
+    String bstext[] = { "Eat recommended carbohydrate levels", "Drink advisable amount of water", "Maintain body weight",
+            "Take Metformin when blood sugar level is high", "Exercise regularly", "Get enough sleep"};
+    String tempText[] = { "Drink medicine e.g. paracetamol and ibuprofen" , "Have some rest", "Keep hydrated",
+            "Eat healthy foods like vegetables and fruits" };
+    String sleepText[] = { "Eat healthy foods like vegetables and fruits" , "Consume low fat and oily food", "Moderate exercise",  "Avoid screen time one hour before bed"};
+    String pulseText[] = { "Keep hydrated" , "Avoid caffeine", "Have moderate rest"  };
 
 
 
@@ -32,32 +34,45 @@ public class recommendations extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recommendations);
         recommendationRecyclerView = findViewById(R.id.recommendationRecycler);
+        hmTitle = findViewById(R.id.textViewRecommendations);
         getData();
         openDisclaimer();
         if (HmName.equals("Bloodpressure"))
         {
             adapter= new recommendation_Adapter(recommendations.this, bptext);
-        }
-        else if (HmName.equals("Cholesterol"))
-        {
-            adapter = new recommendation_Adapter(recommendations.this, chotext);
+            hmTitle.setText("Recommendations for Abnormal Blood Pressure");
         }
         else if (HmName.equals("Bloodsugar"))
         {
             adapter = new recommendation_Adapter(recommendations.this, bstext);
+            hmTitle.setText("Recommendations for Abnormal Blood Sugar Levels");
+
         }
+        else if (HmName.equals("Cholesterol"))
+        {
+            adapter = new recommendation_Adapter(recommendations.this, chotext);
+            hmTitle.setText("Recommendations for Abnormal Cholesterol Levels");
+
+        }
+
         else if (HmName.equals("Sleep"))
         {
             adapter = new recommendation_Adapter(recommendations.this, sleepText);
+            hmTitle.setText("Recommendations for Abnormal Sleeping Hours");
+
         }
         else if (HmName.equals("Temperature"))
         {
             adapter = new recommendation_Adapter(recommendations.this, tempText);
+            hmTitle.setText("Recommendations for Abnormal Temperature");
+
 
         }
         else if (HmName.equals("Pulserate"))
         {
             adapter = new recommendation_Adapter(recommendations.this, pulseText);
+            hmTitle.setText("Recommendations for Abnormal Pulse Rate");
+
         }
 
 
@@ -73,7 +88,7 @@ public class recommendations extends AppCompatActivity {
         aBuilder.setTitle("Disclaimer");
         aBuilder.setMessage("If you are having health problems " +
                 "please head straight to your physician " +
-                "all information here is only a recommendation and should not be used to diagnose yourself." +
+                "all information here is only a recommendation and should not be used as a solution for your peoblems." +
                 "To get a clear diagnosis ask your doctor about what to do." +
                 "If you want to continue press ok if not press cancel");
 

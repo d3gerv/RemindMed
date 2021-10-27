@@ -38,7 +38,7 @@ import java.util.Random;
 
 public class set_now_blood_sugar extends AppCompatActivity {
     EditText bsVal;
-    Button saveBSNow;
+    Button saveBSNow, cancel;
     FirebaseAuth rootAuthen;
     FirebaseFirestore fstore;
     String userId, dateToday, timeToday, time, startdate, enddate;
@@ -57,6 +57,7 @@ public class set_now_blood_sugar extends AppCompatActivity {
         setContentView(R.layout.activity_set_now_blood_sugar);
         measurement_info_today = (measurement_info_today) getIntent().getSerializableExtra("measuremy_info_today");
         saveBSNow = findViewById(R.id.save_set_now_bs);
+        cancel = findViewById(R.id.cancel_set_now_bs);
         bsVal = findViewById(R.id.bs_value);
         rootAuthen = FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
@@ -67,6 +68,36 @@ public class set_now_blood_sugar extends AppCompatActivity {
 
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
         timeToday = timeFormat.format(c);
+
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder aBuilder = new AlertDialog.Builder(set_now_blood_sugar.this);
+                aBuilder.setCancelable(true);
+                aBuilder.setTitle("Cancel");
+                aBuilder.setMessage("Are you sure you want to cancel");
+
+                aBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+
+                    }
+                });
+
+                aBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(set_now_blood_sugar.this, home_page.class);
+                        startActivity(intent);
+                    }
+                });
+
+                aBuilder.show();
+            }
+        });
+
 
 
         saveBSNow.setOnClickListener(new View.OnClickListener() {
@@ -139,7 +170,7 @@ public class set_now_blood_sugar extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             Intent intent = new Intent(set_now_blood_sugar.this, recommendations.class);
-                            intent.putExtra("description", "Cholesterol");
+                            intent.putExtra("description", "Bloodsugar");
                             startActivity(intent);
                         }
                     });

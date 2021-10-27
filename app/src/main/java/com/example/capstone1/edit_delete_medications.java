@@ -214,6 +214,7 @@ public class edit_delete_medications extends AppCompatActivity implements TimePi
             frequencyDB = getIntent().getStringExtra("FrequencyTitle");
             medTypeDB = getIntent().getStringExtra("MedicineTitle");
             dosage = getIntent().getStringExtra("dosage");
+            alarmIDdb = getIntent().getIntExtra("AlarmID", 0);
 
 
 
@@ -315,7 +316,8 @@ public class edit_delete_medications extends AppCompatActivity implements TimePi
         String frequencyName = mySpinnerfrequency.getSelectedItem().toString();
         String medicationTypeName = mySpinnertype.getSelectedItem().toString();
 
-        medication_info m = new medication_info(title, amount, startdate, time, enddate, medicationTypeName, frequencyName, hourchange, minchange, alarmID);
+        medication_info m = new medication_info(title, amount, startdate, time, enddate,
+                medicationTypeName, frequencyName, hourchange, minchange, alarmID);
         db.collection("users").document(currentFirebaseUser.getUid()).collection("New Medications")
                 .document(medication_info.getId()).update("Medication", m.getMedication(),
                 "InventoryMeds", m.getInventoryMeds(), "StartDate", m.getStartDate(),
@@ -414,9 +416,9 @@ public class edit_delete_medications extends AppCompatActivity implements TimePi
         myAlarmDate.setTimeInMillis(System.currentTimeMillis());
         myAlarmDate.set(dynYear, dynMonth-1, dynDay, dynHour, dynMin);
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        alarmID = new Random().nextInt(1000000);
         PendingIntent pendingDB = PendingIntent.getBroadcast(this, alarmIDdb, intent, 0);
         alarmManager.cancel(pendingDB);
+        alarmID = new Random().nextInt(1000000);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, alarmID, intent, 0);
 
         if (myAlarmDate.getTimeInMillis() < System.currentTimeMillis()) {
@@ -427,7 +429,6 @@ public class edit_delete_medications extends AppCompatActivity implements TimePi
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), pendingIntent);
             updateAlarm();
         }
-        //  alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), 24*60*60*1000, pendingIntent);
     }
 
 

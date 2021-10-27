@@ -200,9 +200,28 @@ public class set_now_blood_pressure extends AppCompatActivity implements fragmen
         cancelBP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("test", "check vals" + sysInt +" " + diaInt);
+                AlertDialog.Builder aBuilder = new AlertDialog.Builder(set_now_blood_pressure.this);
+                aBuilder.setCancelable(true);
+                aBuilder.setTitle("Cancel");
+                aBuilder.setMessage("Are you sure you want to cancel");
 
+                aBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
 
+                    }
+                });
+
+                aBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(set_now_blood_pressure.this, home_page.class);
+                        startActivity(intent);
+                    }
+                });
+
+                aBuilder.show();
             }
         });
     }

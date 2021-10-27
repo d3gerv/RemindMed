@@ -38,7 +38,7 @@ import java.util.Random;
 
 public class set_now_temperature extends AppCompatActivity {
     EditText tempVal;
-    Button saveTempNow;
+    Button saveTempNow, cancel;
     FirebaseAuth rootAuthen;
     FirebaseFirestore fstore;
     String userId, dateToday, timeToday, time, startdate, enddate;
@@ -56,6 +56,7 @@ public class set_now_temperature extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_now_temperature);
         measurement_info_today = (measurement_info_today) getIntent().getSerializableExtra("measuremy_info_today");
+        cancel = findViewById(R.id.cancel_set_now_temp);
         saveTempNow = findViewById(R.id.save_set_now_temp);
         tempVal = findViewById(R.id.temp_value_set_now);
         rootAuthen = FirebaseAuth.getInstance();
@@ -67,6 +68,33 @@ public class set_now_temperature extends AppCompatActivity {
 
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
         timeToday = timeFormat.format(c);
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder aBuilder = new AlertDialog.Builder(set_now_temperature.this);
+                aBuilder.setCancelable(true);
+                aBuilder.setTitle("Cancel");
+                aBuilder.setMessage("Are you sure you want to cancel");
+
+                aBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+
+                    }
+                });
+
+                aBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(set_now_temperature.this, home_page.class);
+                        startActivity(intent);
+                    }
+                });
+
+                aBuilder.show();            }
+        });
 
 
         saveTempNow.setOnClickListener(new View.OnClickListener() {

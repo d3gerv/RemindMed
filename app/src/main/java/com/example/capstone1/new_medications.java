@@ -115,6 +115,10 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 typechoice = position;
+                if (position == 4)
+                {
+                    dosage.setText(String.valueOf(15));
+                }
             }
 
             @Override

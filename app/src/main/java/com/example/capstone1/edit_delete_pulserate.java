@@ -307,9 +307,9 @@ public class edit_delete_pulserate extends AppCompatActivity implements TimePick
         myAlarmDate.setTimeInMillis(System.currentTimeMillis());
         myAlarmDate.set(alarmYear, alarmMonth-1, alarmDay, alarmHour, alarmMin);
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        alarmID = new Random().nextInt(1000000);
         PendingIntent pendingDB = PendingIntent.getBroadcast(this, alarmIIDdb, intent, 0);
         alarmManager.cancel(pendingDB);
+        alarmID = new Random().nextInt(1000000);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, alarmID, intent, 0);
         if (myAlarmDate.getTimeInMillis() < System.currentTimeMillis()) {
             Toast.makeText(edit_delete_pulserate.this, "Set the time and date to the future", Toast.LENGTH_LONG).show();

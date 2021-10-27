@@ -75,29 +75,28 @@ public class MyMedicationAdapter extends RecyclerView.Adapter<MyMedicationAdapte
 
         if(dateselectedString.equals(dateToday))
         {
+            holder.mainLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context, intake_confirmation.class);
 
-        }
-        holder.mainLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, intake_confirmation.class);
-
-                medication_info medication_info = userArrayList.get(position);
-                intent.putExtra("description", medication_info.Medication);
-                intent.putExtra("pill", medication_info.InventoryMeds);
-                intent.putExtra("startdate", strDate);
-                intent.putExtra("time", medication_info.Time);
-                intent.putExtra("enddate", strEnd);
-                intent.putExtra("Dosage", medication_info.Dosage);
-                intent.putExtra("medication_info", medication_info);
-                intent.putExtra("frequency", medication_info.Frequency);
-                intent.putExtra("Hour", medication_info.Hour);
-                intent.putExtra("Minute", medication_info.Minute);
+                    medication_info medication_info = userArrayList.get(position);
+                    intent.putExtra("description", medication_info.Medication);
+                    intent.putExtra("pill", medication_info.InventoryMeds);
+                    intent.putExtra("startdate", strDate);
+                    intent.putExtra("time", medication_info.Time);
+                    intent.putExtra("enddate", strEnd);
+                    intent.putExtra("Dosage", medication_info.Dosage);
+                    intent.putExtra("medication_info", medication_info);
+                    intent.putExtra("frequency", medication_info.Frequency);
+                    intent.putExtra("Hour", medication_info.Hour);
+                    intent.putExtra("Minute", medication_info.Minute);
 
 
-                context.startActivity(intent);
-            }
-        });
+                    context.startActivity(intent);
+                }
+            });        }
+
 
     }
 

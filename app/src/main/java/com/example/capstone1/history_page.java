@@ -70,8 +70,8 @@ public class history_page extends AppCompatActivity {
         FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(true);
-        progressDialog.setMessage("Fetching Data...");
-        progressDialog.show();
+       // progressDialog.setMessage("Fetching Data...");
+       // progressDialog.show();
 
         recyclerView1 = findViewById(R.id.recycleViewHistoryMed);
         recyclerView1.setHasFixedSize(true);
@@ -102,6 +102,8 @@ public class history_page extends AppCompatActivity {
                                     }
                                 });
                                 myAdapter.notifyDataSetChanged();
+                                Intent intent = new Intent(history_page.this, history_page.class);
+                                startActivity(intent);
 
                             }
                         });

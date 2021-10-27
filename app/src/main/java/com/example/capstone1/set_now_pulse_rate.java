@@ -38,7 +38,7 @@ import java.util.Random;
 
 public class set_now_pulse_rate extends AppCompatActivity {
     EditText tempVal;
-    Button saveTempNow;
+    Button saveTempNow, cancel;
     FirebaseAuth rootAuthen;
     FirebaseFirestore fstore;
     String userId, dateToday, timeToday, time, startdate, enddate;
@@ -56,6 +56,7 @@ public class set_now_pulse_rate extends AppCompatActivity {
         setContentView(R.layout.activity_set_now_pulse_rate);
         measurement_info_today = (measurement_info_today) getIntent().getSerializableExtra("measuremy_info_today");
         saveTempNow = findViewById(R.id.save_set_now_pr);
+        cancel = findViewById(R.id.cancel_set_now_pr);
         tempVal = findViewById(R.id.pr_value_set_now);
         rootAuthen = FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
@@ -66,6 +67,34 @@ public class set_now_pulse_rate extends AppCompatActivity {
 
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
         timeToday = timeFormat.format(c);
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder aBuilder = new AlertDialog.Builder(set_now_pulse_rate.this);
+                aBuilder.setCancelable(true);
+                aBuilder.setTitle("Cancel");
+                aBuilder.setMessage("Are you sure you want to cancel");
+
+                aBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+
+                    }
+                });
+
+                aBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(set_now_pulse_rate.this, home_page.class);
+                        startActivity(intent);
+                    }
+                });
+
+                aBuilder.show();            }
+        });
+
 
 
         saveTempNow.setOnClickListener(new View.OnClickListener() {
@@ -111,7 +140,7 @@ public class set_now_pulse_rate extends AppCompatActivity {
                     user.put("Time", timeToday);
                 }
 
-                if(recordInt< 100 && recordInt > 60)
+                if(recordInt> 100 || recordInt < 60)
                 {
                     NotificationCompat.Builder mBuilder = (NotificationCompat.Builder)
                             new NotificationCompat.Builder(set_now_pulse_rate.this, "abnormalbp");
