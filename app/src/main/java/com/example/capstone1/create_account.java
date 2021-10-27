@@ -135,18 +135,17 @@ public class create_account extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             //verify email
-                            FirebaseUser fuser = rootAuthen.getCurrentUser();
-                            fuser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                            rootAuthen.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
-                                public void onSuccess(@NonNull Void unused) {
-                                    Toast.makeText(create_account.this, "Check your email to verify your account", Toast.LENGTH_SHORT).show();
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.d(TAG, "onFailure: email not sent " + e.getMessage());
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if(task.isSuccessful()){
+                                        Toast.makeText(create_account.this, "Please check your email for verification", Toast.LENGTH_SHORT).show();
+                                    }else {
+                                        Toast.makeText(create_account.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
                                 }
                             });
+
 
 
 
