@@ -47,6 +47,7 @@ public class today_page_recycler extends AppCompatActivity {
     RecyclerView recyclerView1, rViewMeasurement;
     ArrayList<medication_info> medicationArrayList;
     MyMedicationAdapter medAdapter;
+    public static final String TAG = "TAG";
     ArrayList<measurement_info_today> measurementArrayList;
     HMAdapterToday measurementAdapter;
     FirebaseFirestore db;
@@ -79,6 +80,11 @@ public class today_page_recycler extends AppCompatActivity {
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                if (error != null) {
+                    Log.w(TAG, "listen:error", error);
+                    firstname.setText(" ");
+                    return;
+                }
                 firstname.setText(value.getString("firstname"));
             }
         });

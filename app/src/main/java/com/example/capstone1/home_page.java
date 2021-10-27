@@ -31,6 +31,7 @@ import java.util.ArrayList;
 public class home_page extends AppCompatActivity {
     FirebaseFirestore fstore = FirebaseFirestore.getInstance();
     FirebaseAuth rootAuthen;
+    public static final String TAG = "TAG";
     String userId;
     TextView firstname;
     myHomeAdpater myAdapter;
@@ -64,6 +65,11 @@ public class home_page extends AppCompatActivity {
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                if (error != null) {
+                    Log.w(TAG, "listen:error", error);
+                    firstname.setText(" ");
+                    return;
+                }
                 firstname.setText(value.getString("firstname"));
             }
         });
