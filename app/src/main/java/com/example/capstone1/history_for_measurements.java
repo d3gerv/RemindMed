@@ -1,5 +1,7 @@
 package com.example.capstone1;
 
+import static com.example.capstone1.home_page.TAG;
+
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -61,6 +63,11 @@ public class history_for_measurements extends AppCompatActivity {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
                 firstname.setText(value.getString("firstname"));
+                if (error != null) {
+                    Log.w(TAG, "listen:error", error);
+                    firstname.setText(" ");
+                    return;
+                }
             }
         });
         measurement = getResources().getStringArray(R.array.measurements);
