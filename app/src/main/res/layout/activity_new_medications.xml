@@ -315,20 +315,6 @@
         app:layout_constraintTop_toBottomOf="@+id/inventory_txt"
         app:srcCompat="@drawable/ic_ocr" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/timeSet_btn"
-        android:layout_width="36dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="8dp"
-        android:clickable="true"
-        android:focusable="true"
-        app:backgroundTint="#FDCB00"
-        app:fabSize="mini"
-        app:layout_constraintBottom_toTopOf="@+id/guideline3"
-        app:layout_constraintStart_toEndOf="@+id/timeButtonmed"
-        app:layout_constraintTop_toBottomOf="@+id/time_txt1"
-        app:srcCompat="@drawable/ic_baseline_add" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline1"
         android:layout_width="wrap_content"

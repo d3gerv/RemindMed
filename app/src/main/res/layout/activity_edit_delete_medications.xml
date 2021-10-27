@@ -311,20 +311,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/save_changes" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_btn_edit"
-        android:layout_width="84dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:clickable="true"
-        android:focusable="true"
-        app:backgroundTint="#FDCB00"
-        app:fabSize="mini"
-        app:layout_constraintBottom_toTopOf="@+id/guideline3"
-        app:layout_constraintStart_toEndOf="@+id/timeButton_edit"
-        app:layout_constraintTop_toBottomOf="@+id/time_txt1"
-        app:srcCompat="@drawable/ic_baseline_add" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline28"
         android:layout_width="wrap_content"
