@@ -218,6 +218,7 @@ public class intake_confirmation extends AppCompatActivity {
 
 
                 }
+                startActivity(new Intent(intake_confirmation.this, today_page_recycler.class));
 
             }
         });
