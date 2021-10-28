@@ -198,6 +198,26 @@ public class intake_confirmation extends AppCompatActivity {
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (freq == 1)
+                {
+                    moveStartDate();
+                    if(!date.equals(enddate))
+                    {
+                        startAlarm(myAlarmDate);
+                    }
+
+
+                }
+                else if (freq == 2)
+                {
+                    moveStartDateWeek();
+                    if(!date.equals(enddate))
+                    {
+                        startAlarm(myAlarmDate);
+                    }
+
+
+                }
 
             }
         });

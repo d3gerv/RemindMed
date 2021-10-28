@@ -308,6 +308,7 @@
         android:focusable="true"
         app:backgroundTint="#FFFFFF"
         app:fabSize="mini"
+        android:onClick="Medication_To_OCRcount"
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.065"

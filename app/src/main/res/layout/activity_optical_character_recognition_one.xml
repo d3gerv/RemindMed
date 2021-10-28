@@ -17,6 +17,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/medCountTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/viga"
+        android:text="Medicine Count"
+        android:textColor="#000000"
+        android:textSize="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageMedsCount"
+        app:layout_constraintVertical_bias="0.232" />
+
 
     <ImageButton
         android:id="@+id/imageBack"
@@ -54,36 +68,49 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/paste_medicine_button"
+        android:id="@+id/captureCount"
         android:layout_width="260dp"
         android:layout_height="48dp"
         android:layout_marginBottom="24dp"
         android:background="@drawable/edit_round"
         android:fontFamily="@font/viga"
-        android:text="Paste to Medicine Name"
+        android:text="Scan"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
         android:textSize="22sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/cancel_ocr_button"
+        app:layout_constraintBottom_toTopOf="@+id/pasteCount"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/cancel_ocr_button"
+        android:id="@+id/pasteCount"
         android:layout_width="254dp"
         android:layout_height="49dp"
         android:layout_marginBottom="32dp"
-        android:background="@drawable/editttextcancel"
+        android:background="@drawable/edit_round"
         android:fontFamily="@font/viga"
-        android:text="Cancel"
+        android:text="Paste to Inventory"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageMedsCount"
+        android:layout_width="254dp"
+        android:layout_height="288dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.15"
+        tools:srcCompat="@tools:sample/avatars"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

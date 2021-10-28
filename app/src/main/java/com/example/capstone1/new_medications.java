@@ -54,7 +54,7 @@ import java.util.Map;
 import java.util.Random;
 
 public class new_medications extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
-    EditText  dosage, inventory;
+    EditText  dosage ;
     Button buttonsavemedication;
     FirebaseAuth rootAuthen;
     FirebaseFirestore fstore;
@@ -72,6 +72,7 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
     int alarmYear, alarmMonth, alarmDay,alarmHour,alarmMin, choice, typechoice, frequencychoide, alarmID;
     String dateToday = String.valueOf(android.text.format.DateFormat.format("M/dd/yyyy", new java.util.Date()));
     static EditText medication;
+    static EditText inventory;
 
 
 
@@ -274,6 +275,11 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
 
     public void Medication_To_OCR(View view) {
         Intent intent = new Intent(new_medications.this, optical_character_recognition.class);
+        startActivity(intent);
+    }
+
+    public void Medication_To_OCRcount(View view) {
+        Intent intent = new Intent(new_medications.this, optical_character_recognition_one.class);
         startActivity(intent);
     }
 
