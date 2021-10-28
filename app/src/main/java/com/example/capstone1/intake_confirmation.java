@@ -241,7 +241,7 @@ public class intake_confirmation extends AppCompatActivity {
             inv -= doseInt;
         }
         amount = Integer.toString(inv);
-        medication_info m = new medication_info(title, amount, getDateFromString(date), time, getDateFromString(enddate), medtype, frequency, alarmHour, alarmMin, alarmID);
+        medication_info m = new medication_info(title, amount, getDateFromString(date), time, getDateFromString(enddate), medtype, frequency, alarmHour, alarmMin, alarmID, dosage);
 
         db.collection("users").document(currentFirebaseUser.getUid()).collection("New Medications")
                 .document(medication_info.getId()).update("InventoryMeds", m.getInventoryMeds())
@@ -271,7 +271,7 @@ public class intake_confirmation extends AppCompatActivity {
 
 
 
-        medication_info m = new medication_info(title, amount, getDateFromString(date), time, getDateFromString(enddate), medtype, frequency, alarmHour, alarmMin, alarmID);
+        medication_info m = new medication_info(title, amount, getDateFromString(date), time, getDateFromString(enddate), medtype, frequency, alarmHour, alarmMin, alarmID, dosage);
         if (date.equals(enddate)) {
             db.collection("users").document(currentFirebaseUser.getUid()).collection("New Medications").document(medication_info.getId()).delete()
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -313,7 +313,7 @@ public class intake_confirmation extends AppCompatActivity {
         alarmMonth = Integer.parseInt(month);
         alarmDay = Integer.parseInt(day);
         alarmYear = Integer.parseInt(year);
-        medication_info m = new medication_info(title, amount, getDateFromString(date), time, getDateFromString(enddate), medtype, frequency,alarmHour, alarmMin, alarmID);
+        medication_info m = new medication_info(title, amount, getDateFromString(date), time, getDateFromString(enddate), medtype, frequency,alarmHour, alarmMin, alarmID, dosage);
         if (date.equals(enddate)) {
             db.collection("users").document(currentFirebaseUser.getUid()).collection("New Medications").document(medication_info.getId()).delete()
                     .addOnCompleteListener(new OnCompleteListener<Void>() {

@@ -140,7 +140,7 @@ public class set_now_blood_pressure extends AppCompatActivity implements fragmen
                 {
                     NotificationCompat.Builder mBuilder = (NotificationCompat.Builder)
                             new NotificationCompat.Builder(set_now_blood_pressure.this, "abnormalbp");
-                    mBuilder.setSmallIcon(R.drawable.ic_launcher_background);
+                    mBuilder.setSmallIcon(R.drawable.logoicon);
                     mBuilder.setContentTitle("Abnormal Measurement");
                     mBuilder.setContentText("You have recently recorded an abnormal measurement");
                     mBuilder.setAutoCancel(true);

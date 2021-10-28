@@ -18,7 +18,7 @@ public class medication_info implements Serializable {
 
     public medication_info(String Medication, String InventoryMeds, Date StartDate,
                            String Time, Date EndDate, String MedicineTypeMame,
-                           String FrequencyName, int Hour, int Minute, int AlarmID )
+                           String FrequencyName, int Hour, int Minute, int AlarmID, String Dosage )
     {
         this.Medication = Medication;
         this.InventoryMeds = InventoryMeds;
@@ -30,6 +30,7 @@ public class medication_info implements Serializable {
         this.Hour = Hour;
         this.Minute = Minute;
         this.AlarmID = AlarmID;
+        this.Dosage =Dosage;
 
 
         this.id = id;

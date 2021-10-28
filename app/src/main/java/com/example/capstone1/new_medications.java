@@ -209,6 +209,22 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
                     inventory.setError("This field is required");
                     return;
                 }
+                if (Integer.parseInt(dosage.getText().toString()) > Integer.parseInt(inventory.getText().toString())){
+                    dosage.setError("Dosage should be less than the Inventory");
+                    return;
+
+                }
+                if (Integer.parseInt(dosage.getText().toString()) < 0){
+                    dosage.setError("Dosage should not be a negative number");
+                    return;
+
+                }
+                if (Integer.parseInt(inventory.getText().toString()) < 0){
+                    inventory.setError("Dosage should not be a negative number");
+                    return;
+
+                }
+
                 if(spinnertypeunit.getSelectedItemPosition()==0){
                     Toast.makeText(getApplicationContext(), "Please select type", Toast.LENGTH_SHORT).show();
                     return;

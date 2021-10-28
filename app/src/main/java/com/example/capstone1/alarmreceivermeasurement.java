@@ -17,7 +17,7 @@ import java.util.TimerTask;
 
 public class alarmreceivermeasurement extends BroadcastReceiver {
     static Ringtone ringtone1;
-    Timer mTimer;
+    static Timer mTimer;
 
 
     @Override
@@ -29,7 +29,7 @@ public class alarmreceivermeasurement extends BroadcastReceiver {
 
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         NotificationCompat.Builder builder =  new NotificationCompat.Builder(context, "MyApp")
-                .setSmallIcon(R.drawable.ic_launcher_background)
+                .setSmallIcon(R.drawable.logoicon)
                 .setContentTitle("Record your measurements")
                 .setContentText("Its time to record your measurements")
                 .setAutoCancel(true)

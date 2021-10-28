@@ -32,7 +32,7 @@ public class alarmreceiver extends BroadcastReceiver {
 
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         NotificationCompat.Builder builder =  new NotificationCompat.Builder(context, "MyApp")
-                .setSmallIcon(R.drawable.ic_launcher_background)
+                .setSmallIcon(R.drawable.logoicon)
                 .setContentTitle("Take your Medication")
                 .setContentText("Its time to take your medication")
                 .setAutoCancel(true)

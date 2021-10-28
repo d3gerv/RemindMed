@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -195,7 +196,6 @@ public class edit_delete_medications extends AppCompatActivity implements TimePi
             @Override
             public void onClick(View v) {
                 startAlarm(myAlarmDate);
-
             }
         });
 
@@ -307,7 +307,7 @@ public class edit_delete_medications extends AppCompatActivity implements TimePi
                 });
     }
     private void updateAlarm() {
-        getData();
+       /* getData();
         title = medName.getText().toString().trim();
         amount = medInventory.getText().toString().trim();
         startdate = getDateFromString(dateFormat.getText().toString());
@@ -315,6 +315,45 @@ public class edit_delete_medications extends AppCompatActivity implements TimePi
         enddate = getDateFromString(enddatebutton.getText().toString());
         String frequencyName = mySpinnerfrequency.getSelectedItem().toString();
         String medicationTypeName = mySpinnertype.getSelectedItem().toString();
+
+        if (TextUtils.isEmpty(title)) {
+            medName.setError("This field is required");
+            return;
+        }
+        else if (TextUtils.isEmpty(dosage) ){
+            dosageBoxET.setError("This field is required");
+            return;
+        }
+        else if (TextUtils.isEmpty(amount)) {
+            medInventory.setError("This field is required");
+            return;
+        }
+        else if (Integer.parseInt(dosageBoxET.getText().toString()) > Integer.parseInt(medInventory.getText().toString())){
+            dosageBoxET.setError("Dosage should be less than the Inventory");
+            return;
+
+        }
+        else if (Integer.parseInt(dosageBoxET.getText().toString()) < 0){
+            dosageBoxET.setError("Dosage should not be a negative number");
+            return;
+
+        }
+        else if (Integer.parseInt(medInventory.getText().toString()) < 0){
+            medInventory.setError("Dosage should not be a negative number");
+            return;
+        }
+        else if(mySpinnerfrequency.getSelectedItemPosition()==0){
+            Toast.makeText(getApplicationContext(), "Please select type", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        else if(mySpinnertype.getSelectedItemPosition()==0){
+            Toast.makeText(getApplicationContext(), "Please select frequency", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        else
+        {
+            startAlarm(myAlarmDate);
+        }
 
         medication_info m = new medication_info(title, amount, startdate, time, enddate,
                 medicationTypeName, frequencyName, hourchange, minchange, alarmID);
@@ -329,7 +368,7 @@ public class edit_delete_medications extends AppCompatActivity implements TimePi
                         startActivity(new Intent(edit_delete_medications.this, home_page.class));
                         finish();
                     }
-                });
+                });*/
     }
 
     public Date getDateFromString(String dateToSave) {
@@ -426,8 +465,68 @@ public class edit_delete_medications extends AppCompatActivity implements TimePi
         }
         else
         {
-            alarmManager.setExact(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), pendingIntent);
-            updateAlarm();
+            getData();
+            title = medName.getText().toString().trim();
+            amount = medInventory.getText().toString().trim();
+            startdate = getDateFromString(dateFormat.getText().toString());
+            time = timeButtonEdit.getText().toString().trim();
+            dosage = dosageBoxET.getText().toString().trim();
+            enddate = getDateFromString(enddatebutton.getText().toString());
+            String frequencyName = mySpinnerfrequency.getSelectedItem().toString();
+            String medicationTypeName = mySpinnertype.getSelectedItem().toString();
+
+            if (TextUtils.isEmpty(title)) {
+                medName.setError("This field is required");
+                return;
+            }
+            else if (dosageBoxET.getText().toString().isEmpty() ){
+                dosageBoxET.setError("This field is required");
+                return;
+            }
+            else if (TextUtils.isEmpty(amount)) {
+                medInventory.setError("This field is required");
+                return;
+            }
+            else if (Integer.parseInt(dosage) > Integer.parseInt(medInventory.getText().toString()) && typechoice >3){
+                dosageBoxET.setError("Dosage should be less than the Inventory");
+                return;
+
+            }
+            else if (Integer.parseInt(dosage) < 0 ){
+                dosageBoxET.setError("Dosage should not be a negative number");
+                return;
+
+            }
+            else if (Integer.parseInt(medInventory.getText().toString()) < 0){
+                medInventory.setError("Dosage should not be a negative number");
+                return;
+            }
+            else if(mySpinnerfrequency.getSelectedItemPosition()==0){
+                Toast.makeText(getApplicationContext(), "Please select type", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            else if(mySpinnertype.getSelectedItemPosition()==0){
+                Toast.makeText(getApplicationContext(), "Please select frequency", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+
+            medication_info m = new medication_info(title, amount, startdate, time, enddate,
+                    medicationTypeName, frequencyName, hourchange, minchange, alarmID, dosage);
+            db.collection("users").document(currentFirebaseUser.getUid()).collection("New Medications")
+                    .document(medication_info.getId()).update("Medication", m.getMedication(),
+                    "InventoryMeds", m.getInventoryMeds(), "StartDate", m.getStartDate(),
+                    "Time", m.getTime(), "EndDate", m.getEndDate(), "FrequencyName", m.getFrequencyName(),
+                    "MedicineTypeName", m.getMedicineTypeName(), "Hour", m.getHour(), "Minute", m.getMinute(), "AlarmID", m.getAlarmID(), "Dosage", m.getDosage()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void avoid) {
+                    alarmManager.setExact(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), pendingIntent);
+                    Toast.makeText(edit_delete_medications.this, "Measurement Alarm Changed", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(edit_delete_medications.this, home_page.class));
+                    finish();
+                }
+            });
+
         }
     }
 
