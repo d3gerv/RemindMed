@@ -18,8 +18,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Capstone1">
         <activity
-            android:name=".alarm_notification_measurements"
+            android:name=".today_measurement_cardview"
             android:exported="true"/>
+        <activity
+            android:name=".alarm_notification_measurements"
+            android:exported="true" />
         <activity
             android:name=".pdf_hours_of_sleep"
             android:exported="true" />
@@ -227,7 +230,6 @@
             android:name=".alarmreceiver"
             android:enabled="true"
             android:exported="true" />
-
         <receiver
             android:name=".alarmreceivermeasurement"
             android:enabled="true"

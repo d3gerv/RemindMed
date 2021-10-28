@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
@@ -133,6 +134,22 @@ public class create_account extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            //verify email
+                            rootAuthen.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if(task.isSuccessful()){
+                                        Toast.makeText(create_account.this, "Please check your email for verification", Toast.LENGTH_SHORT).show();
+                                    }else {
+                                        Toast.makeText(create_account.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+
+
+
+
+
                             Toast.makeText(create_account.this, "User Created", Toast.LENGTH_SHORT).show();
                             userId = rootAuthen.getCurrentUser().getUid();
                             DocumentReference documentReference = fstore.collection("users").document(userId);

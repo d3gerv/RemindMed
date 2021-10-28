@@ -100,7 +100,6 @@
         app:layout_constraintStart_toStartOf="@+id/guideline7"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
-
     <View
         android:id="@+id/view2"
         android:layout_width="wrap_content"
@@ -110,6 +109,15 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/measurementsView" />
+
+    <View
+        android:layout_width="3dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="92dp"
+        android:background="#E73927"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="204dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/clearAll_measurements"
