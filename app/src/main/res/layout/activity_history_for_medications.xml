@@ -74,10 +74,10 @@
     <View
         android:layout_width="3dp"
         android:layout_height="55dp"
-        android:layout_marginTop="92dp"
         android:background="#E73927"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="204dp"
+        app:layout_constraintEnd_toStartOf="@+id/measurementsView"
+        app:layout_constraintStart_toEndOf="@+id/medicationsView"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -90,7 +90,7 @@
         android:textColor="#000000"
         android:textSize="25sp"
         app:layout_constraintEnd_toStartOf="@+id/measurementsView"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/guideline45"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <TextView
