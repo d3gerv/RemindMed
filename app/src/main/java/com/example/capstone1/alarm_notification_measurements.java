@@ -63,7 +63,10 @@ public class alarm_notification_measurements extends AppCompatActivity {
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
+        alarmManager.cancel(pendingIntent);
         Ringtone ringtone = alarmreceivermeasurement.ringtone1;
+        Timer timer = alarmreceivermeasurement.mTimer;
+        timer.cancel();
         ringtone.stop();
         startActivity(intentpage);
     }

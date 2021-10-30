@@ -175,7 +175,7 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
             }
         });
 
-        ocrMedName1.setOnClickListener(new View.OnClickListener() {
+        ocrCount1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(new_medications.this, optical_character_recognition_one.class);

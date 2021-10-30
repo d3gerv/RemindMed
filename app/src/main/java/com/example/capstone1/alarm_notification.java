@@ -77,7 +77,8 @@ public class alarm_notification extends AppCompatActivity {
         Ringtone ringtone = alarmreceiver.ringtone;
         Timer timer = alarmreceiver.mTimer;
         timer.cancel();
-        ringtone.stop();        startActivity(intentpage);
+        ringtone.stop();
+        startActivity(intentpage);
     }
 
 
