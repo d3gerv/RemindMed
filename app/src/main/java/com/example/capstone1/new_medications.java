@@ -19,6 +19,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -66,6 +67,7 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
     private DatePickerDialog datePickerDialog, datePickerDialog2;
     private Button dateButton, endDateButton;
     Calendar c;
+    ImageView helpdosage;
     Calendar myAlarmDate = Calendar.getInstance();
     static final SimpleDateFormat format = new SimpleDateFormat("M/dd/yyyy");
     Button timeButtonmedtst;
@@ -97,8 +99,24 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
         buttonsavemedication = findViewById(R.id.save_medication_button);
         rootAuthen = FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
+        helpdosage = findViewById(R.id.dosageHelp);
         timeButtonmedtst = findViewById(R.id.timeButtonmed);
         userId = rootAuthen.getCurrentUser().getUid();
+
+        helpdosage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder aBuilder = new AlertDialog.Builder(new_medications.this);
+                aBuilder.setCancelable(true);
+                aBuilder.setTitle("Dosage");
+                aBuilder.setMessage("Enter the dosage you will take for your medication. " +
+                        "Dosage depends on the type of medication. If you are taking a pill, capsule, " +
+                        "or tablet put one if you only have to take one or put the specified amount. " +
+                        "If you are taking liquid medication press tablespoon if you only have to take a tablespoon or press ml and put your specified amount");
+                aBuilder.show();
+
+            }
+        });
 
         ArrayAdapter<String> adapterFrequency = new ArrayAdapter<String>(new_medications.this,
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array
@@ -119,7 +137,15 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
                 if (position == 4)
                 {
                     dosage.setText(String.valueOf(15));
+                    dosage.setFocusable(false);
+                    dosage.setEnabled(false);
                 }
+                else
+                {
+                    dosage.setFocusableInTouchMode(true);
+                    dosage.setEnabled(true);
+                }
+
             }
 
             @Override

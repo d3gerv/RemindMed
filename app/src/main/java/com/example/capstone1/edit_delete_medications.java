@@ -18,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -54,6 +55,7 @@ public class edit_delete_medications extends AppCompatActivity implements TimePi
     final int end = 2;
     Calendar calendar = Calendar.getInstance();
     Calendar c;
+    ImageView helpdosage;
     Calendar myAlarmDate;
     Button timeButtonEdit, dateFormat, delete, change, enddatebutton;
     FirebaseFirestore db;
@@ -75,11 +77,27 @@ public class edit_delete_medications extends AppCompatActivity implements TimePi
         enddatebutton = findViewById(R.id.endButton_oneM);
         dosageBoxET = findViewById(R.id.DosageBox);
         medName = findViewById(R.id.medicine_Box);
+        helpdosage = findViewById(R.id.helpDosageEdit);
         medInventory = findViewById(R.id.inventoryBox);
         final Calendar calendar = Calendar.getInstance();
         initDatePicker();
         getData();
         getHourandMin();
+
+        helpdosage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder aBuilder = new AlertDialog.Builder(edit_delete_medications.this);
+                aBuilder.setCancelable(true);
+                aBuilder.setTitle("Dosage");
+                aBuilder.setMessage("Enter the dosage you will take for your medication. " +
+                        "Dosage depends on the type of medication. If you are taking a pill, capsule, " +
+                        "or tablet put one if you only have to take one or put the specified amount. " +
+                        "If you are taking liquid medication press tablespoon if you only have to take a tablespoon or press ml and put your specified amount");
+                aBuilder.show();
+
+            }
+        });
 
 
         Log.d("K", "Hour" +hour+" " + minuteDB);
@@ -104,6 +122,17 @@ public class edit_delete_medications extends AppCompatActivity implements TimePi
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 typechoice = position;
+                if (position == 4)
+                {
+                    dosageBoxET.setText(String.valueOf(15));
+                    dosageBoxET.setFocusable(false);
+                    dosageBoxET.setEnabled(false);
+                }
+                else
+                {
+                    dosageBoxET.setFocusableInTouchMode(true);
+                    dosageBoxET.setEnabled(true);
+                }
             }
 
             @Override

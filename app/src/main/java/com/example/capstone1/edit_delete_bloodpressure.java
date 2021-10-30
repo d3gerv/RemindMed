@@ -85,6 +85,7 @@ public class edit_delete_bloodpressure extends AppCompatActivity implements Time
         getData();
         getHourandMin();
         setData();
+        Log.d("helo", "test" + alarmIIDdb);
 
 
         ArrayAdapter<String> adapterFrequency = new ArrayAdapter<String>(edit_delete_bloodpressure.this,
@@ -312,7 +313,7 @@ public class edit_delete_bloodpressure extends AppCompatActivity implements Time
         {
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), pendingIntent);
             updateAlarm();
-        }        //  alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), 24*60*60*1000, pendingIntent);
+        }
     }
 
     private String makeDateString(int day, int month, int year)

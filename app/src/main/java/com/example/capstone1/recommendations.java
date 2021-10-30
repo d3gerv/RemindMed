@@ -88,7 +88,7 @@ public class recommendations extends AppCompatActivity {
         aBuilder.setTitle("Disclaimer");
         aBuilder.setMessage("If you are having health problems " +
                 "please head straight to your physician " +
-                "all information here is only a recommendation and should not be used as a solution for your peoblems." +
+                "all information here is only a recommendation and should not be used as a solution for your problems." +
                 "To get a clear diagnosis ask your doctor about what to do." +
                 "If you want to continue press ok if not press cancel");
 

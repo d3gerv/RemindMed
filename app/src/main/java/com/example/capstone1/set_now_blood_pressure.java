@@ -341,7 +341,7 @@ public class set_now_blood_pressure extends AppCompatActivity implements fragmen
         myAlarmDate.setTimeInMillis(System.currentTimeMillis());
         myAlarmDate.set(alarmYear, alarmMonth-1, alarmDay, alarmHour, alarmMin);
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(this, alarmreceiver.class);
+        Intent intent = new Intent(this, alarmreceivermeasurement.class);
         Intent i = new Intent(this, alarm_notification.class);
         id = new Random().nextInt(1000000);
         i.putExtra("userID", id);

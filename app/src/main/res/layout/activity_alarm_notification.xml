@@ -60,7 +60,7 @@
         android:layout_height="49dp"
         android:background="@drawable/edit_round"
         android:fontFamily="@font/viga"
-        android:text="Snooze!"
+        android:text="Snooze! (+15 mins)"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
         android:textSize="22sp"

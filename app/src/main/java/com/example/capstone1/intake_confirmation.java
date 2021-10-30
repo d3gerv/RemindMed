@@ -129,68 +129,78 @@ public class intake_confirmation extends AppCompatActivity {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                decrementMedication();
-                if (freq == 1)
+                getData();
+                if (Integer.parseInt(dosage)>Integer.parseInt(amount))
                 {
-                    moveStartDate();
-                    if(!date.equals(enddate))
-                    {
-                        startAlarm(myAlarmDate);
-                    }
+                    Toast.makeText(intake_confirmation.this, "Inventory is not enough please refill first", Toast.LENGTH_SHORT).show();
 
-
-                }
-                else if (freq == 2)
-                {
-                    moveStartDateWeek();
-                    if(!date.equals(enddate))
-                    {
-                        startAlarm(myAlarmDate);
-                    }
-
-
-                }
-                saveToHistory();
-                if(Integer.parseInt(medication_info.getInventoryMeds())  <= medication_info.getPillStatic()/2)
-                {
-                    NotificationCompat.Builder mBuilder = (NotificationCompat.Builder)
-                            new NotificationCompat.Builder(intake_confirmation.this, "abnormalbp");
-                    mBuilder.setSmallIcon(R.drawable.ic_launcher_background);
-                    mBuilder.setContentTitle("Inventory Halfway");
-                    mBuilder.setContentText(medication_info.getMedication() + " is halfway with its inventory!");
-                    mBuilder.setAutoCancel(true);
-
-                    NotificationManagerCompat notificationManager = NotificationManagerCompat.from(intake_confirmation.this);
-                    notificationManager.notify(7, mBuilder.build());
-
-                    AlertDialog.Builder aBuilder = new AlertDialog.Builder(intake_confirmation.this);
-                    aBuilder.setCancelable(true);
-                    aBuilder.setTitle("Medication Alert");
-                    aBuilder.setMessage("You have gone halfway with your medication refill it soon before you run out");
-
-                    aBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                            startActivity(new Intent(intake_confirmation.this, today_page_recycler.class));
-
-                        }
-                    });
-
-                    aBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            startActivity(new Intent(intake_confirmation.this, today_page_recycler.class));
-                        }
-                    });
-
-                    aBuilder.show();
                 }
                 else
                 {
-                    startActivity(new Intent(intake_confirmation.this, today_page_recycler.class));
+                    decrementMedication();
+                    if (freq == 1)
+                    {
+                        moveStartDate();
+                        if(!date.equals(enddate))
+                        {
+                            startAlarm(myAlarmDate);
+                        }
 
+
+                    }
+                    else if (freq == 2)
+                    {
+                        moveStartDateWeek();
+                        if(!date.equals(enddate))
+                        {
+                            startAlarm(myAlarmDate);
+                        }
+
+
+                    }
+                    saveToHistory();
+                    if(Integer.parseInt(medication_info.getInventoryMeds())  <= medication_info.getPillStatic()/2)
+                    {
+                        NotificationCompat.Builder mBuilder = (NotificationCompat.Builder)
+                                new NotificationCompat.Builder(intake_confirmation.this, "abnormalbp");
+                        mBuilder.setSmallIcon(R.drawable.ic_launcher_background);
+                        mBuilder.setContentTitle("Inventory Halfway");
+                        mBuilder.setContentText(medication_info.getMedication() + " is halfway with its inventory!");
+                        mBuilder.setAutoCancel(true);
+
+                        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(intake_confirmation.this);
+                        notificationManager.notify(7, mBuilder.build());
+
+                        AlertDialog.Builder aBuilder = new AlertDialog.Builder(intake_confirmation.this);
+                        aBuilder.setCancelable(true);
+                        aBuilder.setTitle("Medication Alert");
+                        aBuilder.setMessage("You have gone halfway with your medication refill it soon before you run out");
+
+                        aBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                                startActivity(new Intent(intake_confirmation.this, today_page_recycler.class));
+
+                            }
+                        });
+
+                        aBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                startActivity(new Intent(intake_confirmation.this, today_page_recycler.class));
+                            }
+                        });
+
+                        aBuilder.show();
+                    }
+                    else
+                    {
+                        startActivity(new Intent(intake_confirmation.this, today_page_recycler.class));
+
+                    }
                 }
+
 
             }
         });
@@ -254,13 +264,14 @@ public class intake_confirmation extends AppCompatActivity {
         int inv = Integer.parseInt(amount);
         int doseInt = Integer.parseInt(dosage);
         int type = medication_info.getMedicineType();
-
+        inv -= doseInt;
+        /*
         if (type < 4) {
             inv -= 1;
 
         } else {
             inv -= doseInt;
-        }
+        }*/
         amount = Integer.toString(inv);
         medication_info m = new medication_info(title, amount, getDateFromString(date), time, getDateFromString(enddate), medtype, frequency, alarmHour, alarmMin, alarmID, dosage);
 

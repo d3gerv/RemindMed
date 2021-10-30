@@ -86,6 +86,9 @@ public class history_page extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         myArrayList = new ArrayList<medication_history_info>();
         myAdapter = new medication_history_adapter(history_page.this, myArrayList);
+
+        recyclerView1.setAdapter(myAdapter);
+        EventChangeListener();
         clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,8 +120,6 @@ public class history_page extends AppCompatActivity {
                 alert.show();
             }
         });
-        recyclerView1.setAdapter(myAdapter);
-        EventChangeListener();
 
     }
 

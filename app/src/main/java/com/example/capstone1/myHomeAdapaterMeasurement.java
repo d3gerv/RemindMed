@@ -58,7 +58,7 @@ public class myHomeAdapaterMeasurement extends RecyclerView.Adapter<myHomeAdapat
                     intent.putExtra("measurement_info", measurement);
                     intent.putExtra("Hour", measurement.Hour);
                     intent.putExtra("Minute", measurement.Minute);
-                    intent.putExtra("AlarmID", 0);
+                    intent.putExtra("AlarmID", measurement.idCode);
                     intent.putExtra("fromToday", 1);
 
                     context.startActivity(intent);
@@ -74,7 +74,7 @@ public class myHomeAdapaterMeasurement extends RecyclerView.Adapter<myHomeAdapat
                     intent.putExtra("measurement_info", measurement);
                     intent.putExtra("Hour", measurement.Hour);
                     intent.putExtra("Minute", measurement.Minute);
-                    intent.putExtra("AlarmID", 0);
+                    intent.putExtra("AlarmID", measurement.idCode);
                     intent.putExtra("fromToday", 1);
                     context.startActivity(intent);
                 }
@@ -89,7 +89,7 @@ public class myHomeAdapaterMeasurement extends RecyclerView.Adapter<myHomeAdapat
                     intent.putExtra("measurement_info", measurement);
                     intent.putExtra("Hour", measurement.Hour);
                     intent.putExtra("Minute", measurement.Minute);
-                    intent.putExtra("AlarmID", 0);
+                    intent.putExtra("AlarmID", measurement.idCode);
                     intent.putExtra("fromToday", 1);
                     context.startActivity(intent);
                 }
@@ -104,7 +104,7 @@ public class myHomeAdapaterMeasurement extends RecyclerView.Adapter<myHomeAdapat
                     intent.putExtra("measurement_info", measurement);
                     intent.putExtra("Hour", measurement.Hour);
                     intent.putExtra("Minute", measurement.Minute);
-                    intent.putExtra("AlarmID", 0);
+                    intent.putExtra("AlarmID", measurement.idCode);
                     intent.putExtra("fromToday", 1);
                     context.startActivity(intent);
                 }
@@ -119,7 +119,7 @@ public class myHomeAdapaterMeasurement extends RecyclerView.Adapter<myHomeAdapat
                     intent.putExtra("measurement_info", measurement);
                     intent.putExtra("Hour", measurement.Hour);
                     intent.putExtra("Minute", measurement.Minute);
-                    intent.putExtra("AlarmID", 0);
+                    intent.putExtra("AlarmID", measurement.idCode);
                     intent.putExtra("fromToday", 1);
                     context.startActivity(intent);
                 }
@@ -134,7 +134,7 @@ public class myHomeAdapaterMeasurement extends RecyclerView.Adapter<myHomeAdapat
                     intent.putExtra("measurement_info", measurement);
                     intent.putExtra("Hour", measurement.Hour);
                     intent.putExtra("Minute", measurement.Minute);
-                    intent.putExtra("AlarmID", 0);
+                    intent.putExtra("AlarmID", measurement.idCode);
                     intent.putExtra("fromToday", 1);
                     context.startActivity(intent);
                 }
