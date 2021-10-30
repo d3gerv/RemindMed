@@ -188,7 +188,7 @@ public class set_now_pulse_rate extends AppCompatActivity {
                         .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                             @Override
                             public void onSuccess(DocumentReference documentReference) {
-                                Toast.makeText(set_now_pulse_rate.this, "New Temperature measurement added", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(set_now_pulse_rate.this, "New Pulserate measurement added", Toast.LENGTH_SHORT).show();
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {
