@@ -32,9 +32,9 @@
         app:backgroundTint="#FFFFFF"
         app:fabSize="mini"
         app:layout_constraintBottom_toTopOf="@+id/guideline1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.681"
-        app:layout_constraintStart_toEndOf="@+id/medicine_Box"
+        app:layout_constraintEnd_toStartOf="@+id/guideline63"
+        app:layout_constraintHorizontal_bias="0.394"
+        app:layout_constraintStart_toStartOf="@+id/guideline77"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/ic_ocr" />
@@ -88,7 +88,7 @@
 
     <EditText
         android:id="@+id/medicine_Box"
-        android:layout_width="295dp"
+        android:layout_width="0dp"
         android:layout_height="57dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="7dp"
@@ -106,30 +106,28 @@
         android:id="@+id/dosage_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/viga"
         android:text="Dosage"
         android:textColor="#000000"
         android:textSize="21sp"
         app:layout_constraintBottom_toTopOf="@+id/DosageBox"
-        app:layout_constraintStart_toStartOf="@+id/guideline26"
+        app:layout_constraintStart_toStartOf="@+id/guideline80"
         app:layout_constraintTop_toBottomOf="@+id/guideline1" />
 
     <EditText
         android:id="@+id/DosageBox"
-        android:layout_width="149dp"
+        android:layout_width="0dp"
         android:layout_height="48dp"
-        android:layout_marginStart="16dp"
         android:background="@drawable/edittext3"
         android:ems="10"
         android:hint="Dosage"
         android:inputType="number"
         android:paddingStart="10dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
-        app:layout_constraintEnd_toStartOf="@+id/guideline28"
+        app:layout_constraintEnd_toStartOf="@+id/guideline81"
         app:layout_constraintHorizontal_bias="0.081"
-        app:layout_constraintStart_toStartOf="@+id/guideline26"
+        app:layout_constraintStart_toStartOf="@+id/guideline80"
         app:layout_constraintTop_toBottomOf="@+id/dosage_txt" />
 
     <TextView
@@ -147,7 +145,7 @@
 
     <Spinner
         android:id="@+id/type_spinner_two"
-        android:layout_width="178dp"
+        android:layout_width="0dp"
         android:layout_height="48dp"
         android:background="@drawable/edittext3"
         android:backgroundTint="#FDCB00"
@@ -172,16 +170,16 @@
 
     <Button
         android:id="@+id/timeButton_edit"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:width="125dp"
         android:height="50dp"
         android:background="@drawable/edittext3"
         android:text="Set Time"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
-        app:layout_constraintStart_toStartOf="@+id/guideline26"
+        app:layout_constraintEnd_toStartOf="@+id/guideline81"
+        app:layout_constraintStart_toStartOf="@+id/guideline80"
         app:layout_constraintTop_toBottomOf="@+id/time_txt1"
         tools:ignore="OnClick" />
 
@@ -200,13 +198,13 @@
 
     <Spinner
         android:id="@+id/frequency_spinner_two"
-        android:layout_width="143dp"
+        android:layout_width="0dp"
         android:layout_height="54dp"
-        android:layout_marginStart="16dp"
         android:background="@drawable/edittext3"
         android:backgroundTint="#FDCB00"
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
-        app:layout_constraintStart_toStartOf="@+id/guideline26"
+        app:layout_constraintEnd_toStartOf="@+id/guideline81"
+        app:layout_constraintStart_toStartOf="@+id/guideline80"
         app:layout_constraintTop_toBottomOf="@+id/frequency_txt1" />
 
     <TextView
@@ -250,7 +248,7 @@
 
     <Button
         android:id="@+id/startButton_oneM"
-        android:layout_width="147dp"
+        android:layout_width="0dp"
         android:layout_height="51dp"
         android:width="125dp"
         android:height="50dp"
@@ -263,9 +261,9 @@
         android:textSize="18sp"
 
         app:layout_constraintBottom_toTopOf="@+id/guideline5"
-        app:layout_constraintEnd_toStartOf="@+id/endButton_oneM"
+        app:layout_constraintEnd_toStartOf="@+id/guideline81"
         app:layout_constraintHorizontal_bias="0.381"
-        app:layout_constraintStart_toStartOf="@+id/guideline26"
+        app:layout_constraintStart_toStartOf="@+id/guideline80"
         app:layout_constraintTop_toBottomOf="@+id/duration_txt1" />
 
     <Button
@@ -386,7 +384,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent=".99" />
+        app:layout_constraintGuide_percent=".96" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline77"
@@ -394,6 +392,20 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent=".80" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline80"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline81"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".45" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

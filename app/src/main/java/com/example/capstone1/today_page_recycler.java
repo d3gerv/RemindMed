@@ -88,6 +88,7 @@ public class today_page_recycler extends AppCompatActivity {
                 firstname.setText(value.getString("firstname"));
             }
         });
+        
         switchDisplay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

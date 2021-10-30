@@ -274,16 +274,15 @@
         android:id="@+id/switchToday"
         android:layout_width="79dp"
         android:layout_height="33dp"
-        android:text="Today"
         android:background="@drawable/edit_round"
+        android:text="Change"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerViewToday"
         app:layout_constraintEnd_toStartOf="@+id/guideline35"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline8"
-        app:layout_constraintTop_toBottomOf="@+id/calendarViewTD"
-        app:layout_constraintVertical_bias="0.511" />
+        app:layout_constraintStart_toEndOf="@+id/textViewSched"
+        app:layout_constraintTop_toTopOf="@+id/guideline36"
+        app:layout_constraintVertical_bias="0.047" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/todayMeasurement"

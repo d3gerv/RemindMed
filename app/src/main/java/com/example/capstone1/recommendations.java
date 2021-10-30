@@ -74,10 +74,6 @@ public class recommendations extends AppCompatActivity {
             hmTitle.setText("Recommendations for Abnormal Pulse Rate");
 
         }
-
-
-
-
         recommendationRecyclerView.setLayoutManager(new LinearLayoutManager(recommendations.this));
         recommendationRecyclerView.setAdapter(adapter);
     }

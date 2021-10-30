@@ -75,12 +75,7 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
     String dateToday = String.valueOf(android.text.format.DateFormat.format("M/dd/yyyy", new java.util.Date()));
     static EditText medication;
     static EditText inventory;
-
-
-
-
     private static final String TAG = "new_medications";
-
     private TextView mDisplayDate;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
 
