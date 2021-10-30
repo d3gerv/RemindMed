@@ -61,18 +61,23 @@ public class login_page extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            Toast.makeText(login_page.this, "Logged in Succesfully!", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), instruction_slideone.class));
-                            progressDialog.setMessage("Loading");
-                            progressDialog.show();
+                            if(rootAuthen.getCurrentUser().isEmailVerified()){
+                                Toast.makeText(login_page.this, "Logged in Succesfully!", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(getApplicationContext(), instruction_slideone.class));
+                                progressDialog.setMessage("Loading");
+                                progressDialog.show();
 
-                            new Handler().postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    progressDialog.setCanceledOnTouchOutside(true);
-                                    progressDialog.dismiss();
-                                }
-                            },10000);
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        progressDialog.setCanceledOnTouchOutside(true);
+                                        progressDialog.dismiss();
+                                    }
+                                },10000);
+                            }else{
+                                Toast.makeText(login_page.this, "Please verify your email", Toast.LENGTH_SHORT).show();
+                            }
+
                         }else{
                             Toast.makeText(login_page.this, "Error! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
 

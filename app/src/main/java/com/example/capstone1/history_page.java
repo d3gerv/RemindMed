@@ -66,12 +66,12 @@ public class history_page extends AppCompatActivity {
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                firstname.setText(value.getString("firstname"));
                 if (error != null) {
                     Log.w(TAG, "listen:error", error);
                     firstname.setText(" ");
                     return;
                 }
+                firstname.setText(value.getString("firstname"));
             }
         });
         FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
