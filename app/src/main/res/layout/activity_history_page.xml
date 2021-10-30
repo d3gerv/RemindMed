@@ -217,6 +217,14 @@
         app:layout_constraintStart_toStartOf="@+id/guideline49"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
+    <View
+        android:layout_width="3dp"
+        android:layout_height="55dp"
+        android:background="#E73927"
+        app:layout_constraintEnd_toStartOf="@+id/measurementsView"
+        app:layout_constraintStart_toEndOf="@+id/medicationsView"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        tools:ignore="MissingConstraints" />
     <TextView
         android:id="@+id/measurementsView"
         android:layout_width="wrap_content"
@@ -229,7 +237,7 @@
         android:textSize="25sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline50"
         app:layout_constraintStart_toStartOf="@+id/guideline7"
-        app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline49"
