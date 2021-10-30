@@ -4,6 +4,7 @@ package com.example.capstone1;
 import static android.widget.Toast.makeText;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -139,7 +140,7 @@ public class create_account extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()){
-                                        Toast.makeText(create_account.this, "Please check your email for verification", Toast.LENGTH_SHORT).show();
+
                                     }else {
                                         Toast.makeText(create_account.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                     }
@@ -150,7 +151,7 @@ public class create_account extends AppCompatActivity {
 
 
 
-                            Toast.makeText(create_account.this, "User Created", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(create_account.this, "Please check your email for verification", Toast.LENGTH_SHORT).show();
                             userId = rootAuthen.getCurrentUser().getUid();
                             DocumentReference documentReference = fstore.collection("users").document(userId);
                             Map<String,Object> user = new HashMap<>();

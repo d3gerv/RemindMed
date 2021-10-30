@@ -75,7 +75,7 @@ public class login_page extends AppCompatActivity {
                                     }
                                 },10000);
                             }else{
-                                Toast.makeText(login_page.this, "Please verify your email", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(login_page.this, "Please check your email to verify account", Toast.LENGTH_SHORT).show();
                             }
 
                         }else{
