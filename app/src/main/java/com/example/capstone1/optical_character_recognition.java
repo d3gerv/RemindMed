@@ -43,6 +43,7 @@ public class optical_character_recognition extends AppCompatActivity {
     FloatingActionButton tts;
     TextToSpeech textToSpeech;
     String text;
+    int ocrChoice;
     int REQUEST_IMAGE_CAPTURE = 1;
     int REQUEST_IMAGE_COUNT = 3;
     TextView displayText;
@@ -111,8 +112,19 @@ public class optical_character_recognition extends AppCompatActivity {
         saveText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new_medications.medication.setText(displayText.getText().toString());
-                finish();
+                ocrChoice = getIntent().getIntExtra("ocrchoice", 0);
+                if (ocrChoice == 1)
+                {
+                    new_medications.medication.setText(displayText.getText().toString());
+                    finish();
+                }
+                else if (ocrChoice == 2)
+                {
+                    edit_delete_medications.medInventory.setText(displayText.getText().toString());
+                    finish();
+                }
+
+
             }
         });
 

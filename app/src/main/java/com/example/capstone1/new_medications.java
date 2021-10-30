@@ -71,6 +71,7 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
     Calendar myAlarmDate = Calendar.getInstance();
     static final SimpleDateFormat format = new SimpleDateFormat("M/dd/yyyy");
     Button timeButtonmedtst;
+    FloatingActionButton ocrMedName1, ocrCount1;
     int alarmYear, alarmMonth, alarmDay,alarmHour,alarmMin, choice, typechoice, frequencychoide, alarmID;
     String dateToday = String.valueOf(android.text.format.DateFormat.format("M/dd/yyyy", new java.util.Date()));
     static EditText medication;
@@ -92,6 +93,8 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
         spinnertypeunit = findViewById(R.id.type_spinner_one);
         spinnerfrequencymedication = findViewById(R.id.frequency_spinner_ten);
         buttonsavemedication = findViewById(R.id.save_medication_button);
+        ocrMedName1 = findViewById(R.id.ocr_btn);
+        ocrCount1 = findViewById(R.id.ocr_button);
         rootAuthen = FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
         helpdosage = findViewById(R.id.dosageHelp);
@@ -157,6 +160,28 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        ocrMedName1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(new_medications.this, optical_character_recognition.class);
+                intent.putExtra("ocrchoice", 1 );
+                startActivity(intent);
+
+
+            }
+        });
+
+        ocrMedName1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(new_medications.this, optical_character_recognition_one.class);
+                intent.putExtra("ocrchoice", 2 );
+                startActivity(intent);
+
 
             }
         });

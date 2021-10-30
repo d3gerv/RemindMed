@@ -30,6 +30,7 @@ import androidx.fragment.app.DialogFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -47,7 +48,8 @@ import java.util.Locale;
 import java.util.Random;
 
 public class edit_delete_medications extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
-    EditText medName, medInventory, dosageBoxET;
+    EditText  dosageBoxET;
+    static EditText medName, medInventory;
     static final SimpleDateFormat format = new SimpleDateFormat("M/d/yyyy");
     String title, amount, time,  strDate, strEnd, frequencyDB, medTypeDB, dosage;
     Date startdate, enddate;
@@ -59,6 +61,7 @@ public class edit_delete_medications extends AppCompatActivity implements TimePi
     Calendar myAlarmDate;
     Button timeButtonEdit, dateFormat, delete, change, enddatebutton;
     FirebaseFirestore db;
+    FloatingActionButton ocrMedName2, ocrCount2;
     private DatePickerDialog datePickerDialog;
     int hour, minuteDB, typechoice, frequencychoide, choice, alarmIDdb, alarmID, alarmYear, alarmMonth, alarmDay, hourchange, minchange;
     Spinner mySpinnerfrequency, mySpinnertype;
@@ -76,6 +79,8 @@ public class edit_delete_medications extends AppCompatActivity implements TimePi
         dateFormat = findViewById(R.id.startButton_oneM);
         enddatebutton = findViewById(R.id.endButton_oneM);
         dosageBoxET = findViewById(R.id.DosageBox);
+        ocrMedName2 = findViewById(R.id.ocr_btn2);
+        ocrCount2 = findViewById(R.id.ocr_button2);
         medName = findViewById(R.id.medicine_Box);
         helpdosage = findViewById(R.id.helpDosageEdit);
         medInventory = findViewById(R.id.inventoryBox);
@@ -183,6 +188,28 @@ public class edit_delete_medications extends AppCompatActivity implements TimePi
             }
         });
 
+        ocrMedName2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(edit_delete_medications.this, optical_character_recognition.class);
+                intent.putExtra("ocrchoice", 2 );
+                startActivity(intent);
+
+
+            }
+        });
+
+        ocrCount2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(edit_delete_medications.this, optical_character_recognition_one.class);
+                intent.putExtra("ocrchoice", 2 );
+                startActivity(intent);
+
+
+            }
+        });
+
         setData();
         if(frequencyDB!=null)
         {
@@ -229,6 +256,15 @@ public class edit_delete_medications extends AppCompatActivity implements TimePi
         });
 
         Log.d("K", "helo" +" " +alarmYear +" " + alarmMonth +" " + alarmDay +" " + hourchange+" " + minchange);
+    }
+    public void edtMedication_To_OCR(View view) {
+        Intent intent = new Intent(edit_delete_medications.this, optical_character_recognition.class);
+        startActivity(intent);
+    }
+
+    public void editMedication_To_OCRcount(View view) {
+        Intent intent = new Intent(edit_delete_medications.this, optical_character_recognition_one.class);
+        startActivity(intent);
     }
 
     private void getData()
