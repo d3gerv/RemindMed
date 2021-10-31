@@ -298,6 +298,7 @@ public class edit_delete_hours_of_sleep extends AppCompatActivity implements Tim
     private void startAlarm(Calendar c)
     {
         getData();
+        startDate = getDateFromString(dateButton.getText().toString());
         String month = (String) android.text.format.DateFormat.format("MM", startDate);
         String day = (String) android.text.format.DateFormat.format("dd", startDate);
         String year = (String) android.text.format.DateFormat.format("yyyy", startDate);

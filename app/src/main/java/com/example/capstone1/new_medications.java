@@ -179,7 +179,7 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(new_medications.this, optical_character_recognition_one.class);
-                intent.putExtra("ocrchoice", 2 );
+                intent.putExtra("ocrchoice", 1 );
                 startActivity(intent);
 
 
@@ -215,101 +215,120 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
         buttonsavemedication.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(new_medications.this, home_page.class);
-                String Medication = medication.getText().toString().trim();
-                String Dosage = dosage.getText().toString();
-                String frequencyName = spinnerfrequencymedication.getSelectedItem().toString();
-                String medicationTypeName = spinnertypeunit.getSelectedItem().toString();
-                String Inventory = inventory.getText().toString().trim();
-                String Time = timeButtonmedtst.getText().toString().trim();
-                String StartDate =  dateButton.getText().toString().trim();
-                String EndDate = endDateButton.getText().toString().trim();
-                Map<String, Object> user = new HashMap<>();
-                startAlarm(myAlarmDate);
-                user.put("Medication", Medication);
-                user.put("Dosage", Dosage);
-                user.put("InventoryMeds", Inventory);
-                user.put("Time", Time);
-                user.put("StartDate", getDateFromString(StartDate));
-                user.put("EndDate", getDateFromString(EndDate));
-                user.put("MedicineType", typechoice);
-                user.put("MedicineTypeName", medicationTypeName );
-                user.put("Frequency", frequencychoide);
-                user.put("FrequencyName", frequencyName);
-                user.put("PillStatic", Integer.parseInt(Inventory));
-                user.put("Hour", alarmHour);
-                user.put("Minute", alarmMin);
-                user.put("AlarmID", alarmID);
+                try {
+                    Intent intent = new Intent(new_medications.this, home_page.class);
+                    String Medication = medication.getText().toString().trim();
+                    String Dosage = dosage.getText().toString();
+                    String frequencyName = spinnerfrequencymedication.getSelectedItem().toString();
+                    String medicationTypeName = spinnertypeunit.getSelectedItem().toString();
+                    String Inventory = inventory.getText().toString().trim();
+                    String Time = timeButtonmedtst.getText().toString().trim();
+                    String StartDate = dateButton.getText().toString().trim();
+                    String EndDate = endDateButton.getText().toString().trim();
+                    Map<String, Object> user = new HashMap<>();
+                    user.put("Medication", Medication);
+                    user.put("Dosage", Dosage);
+                    user.put("InventoryMeds", Inventory);
+                    user.put("Time", Time);
+                    user.put("StartDate", getDateFromString(StartDate));
+                    user.put("EndDate", getDateFromString(EndDate));
+                    user.put("MedicineType", typechoice);
+                    user.put("MedicineTypeName", medicationTypeName);
+                    user.put("Frequency", frequencychoide);
+                    user.put("FrequencyName", frequencyName);
+                    user.put("PillStatic", Integer.parseInt(Inventory));
+                    user.put("Hour", alarmHour);
+                    user.put("Minute", alarmMin);
+                    user.put("AlarmID", alarmID);
 
-                Log.d("class", "start " + alarmHour);
+                    Log.d("class", "start " + alarmHour);
 
 
-                if (TextUtils.isEmpty(Medication)) {
-                    medication.setError("This field is required");
-                    return;
-                }
-                if (TextUtils.isEmpty(Dosage) ){
-                    dosage.setError("This field is required");
-                    return;
-                }
-                if (TextUtils.isEmpty(Inventory)) {
-                    inventory.setError("This field is required");
-                    return;
-                }
-                if (Integer.parseInt(dosage.getText().toString()) > Integer.parseInt(inventory.getText().toString())){
-                    dosage.setError("Dosage should be less than the Inventory");
-                    return;
+                    if (TextUtils.isEmpty(Medication)) {
+                        medication.setError("This field is required");
+                        return;
+                    }
+                    if (TextUtils.isEmpty(Dosage)) {
+                        dosage.setError("This field is required");
+                        return;
+                    }
+                    if (TextUtils.isEmpty(Inventory)) {
+                        inventory.setError("This field is required");
+                        return;
+                    }
+                    if (Integer.parseInt(dosage.getText().toString()) > Integer.parseInt(inventory.getText().toString())) {
+                        dosage.setError("Dosage should be less than the Inventory");
+                        return;
+
+                    }
+                    if (Integer.parseInt(dosage.getText().toString()) < 0) {
+                        dosage.setError("Dosage should not be a negative number");
+                        return;
+
+                    }
+                    if (Integer.parseInt(inventory.getText().toString()) < 0) {
+                        inventory.setError("Dosage should not be a negative number");
+                        return;
+
+                    }
+                    if (spinnertypeunit.getSelectedItemPosition() == 0) {
+                        Toast.makeText(getApplicationContext(), "Please select type", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (spinnerfrequencymedication.getSelectedItemPosition() == 0) {
+                        Toast.makeText(getApplicationContext(), "Please select frequency", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (timeButtonmedtst.getText().toString().equals("Set Time")) {
+                        Toast.makeText(getApplicationContext(), "Please select Time", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (dateButton.getText().toString().equals("Start")) {
+                        Toast.makeText(getApplicationContext(), "Please select Start Date", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (endDateButton.getText().toString().equals("End")) {
+                        Toast.makeText(getApplicationContext(), "Please select End Date", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (myAlarmDate.getTimeInMillis() < System.currentTimeMillis()) {
+                        Toast.makeText(new_medications.this, "Set the time and date to the future", Toast.LENGTH_LONG).show();
+                        return;
+
+                    }
+                    else {
+                        startAlarm(myAlarmDate);
+
+
+                    }
+
+
+                    fstore.collection("users").document(userId).collection("New Medications")
+                            .add(user)
+                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                @Override
+                                public void onSuccess(DocumentReference documentReference) {
+                                    Toast.makeText(new_medications.this, "New Medication added", Toast.LENGTH_SHORT).show();
+
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.d(TAG, "onSuccess: failed");
+                                }
+                            });
+                    Log.d("class", "Hour and minute" + dateToday);
+                    startActivity(intent);
+
+
+
+                } catch (Exception e) {
+                    Toast.makeText(new_medications.this, "Fill in all the fields", Toast.LENGTH_SHORT).show();
 
                 }
-                if (Integer.parseInt(dosage.getText().toString()) < 0){
-                    dosage.setError("Dosage should not be a negative number");
-                    return;
 
-                }
-                if (Integer.parseInt(inventory.getText().toString()) < 0){
-                    inventory.setError("Dosage should not be a negative number");
-                    return;
-
-                }
-
-                if(spinnertypeunit.getSelectedItemPosition()==0){
-                    Toast.makeText(getApplicationContext(), "Please select type", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if(spinnerfrequencymedication.getSelectedItemPosition()==0){
-                    Toast.makeText(getApplicationContext(), "Please select frequency", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if(timeButtonmedtst.getText().toString().equals("Set Time")){
-                    Toast.makeText(getApplicationContext(), "Please select Time", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if(dateButton.getText().toString().equals("Start")){
-                    Toast.makeText(getApplicationContext(), "Please select Start Date", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if(endDateButton.getText().toString().equals("End")){
-                    Toast.makeText(getApplicationContext(), "Please select End Date", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                fstore.collection("users").document(userId).collection("New Medications")
-                        .add(user)
-                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                            @Override
-                            public void onSuccess(DocumentReference documentReference) {
-                                Toast.makeText(new_medications.this, "New Medication added", Toast.LENGTH_SHORT).show();
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.d(TAG, "onSuccess: failed");
-                            }
-                        });
-                Log.d("class", "Hour and minute" + dateToday);
-                startActivity(intent);
             }
-
         });
     }
 
@@ -418,12 +437,18 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
         myAlarmDate.setTimeInMillis(System.currentTimeMillis());
         myAlarmDate.set(alarmYear, alarmMonth, alarmDay, alarmHour, alarmMin);
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(this, alarmreceiver.class);
-        Intent i = new Intent(this, alarm_notification.class);
+        Intent i = new Intent(this, alarmreceiver.class);
         alarmID = new Random().nextInt(1000000);
         i.putExtra("userID", alarmID);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, alarmID, intent, 0);
-        alarmManager.setExact(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), pendingIntent);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, alarmID, i, 0);
+        /*if (myAlarmDate.getTimeInMillis() < System.currentTimeMillis()) {
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), pendingIntent);
+
+        }
+        else {
+            Toast.makeText(new_medications.this, "Set the time and date to the future", Toast.LENGTH_LONG).show();
+
+        }*/
         //  alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), 24*60*60*1000, pendingIntent);
     }
 

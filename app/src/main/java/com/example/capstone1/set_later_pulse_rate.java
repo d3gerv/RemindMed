@@ -49,7 +49,7 @@ public class set_later_pulse_rate extends AppCompatActivity implements TimePicke
     private DatePickerDialog datePickerDialog;
     String userId, startdate;
     Calendar calendar = Calendar.getInstance();
-    int alarmYear, alarmMonth, alarmDay,alarmHour,alarmMin;
+    int alarmYear, alarmMonth, alarmDay, alarmHour,alarmMin;
     Calendar c;
     Calendar myAlarmDate = Calendar.getInstance();
     Spinner frequencyBP;

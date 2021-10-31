@@ -100,103 +100,108 @@ public class set_now_pulse_rate extends AppCompatActivity {
         saveTempNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                String Record = tempVal.getText().toString().trim();
-                Map<String,Object> user =new HashMap<>();
-                int recordInt = Integer.parseInt(Record);
-
-                getData();
-                if (choice == 1 && freq == 2)
-                {
-                    user.put("Name", "Pulserate");
-                    user.put("Record",Record + " BPM");
-                    user.put("Date", startdate);
-                    user.put("Time", time);
-                    moveStartDate();
-                    if(!startdate.equals(enddate))
+                try {
+                    String Record = tempVal.getText().toString().trim();
+                    Map<String,Object> user =new HashMap<>();
+                    int recordInt = Integer.parseInt(Record);
+                    getData();
+                    if (choice == 1 && freq == 2)
                     {
-                        startAlarm(myAlarmDate);
+                        user.put("Name", "Pulserate");
+                        user.put("Record",Record + " BPM");
+                        user.put("Date", startdate);
+                        user.put("Time", time);
+                        moveStartDate();
+                        if(!startdate.equals(enddate))
+                        {
+                            startAlarm(myAlarmDate);
+                        }
+
+                    }
+                    else if (choice == 1 && freq == 2)
+                    {
+                        user.put("Name", "Pulserate");
+                        user.put("Record",Record + " BPM");
+                        user.put("Date", startdate);
+                        user.put("Time", time);
+                        moveStartDateWeek();
+                        if(!startdate.equals(enddate))
+                        {
+                            startAlarm(myAlarmDate);
+                        }
+
+                    }
+                    else
+                    {
+                        user.put("Name", "Pulserate");
+                        user.put("Record",Record + " BPM");
+                        user.put("Date", dateToday);
+                        user.put("Time", timeToday);
                     }
 
-                }
-                else if (choice == 1 && freq == 2)
-                {
-                    user.put("Name", "Pulserate");
-                    user.put("Record",Record + " BPM");
-                    user.put("Date", startdate);
-                    user.put("Time", time);
-                    moveStartDateWeek();
-                    if(!startdate.equals(enddate))
+                    if(recordInt> 100 || recordInt < 60)
                     {
-                        startAlarm(myAlarmDate);
-                    }
+                        NotificationCompat.Builder mBuilder = (NotificationCompat.Builder)
+                                new NotificationCompat.Builder(set_now_pulse_rate.this, "abnormalbp");
+                        mBuilder.setSmallIcon(R.drawable.logoicon);
+                        mBuilder.setContentTitle("Abnormal Measurement");
+                        mBuilder.setContentText("You have recently recorded an abnormal measurement");
+                        mBuilder.setAutoCancel(true);
 
-                }
-                else
-                {
-                    user.put("Name", "Pulserate");
-                    user.put("Record",Record + " BPM");
-                    user.put("Date", dateToday);
-                    user.put("Time", timeToday);
-                }
+                        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(set_now_pulse_rate.this);
+                        notificationManager.notify(7, mBuilder.build());
 
-                if(recordInt> 100 || recordInt < 60)
-                {
-                    NotificationCompat.Builder mBuilder = (NotificationCompat.Builder)
-                            new NotificationCompat.Builder(set_now_pulse_rate.this, "abnormalbp");
-                    mBuilder.setSmallIcon(R.drawable.logoicon);
-                    mBuilder.setContentTitle("Abnormal Measurement");
-                    mBuilder.setContentText("You have recently recorded an abnormal measurement");
-                    mBuilder.setAutoCancel(true);
+                        AlertDialog.Builder aBuilder = new AlertDialog.Builder(set_now_pulse_rate.this);
+                        aBuilder.setCancelable(true);
+                        aBuilder.setTitle("Abnormal Measurement");
+                        aBuilder.setMessage("You have recently recorded an abnormal measurement for your pulse rate click ok to see some recommendations to normalize it");
 
-                    NotificationManagerCompat notificationManager = NotificationManagerCompat.from(set_now_pulse_rate.this);
-                    notificationManager.notify(7, mBuilder.build());
-
-                    AlertDialog.Builder aBuilder = new AlertDialog.Builder(set_now_pulse_rate.this);
-                    aBuilder.setCancelable(true);
-                    aBuilder.setTitle("Abnormal Measurement");
-                    aBuilder.setMessage("You have recently recorded an abnormal measurement for your pulse rate click ok to see some recommendations to normalize it");
-
-                    aBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-
-                        }
-                    });
-
-                    aBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Intent intent = new Intent(set_now_pulse_rate.this, recommendations.class);
-                            intent.putExtra("description", "Pulserate");
-                            startActivity(intent);
-                        }
-                    });
-
-                    aBuilder.show();
-                }else{
-                    startActivity(new Intent(set_now_pulse_rate.this, home_page.class));
-
-                }
-
-
-                Log.d("Calendar", "Selected day change " + timeToday );
-                fstore.collection("users").document(userId).collection("New Health Measurements")
-                        .document("Pulserate").collection("Pulserate")
-                        .add(user)
-                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        aBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                             @Override
-                            public void onSuccess(DocumentReference documentReference) {
-                                Toast.makeText(set_now_pulse_rate.this, "New Pulserate measurement added", Toast.LENGTH_SHORT).show();
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                // Log.d(TAG,"onSuccess: failed");
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+
                             }
                         });
+
+                        aBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent(set_now_pulse_rate.this, recommendations.class);
+                                intent.putExtra("description", "Pulserate");
+                                startActivity(intent);
+                            }
+                        });
+
+                        aBuilder.show();
+                    }else{
+                        startActivity(new Intent(set_now_pulse_rate.this, home_page.class));
+
+                    }
+
+
+                    Log.d("Calendar", "Selected day change " + timeToday );
+                    fstore.collection("users").document(userId).collection("New Health Measurements")
+                            .document("Pulserate").collection("Pulserate")
+                            .add(user)
+                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                @Override
+                                public void onSuccess(DocumentReference documentReference) {
+                                    Toast.makeText(set_now_pulse_rate.this, "New Pulserate measurement added", Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    // Log.d(TAG,"onSuccess: failed");
+                                }
+                            });
+                }
+                catch (Exception e){
+                    Toast.makeText(set_now_pulse_rate.this, "Please fill in a pulse rate measurement", Toast.LENGTH_SHORT).show();
+
+                }
+
             }
         });
     }

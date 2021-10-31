@@ -115,13 +115,26 @@ public class optical_character_recognition extends AppCompatActivity {
                 ocrChoice = getIntent().getIntExtra("ocrchoice", 0);
                 if (ocrChoice == 1)
                 {
-                    new_medications.medication.setText(displayText.getText().toString());
-                    finish();
+                    try {
+                        new_medications.medication.setText(displayText.getText().toString());
+                        finish();
+                    }catch (Exception e)
+                    {
+                        Toast.makeText(optical_character_recognition.this, "Scan your medicine name", Toast.LENGTH_SHORT).show();
+
+                    }
                 }
                 else if (ocrChoice == 2)
                 {
-                    edit_delete_medications.medInventory.setText(displayText.getText().toString());
-                    finish();
+
+                    try{
+                        edit_delete_medications.medInventory.setText(displayText.getText().toString());
+                        finish();
+                    }catch (Exception e)
+                    {
+                        Toast.makeText(optical_character_recognition.this, "Scan your medicine inventory", Toast.LENGTH_SHORT).show();
+
+                    }
                 }
 
 

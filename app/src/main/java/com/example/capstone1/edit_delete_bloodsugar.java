@@ -296,6 +296,7 @@ public class edit_delete_bloodsugar extends AppCompatActivity implements TimePic
     private void startAlarm(Calendar c)
     {
         getData();
+        startDate = getDateFromString(dateButton.getText().toString());
         String month = (String) android.text.format.DateFormat.format("MM", startDate);
         String day = (String) android.text.format.DateFormat.format("dd", startDate);
         String year = (String) android.text.format.DateFormat.format("yyyy", startDate);

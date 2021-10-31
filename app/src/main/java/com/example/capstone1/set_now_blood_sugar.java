@@ -103,105 +103,116 @@ public class set_now_blood_sugar extends AppCompatActivity {
         saveBSNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                String Record = bsVal.getText().toString().trim();
-                int recordInt = Integer.parseInt(Record);
-                Map<String,Object> user =new HashMap<>();
-                getData();
-                if (choice == 1 && freq == 1)
-                {
-                    user.put("Name", "Bloodsugar" );
-                    user.put("Record",Record + " mmol/L");
-                    user.put("Date", startdate);
-                    user.put("Time", time);
-                    moveStartDate();
-                    if(!startdate.equals(enddate))
+                try {
+                    String Record = bsVal.getText().toString().trim();
+                    int recordInt = Integer.parseInt(Record);
+                    Map<String,Object> user =new HashMap<>();
+                    getData();
+                    if (Record.isEmpty())
                     {
-                        startAlarm(myAlarmDate);
+                        Toast.makeText(set_now_blood_sugar.this, "Please input a blood sugar measurement", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (choice == 1 && freq == 1)
+                    {
+                        user.put("Name", "Bloodsugar" );
+                        user.put("Record",Record + " mmol/L");
+                        user.put("Date", startdate);
+                        user.put("Time", time);
+                        moveStartDate();
+                        if(!startdate.equals(enddate))
+                        {
+                            startAlarm(myAlarmDate);
+                        }
+
+                    }
+                    else if (choice == 1 && freq == 2)
+                    {
+                        user.put("Name", "Bloodsugar");
+                        user.put("Record",Record + " mmol/L");
+                        user.put("Date", startdate);
+                        user.put("Time", time);
+                        moveStartDateWeek();
+                        if(!startdate.equals(enddate))
+                        {
+                            startAlarm(myAlarmDate);
+                        }
+                    }
+                    else
+                    {
+                        user.put("Name", "Bloodsugar");
+                        user.put("Record",Record + " mmol/L");
+                        user.put("Date", dateToday);
+                        user.put("Time", timeToday);
                     }
 
-                }
-                else if (choice == 1 && freq == 2)
-                {
-                    user.put("Name", "Bloodsugar");
-                    user.put("Record",Record + " mmol/L");
-                    user.put("Date", startdate);
-                    user.put("Time", time);
-                    moveStartDateWeek();
-                    if(!startdate.equals(enddate))
+                    if(recordInt > 180)
                     {
-                        startAlarm(myAlarmDate);
-                    }
-                }
-                else
-                {
-                    user.put("Name", "Bloodsugar");
-                    user.put("Record",Record + " mmol/L");
-                    user.put("Date", dateToday);
-                    user.put("Time", timeToday);
-                }
+                        NotificationCompat.Builder mBuilder = (NotificationCompat.Builder)
+                                new NotificationCompat.Builder(set_now_blood_sugar.this, "abnormalbp");
+                        mBuilder.setSmallIcon(R.drawable.logoicon);
+                        mBuilder.setContentTitle("Abnormal Measurement");
+                        mBuilder.setContentText("You have recently recorded an abnormal measurement");
+                        mBuilder.setAutoCancel(true);
 
-                if(recordInt > 180)
-                {
-                    NotificationCompat.Builder mBuilder = (NotificationCompat.Builder)
-                            new NotificationCompat.Builder(set_now_blood_sugar.this, "abnormalbp");
-                    mBuilder.setSmallIcon(R.drawable.logoicon);
-                    mBuilder.setContentTitle("Abnormal Measurement");
-                    mBuilder.setContentText("You have recently recorded an abnormal measurement");
-                    mBuilder.setAutoCancel(true);
+                        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(set_now_blood_sugar.this);
+                        notificationManager.notify(7, mBuilder.build());
 
-                    NotificationManagerCompat notificationManager = NotificationManagerCompat.from(set_now_blood_sugar.this);
-                    notificationManager.notify(7, mBuilder.build());
+                        AlertDialog.Builder aBuilder = new AlertDialog.Builder(set_now_blood_sugar.this);
+                        aBuilder.setCancelable(true);
+                        aBuilder.setTitle("Abnormal Measurement");
+                        aBuilder.setMessage("You have recently recorded an abnormal measurement for your blood pressure click ok to see some recommendations to normalize it");
 
-                    AlertDialog.Builder aBuilder = new AlertDialog.Builder(set_now_blood_sugar.this);
-                    aBuilder.setCancelable(true);
-                    aBuilder.setTitle("Abnormal Measurement");
-                    aBuilder.setMessage("You have recently recorded an abnormal measurement for your blood pressure click ok to see some recommendations to normalize it");
-
-                    aBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-
-                        }
-                    });
-
-                    aBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Intent intent = new Intent(set_now_blood_sugar.this, recommendations.class);
-                            intent.putExtra("description", "Bloodsugar");
-                            startActivity(intent);
-                        }
-                    });
-
-                    aBuilder.show();
-
-
-                }else{
-                    startActivity(new Intent(set_now_blood_sugar.this, home_page.class));
-
-                }
-
-
-
-
-                Log.d("Calendar", "Selected day change " + timeToday );
-                fstore.collection("users").document(userId).collection("New Health Measurements")
-                        .document("Bloodsugar").collection("Bloodsugar")
-                        .add(user)
-                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        aBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                             @Override
-                            public void onSuccess(DocumentReference documentReference) {
-                                Toast.makeText(set_now_blood_sugar.this, "New Bloodsugar measurement added", Toast.LENGTH_SHORT).show();
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                // Log.d(TAG,"onSuccess: failed");
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+
                             }
                         });
+
+                        aBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent(set_now_blood_sugar.this, recommendations.class);
+                                intent.putExtra("description", "Bloodsugar");
+                                startActivity(intent);
+                            }
+                        });
+
+                        aBuilder.show();
+
+
+                    }else{
+                        startActivity(new Intent(set_now_blood_sugar.this, home_page.class));
+
+                    }
+
+
+
+
+                    Log.d("Calendar", "Selected day change " + timeToday );
+                    fstore.collection("users").document(userId).collection("New Health Measurements")
+                            .document("Bloodsugar").collection("Bloodsugar")
+                            .add(user)
+                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                @Override
+                                public void onSuccess(DocumentReference documentReference) {
+                                    Toast.makeText(set_now_blood_sugar.this, "New Bloodsugar measurement added", Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    // Log.d(TAG,"onSuccess: failed");
+                                }
+                            });
+                }
+                catch (Exception e){
+                    Toast.makeText(set_now_blood_sugar.this, "Please input in a blood sugar measurement", Toast.LENGTH_SHORT).show();
+
+                }
+
             }
         });
     }

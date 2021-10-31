@@ -75,22 +75,36 @@ public class optical_character_recognition_one extends AppCompatActivity {
                 }
             }
         });
+        ocrChoice = getIntent().getIntExtra("ocrchoice", 0);
+        Log.d("Tag", "henlo"+ ocrChoice);
 
         saveText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ocrChoice = getIntent().getIntExtra("ocrchoice", 0);
                 if (ocrChoice == 1)
                 {
-                    new_medications.inventory.setText(displayText.getText().toString());
-                    finish();
+                    try {
+                        new_medications.inventory.setText(displayText.getText().toString());
+                        finish();
+                    }catch (Exception e)
+                    {
+                        Toast.makeText(optical_character_recognition_one.this, "Scan your medicine inventory", Toast.LENGTH_SHORT).show();
+
+                    }
+
                 }
                 else if (ocrChoice == 2)
                 {
-                    edit_delete_medications.medName.setText(displayText.getText().toString());
-                    finish();
+                    try{
+                        edit_delete_medications.medName.setText(displayText.getText().toString());
+                        finish();
+                    }catch (Exception e)
+                    {
+                        Toast.makeText(optical_character_recognition_one.this, "Scan your medicine inventory", Toast.LENGTH_SHORT).show();
+
+                    }
+
                 }
-                finish();
             }
         });
 

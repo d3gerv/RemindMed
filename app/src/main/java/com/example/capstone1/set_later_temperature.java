@@ -122,41 +122,72 @@ public class set_later_temperature extends AppCompatActivity implements TimePick
         saveCholbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                try{
+                    String Time = timeButtonBPLater.getText().toString().trim();
+                    String StartDate =  dateButton.getText().toString().trim();
+                    String EndDate = endDateButton.getText().toString().trim();
+                    String frequencyName = frequencyBP.getSelectedItem().toString();
+                    Map<String, Object> user = new HashMap<>();
+                    user.put("HMName", "Temperature");
+                    user.put("Time", Time);
+                    user.put("StartDate", getDateFromString(StartDate));
+                    user.put("EndDate", getDateFromString(EndDate));
+                    user.put("Frequency", frequencychoide);
+                    user.put("FrequencyTitle", frequencyName);
+                    user.put("Hour", c.get(Calendar.HOUR_OF_DAY));
+                    user.put("Minute", c.get(Calendar.MINUTE));
+                    user.put("idCode", id);
 
-                String Time = timeButtonBPLater.getText().toString().trim();
-                String StartDate =  dateButton.getText().toString().trim();
-                String EndDate = endDateButton.getText().toString().trim();
-                String frequencyName = frequencyBP.getSelectedItem().toString();
-                Map<String, Object> user = new HashMap<>();
-                startAlarm(myAlarmDate);
-                user.put("HMName", "Temperature");
-                user.put("Time", Time);
-                user.put("StartDate", getDateFromString(StartDate));
-                user.put("EndDate", getDateFromString(EndDate));
-                user.put("Frequency", frequencychoide);
-                user.put("FrequencyTitle", frequencyName);
-                user.put("Hour", c.get(Calendar.HOUR_OF_DAY));
-                user.put("Minute", c.get(Calendar.MINUTE));
-                user.put("idCode", id);
+                    if (Time.equals("Set Time"))
+                    {
+                        Toast.makeText(getApplicationContext(), "Please select Time", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if ( frequencyBP.getSelectedItemPosition() == 0)
+                    {
+                        Toast.makeText(getApplicationContext(), "Please select frequency", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (StartDate.equals("Start")) {
+                        Toast.makeText(getApplicationContext(), "Please select Start Date", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (EndDate.equals("End")) {
+                        Toast.makeText(getApplicationContext(), "Please select End Date", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    setDate(myAlarmDate);
+                    if (myAlarmDate.getTimeInMillis() < System.currentTimeMillis()) {
+                        Toast.makeText(set_later_temperature.this, "Set the time and date to the future", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    else
+                    {
+                        startAlarm(myAlarmDate);
+                    }
 
+                    fstore.collection("users").document(userId).collection("Health Measurement Alarm")
+                            .add(user)
+                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                @Override
+                                public void onSuccess(DocumentReference documentReference) {
+                                    Toast.makeText(set_later_temperature.this, "New HM added", Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.d(TAG, "onSuccess: failed");
+                                }
+                            });
 
+                    startActivity(new Intent(set_later_temperature.this, home_page.class));
 
-                fstore.collection("users").document(userId).collection("Health Measurement Alarm")
-                        .add(user)
-                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                            @Override
-                            public void onSuccess(DocumentReference documentReference) {
-                                Toast.makeText(set_later_temperature.this, "New HM added", Toast.LENGTH_SHORT).show();
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.d(TAG, "onSuccess: failed");
-                            }
-                        });
+                }catch (Exception e){
+                    Toast.makeText(set_later_temperature.this, "Please input data in all fields", Toast.LENGTH_SHORT).show();
 
-                startActivity(new Intent(set_later_temperature.this, home_page.class));
+                }
+
 
             }
         });
@@ -173,7 +204,13 @@ public class set_later_temperature extends AppCompatActivity implements TimePick
         id = new Random().nextInt(1000000);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, id, intent, 0);
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
+
         intentArray.add(pendingIntent);
+    }
+    private void setDate(Calendar c)
+    {
+        myAlarmDate.setTimeInMillis(System.currentTimeMillis());
+        myAlarmDate.set(alarmYear, alarmMonth, alarmDay, alarmHour, alarmMin);
     }
 
     private void initDatePicker()

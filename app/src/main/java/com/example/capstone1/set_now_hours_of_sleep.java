@@ -100,101 +100,113 @@ public class set_now_hours_of_sleep extends AppCompatActivity {
         saveHourNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                String Record = hoursVal.getText().toString().trim();
-                Map<String,Object> user =new HashMap<>();
-                int recordInt = Integer.parseInt(Record);
-                getData();
-                if (choice == 1 && freq == 1)
-                {
-                    user.put("Name", "Sleep");
-                    user.put("Record",Record + " hours");
-                    user.put("Date", startdate);
-                    user.put("Time", time);
-                    moveStartDate();
-                    if(!startdate.equals(enddate))
+                try{
+                    String Record = hoursVal.getText().toString().trim();
+                    Map<String,Object> user =new HashMap<>();
+                    int recordInt = Integer.parseInt(Record);
+                    if (Record.isEmpty())
                     {
-                        startAlarm(myAlarmDate);
+                        Toast.makeText(set_now_hours_of_sleep.this, "Please input in the hours you slept", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    getData();
+                    if (choice == 1 && freq == 1)
+                    {
+                        user.put("Name", "Sleep");
+                        user.put("Record",Record + " hours");
+                        user.put("Date", startdate);
+                        user.put("Time", time);
+                        moveStartDate();
+                        if(!startdate.equals(enddate))
+                        {
+                            startAlarm(myAlarmDate);
+                        }
+
+                    }
+                    else if (choice == 1 && freq == 2)
+                    {
+                        user.put("Name", "Sleep");
+                        user.put("Record",Record + " hours");
+                        user.put("Date", startdate);
+                        user.put("Time", time);
+                        moveStartDateWeek();
+                        if(!startdate.equals(enddate))
+                        {
+                            startAlarm(myAlarmDate);
+                        }
+
+                    }
+                    else
+                    {
+                        user.put("Name", "Sleep");
+                        user.put("Record",Record + " hours");
+                        user.put("Date", dateToday);
+                        user.put("Time", timeToday);
                     }
 
-                }
-                else if (choice == 1 && freq == 2)
-                {
-                    user.put("Name", "Sleep");
-                    user.put("Record",Record + " hours");
-                    user.put("Date", startdate);
-                    user.put("Time", time);
-                    moveStartDateWeek();
-                    if(!startdate.equals(enddate))
+                    if(recordInt > 10 || recordInt < 8)
                     {
-                        startAlarm(myAlarmDate);
-                    }
+                        NotificationCompat.Builder mBuilder = (NotificationCompat.Builder)
+                                new NotificationCompat.Builder(set_now_hours_of_sleep.this, "abnormalbp");
+                        mBuilder.setSmallIcon(R.drawable.logoicon);
+                        mBuilder.setContentTitle("Abnormal Measurement");
+                        mBuilder.setContentText("You have recently recorded an abnormal measurement");
+                        mBuilder.setAutoCancel(true);
 
-                }
-                else
-                {
-                    user.put("Name", "Sleep");
-                    user.put("Record",Record + " hours");
-                    user.put("Date", dateToday);
-                    user.put("Time", timeToday);
-                }
+                        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(set_now_hours_of_sleep.this);
+                        notificationManager.notify(7, mBuilder.build());
 
-                if(recordInt > 10 || recordInt < 8)
-                {
-                    NotificationCompat.Builder mBuilder = (NotificationCompat.Builder)
-                            new NotificationCompat.Builder(set_now_hours_of_sleep.this, "abnormalbp");
-                    mBuilder.setSmallIcon(R.drawable.logoicon);
-                    mBuilder.setContentTitle("Abnormal Measurement");
-                    mBuilder.setContentText("You have recently recorded an abnormal measurement");
-                    mBuilder.setAutoCancel(true);
+                        AlertDialog.Builder aBuilder = new AlertDialog.Builder(set_now_hours_of_sleep.this);
+                        aBuilder.setCancelable(true);
+                        aBuilder.setTitle("Abnormal Measurement");
+                        aBuilder.setMessage("You have recently recorded an abnormal measurement for your blood pressure click ok to see some recommendations to normalize it");
 
-                    NotificationManagerCompat notificationManager = NotificationManagerCompat.from(set_now_hours_of_sleep.this);
-                    notificationManager.notify(7, mBuilder.build());
-
-                    AlertDialog.Builder aBuilder = new AlertDialog.Builder(set_now_hours_of_sleep.this);
-                    aBuilder.setCancelable(true);
-                    aBuilder.setTitle("Abnormal Measurement");
-                    aBuilder.setMessage("You have recently recorded an abnormal measurement for your blood pressure click ok to see some recommendations to normalize it");
-
-                    aBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-
-                        }
-                    });
-
-                    aBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Intent intent = new Intent(set_now_hours_of_sleep.this, recommendations.class);
-                            intent.putExtra("description", "Sleep");
-                            startActivity(intent);
-                        }
-                    });
-
-                    aBuilder.show();
-                }else{
-                    startActivity(new Intent(set_now_hours_of_sleep.this, home_page.class));
-
-                }
-
-                Log.d("Calendar", "Selected day change " + timeToday );
-                fstore.collection("users").document(userId).collection("New Health Measurements")
-                        .document("Sleep").collection("Sleep")
-                        .add(user)
-                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        aBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                             @Override
-                            public void onSuccess(DocumentReference documentReference) {
-                                Toast.makeText(set_now_hours_of_sleep.this, "New Hour of Sleep measurement added", Toast.LENGTH_SHORT).show();
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                // Log.d(TAG,"onSuccess: failed");
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+
                             }
                         });
+
+                        aBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent(set_now_hours_of_sleep.this, recommendations.class);
+                                intent.putExtra("description", "Sleep");
+                                startActivity(intent);
+                            }
+                        });
+
+                        aBuilder.show();
+                    }else{
+                        startActivity(new Intent(set_now_hours_of_sleep.this, home_page.class));
+
+                    }
+
+                    Log.d("Calendar", "Selected day change " + timeToday );
+                    fstore.collection("users").document(userId).collection("New Health Measurements")
+                            .document("Sleep").collection("Sleep")
+                            .add(user)
+                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                @Override
+                                public void onSuccess(DocumentReference documentReference) {
+                                    Toast.makeText(set_now_hours_of_sleep.this, "New Hour of Sleep measurement added", Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    // Log.d(TAG,"onSuccess: failed");
+                                }
+                            });
+                }
+                catch (Exception e)
+                {
+                    Toast.makeText(set_now_hours_of_sleep.this, "Please input in the hours you have slept ", Toast.LENGTH_SHORT).show();
+
+                }
+
             }
         });
     }

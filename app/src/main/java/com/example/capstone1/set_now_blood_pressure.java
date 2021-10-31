@@ -103,6 +103,12 @@ public class set_now_blood_pressure extends AppCompatActivity implements fragmen
                 Map<String,Object> user =new HashMap<>();
                 String Record = bpDialog.getText().toString().trim();
                 getData();
+                if (bpDialog.getText().toString().equals("Set BP"))
+                {
+                    Toast.makeText(set_now_blood_pressure.this, "Please input a blood pressure measurement", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 if (choice == 1 && freq ==1)
                 {
                     user.put("Name", "Bloodpressure");
@@ -157,6 +163,9 @@ public class set_now_blood_pressure extends AppCompatActivity implements fragmen
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
+                        Intent intent = new Intent(set_now_blood_pressure.this, home_page.class);
+                        intent.putExtra("description", "Bloodpressure");
+                        startActivity(intent);
 
                     }
                 });

@@ -128,7 +128,7 @@ public class HMAdapterToday extends RecyclerView.Adapter<HMAdapterToday.MyViewHo
                     }
                     else if(measurement_info_today.HMName.equals("Pulserate"))
                     {
-                        intent = new Intent(context, set_now_hours_of_sleep.class);
+                        intent = new Intent(context, set_now_pulse_rate.class);
                         intent.putExtra("Time", measurement_info_today.Time);
                         intent.putExtra("Date", strDate);
                         intent.putExtra("EndDate", strEnd);
