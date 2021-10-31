@@ -291,6 +291,7 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
                         Toast.makeText(getApplicationContext(), "Please select End Date", Toast.LENGTH_SHORT).show();
                         return;
                     }
+                    setDate(myAlarmDate);
                     if (myAlarmDate.getTimeInMillis() < System.currentTimeMillis()) {
                         Toast.makeText(new_medications.this, "Set the time and date to the future", Toast.LENGTH_LONG).show();
                         return;
@@ -359,6 +360,13 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
             notificationManager.createNotificationChannel(channel);
         }
     }
+
+    private void setDate(Calendar c)
+    {
+        myAlarmDate.setTimeInMillis(System.currentTimeMillis());
+        myAlarmDate.set(alarmYear, alarmMonth, alarmDay, alarmHour, alarmMin);
+    }
+
 
     private void initDatePicker()
     {

@@ -125,7 +125,7 @@ public class myHomeAdapaterMeasurement extends RecyclerView.Adapter<myHomeAdapat
                 }
                 else if(measurement.HMName.equals("Pulserate"))
                 {
-                    intent = new Intent(context, edit_delete_temperature.class);
+                    intent = new Intent(context, edit_delete_pulserate.class);
                     intent.putExtra("Time", measurement.Time);
                     intent.putExtra("Date", strStart);
                     intent.putExtra("EndDate", strEnd);

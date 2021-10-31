@@ -128,7 +128,6 @@ public class set_later_blood_sugar extends AppCompatActivity implements TimePick
                     String EndDate = endDateButton.getText().toString().trim();
                     String frequencyName = frequencyBP.getSelectedItem().toString();
                     Map<String, Object> user = new HashMap<>();
-                    startAlarm(myAlarmDate);
                     user.put("HMName", "Bloodsugar");
                     user.put("Time", Time);
                     user.put("Hour", c.get(Calendar.HOUR_OF_DAY));
