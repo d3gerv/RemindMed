@@ -61,10 +61,9 @@ public class set_now_pulse_rate extends AppCompatActivity {
         rootAuthen = FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
         userId = rootAuthen.getCurrentUser().getUid();
-
+        getData();
         SimpleDateFormat df = new SimpleDateFormat("M/dd/yyyy", Locale.getDefault());
         dateToday = df.format(c);
-
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
         timeToday = timeFormat.format(c);
 
@@ -92,7 +91,8 @@ public class set_now_pulse_rate extends AppCompatActivity {
                     }
                 });
 
-                aBuilder.show();            }
+                aBuilder.show();
+            }
         });
 
 
@@ -105,7 +105,7 @@ public class set_now_pulse_rate extends AppCompatActivity {
                     Map<String,Object> user =new HashMap<>();
                     int recordInt = Integer.parseInt(Record);
                     getData();
-                    if (choice == 1 && freq == 2)
+                    if (choice == 1 && freq == 1)
                     {
                         user.put("Name", "Pulserate");
                         user.put("Record",Record + " BPM");
@@ -159,7 +159,6 @@ public class set_now_pulse_rate extends AppCompatActivity {
                         aBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                dialog.cancel();
 
                             }
                         });

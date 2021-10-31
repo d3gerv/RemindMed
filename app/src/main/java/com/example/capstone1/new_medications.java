@@ -449,15 +449,8 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
         alarmID = new Random().nextInt(1000000);
         i.putExtra("userID", alarmID);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, alarmID, i, 0);
-        /*if (myAlarmDate.getTimeInMillis() < System.currentTimeMillis()) {
-            alarmManager.setExact(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), pendingIntent);
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), pendingIntent);
 
-        }
-        else {
-            Toast.makeText(new_medications.this, "Set the time and date to the future", Toast.LENGTH_LONG).show();
-
-        }*/
-        //  alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), 24*60*60*1000, pendingIntent);
     }
 
     public Date getDateFromString(String dateToSave) {
