@@ -577,11 +577,11 @@ public class edit_delete_medications extends AppCompatActivity implements TimePi
 
 
             medication_info m = new medication_info(title, amount, startdate, time, enddate,
-                    medicationTypeName, frequencyName, hourchange, minchange, alarmID, dosage);
+                    medicationTypeName, frequencyName, frequencychoide, hourchange, minchange, alarmID, dosage);
             db.collection("users").document(currentFirebaseUser.getUid()).collection("New Medications")
                     .document(medication_info.getId()).update("Medication", m.getMedication(),
                     "InventoryMeds", m.getInventoryMeds(), "StartDate", m.getStartDate(),
-                    "Time", m.getTime(), "EndDate", m.getEndDate(), "FrequencyName", m.getFrequencyName(),
+                    "Time", m.getTime(), "EndDate", m.getEndDate(), "FrequencyName", m.getFrequencyName(), "Frequency", m.getFrequency(),
                     "MedicineTypeName", m.getMedicineTypeName(), "Hour", m.getHour(), "Minute", m.getMinute(), "AlarmID", m.getAlarmID(), "Dosage", m.getDosage()).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void avoid) {

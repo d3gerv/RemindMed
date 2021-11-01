@@ -321,7 +321,7 @@ public class edit_delete_hours_of_sleep extends AppCompatActivity implements Tim
         {
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), pendingIntent);
             updateAlarm();
-        }        //  alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), 24*60*60*1000, pendingIntent);
+        }
     }
 
     @Override
