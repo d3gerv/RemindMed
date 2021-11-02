@@ -33,14 +33,20 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import javax.crypto.KeyGenerator;
+import javax.crypto.Cipher;
+import javax.crypto.SecretKey;
 //import com.google.firebase.database.FirebaseDatabase;
 
 public class create_account extends AppCompatActivity {
+    private  static final String UNICODE_FORMAT = "UTF-8";
+
     public static final String TAG = "TAG";
     EditText first, last, password, confirm, emailInput, gender, birthyr, height, weight;
     TextView result, resultem;
@@ -105,6 +111,25 @@ public class create_account extends AppCompatActivity {
                 String lastname = last.getText().toString().trim();
                 String empass = result.getText().toString().trim();
                 //String empass1 = resultem.getText().toString().trim();
+
+                //encrypt decrypt
+                try
+                {
+                    SecretKey key = generateKey("AES");
+                    Cipher chipher;
+                    chipher = Cipher.getInstance("AES");
+
+                    byte[] encryptedData = encryptString(Email, key, chipher);
+                    String encryptedString = new String(encryptedData);
+                    emailInput.setText(encryptedString);
+                    String decrypted = decryptString(encryptedData,key,chipher);
+                    emailInput.setText(decrypted);
+                }
+                catch (Exception e)
+                {
+
+                }
+
 
 
                 if (TextUtils.isEmpty(Email)) {
@@ -199,29 +224,56 @@ public class create_account extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-/*
-    public void computeMD5Hashem(String password)
-    {
-        try {
-            // Create MD5 Hash
-            MessageDigest digest = java.security.MessageDigest.getInstance("MD5");
-            digest.update(password.getBytes());
-            byte messageDigest[] = digest.digest();
 
-            StringBuffer MD5Hash = new StringBuffer();
-            for (int i = 0; i < messageDigest.length; i++) {
-                String h = Integer.toHexString(0xFF & messageDigest[1]);
-                while (h.length() < 2)
-                    h = "0" + h;
-                MD5Hash.append(h);
-            }
-            resultem.setText( MD5Hash);
+    //encrypt decrypt
+    public  static SecretKey generateKey(String encryptionType)
+    {
+        try
+        {
+            KeyGenerator keyGenerator = KeyGenerator.getInstance(encryptionType);
+            SecretKey myKey = keyGenerator.generateKey();
+            return myKey;
+
+        }catch (Exception e)
+        {
+            return null;
         }
-        catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
+
+    }
+
+    //encrypt
+    public static byte[] encryptString(String dataToEncrypt, SecretKey myKey, Cipher cipher)
+    {
+        try
+        {
+            byte[] Email = dataToEncrypt.getBytes(UNICODE_FORMAT);
+            cipher.init(Cipher.ENCRYPT_MODE, myKey);
+            byte[] textEncrypted = cipher.doFinal(Email);
+
+            return textEncrypted;
+        }catch (Exception e)
+        {
+            return null;
+        }
+
+    }
+
+    //decrypt
+    public static String decryptString(byte[] dataToDecrypt, SecretKey myKey, Cipher cipher)
+    {
+        try
+        {
+            cipher.init(Cipher.DECRYPT_MODE, myKey);
+            byte[] textDecrypted = cipher.doFinal(dataToDecrypt);
+            String result = new String(textDecrypted);
+
+            return result;
+        }catch (Exception e)
+        {
+            return null;
         }
     }
-*/
+
     public void Create_To_Main(View view) {
         Intent intent = new Intent(create_account.this, main_page.class);
         startActivity(intent);
