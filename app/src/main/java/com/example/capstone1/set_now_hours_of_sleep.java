@@ -219,6 +219,7 @@ public class set_now_hours_of_sleep extends AppCompatActivity {
             freq = getIntent().getIntExtra("Frequency", 1 );
             alarmHour = getIntent().getIntExtra("Hour", 0);
             alarmMin = getIntent().getIntExtra("Minute", 0);
+            id = getIntent().getIntExtra("ID", 0);
         }
     }
 
@@ -320,10 +321,10 @@ public class set_now_hours_of_sleep extends AppCompatActivity {
         myAlarmDate.set(alarmYear, alarmMonth-1, alarmDay, alarmHour, alarmMin);
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, alarmreceivermeasurement.class);
-        id = new Random().nextInt(1000000);
+        PendingIntent pendingDB = PendingIntent.getBroadcast(this, id, intent, 0);
+        alarmManager.cancel(pendingDB);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, id, intent, 0);
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), pendingIntent);
-        //  alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), 24*60*60*1000, pendingIntent);
     }
 
 

@@ -66,6 +66,8 @@ public class HMAdapterToday extends RecyclerView.Adapter<HMAdapterToday.MyViewHo
                         intent.putExtra("Hour", measurement_info_today.Hour);
                         intent.putExtra("Minute", measurement_info_today.Minute);
                         intent.putExtra("measuremy_info_today", measurement_info_today);
+                        intent.putExtra("ID", measurement_info_today.idCode);
+
 
                         context.startActivity(intent);
 
@@ -81,6 +83,8 @@ public class HMAdapterToday extends RecyclerView.Adapter<HMAdapterToday.MyViewHo
                         intent.putExtra("Hour", measurement_info_today.Hour);
                         intent.putExtra("Minute", measurement_info_today.Minute);
                         intent.putExtra("measuremy_info_today", measurement_info_today);;
+                        intent.putExtra("ID", measurement_info_today.idCode);
+
 
                         context.startActivity(intent);
                     }
@@ -95,6 +99,9 @@ public class HMAdapterToday extends RecyclerView.Adapter<HMAdapterToday.MyViewHo
                         intent.putExtra("measuremy_info_today", measurement_info_today);
                         intent.putExtra("Hour", measurement_info_today.Hour);
                         intent.putExtra("Minute", measurement_info_today.Minute);
+                        intent.putExtra("ID", measurement_info_today.idCode);
+
+
 
                         context.startActivity(intent);
                     }
@@ -109,6 +116,8 @@ public class HMAdapterToday extends RecyclerView.Adapter<HMAdapterToday.MyViewHo
                         intent.putExtra("measuremy_info_today", measurement_info_today);
                         intent.putExtra("Hour", measurement_info_today.Hour);
                         intent.putExtra("Minute", measurement_info_today.Minute);
+                        intent.putExtra("ID", measurement_info_today.idCode);
+
 
                         context.startActivity(intent);
                     }
@@ -123,6 +132,8 @@ public class HMAdapterToday extends RecyclerView.Adapter<HMAdapterToday.MyViewHo
                         intent.putExtra("measuremy_info_today", measurement_info_today);
                         intent.putExtra("Hour", measurement_info_today.Hour);
                         intent.putExtra("Minute", measurement_info_today.Minute);
+                        intent.putExtra("ID", measurement_info_today.idCode);
+
 
                         context.startActivity(intent);
                     }
@@ -137,6 +148,8 @@ public class HMAdapterToday extends RecyclerView.Adapter<HMAdapterToday.MyViewHo
                         intent.putExtra("measuremy_info_today", measurement_info_today);
                         intent.putExtra("Hour", measurement_info_today.Hour);
                         intent.putExtra("Minute", measurement_info_today.Minute);
+                        intent.putExtra("ID", measurement_info_today.idCode);
+
 
                         context.startActivity(intent);
                     }
