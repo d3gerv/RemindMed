@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -52,7 +53,7 @@ public class MyMedicationAdapter extends RecyclerView.Adapter<MyMedicationAdapte
         holder.Time.setText(medication_info.Time);
 
 
-        Integer inventory = medication_info.getPillStatic();
+        int inventory = medication_info.getPillStatic();
         Log.d("text", "test" + inventory);
 
         int intInv = inventory;
@@ -60,14 +61,15 @@ public class MyMedicationAdapter extends RecyclerView.Adapter<MyMedicationAdapte
         {
             holder.constraintLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.green));
         }
-        else if(Integer.parseInt(medication_info.getInventoryMeds()) <= intInv/4  && Integer.parseInt(medication_info.getInventoryMeds()) > 1 )
+        else if(Integer.parseInt(medication_info.getInventoryMeds()) <= intInv/4  && Integer.parseInt(medication_info.getInventoryMeds()) > 2 )
         {
             holder.constraintLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.orange));
         }
-        else if(Integer.parseInt(medication_info.getInventoryMeds())  == 1)
+        else if(Integer.parseInt(medication_info.getInventoryMeds())  <= 2)
         {
             holder.constraintLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.red1));
         }
+
 
         SimpleDateFormat df = new SimpleDateFormat("M/dd/yyyy", Locale.getDefault());
         dateToday = df.format(c);
@@ -75,27 +77,40 @@ public class MyMedicationAdapter extends RecyclerView.Adapter<MyMedicationAdapte
 
         if(dateselectedString.equals(dateToday))
         {
-            holder.mainLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(context, intake_confirmation.class);
+            if (intInv == 0)
+            {
+                Toast.makeText(context, "You have 0 inventory please refill them ", Toast.LENGTH_LONG).show();
+            }
+            else
+            {
+                holder.mainLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(context, intake_confirmation.class);
 
-                    medication_info medication_info = userArrayList.get(position);
-                    intent.putExtra("description", medication_info.Medication);
-                    intent.putExtra("pill", medication_info.InventoryMeds);
-                    intent.putExtra("startdate", strDate);
-                    intent.putExtra("time", medication_info.Time);
-                    intent.putExtra("enddate", strEnd);
-                    intent.putExtra("Dosage", medication_info.Dosage);
-                    intent.putExtra("medication_info", medication_info);
-                    intent.putExtra("frequency", medication_info.Frequency);
-                    intent.putExtra("Hour", medication_info.Hour);
-                    intent.putExtra("Minute", medication_info.Minute);
+                        medication_info medication_info = userArrayList.get(position);
+                        intent.putExtra("description", medication_info.Medication);
+                        intent.putExtra("pill", medication_info.InventoryMeds);
+                        intent.putExtra("startdate", strDate);
+                        intent.putExtra("time", medication_info.Time);
+                        intent.putExtra("enddate", strEnd);
+                        intent.putExtra("Dosage", medication_info.Dosage);
+                        intent.putExtra("medication_info", medication_info);
+                        intent.putExtra("frequency", medication_info.Frequency);
+                        intent.putExtra("Hour", medication_info.Hour);
+                        intent.putExtra("Minute", medication_info.Minute);
+                        intent.putExtra("AlarmID", medication_info.AlarmID);
 
 
-                    context.startActivity(intent);
-                }
-            });        }
+                        context.startActivity(intent);
+                    }
+                });
+            }
+            }
+
+
+
+
 
 
     }

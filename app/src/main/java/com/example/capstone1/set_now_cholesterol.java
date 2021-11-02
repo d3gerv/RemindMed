@@ -325,10 +325,10 @@ public class set_now_cholesterol extends AppCompatActivity {
         myAlarmDate.set(alarmYear, alarmMonth-1, alarmDay, alarmHour, alarmMin);
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, alarmreceivermeasurement.class);
+
         id = new Random().nextInt(1000000);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, id, intent, 0);
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), pendingIntent);
-        //  alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), 24*60*60*1000, pendingIntent);
     }
 
     public void nowchol_To_hm(View view) {

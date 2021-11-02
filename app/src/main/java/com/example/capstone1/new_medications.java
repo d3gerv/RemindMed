@@ -225,6 +225,7 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
                     String Time = timeButtonmedtst.getText().toString().trim();
                     String StartDate = dateButton.getText().toString().trim();
                     String EndDate = endDateButton.getText().toString().trim();
+                    alarmID = new Random().nextInt(1000000);
                     Map<String, Object> user = new HashMap<>();
                     user.put("Medication", Medication);
                     user.put("Dosage", Dosage);
@@ -240,6 +241,7 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
                     user.put("Hour", alarmHour);
                     user.put("Minute", alarmMin);
                     user.put("AlarmID", alarmID);
+
 
                     Log.d("class", "start " + alarmHour);
 
@@ -446,8 +448,6 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
         myAlarmDate.set(alarmYear, alarmMonth, alarmDay, alarmHour, alarmMin);
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent i = new Intent(this, alarmreceiver.class);
-        alarmID = new Random().nextInt(1000000);
-        i.putExtra("userID", alarmID);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, alarmID, i, 0);
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), pendingIntent);
 

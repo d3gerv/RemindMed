@@ -357,6 +357,11 @@ public class edit_delete_medications extends AppCompatActivity implements TimePi
         dosageBoxET.setText(dosage);
     }
     private void deleteMedication() {
+        Intent intent = new Intent(this, alarmreceiver.class);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        PendingIntent pendingDB = PendingIntent.getBroadcast(this, alarmIDdb, intent, 0);
+        alarmManager.cancel(pendingDB);
+
         db.collection("users").document(currentFirebaseUser.getUid()).collection("New Medications").document(medication_info.getId()).delete()
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -522,8 +527,7 @@ public class edit_delete_medications extends AppCompatActivity implements TimePi
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         PendingIntent pendingDB = PendingIntent.getBroadcast(this, alarmIDdb, intent, 0);
         alarmManager.cancel(pendingDB);
-        alarmID = new Random().nextInt(1000000);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, alarmID, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, alarmIDdb, intent, 0);
 
         if (myAlarmDate.getTimeInMillis() < System.currentTimeMillis()) {
             Toast.makeText(edit_delete_medications.this, "Set the time and date to the future", Toast.LENGTH_LONG).show();
@@ -577,7 +581,7 @@ public class edit_delete_medications extends AppCompatActivity implements TimePi
 
 
             medication_info m = new medication_info(title, amount, startdate, time, enddate,
-                    medicationTypeName, frequencyName, frequencychoide, hourchange, minchange, alarmID, dosage);
+                    medicationTypeName, frequencyName, frequencychoide, dynHour, dynMin, alarmIDdb, dosage);
             db.collection("users").document(currentFirebaseUser.getUid()).collection("New Medications")
                     .document(medication_info.getId()).update("Medication", m.getMedication(),
                     "InventoryMeds", m.getInventoryMeds(), "StartDate", m.getStartDate(),

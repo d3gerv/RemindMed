@@ -211,6 +211,7 @@ public class intake_confirmation extends AppCompatActivity {
                 if (freq == 1)
                 {
                     moveStartDate();
+
                     if(!date.equals(enddate))
                     {
                         startAlarm(myAlarmDate);
@@ -246,6 +247,7 @@ public class intake_confirmation extends AppCompatActivity {
             freq = getIntent().getIntExtra("frequency", 0);
             alarmHour = getIntent().getIntExtra("Hour", 0);
             alarmMin =getIntent().getIntExtra("Minute", 0);
+            alarmID = getIntent().getIntExtra("AlarnID",0 );
 
         } else {
             Toast.makeText(this, "No Data", Toast.LENGTH_SHORT).show();
@@ -263,15 +265,8 @@ public class intake_confirmation extends AppCompatActivity {
         getData();
         int inv = Integer.parseInt(amount);
         int doseInt = Integer.parseInt(dosage);
-        int type = medication_info.getMedicineType();
         inv -= doseInt;
-        /*
-        if (type < 4) {
-            inv -= 1;
 
-        } else {
-            inv -= doseInt;
-        }*/
         amount = Integer.toString(inv);
         medication_info m = new medication_info(title, amount, getDateFromString(date), time, getDateFromString(enddate), medtype,
                 frequency, freq,alarmHour, alarmMin, alarmID, dosage);
@@ -303,10 +298,9 @@ public class intake_confirmation extends AppCompatActivity {
         alarmYear = Integer.parseInt(year);
 
 
-
-        medication_info m = new medication_info(title, amount, getDateFromString(date), time, getDateFromString(enddate), medtype, frequency, freq,alarmHour, alarmMin, alarmID, dosage);
         if (date.equals(enddate)) {
-            db.collection("users").document(currentFirebaseUser.getUid()).collection("New Medications").document(medication_info.getId()).delete()
+            db.collection("users").document(currentFirebaseUser.getUid()).collection("New Medications")
+                    .document(medication_info.getId()).delete()
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
@@ -346,9 +340,9 @@ public class intake_confirmation extends AppCompatActivity {
         alarmMonth = Integer.parseInt(month);
         alarmDay = Integer.parseInt(day);
         alarmYear = Integer.parseInt(year);
-        medication_info m = new medication_info(title, amount, getDateFromString(date), time, getDateFromString(enddate), medtype, frequency, freq,alarmHour, alarmMin, alarmID, dosage);
         if (date.equals(enddate)) {
-            db.collection("users").document(currentFirebaseUser.getUid()).collection("New Medications").document(medication_info.getId()).delete()
+            db.collection("users").document(currentFirebaseUser.getUid()).collection("New Medications")
+                    .document(medication_info.getId()).delete()
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
@@ -431,12 +425,10 @@ public class intake_confirmation extends AppCompatActivity {
         myAlarmDate.set(alarmYear, alarmMonth-1, alarmDay, alarmHour, alarmMin);
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, alarmreceiver.class);
-        Intent i = new Intent(this, alarm_notification.class);
-        id = new Random().nextInt(1000000);
-        i.putExtra("userID", id);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, id, intent, 0);
+        PendingIntent pendingDB = PendingIntent.getBroadcast(this, alarmID, intent, 0);
+        alarmManager.cancel(pendingDB);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, alarmID, intent, 0);
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), pendingIntent);
-        //  alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), 24*60*60*1000, pendingIntent);
     }
 
     private void speak() {
