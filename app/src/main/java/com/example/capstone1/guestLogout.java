@@ -71,5 +71,9 @@ public class guestLogout extends AppCompatActivity {
             }
         });
     }
+    public void Guest_To_Home(View view) {
+        Intent intent = new Intent(guestLogout.this, home_page.class);
+        startActivity(intent);
+    }
 
 }
