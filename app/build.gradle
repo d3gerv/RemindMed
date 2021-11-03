@@ -75,8 +75,11 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-firestore:8.0.0'
     implementation 'com.applandeo:material-calendar-view:1.7.0'
     implementation 'androidx.multidex:multidex:2.0.1'
-
-
+    implementation 'com.amazonaws:aws-android-sdk-core:2.6.+'
+    implementation 'com.amazonaws:aws-android-sdk-cognito:2.2.+'
+    implementation 'com.amazonaws:aws-android-sdk-s3:2.6.+'
+    implementation 'com.amazonaws:aws-android-sdk-ddb:2.2.+'
+    implementation 'com.android.volley:volley:1.2.1'
 
 }
 apply plugin: 'com.google.gms.google-services'

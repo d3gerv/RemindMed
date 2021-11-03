@@ -10,13 +10,20 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+
     <application
         android:name=".HomeSession"
         android:allowBackup="true"
         android:icon="@drawable/logoicon"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Capstone1">
+        android:theme="@style/Theme.Capstone1"
+        android:usesCleartextTraffic="true">
+
+        <service
+            android:name="com.amazonaws.mobileconnectors.s3.transferutility.TransferService"
+            android:enabled="true" />
+
         <activity
             android:name=".today_measurement_cardview"
             android:exported="true"/>

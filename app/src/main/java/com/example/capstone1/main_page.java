@@ -58,6 +58,8 @@ public class main_page extends AppCompatActivity {
             }
         });
 
+//        AWSMobileClient.getInstance().initialize(getApplicationContext()).execute();
+
     }
     public void openlogin_page(){
         Intent intent = new Intent(this, login_page.class);

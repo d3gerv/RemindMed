@@ -17,6 +17,10 @@
     <string name="profile">Profile</string>
     <string name="textview">TextView</string>
     <string name="create_an_account">Create an Account</string>
+    <string name="aws_access_key">AKIASLVS2LVSTW2DDYSK</string>
+    <string name="aws_secret_key">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</string>
+    <string name="s3_bucket_name">pill-detector-pills</string>
+    <string name="s3_filepath">pills</string>
 
     <string-array name="type">
         <item>Choose one</item>
