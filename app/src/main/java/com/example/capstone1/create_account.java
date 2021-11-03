@@ -181,6 +181,7 @@ public class create_account extends AppCompatActivity {
 
                             user.put("email",Email);
                             user.put("password",empass);
+                            user.put("accounttype",1);
 
 
                             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
