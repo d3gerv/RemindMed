@@ -1,6 +1,7 @@
 package com.example.capstone1;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
@@ -23,6 +24,8 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -71,19 +74,24 @@ public class change_name extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void unused) {
                         DocumentReference docRef = fstore.collection("users").document(user.getUid());
-                        Map<String,Object> edited = new HashMap<>();
-                        edited.put("email",email);
-                        edited.put("firstname",editfirstname.getText().toString());
-                        edited.put("lastname",editlastname.getText().toString());
-                        docRef.update(edited).addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void unused) {
-                                Toast.makeText(change_name.this, "Updated", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(getApplicationContext(),home_page.class));
-                                finish();
-                            }
-                        });
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            Base64.Encoder encoder = Base64.getEncoder();
+                            String encodedName = encoder.encodeToString(editfirstname.getText().toString().getBytes());
+                            String encodedLastName = encoder.encodeToString(editlastname.getText().toString().getBytes());
+                            Map<String,Object> edited = new HashMap<>();
+                            edited.put("email",email);
+                            edited.put("firstname", encodedName);
+                            edited.put("lastname",encodedLastName);
 
+                            docRef.update(edited).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    Toast.makeText(change_name.this, "Updated", Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(getApplicationContext(),home_page.class));
+                                    finish();
+                                }
+                            });
+                        }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -102,9 +110,17 @@ public class change_name extends AppCompatActivity {
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                editemail.setText(value.getString("email"));
-                editfirstname.setText(value.getString("firstname"));
-                editlastname.setText(value.getString("lastname"));
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                    Base64.Decoder decoder = Base64.getDecoder();
+                    byte [] bytesFN =decoder.decode(value.getString("firstname"));
+                    byte [] bytesLN =decoder.decode(value.getString("lastname"));
+
+                    editemail.setText(value.getString("email"));
+                    editfirstname.setText(new String(bytesFN));
+                    editlastname.setText(new String(bytesLN));
+                }
+
+
 
             }
         });

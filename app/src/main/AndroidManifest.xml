@@ -18,6 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Capstone1">
         <activity
+            android:name=".guestLogout"
+            android:exported="true" />
+        <activity
             android:name=".today_measurement_cardview"
             android:exported="true"/>
         <activity

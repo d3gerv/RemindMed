@@ -70,8 +70,8 @@ public class login_page extends AppCompatActivity {
                                 new Handler().postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
-                                        progressDialog.setCanceledOnTouchOutside(true);
-                                        progressDialog.dismiss();
+                                       // progressDialog.setCanceledOnTouchOutside(true);
+                                       // progressDialog.dismiss();
                                     }
                                 },10000);
                             }else{

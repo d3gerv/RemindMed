@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -39,6 +40,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -58,6 +60,7 @@ public class today_page_recycler extends AppCompatActivity {
     Button switchDisplay;
     static final SimpleDateFormat format = new SimpleDateFormat("M/dd/yyyy");
     String date;
+    FloatingActionButton profileBtn;
     int day;
     medication_info medication_info;
     private CalendarView calendarView;
@@ -66,6 +69,8 @@ public class today_page_recycler extends AppCompatActivity {
     TextView firstname;
     FirebaseAuth rootAuthen;
     String userId;
+    long accounttype ;
+
 
 
     @Override
@@ -76,6 +81,8 @@ public class today_page_recycler extends AppCompatActivity {
         rootAuthen = FirebaseAuth.getInstance();
         userId = rootAuthen.getCurrentUser().getUid();
         switchDisplay = findViewById(R.id.switchToday);
+        profileBtn = findViewById(R.id.Profile_page);
+
         DocumentReference documentReference = fstore.collection("users").document(userId);
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
@@ -85,7 +92,16 @@ public class today_page_recycler extends AppCompatActivity {
                     firstname.setText(" ");
                     return;
                 }
-                firstname.setText(value.getString("firstname"));
+                try{
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                        Base64.Decoder decoder = Base64.getDecoder();
+                        byte [] bytes =decoder.decode(value.getString("firstname"));
+                        firstname.setText(new String(bytes));
+                    }
+                }catch (Exception e)
+                {
+                    firstname.setText(" ");
+                }
             }
         });
         
@@ -148,6 +164,40 @@ public class today_page_recycler extends AppCompatActivity {
                 measurementArrayList.clear();
                 recyclerView1.setAdapter(medAdapter);
                 rViewMeasurement.setAdapter(measurementAdapter);
+            }
+        });
+
+        profileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                documentReference.addSnapshotListener(today_page_recycler.this, new EventListener<DocumentSnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                        if (error != null) {
+                            Log.w(TAG, "listen:error", error);
+                            firstname.setText(" ");
+                            return;
+                        }
+                        try {
+                            accounttype = value.getLong("accounttype");
+
+                            Log.d("TAG", "tag: " + accounttype);
+                            if (accounttype == 1)
+                            {
+                                Intent intent = new Intent(today_page_recycler.this, user_information.class);
+                                startActivity(intent);
+                            }
+                            else if (accounttype == 2)
+                            {
+                                Intent intent = new Intent(today_page_recycler.this, guestLogout.class);
+                                startActivity(intent);
+                            }
+                        }catch (Exception e){
+                            Intent intent = new Intent(today_page_recycler.this, user_information.class);
+                            startActivity(intent);
+                        }
+                    }
+                });
             }
         });
 

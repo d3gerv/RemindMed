@@ -22,6 +22,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -67,7 +68,6 @@ public class user_information extends AppCompatActivity {
         buttonSave = findViewById(R.id.btnSave);
         buttonLogout = findViewById(R.id.btnLogout);
         buttonDeleteAcc = findViewById(R.id.btnDeleteAcc);
-
         rootAuthen = FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
         firebaseUser = rootAuthen.getCurrentUser();

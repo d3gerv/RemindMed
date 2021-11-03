@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -43,7 +44,8 @@ public class history_for_measurements extends AppCompatActivity {
     FirebaseFirestore db;
     ProgressDialog progressDialog;
     String measurement[];
-
+    long accounttype ;
+    FloatingActionButton profileBtn;
     FirebaseFirestore fstore = FirebaseFirestore.getInstance();
     TextView firstname, clear;
     FirebaseAuth rootAuthen;
@@ -57,6 +59,8 @@ public class history_for_measurements extends AppCompatActivity {
         rootAuthen = FirebaseAuth.getInstance();
         userId = rootAuthen.getCurrentUser().getUid();
         clear = findViewById(R.id.clearAll_measurements);
+        profileBtn = findViewById(R.id.Profile_historyH);
+
 
         DocumentReference documentReference = fstore.collection("users").document(userId);
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
@@ -122,6 +126,40 @@ public class history_for_measurements extends AppCompatActivity {
                             }
                         });
                 alert.show();
+            }
+        });
+
+        profileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                documentReference.addSnapshotListener(history_for_measurements.this, new EventListener<DocumentSnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                        if (error != null) {
+                            Log.w(TAG, "listen:error", error);
+                            firstname.setText(" ");
+                            return;
+                        }
+                        try {
+                            accounttype = value.getLong("accounttype");
+
+                            Log.d("TAG", "tag: " + accounttype);
+                            if (accounttype == 1)
+                            {
+                                Intent intent = new Intent(history_for_measurements.this, user_information.class);
+                                startActivity(intent);
+                            }
+                            else if (accounttype == 2)
+                            {
+                                Intent intent = new Intent(history_for_measurements.this, guestLogout.class);
+                                startActivity(intent);
+                            }
+                        }catch (Exception e){
+                            Intent intent = new Intent(history_for_measurements.this, user_information.class);
+                            startActivity(intent);
+                        }
+                    }
+                });
             }
         });
 

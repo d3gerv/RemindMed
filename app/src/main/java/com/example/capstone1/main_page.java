@@ -20,6 +20,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class main_page extends AppCompatActivity {
     private static final String TAG = "AnonymousAuth";
 
@@ -57,6 +60,7 @@ public class main_page extends AppCompatActivity {
                 openlogin_page();
             }
         });
+
 
     }
     public void openlogin_page(){

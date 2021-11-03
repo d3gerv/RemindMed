@@ -17,6 +17,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class instruction_slideone extends AppCompatActivity {
     private static final String TAG = "AnonymousAuth";
@@ -32,6 +37,7 @@ public class instruction_slideone extends AppCompatActivity {
         setContentView(R.layout.activity_instruction_slideone);
         rootAuthen = FirebaseAuth.getInstance();
         currentUser = rootAuthen.getCurrentUser();
+
 
         //ImageView button = (ImageView) findViewById(R.id.instructione_one_btn);
         /*button.setOnClickListener(new View.OnClickListener() {
@@ -79,7 +85,13 @@ public class instruction_slideone extends AppCompatActivity {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d(TAG, "signInAnonymously:success");
                         FirebaseUser user = rootAuthen.getCurrentUser();
+                        FirebaseFirestore fstore = FirebaseFirestore.getInstance();
                         updateUI(user);
+                        DocumentReference documentReference = fstore.collection("users").document(rootAuthen.getCurrentUser().getUid());
+                        Map<String,Object> account = new HashMap<>();
+                        account.put("accounttype",2);
+                        documentReference.set(account);
+
 
                     } else {
                         // If sign in fails, display a message to the user.

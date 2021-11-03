@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.nfc.Tag;
+import android.os.Build;
 import android.os.Bundle;
 import android.service.autofill.UserData;
 import android.text.TextUtils;
@@ -36,6 +37,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -106,29 +108,16 @@ public class create_account extends AppCompatActivity {
                 //computeMD5Hashem(emailInput.toString());
                 String Email = emailInput.getText().toString().trim();
                 String Password = password.getText().toString().trim();
-                String Confirm_Password = confirm.getText().toString().trim();
                 String firstname = first.getText().toString().trim();
                 String lastname = last.getText().toString().trim();
+                String Confirm_Password = confirm.getText().toString().trim();
+
                 String empass = result.getText().toString().trim();
                 //String empass1 = resultem.getText().toString().trim();
 
                 //encrypt decrypt
-                try
-                {
-                    SecretKey key = generateKey("AES");
-                    Cipher chipher;
-                    chipher = Cipher.getInstance("AES");
 
-                    byte[] encryptedData = encryptString(Email, key, chipher);
-                    String encryptedString = new String(encryptedData);
-                    emailInput.setText(encryptedString);
-                    String decrypted = decryptString(encryptedData,key,chipher);
-                    emailInput.setText(decrypted);
-                }
-                catch (Exception e)
-                {
 
-                }
 
 
 
@@ -180,8 +169,16 @@ public class create_account extends AppCompatActivity {
                             userId = rootAuthen.getCurrentUser().getUid();
                             DocumentReference documentReference = fstore.collection("users").document(userId);
                             Map<String,Object> user = new HashMap<>();
-                            user.put("firstname",firstname);
-                            user.put("lastname",lastname);
+
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                Base64.Encoder encoder = Base64.getEncoder();
+                                String encodedName = encoder.encodeToString(firstname.getBytes());
+                                String encodedLastName = encoder.encodeToString(lastname.toString().getBytes());
+                                user.put("firstname",encodedName);
+                                user.put("lastname",encodedLastName);
+
+                            }
+
                             user.put("email",Email);
                             user.put("password",empass);
 
@@ -226,53 +223,7 @@ public class create_account extends AppCompatActivity {
     }
 
     //encrypt decrypt
-    public  static SecretKey generateKey(String encryptionType)
-    {
-        try
-        {
-            KeyGenerator keyGenerator = KeyGenerator.getInstance(encryptionType);
-            SecretKey myKey = keyGenerator.generateKey();
-            return myKey;
 
-        }catch (Exception e)
-        {
-            return null;
-        }
-
-    }
-
-    //encrypt
-    public static byte[] encryptString(String dataToEncrypt, SecretKey myKey, Cipher cipher)
-    {
-        try
-        {
-            byte[] Email = dataToEncrypt.getBytes(UNICODE_FORMAT);
-            cipher.init(Cipher.ENCRYPT_MODE, myKey);
-            byte[] textEncrypted = cipher.doFinal(Email);
-
-            return textEncrypted;
-        }catch (Exception e)
-        {
-            return null;
-        }
-
-    }
-
-    //decrypt
-    public static String decryptString(byte[] dataToDecrypt, SecretKey myKey, Cipher cipher)
-    {
-        try
-        {
-            cipher.init(Cipher.DECRYPT_MODE, myKey);
-            byte[] textDecrypted = cipher.doFinal(dataToDecrypt);
-            String result = new String(textDecrypted);
-
-            return result;
-        }catch (Exception e)
-        {
-            return null;
-        }
-    }
 
     public void Create_To_Main(View view) {
         Intent intent = new Intent(create_account.this, main_page.class);

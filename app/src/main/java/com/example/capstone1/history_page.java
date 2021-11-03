@@ -21,6 +21,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentChange;
@@ -37,6 +38,7 @@ import com.google.firebase.functions.HttpsCallableReference;
 import com.google.firebase.functions.HttpsCallableResult;
 
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,7 +49,8 @@ public class history_page extends AppCompatActivity {
     TextView firstname, clear;
     FirebaseAuth rootAuthen;
     String userId;
-
+    long accounttype ;
+    FloatingActionButton profileBtn;
     ArrayList<medication_history_info> myArrayList;
     medication_history_adapter myAdapter;
     FirebaseFirestore db;
@@ -62,6 +65,8 @@ public class history_page extends AppCompatActivity {
         rootAuthen = FirebaseAuth.getInstance();
         userId = rootAuthen.getCurrentUser().getUid();
         clear = findViewById(R.id.clearAll_medications);
+        profileBtn = findViewById(R.id.profile_history_two);
+
         DocumentReference documentReference = fstore.collection("users").document(userId);
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
@@ -71,7 +76,16 @@ public class history_page extends AppCompatActivity {
                     firstname.setText(" ");
                     return;
                 }
-                firstname.setText(value.getString("firstname"));
+                try{
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                        Base64.Decoder decoder = Base64.getDecoder();
+                        byte [] bytes =decoder.decode(value.getString("firstname"));
+                        firstname.setText(new String(bytes));
+                    }
+                }catch (Exception e)
+                {
+                    firstname.setText(" ");
+                }
             }
         });
         FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -118,6 +132,40 @@ public class history_page extends AppCompatActivity {
                             }
                         });
                 alert.show();
+            }
+        });
+
+        profileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                documentReference.addSnapshotListener(history_page.this, new EventListener<DocumentSnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                        if (error != null) {
+                            Log.w(TAG, "listen:error", error);
+                            firstname.setText(" ");
+                            return;
+                        }
+                        try {
+                            accounttype = value.getLong("accounttype");
+
+                            Log.d("TAG", "tag: " + accounttype);
+                            if (accounttype == 1)
+                            {
+                                Intent intent = new Intent(history_page.this, user_information.class);
+                                startActivity(intent);
+                            }
+                            else if (accounttype == 2)
+                            {
+                                Intent intent = new Intent(history_page.this, guestLogout.class);
+                                startActivity(intent);
+                            }
+                        }catch (Exception e){
+                            Intent intent = new Intent(history_page.this, user_information.class);
+                            startActivity(intent);
+                        }
+                    }
+                });
             }
         });
 
