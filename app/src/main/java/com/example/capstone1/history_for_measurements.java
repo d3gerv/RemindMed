@@ -155,7 +155,7 @@ public class history_for_measurements extends AppCompatActivity {
                                 startActivity(intent);
                             }
                         }catch (Exception e){
-                            Intent intent = new Intent(history_for_measurements.this, user_information.class);
+                            Intent intent = new Intent(history_for_measurements.this, guestLogout.class);
                             startActivity(intent);
                         }
                     }

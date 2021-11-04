@@ -193,7 +193,7 @@ public class today_page_recycler extends AppCompatActivity {
                                 startActivity(intent);
                             }
                         }catch (Exception e){
-                            Intent intent = new Intent(today_page_recycler.this, user_information.class);
+                            Intent intent = new Intent(today_page_recycler.this, guestLogout.class);
                             startActivity(intent);
                         }
                     }

@@ -64,7 +64,7 @@ public class health_measurements extends AppCompatActivity {
                                 startActivity(intent);
                             }
                         }catch (Exception e){
-                            Intent intent = new Intent(health_measurements.this, user_information.class);
+                            Intent intent = new Intent(health_measurements.this, guestLogout.class);
                             startActivity(intent);
                         }
                     }

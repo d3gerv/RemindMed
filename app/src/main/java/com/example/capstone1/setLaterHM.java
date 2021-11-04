@@ -59,7 +59,7 @@ public class setLaterHM extends AppCompatActivity {
                                 startActivity(intent);
                             }
                         }catch (Exception e){
-                            Intent intent = new Intent(setLaterHM.this, user_information.class);
+                            Intent intent = new Intent(setLaterHM.this, guestLogout.class);
                             startActivity(intent);
                         }
                     }
