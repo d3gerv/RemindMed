@@ -61,7 +61,7 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
     FirebaseFirestore fstore;
     final int start = 1;
     final int end = 2;
-    String userId, startdate;
+    String userId, startdate, enddate;
     Spinner spinnertypeunit, spinnerfrequencymedication;
     Calendar calendar = Calendar.getInstance();;
     private DatePickerDialog datePickerDialog, datePickerDialog2;
@@ -293,6 +293,10 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
                         Toast.makeText(getApplicationContext(), "Please select End Date", Toast.LENGTH_SHORT).show();
                         return;
                     }
+                    if (getDateFromString(startdate).after(getDateFromString(enddate))) {
+                        Toast.makeText(getApplicationContext(), "Start Date should be before End Date", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     setDate(myAlarmDate);
                     if (myAlarmDate.getTimeInMillis() < System.currentTimeMillis()) {
                         Toast.makeText(new_medications.this, "Set the time and date to the future", Toast.LENGTH_LONG).show();
@@ -389,7 +393,7 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
                 }
                 else if (choice == end)
                 {
-                    String enddate = makeDateString(day, month, year);
+                    enddate = makeDateString(day, month, year);
                     endDateButton.setText(enddate);
 
                 }

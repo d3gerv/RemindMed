@@ -51,7 +51,7 @@ public class set_later_blood_pressure extends AppCompatActivity implements TimeP
     final int end = 2;
     int id ;
     private DatePickerDialog datePickerDialog;
-    String userId, startdate;
+    String userId, startdate, enddate;
     int alarmYear, alarmMonth, alarmDay,alarmHour,alarmMin;
     Calendar c;
     Calendar myAlarmDate = Calendar.getInstance();
@@ -163,6 +163,10 @@ public class set_later_blood_pressure extends AppCompatActivity implements TimeP
                         Toast.makeText(getApplicationContext(), "Please select Start Date", Toast.LENGTH_SHORT).show();
                         return;
                     }
+                    if (getDateFromString(startdate).after(getDateFromString(enddate))) {
+                        Toast.makeText(getApplicationContext(), "Start Date should be before End Date", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     if (EndDate.equals("End")) {
                         Toast.makeText(getApplicationContext(), "Please select End Date", Toast.LENGTH_SHORT).show();
                         return;
@@ -244,7 +248,7 @@ public class set_later_blood_pressure extends AppCompatActivity implements TimeP
                 }
                 else if (choice == end)
                 {
-                    String enddate = makeDateString(day, month, year);
+                    enddate = makeDateString(day, month, year);
                     endDateButton.setText(enddate);
 
                 }

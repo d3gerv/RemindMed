@@ -55,7 +55,7 @@ public class edit_delete_bloodpressure extends AppCompatActivity implements Time
     final int start = 1;
     final int end = 2;
     private DatePickerDialog datePickerDialog;
-    String userId, time, strDate, strEnd, startdate, frequencyDB, fname, placeholderName;
+    String userId, time, strDate, strEnd, startdate, frequencyDB, fname, placeholderName, enddate;
     Calendar calendar = Calendar.getInstance();
     Calendar myAlarmDate = Calendar.getInstance();
     Calendar c;
@@ -146,7 +146,14 @@ public class edit_delete_bloodpressure extends AppCompatActivity implements Time
         saveBPbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startAlarm(myAlarmDate);
+
+                if (getDateFromString(startdate).after(getDateFromString(enddate))) {
+                    Toast.makeText(getApplicationContext(), "Start Date should be before End Date", Toast.LENGTH_SHORT).show();
+                    return;
+                }else
+                {
+                    startAlarm(myAlarmDate);
+                }
             }
         });
 
@@ -272,7 +279,7 @@ public class edit_delete_bloodpressure extends AppCompatActivity implements Time
                 }
                 else if (choice == end)
                 {
-                    String enddate = makeDateString(day, month, year);
+                    enddate = makeDateString(day, month, year);
                     endDateButton.setText(enddate);
 
                 }

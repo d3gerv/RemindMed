@@ -51,7 +51,7 @@ public class edit_delete_medications extends AppCompatActivity implements TimePi
     EditText  dosageBoxET;
     static EditText medName, medInventory;
     static final SimpleDateFormat format = new SimpleDateFormat("M/d/yyyy");
-    String title, amount, time,  strDate, strEnd, frequencyDB, medTypeDB, dosage;
+    String title, amount, time,  strDate, strEnd, frequencyDB, medTypeDB, dosage, chkstart, chkend;
     Date startdate, enddate;
     final int start = 1;
     final int end = 2;
@@ -251,7 +251,12 @@ public class edit_delete_medications extends AppCompatActivity implements TimePi
         change.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startAlarm(myAlarmDate);
+                if (getDateFromString(chkstart).after(getDateFromString(chkend))) {
+                    Toast.makeText(getApplicationContext(), "Start Date should be before End Date", Toast.LENGTH_SHORT).show();
+                    return;
+                }else {
+                    startAlarm(myAlarmDate);
+                }
             }
         });
 
@@ -317,13 +322,13 @@ public class edit_delete_medications extends AppCompatActivity implements TimePi
                     alarmMonth = month;
                     alarmDay = day;
 
-                    String startdate = makeDateString(day, month, year);
-                    dateFormat.setText(startdate);
+                    chkstart = makeDateString(day, month, year);
+                    dateFormat.setText(chkstart);
                 }
                 else if (choice == end)
                 {
-                    String enddate = makeDateString(day, month, year);
-                    enddatebutton.setText(enddate);
+                    chkend = makeDateString(day, month, year);
+                    enddatebutton.setText(chkend);
 
                 }
             }
