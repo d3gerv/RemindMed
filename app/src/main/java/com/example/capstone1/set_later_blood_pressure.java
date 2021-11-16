@@ -53,6 +53,7 @@ public class set_later_blood_pressure extends AppCompatActivity implements TimeP
     private DatePickerDialog datePickerDialog;
     String userId, startdate;
     int alarmYear, alarmMonth, alarmDay,alarmHour,alarmMin;
+    Calendar calendar = Calendar.getInstance();
     Calendar c;
     Calendar myAlarmDate = Calendar.getInstance();
     Spinner frequencyBP;
@@ -133,7 +134,7 @@ public class set_later_blood_pressure extends AppCompatActivity implements TimeP
             @Override
             public void onClick(View v) {
                 try{
-                    Intent intent = new Intent(set_later_blood_pressure.this, home_page.class);
+                    //Intent intent = new Intent(set_later_blood_pressure.this, home_page.class);
                     String Time = timeButtonBPLater.getText().toString().trim();
                     String StartDate =  dateButton.getText().toString().trim();
                     String EndDate = endDateButton.getText().toString().trim();
@@ -195,7 +196,7 @@ public class set_later_blood_pressure extends AppCompatActivity implements TimeP
                                     Log.d(TAG, "onSuccess: failed");
                                 }
                             });
-                    startActivity(intent);
+                    startActivity(new Intent(set_later_blood_pressure.this, home_page.class));
                 }catch (Exception e){
                     Toast.makeText(set_later_blood_pressure.this, "Please input data in all fields", Toast.LENGTH_SHORT).show();
 
@@ -207,13 +208,17 @@ public class set_later_blood_pressure extends AppCompatActivity implements TimeP
 
     private void startAlarm(Calendar c)
     {
+
         myAlarmDate.setTimeInMillis(System.currentTimeMillis());
         myAlarmDate.set(alarmYear, alarmMonth, alarmDay, alarmHour, alarmMin);
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        ArrayList<PendingIntent> intentArray = new ArrayList<PendingIntent>();
         Intent intent = new Intent(this, alarmreceivermeasurement.class);
         id = new Random().nextInt(1000000);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, id, intent, 0);
-         alarmManager.setExact(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), pendingIntent);
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
+        intentArray.add(pendingIntent);
+        //alarmManager.setExact(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), pendingIntent);
       //  alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), 24*60*60*1000, pendingIntent);
     }
 
@@ -236,11 +241,10 @@ public class set_later_blood_pressure extends AppCompatActivity implements TimeP
                 if (choice == start)
                 {
                     startdate = makeDateString(day, month, year);
-                    dateButton.setText(startdate);
                     alarmYear = year;
                     alarmMonth = month-1;
                     alarmDay = day;
-
+                    dateButton.setText(startdate);
                 }
                 else if (choice == end)
                 {
@@ -256,21 +260,12 @@ public class set_later_blood_pressure extends AppCompatActivity implements TimeP
         int day = cal.get(Calendar.DAY_OF_MONTH);
         int style = AlertDialog.THEME_HOLO_LIGHT;
         datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
-        //datePickerDialog.getDatePicker().setMinDate(calendar.getTimeInMillis());
-
+        datePickerDialog.getDatePicker().setMinDate(calendar.getTimeInMillis());
     }
 
     private String makeDateString(int day, int month, int year)
     {
-        if (day<10)
-        {
-            return month + "/" +"0" +day + "/" + year;
-        }
-        else
-        {
-            return month + "/"  +day + "/" + year;
-        }
-
+        return month + "/"  +day + "/" + year;
     }
 
     public void openDatePicker() {
