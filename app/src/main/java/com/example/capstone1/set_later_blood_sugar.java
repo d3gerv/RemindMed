@@ -47,7 +47,7 @@ public class set_later_blood_sugar extends AppCompatActivity implements TimePick
     final int end = 2;
     int id ;
     private DatePickerDialog datePickerDialog;
-    String userId, startdate;
+    String userId, startdate, enddate;
     Calendar calendar = Calendar.getInstance();
     int alarmYear, alarmMonth, alarmDay,alarmHour,alarmMin;
     Calendar c;
@@ -159,7 +159,10 @@ public class set_later_blood_sugar extends AppCompatActivity implements TimePick
                     else {
                         setDate(myAlarmDate);
                     }
-
+                    if (getDateFromString(startdate).after(getDateFromString(enddate))) {
+                        Toast.makeText(getApplicationContext(), "Start Date should be before End Date", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     if (myAlarmDate.getTimeInMillis() < System.currentTimeMillis()) {
                         Toast.makeText(set_later_blood_sugar.this, "Set the time and date to the future", Toast.LENGTH_LONG).show();
                         return;
@@ -234,7 +237,7 @@ public class set_later_blood_sugar extends AppCompatActivity implements TimePick
                 }
                 else if (choice == end)
                 {
-                    String enddate = makeDateString(day, month, year);
+                    enddate = makeDateString(day, month, year);
                     endDateButton.setText(enddate);
 
                 }

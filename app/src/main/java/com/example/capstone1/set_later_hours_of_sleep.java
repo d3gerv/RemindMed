@@ -47,7 +47,7 @@ public class set_later_hours_of_sleep extends AppCompatActivity implements TimeP
     final int end = 2;
     int id ;
     private DatePickerDialog datePickerDialog;
-    String userId, startdate;
+    String userId, startdate, enddate ;
     int alarmYear, alarmMonth, alarmDay,alarmHour,alarmMin;
     Calendar calendar = Calendar.getInstance();
     Calendar c;
@@ -159,6 +159,10 @@ public class set_later_hours_of_sleep extends AppCompatActivity implements TimeP
                     else {
                         setDate(myAlarmDate);
                     }
+                    if (getDateFromString(startdate).after(getDateFromString(enddate))) {
+                        Toast.makeText(getApplicationContext(), "Start Date should be before End Date", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
 
                     if (myAlarmDate.getTimeInMillis() < System.currentTimeMillis()) {
                         Toast.makeText(set_later_hours_of_sleep.this, "Set the time and date to the future", Toast.LENGTH_LONG).show();
@@ -237,7 +241,7 @@ public class set_later_hours_of_sleep extends AppCompatActivity implements TimeP
                 }
                 else if (choice == end)
                 {
-                    String enddate = makeDateString(day, month, year);
+                    enddate = makeDateString(day, month, year);
                     endDateButton.setText(enddate);
 
                 }

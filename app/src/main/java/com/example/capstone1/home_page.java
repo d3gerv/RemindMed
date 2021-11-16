@@ -186,7 +186,7 @@ public class home_page extends AppCompatActivity {
                                 startActivity(intent);
                             }
                         }catch (Exception e){
-                            Intent intent = new Intent(home_page.this, user_information.class);
+                            Intent intent = new Intent(home_page.this, guestLogout.class);
                             startActivity(intent);
                         }
                     }
