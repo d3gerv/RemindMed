@@ -136,8 +136,8 @@ public class create_account extends AppCompatActivity {
                     password.setError("Password is required");
                     return;
                 }
-                if (Password.length() < 6) {
-                    password.setError("Password must be at least 6 characters");
+                if (Password.length() < 8) {
+                    password.setError("Password must be at least 8 characters");
                     return;
                 }
                 if (!Password.equals(Confirm_Password)){
