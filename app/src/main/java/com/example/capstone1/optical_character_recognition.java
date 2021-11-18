@@ -84,8 +84,16 @@ public class optical_character_recognition extends AppCompatActivity {
         tts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                text = displayText.getText().toString();
-                speak();
+                try{
+                    text = displayText.getText().toString();
+                    speak();
+                }catch (Exception e)
+                {
+                    text = "Please scan a medicine name";
+                    speak();
+                }
+
+
             }
         });
 
