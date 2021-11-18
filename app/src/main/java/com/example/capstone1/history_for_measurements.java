@@ -36,6 +36,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Base64;
 
 public class history_for_measurements extends AppCompatActivity {
     RecyclerView recyclerView;
@@ -71,7 +72,17 @@ public class history_for_measurements extends AppCompatActivity {
                     firstname.setText(" ");
                     return;
                 }
-                firstname.setText(value.getString("firstname"));
+
+                try{
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                        Base64.Decoder decoder = Base64.getDecoder();
+                        byte [] bytes =decoder.decode(value.getString("firstname"));firstname.setText(new String(bytes));
+                    }
+                }catch (Exception e)
+                {
+                    firstname.setText(" ");
+                }
+
             }
         });
         measurement = getResources().getStringArray(R.array.measurements);
