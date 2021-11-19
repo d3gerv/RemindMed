@@ -39,7 +39,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Random;
 
-public class set_now_blood_pressure extends AppCompatActivity implements fragment_bp.BloodPressuretxt{
+public class set_now_blood_pressure extends AppCompatActivity implements fragment_bp.BloodPressuretxt,fragment_bp.BloodPressuretxtNoPulse{
 
     EditText bloodpressure;
     Button saveBPNow, bpDialog, cancelBP;
@@ -402,6 +402,13 @@ public class set_now_blood_pressure extends AppCompatActivity implements fragmen
         } catch (ParseException e) {
             return null;
         }
+    }
+
+    @Override
+    public void applyBPtextnoP(String bp, int sys, int dia) {
+        bpDialog.setText(bp);
+        sysInt = sys;
+        diaInt = dia;
     }
 }
 

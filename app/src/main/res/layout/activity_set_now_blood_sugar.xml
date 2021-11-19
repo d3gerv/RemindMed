@@ -82,11 +82,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:fontFamily="@font/viga"
-        android:text="Value (mmol/L)"
+        android:text="Value "
         android:textColor="#000000"
         android:textSize="21sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline21"
-        app:layout_constraintEnd_toStartOf="@+id/guideline24"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
@@ -98,12 +97,42 @@
         android:layout_height="48dp"
         android:background="@drawable/edittext3"
         android:ems="10"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:paddingStart="10dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline21"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="@+id/guideline24"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.417" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupBS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/guideline21"
+        app:layout_constraintEnd_toStartOf="@+id/guideline24"
+        app:layout_constraintStart_toEndOf="@+id/textView16"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+        <RadioButton
+            android:id="@+id/radioCelsius"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="mg/DL"
+            android:fontFamily="@font/viga"
+
+            android:checked="true"/>
+
+        <RadioButton
+            android:id="@+id/radioFarenheit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/viga"
+
+            android:text="mmol/L" />
+
+    </RadioGroup>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline21"

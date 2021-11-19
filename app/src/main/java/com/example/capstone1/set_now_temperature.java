@@ -12,6 +12,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -48,6 +50,8 @@ public class set_now_temperature extends AppCompatActivity {
     Calendar myAlarmDate = Calendar.getInstance();
     Date myDate;
     private measurement_info_today measurement_info_today;
+    RadioGroup radioGroup;
+    RadioButton radioButton;
 
     int choice = 0;
 
@@ -62,6 +66,7 @@ public class set_now_temperature extends AppCompatActivity {
         rootAuthen = FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
         userId = rootAuthen.getCurrentUser().getUid();
+        radioGroup = findViewById(R.id.radioGroupTemp);
 
         SimpleDateFormat df = new SimpleDateFormat("M/dd/yyyy", Locale.getDefault());
         dateToday = df.format(c);
@@ -101,6 +106,8 @@ public class set_now_temperature extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
+                    int radioID = radioGroup.getCheckedRadioButtonId();
+                    radioButton = findViewById(radioID);
                     String Record = tempVal.getText().toString().trim();
                     Map<String,Object> user =new HashMap<>();
                     int recordInt = Integer.parseInt(Record);
@@ -115,7 +122,7 @@ public class set_now_temperature extends AppCompatActivity {
                     if (choice == 1 && freq == 1)
                     {
                         user.put("Name", "Temperature");
-                        user.put("Record",Record + " Celsius");
+                        user.put("Record",Record +" "+radioButton.getText());
                         user.put("Date", startdate);
                         user.put("Time", time);
                         moveStartDate();
@@ -128,7 +135,7 @@ public class set_now_temperature extends AppCompatActivity {
                     {
 
                         user.put("Name", "Temperature");
-                        user.put("Record",Record + " Celsius");
+                        user.put("Record",Record + " "+radioButton.getText());
                         user.put("Date", startdate);
                         user.put("Time", time);
                         moveStartDateWeek();
@@ -140,12 +147,12 @@ public class set_now_temperature extends AppCompatActivity {
                     else
                     {
                         user.put("Name", "Temperature");
-                        user.put("Record",Record + " Celsius");
+                        user.put("Record",Record + " "+radioButton.getText());
                         user.put("Date", dateToday);
                         user.put("Time", timeToday);
                     }
 
-                    if(recordInt > 37)
+                    if(recordInt > 37 && radioButton.getText().equals("Celsius"))
                     {
                         NotificationCompat.Builder mBuilder = (NotificationCompat.Builder)
                                 new NotificationCompat.Builder(set_now_temperature.this, "abnormalbp");
@@ -166,6 +173,9 @@ public class set_now_temperature extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.cancel();
+                                Intent intent = new Intent(set_now_temperature.this, home_page.class);
+                                intent.putExtra("description", "Temperature");
+                                startActivity(intent);
 
                             }
                         });
@@ -180,7 +190,48 @@ public class set_now_temperature extends AppCompatActivity {
                         });
 
                         aBuilder.show();
-                    }else{
+                    }
+                    else if(recordInt > 99 && radioButton.getText().equals("Fahrenheit "))
+                    {
+                        NotificationCompat.Builder mBuilder = (NotificationCompat.Builder)
+                                new NotificationCompat.Builder(set_now_temperature.this, "abnormalbp");
+                        mBuilder.setSmallIcon(R.drawable.logoicon);
+                        mBuilder.setContentTitle("Abnormal Measurement");
+                        mBuilder.setContentText("You have recently recorded an abnormal measurement");
+                        mBuilder.setAutoCancel(true);
+
+                        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(set_now_temperature.this);
+                        notificationManager.notify(7, mBuilder.build());
+
+                        AlertDialog.Builder aBuilder = new AlertDialog.Builder(set_now_temperature.this);
+                        aBuilder.setCancelable(true);
+                        aBuilder.setTitle("Abnormal Measurement");
+                        aBuilder.setMessage("You have recently recorded an abnormal measurement for your temperature click ok to see some recommendations to normalize it");
+
+                        aBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                                Intent intent = new Intent(set_now_temperature.this, home_page.class);
+                                intent.putExtra("description", "Temperature");
+                                startActivity(intent);
+
+                            }
+                        });
+
+                        aBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent(set_now_temperature.this, home_page.class);
+                                intent.putExtra("description", "Temperature");
+                                startActivity(intent);
+                            }
+                        });
+
+                        aBuilder.show();
+                    }
+
+                    else{
                         startActivity(new Intent(set_now_temperature.this, home_page.class));
 
                     }
@@ -214,6 +265,8 @@ public class set_now_temperature extends AppCompatActivity {
             }
         });
     }
+
+
 
     private void getData() {
         if (getIntent().hasExtra("Time") && getIntent().hasExtra("Date")) {

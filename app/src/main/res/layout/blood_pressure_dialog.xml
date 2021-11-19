@@ -52,10 +52,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Sys"
+                android:textColor="@color/black"
+                android:fontFamily="@font/viga"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/guideline65"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="@+id/guideline67"
+                app:layout_constraintEnd_toStartOf="@+id/diaNP"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/sysNP"
                 app:layout_constraintVertical_bias="0.0" />
 
@@ -64,9 +65,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Dia"
-                app:layout_constraintEnd_toStartOf="@+id/guideline69"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="@+id/guideline68"
+                android:textColor="@color/black"
+                android:fontFamily="@font/viga"
+                app:layout_constraintEnd_toStartOf="@+id/pulseNP"
+                app:layout_constraintStart_toEndOf="@+id/sysNP"
+                app:layout_constraintTop_toBottomOf="@+id/diaNP" />
+
+            <TextView
+                android:id="@+id/diaTV2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dia"
+                android:fontFamily="@font/viga"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.496"
+                app:layout_constraintStart_toEndOf="@+id/sysNP"
                 app:layout_constraintTop_toBottomOf="@+id/diaNP" />
 
             <TextView
@@ -74,6 +88,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Pulse"
+                android:textColor="@color/black"
+                android:fontFamily="@font/viga"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/guideline72"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -122,6 +138,22 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent=".85" />
+
+            <Button
+                android:id="@+id/changePulse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/edit_round"
+                android:text="no pulse"
+                android:fontFamily="@font/viga"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/guideline71"
+                app:layout_constraintHorizontal_bias="0.515"
+                app:layout_constraintStart_toStartOf="@+id/guideline65"
+                app:layout_constraintTop_toBottomOf="@+id/diaNP"
+                app:layout_constraintVertical_bias="0.0" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>

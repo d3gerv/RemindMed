@@ -12,6 +12,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -47,8 +49,11 @@ public class set_now_cholesterol extends AppCompatActivity {
     Calendar myAlarmDate = Calendar.getInstance();
     static final SimpleDateFormat dateFormat = new SimpleDateFormat("M/d/yyyy");
     Date c = Calendar.getInstance().getTime();
-    int choice = 0;
+    int choice = 1;
     private measurement_info_today measurement_info_today;
+    RadioGroup radioGroup;
+    RadioButton radioButton;
+
 
 
     @Override
@@ -62,6 +67,7 @@ public class set_now_cholesterol extends AppCompatActivity {
         rootAuthen = FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
         userId = rootAuthen.getCurrentUser().getUid();
+        radioGroup = findViewById(R.id.radioGroupBS);
 
 
         SimpleDateFormat df = new SimpleDateFormat("M/dd/yyyy", Locale.getDefault());
@@ -103,14 +109,16 @@ public class set_now_cholesterol extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
+                    int radioID = radioGroup.getCheckedRadioButtonId();
+                    radioButton = findViewById(radioID);
                     String Record = choVal.getText().toString().trim();
                     Map<String,Object> user =new HashMap<>();
-                    int recordInt = Integer.parseInt(Record);
+                    double recordInt = Double.parseDouble(Record);
                     getData();
                     if (choice == 1 && freq ==1)
                     {
                         user.put("Name", "Cholesterol");
-                        user.put("Record",Record +" mmol/L");
+                        user.put("Record",Record + " " + radioButton.getText());
                         user.put("Date", startdate);
                         user.put("Time", time);
                         moveStartDate();
@@ -123,7 +131,7 @@ public class set_now_cholesterol extends AppCompatActivity {
                     else if (choice == 1 && freq == 2)
                     {
                         user.put("Name", "Cholesterol");
-                        user.put("Record",Record +" mmol/L");
+                        user.put("Record",Record + " " + radioButton.getText());
                         user.put("Date", startdate);
                         user.put("Time", time);
                         moveStartDateWeek();
@@ -135,13 +143,13 @@ public class set_now_cholesterol extends AppCompatActivity {
                     else
                     {
                         user.put("Name", "Cholesterol");
-                        user.put("Record",Record +" mmol/L");
+                        user.put("Record",Record + " " + radioButton.getText());
                         user.put("Date", dateToday);
                         user.put("Time", timeToday);
 
                     }
 
-                    if(recordInt > 240)
+                    if(recordInt > 240 && radioButton.getText().equals("mg/DL"))
                     {
                         NotificationCompat.Builder mBuilder = (NotificationCompat.Builder)
                                 new NotificationCompat.Builder(set_now_cholesterol.this, "abnormalbp");
@@ -162,7 +170,49 @@ public class set_now_cholesterol extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.cancel();
+                                Intent intent = new Intent(set_now_cholesterol.this, home_page.class);
+                                intent.putExtra("description", "Cholesterol");
+                                startActivity(intent);
 
+                            }
+                        });
+
+                        aBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent(set_now_cholesterol.this, recommendations.class);
+                                startActivity(intent);
+                            }
+                        });
+
+
+                        aBuilder.show();
+
+
+                    }
+                    else if(recordInt > 5.3 && radioButton.getText().equals("mmol/L"))
+                    {
+                        NotificationCompat.Builder mBuilder = (NotificationCompat.Builder)
+                                new NotificationCompat.Builder(set_now_cholesterol.this, "abnormalbp");
+                        mBuilder.setSmallIcon(R.drawable.logoicon);
+                        mBuilder.setContentTitle("Abnormal Measurement");
+                        mBuilder.setContentText("You have recently recorded an abnormal measurement");
+                        mBuilder.setAutoCancel(true);
+
+                        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(set_now_cholesterol.this);
+                        notificationManager.notify(7, mBuilder.build());
+
+                        AlertDialog.Builder aBuilder = new AlertDialog.Builder(set_now_cholesterol.this);
+                        aBuilder.setCancelable(true);
+                        aBuilder.setTitle("Abnormal Measurement");
+                        aBuilder.setMessage("You have recently recorded an abnormal measurement for your blood pressure click ok to see some recommendations to normalize it");
+
+                        aBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                                Intent intent = new Intent(set_now_cholesterol.this, home_page.class);
+                                startActivity(intent);
                             }
                         });
 
@@ -176,9 +226,8 @@ public class set_now_cholesterol extends AppCompatActivity {
                         });
 
                         aBuilder.show();
-
-
-                    }else{
+                    }
+                    else{
                         startActivity(new Intent(set_now_cholesterol.this, home_page.class));
 
                     }
