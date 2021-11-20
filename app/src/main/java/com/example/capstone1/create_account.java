@@ -25,6 +25,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -50,7 +51,8 @@ public class create_account extends AppCompatActivity {
     private  static final String UNICODE_FORMAT = "UTF-8";
 
     public static final String TAG = "TAG";
-    EditText first, last, password, confirm, emailInput, gender, birthyr, height, weight;
+    EditText first, last, emailInput, gender, birthyr, height, weight;
+    TextInputEditText password, confirm;
     TextView result, resultem;
     Button buttonSignUp;
     Button buttonSave;
@@ -77,8 +79,8 @@ public class create_account extends AppCompatActivity {
 
         first = findViewById(R.id.first_nameBox);
         last = findViewById(R.id.last_nameBox);
-        password = findViewById(R.id.passwordBox);
-        confirm = findViewById(R.id.confimpassword);
+        password = findViewById(R.id.passwordBoxtxt);
+        confirm = findViewById(R.id.confimpasswordtxt);
         emailInput = findViewById(R.id.emailBox);
         buttonSignUp = findViewById(R.id.btnSign);
         //gender = findViewById(R.id.editTextgender);

@@ -84,18 +84,20 @@
     <TextView
         android:id="@+id/medNameTV"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
+        android:autoSizeMaxTextSize="40dp"
+        android:autoSizeMinTextSize="12dp"
+        android:autoSizeTextType="uniform"
         android:fontFamily="@font/viga"
+        android:gravity="center"
         android:text="Medicine Name"
         android:textColor="#000000"
-        android:textSize="35dp"
-        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline89"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guideline88"
         app:layout_constraintTop_toBottomOf="@+id/medImageView"
-        app:layout_constraintVertical_bias="0.233" />
+        app:layout_constraintVertical_bias="0.229" />
 
     <Button
         android:id="@+id/captureButton"

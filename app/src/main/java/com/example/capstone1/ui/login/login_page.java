@@ -26,6 +26,8 @@ import com.example.capstone1.R;
 import com.example.capstone1.ui.login.LoginViewModel;
 import com.example.capstone1.ui.login.LoginViewModelFactory;
 import com.example.capstone1.databinding.ActivityLoginPageBinding;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class login_page extends AppCompatActivity {
 
@@ -43,7 +45,7 @@ public class login_page extends AppCompatActivity {
                 .get(LoginViewModel.class);
 
         final EditText usernameEditText = binding.emailinput;
-        final EditText passwordEditText = binding.passwordinput;
+        final TextInputEditText passwordEditText = binding.passwordinputtxt;
         final Button loginButton = binding.loginBtn;
         //final ProgressBar loadingProgressBar = binding.loading;
 

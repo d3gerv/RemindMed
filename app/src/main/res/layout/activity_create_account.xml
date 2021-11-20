@@ -101,30 +101,42 @@
         app:layout_constraintStart_toStartOf="@id/guideline11"
         app:layout_constraintTop_toBottomOf="@+id/last_nameBox" />
 
-    <EditText
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/passwordBox"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/edittext3"
         android:ems="10"
-        android:hint="Password"
-        android:inputType="textPassword"
         android:paddingStart="10dp"
-        android:paddingRight="10dp"
+        android:paddingRight="10dp"        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        app:passwordToggleEnabled="true"
         app:layout_constraintBottom_toTopOf="@+id/confimpassword"
         app:layout_constraintDimensionRatio="7:1"
         app:layout_constraintEnd_toEndOf="@id/guideline12"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/guideline11"
-        app:layout_constraintTop_toBottomOf="@+id/emailBox" />
+        app:layout_constraintTop_toBottomOf="@+id/emailBox">
 
-    <EditText
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/passwordBoxtxt"
+            android:layout_width="match_parent"
+            android:background="@drawable/background_transparent"
+            android:layout_height="40dp"
+            android:hint="Password"
+            android:inputType="textPassword" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+
         android:id="@+id/confimpassword"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/edittext3"
         android:ems="10"
-        android:hint="Confirm Password"
+        app:passwordToggleEnabled="true"
         android:inputType="textPassword"
         android:paddingStart="10dp"
         android:paddingRight="10dp"
@@ -133,7 +145,19 @@
         app:layout_constraintEnd_toEndOf="@id/guideline12"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/guideline11"
-        app:layout_constraintTop_toBottomOf="@+id/passwordBox" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/confimpasswordtxt"
+            android:layout_width="match_parent"
+            android:background="@drawable/background_transparent"
+            android:layout_height="40dp"
+            android:hint="Confirm Password"
+            android:inputType="textPassword" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
 
     <ImageView
         android:id="@+id/imageView5"

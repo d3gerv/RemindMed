@@ -106,8 +106,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/logo1" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/passwordinput"
+        app:passwordToggleEnabled="true"
         android:layout_width="286dp"
         android:layout_height="57dp"
         android:layout_marginTop="24dp"
@@ -120,7 +121,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo1" />
+        app:layout_constraintTop_toBottomOf="@+id/logo1">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/passwordinputtxt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Password"
+            android:background="@drawable/background_transparent"
+            android:inputType="textPassword"
+            android:fontFamily="@font/viga"
+
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

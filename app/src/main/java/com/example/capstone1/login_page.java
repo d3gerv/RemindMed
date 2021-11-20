@@ -15,11 +15,13 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class login_page extends AppCompatActivity {
-    EditText password, emailInput;
+    EditText emailInput;
+    TextInputEditText password;
     Button buttonlogin;
     FirebaseAuth rootAuthen;
     ProgressDialog progressDialog;
@@ -32,7 +34,7 @@ public class login_page extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
 
         emailInput = findViewById(R.id.emailinput);
-        password = findViewById(R.id.passwordinput);
+        password = findViewById(R.id.passwordinputtxt);
         buttonlogin = findViewById(R.id.loginBtn);
         rootAuthen = FirebaseAuth.getInstance();
 
