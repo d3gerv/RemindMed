@@ -30,10 +30,11 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="-12dp"
-        tools:layout_editor_absoluteY="313dp" >
+        tools:layout_editor_absoluteY="313dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -47,11 +48,17 @@
                 android:id="@+id/FAQ_OCR"
                 android:layout_width="378dp"
                 android:layout_height="79dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="123dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="30dp"
                 app:cardBackgroundColor="#FDCB00"
                 app:cardCornerRadius="20dp"
                 app:cardMaxElevation="20dp"
-                tools:layout_editor_absoluteX="18dp"
-                tools:layout_editor_absoluteY="123dp">
+                app:layout_constraintBottom_toTopOf="@+id/FAQ_TTS"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -76,16 +83,22 @@
                 android:id="@+id/FAQ_type_unit"
                 android:layout_width="378dp"
                 android:layout_height="79dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="42dp"
+                android:layout_marginEnd="17dp"
+                android:layout_marginBottom="299dp"
                 app:cardBackgroundColor="#FDCB00"
                 app:cardCornerRadius="20dp"
                 app:cardMaxElevation="20dp"
-                app:layout_constraintTop_toBottomOf="@+id/FAQ_TTS"
-                tools:layout_editor_absoluteX="16dp">
+                app:layout_constraintBottom_toBottomOf="@id/guideline95"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/FAQ_TTS">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+
 
                     <TextView
                         android:id="@+id/use_of_TTS2"
@@ -107,11 +120,17 @@
                 android:id="@+id/FAQ_TTS"
                 android:layout_width="378dp"
                 android:layout_height="79dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="17dp"
+                android:layout_marginBottom="42dp"
                 app:cardBackgroundColor="#FDCB00"
                 app:cardCornerRadius="20dp"
                 app:cardMaxElevation="20dp"
-                tools:layout_editor_absoluteX="16dp"
-                tools:layout_editor_absoluteY="232dp">
+                app:layout_constraintBottom_toTopOf="@+id/FAQ_type_unit"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/FAQ_OCR">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -141,9 +160,13 @@
         android:id="@+id/imageView13"
         android:layout_width="200dp"
         android:layout_height="186dp"
-        app:srcCompat="@drawable/faqdoc"
-        tools:layout_editor_absoluteX="196dp"
-        tools:layout_editor_absoluteY="529dp" />
+        android:layout_marginStart="90dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline75"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@id/guideline74"
+        app:layout_constraintTop_toTopOf="@id/guideline95"
+        app:srcCompat="@drawable/faqdoc" />
 
     <TextView
         android:id="@+id/FAQ"
@@ -161,11 +184,17 @@
         app:layout_constraintVertical_bias="0.403" />
 
     <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline90"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.15" />
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline91"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.3" />
+        app:layout_constraintGuide_percent="0.30" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline74"
@@ -180,6 +209,20 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.45" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline96"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.60" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline95"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.65" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline75"
