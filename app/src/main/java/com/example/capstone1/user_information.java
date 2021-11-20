@@ -1,14 +1,8 @@
 package com.example.capstone1;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -18,12 +12,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -36,15 +31,11 @@ import com.google.firebase.firestore.SetOptions;
 import java.util.HashMap;
 import java.util.Map;
 
-import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
-
 public class user_information extends AppCompatActivity {
     public static final String TAG = "TAG";
-    EditText  birthyr, height, weight;
+    EditText birthyr, height, weight;
     Button buttonSave, buttonLogout, buttonDeleteAcc;
-    TextView email, firstname, lastname;
+    TextView email, firstname, lastname, faq;
     FirebaseAuth rootAuthen;
     FirebaseFirestore fstore;
     FirebaseUser firebaseUser;
@@ -71,6 +62,15 @@ public class user_information extends AppCompatActivity {
         rootAuthen = FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
         firebaseUser = rootAuthen.getCurrentUser();
+        faq = (TextView)findViewById(R.id.FAQ);
+        faq.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(user_information.this, Faq.class);
+                startActivity(intent);
+            }
+        });
+
 
         userId = rootAuthen.getCurrentUser().getUid();
 
@@ -87,21 +87,21 @@ public class user_information extends AppCompatActivity {
                 String Height = height.getText().toString().trim();
                 String Weight = weight.getText().toString().trim();
 
-                if(spinner.getSelectedItemPosition()==0){
+                if (spinner.getSelectedItemPosition() == 0) {
                     Toast.makeText(getApplicationContext(), "Please select gender", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                Map<String,Object> user = new HashMap<>();
-                user.put("gender",Gender);
-                user.put("birthyr",Birthyr);
-                user.put("height",Height);
-                user.put("weight",Weight);
+                Map<String, Object> user = new HashMap<>();
+                user.put("gender", Gender);
+                user.put("birthyr", Birthyr);
+                user.put("height", Height);
+                user.put("weight", Weight);
 
                 fstore.collection("users").document(userId).set(user, SetOptions.merge()).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()){
+                        if (task.isSuccessful()) {
                             Toast.makeText(user_information.this, "User information added", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -123,8 +123,7 @@ public class user_information extends AppCompatActivity {
                 //firstname.setText(value.getString("firstname"));
                 //lastname.setText(value.getString("lastname"));
                 genderDB = (value.getString("gender"));
-                if(genderDB!=null)
-                {
+                if (genderDB != null) {
                     int pos = myAdapter.getPosition(genderDB);
                     spinner.setSelection(pos);
                 }
@@ -159,15 +158,14 @@ public class user_information extends AppCompatActivity {
                         firebaseUser.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
-                                if(task.isSuccessful()){
-                                    Toast.makeText(user_information.this,"Account Deleted", Toast.LENGTH_LONG).show();
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(user_information.this, "Account Deleted", Toast.LENGTH_LONG).show();
 
                                     Intent intent = new Intent(user_information.this, main_page.class);
                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     startActivity(intent);
-                                }
-                                else{
+                                } else {
                                     Toast.makeText(user_information.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
 
                                 }
@@ -188,19 +186,20 @@ public class user_information extends AppCompatActivity {
         });
     }
 
-    public void User_To_Account (View view){
+    public void User_To_Account(View view) {
         Intent intent = new Intent(user_information.this, change_name.class);
         startActivity(intent);
     }
-/*
-    public void Logout (View view){
-        Intent intent = new Intent(user_information.this, main_page.class);
-        startActivity(intent);
 
-    }
+    /*
+        public void Logout (View view){
+            Intent intent = new Intent(user_information.this, main_page.class);
+            startActivity(intent);
 
- */
-    public void User_To_Home (View view){
+        }
+
+     */
+    public void User_To_Home(View view) {
         Intent intent = new Intent(user_information.this, home_page.class);
         startActivity(intent);
     }
