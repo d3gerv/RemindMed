@@ -57,7 +57,7 @@ public class edit_delete_medications extends AppCompatActivity implements TimePi
     final int end = 2;
     Calendar calendar = Calendar.getInstance();
     Calendar c;
-    ImageView helpdosage;
+    ImageView helpdosage, helptype;
     Calendar myAlarmDate;
     Button timeButtonEdit, dateFormat, delete, change, enddatebutton;
     FirebaseFirestore db;
@@ -84,6 +84,7 @@ public class edit_delete_medications extends AppCompatActivity implements TimePi
         medName = findViewById(R.id.medicine_Box);
         helpdosage = findViewById(R.id.helpDosageEdit);
         medInventory = findViewById(R.id.inventoryBox);
+        helptype = findViewById(R.id.helpTypeEdit);
         final Calendar calendar = Calendar.getInstance();
         initDatePicker();
         getData();
@@ -94,16 +95,28 @@ public class edit_delete_medications extends AppCompatActivity implements TimePi
             public void onClick(View v) {
                 AlertDialog.Builder aBuilder = new AlertDialog.Builder(edit_delete_medications.this);
                 aBuilder.setCancelable(true);
-                aBuilder.setTitle("Dosage");
-                aBuilder.setMessage("Enter the dosage you will take for your medication. " +
-                        "Dosage depends on the type of medication. If you are taking a pill, capsule, " +
-                        "or tablet put one if you only have to take one or put the specified amount. " +
-                        "If you are taking liquid medication press tablespoon if you only have to take a tablespoon or press ml and put your specified amount");
+                aBuilder.setTitle("Intake");
+                aBuilder.setMessage("Enter the amount you will intake.\n\n" +
+                        "For solids: Enter the amount of pills, capsule or, tablets you will take\n\n" +
+                        "For liquids: Enter amount you will take in ml or press the tablespoon which will be equal to 15ml\n\n"+
+                        "This will subtract from you inventory total every time you intake your medication");
                 aBuilder.show();
 
             }
         });
+        helptype.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder aBuilder = new AlertDialog.Builder(edit_delete_medications.this);
+                aBuilder.setCancelable(true);
+                aBuilder.setTitle("Type/Unit");
+                aBuilder.setMessage("The type/unit box is to choose if the medication you are taking will be solid or liquid.\n\n" +
+                        "If it is a solid medication you will have three choices:\nPill\nCapsule\nTablet\n\n"+
+                        "If it is a liquid medication you will have two choices:\nTablespoon\nML ");
+                aBuilder.show();
 
+            }
+        });
 
         Log.d("K", "Hour" +hour+" " + minuteDB);
 

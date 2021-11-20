@@ -86,6 +86,10 @@ public class optical_character_recognition extends AppCompatActivity {
             public void onClick(View v) {
                 try{
                     text = displayText.getText().toString();
+                    if(text.length()>30)
+                    {
+                        text = "Please scan only the medicine name ";
+                    }
                     speak();
                 }catch (Exception e)
                 {

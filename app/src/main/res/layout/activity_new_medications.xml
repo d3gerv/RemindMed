@@ -19,7 +19,7 @@
         app:fabSize="mini"
         app:layout_constraintEnd_toStartOf="@+id/guideline78"
         app:layout_constraintHorizontal_bias="0.681"
-        app:layout_constraintStart_toStartOf="@+id/guideline79"
+        app:layout_constraintStart_toEndOf="@+id/medicine_Box"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:srcCompat="@drawable/ic_ocr" />
 
@@ -95,7 +95,7 @@
         android:fontFamily="@font/viga"
         android:text="Amount to Intake"
         android:textColor="#000000"
-        android:textSize="18sp"
+        android:textSize="17sp"
         app:layout_constraintBottom_toTopOf="@+id/DosageBox"
         app:layout_constraintStart_toStartOf="@+id/guideline80"
         app:layout_constraintTop_toBottomOf="@+id/guideline1" />
@@ -356,11 +356,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/DosageBox"
-        app:layout_constraintEnd_toStartOf="@+id/guideline28"
+        app:layout_constraintEnd_toStartOf="@+id/guideline81"
         app:layout_constraintHorizontal_bias="0.13"
         app:layout_constraintStart_toEndOf="@+id/dosage_txt"
         app:layout_constraintTop_toBottomOf="@+id/medicine_Box"
         app:layout_constraintVertical_bias="0.428"
+        app:srcCompat="@drawable/help" />
+
+    <ImageView
+        android:id="@+id/typehelp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/DosageBox"
+        app:layout_constraintEnd_toStartOf="@+id/guideline79"
+        app:layout_constraintHorizontal_bias="0.3"
+        app:layout_constraintStart_toEndOf="@+id/type_txt"
+        app:layout_constraintTop_toBottomOf="@+id/medicine_Box"
+        app:layout_constraintVertical_bias="0.473"
         app:srcCompat="@drawable/help" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -375,7 +387,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent=".80" />
+        app:layout_constraintGuide_percent="0.85" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline80"

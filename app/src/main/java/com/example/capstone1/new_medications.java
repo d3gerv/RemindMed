@@ -67,7 +67,7 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
     private DatePickerDialog datePickerDialog, datePickerDialog2;
     private Button dateButton, endDateButton;
     Calendar c;
-    ImageView helpdosage;
+    ImageView helpdosage, helptype;
     Calendar myAlarmDate = Calendar.getInstance();
     static final SimpleDateFormat format = new SimpleDateFormat("M/dd/yyyy");
     Button timeButtonmedtst;
@@ -98,6 +98,7 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
         rootAuthen = FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
         helpdosage = findViewById(R.id.dosageHelp);
+        helptype = findViewById(R.id.typehelp);
         timeButtonmedtst = findViewById(R.id.timeButtonmed);
         userId = rootAuthen.getCurrentUser().getUid();
 
@@ -106,11 +107,25 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
             public void onClick(View v) {
                 AlertDialog.Builder aBuilder = new AlertDialog.Builder(new_medications.this);
                 aBuilder.setCancelable(true);
-                aBuilder.setTitle("Dosage");
-                aBuilder.setMessage("Enter the dosage you will take for your medication. " +
-                        "Dosage depends on the type of medication. If you are taking a pill, capsule, " +
-                        "or tablet put one if you only have to take one or put the specified amount. " +
-                        "If you are taking liquid medication press tablespoon if you only have to take a tablespoon or press ml and put your specified amount");
+                aBuilder.setTitle("Intake");
+                aBuilder.setMessage("Enter the amount you will intake.\n\n" +
+                        "For solids: Enter the amount of pills, capsule or, tablets you will take\n\n" +
+                        "For liquids: Enter amount you will take in ml or press the tablespoon which will be equal to 15ml\n\n"+
+                        "This will subtract from you inventory total every time you intake your medication");
+                aBuilder.show();
+
+            }
+        });
+
+        helptype.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder aBuilder = new AlertDialog.Builder(new_medications.this);
+                aBuilder.setCancelable(true);
+                aBuilder.setTitle("Type/Unit");
+                aBuilder.setMessage("The type/unit box is to choose if the medication you are taking will be solid or liquid.\n\n" +
+                        "If it is a solid medication you will have three choices:\nPill\nCapsule\nTablet\n\n"+
+                        "If it is a liquid medication you will have two choices:\nTablespoon\nML ");
                 aBuilder.show();
 
             }
