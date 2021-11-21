@@ -37,7 +37,7 @@ import java.io.IOException;
 import java.util.Locale;
 
 public class optical_character_recognition extends AppCompatActivity {
-    Button captureImage, saveText;
+    Button captureImage, saveText, speakButton;
     ImageView viewImage;
     Uri imageUri;
     FloatingActionButton tts;
@@ -57,6 +57,7 @@ public class optical_character_recognition extends AppCompatActivity {
         captureImage = (Button) findViewById(R.id.captureButton);
         saveText = (Button) findViewById(R.id.buttonTxttoEditTxt);
         tts = findViewById(R.id.ttsButtonSxan);
+        speakButton = findViewById(R.id.ttsButtonScan);
 
         textToSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
@@ -86,6 +87,7 @@ public class optical_character_recognition extends AppCompatActivity {
             public void onClick(View v) {
                 try{
                     text = displayText.getText().toString();
+
                     if(text.length()>30)
                     {
                         text = "Please scan only the medicine name ";
@@ -98,6 +100,25 @@ public class optical_character_recognition extends AppCompatActivity {
                 }
 
 
+            }
+        });
+
+        speakButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try{
+                    text = displayText.getText().toString();
+
+                    if(text.length()>30)
+                    {
+                        text = "Please scan only the medicine name ";
+                    }
+                    speak();
+                }catch (Exception e)
+                {
+                    text = "Please scan a medicine name";
+                    speak();
+                }
             }
         });
 
@@ -124,11 +145,13 @@ public class optical_character_recognition extends AppCompatActivity {
         saveText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String numberOnly = displayText.getText().toString().replaceAll("[^0-9]", "");
                 ocrChoice = getIntent().getIntExtra("ocrchoice", 0);
                 if (ocrChoice == 1)
                 {
                     try {
                         new_medications.medication.setText(displayText.getText().toString());
+                        new_medications.inventory.setText(numberOnly);
                         finish();
                     }catch (Exception e)
                     {
@@ -138,7 +161,6 @@ public class optical_character_recognition extends AppCompatActivity {
                 }
                 else if (ocrChoice == 2)
                 {
-
                     try{
                         edit_delete_medications.medInventory.setText(displayText.getText().toString());
                         finish();
@@ -148,8 +170,6 @@ public class optical_character_recognition extends AppCompatActivity {
 
                     }
                 }
-
-
             }
         });
 

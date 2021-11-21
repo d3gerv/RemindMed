@@ -46,7 +46,7 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/FAQ_OCR"
-                android:layout_width="378dp"
+                android:layout_width="0dp"
                 android:layout_height="79dp"
                 android:layout_marginStart="18dp"
                 android:layout_marginTop="123dp"
@@ -66,7 +66,8 @@
 
                     <TextView
                         android:id="@+id/use_of_OCR"
-                        android:layout_width="337dp"
+                        android:layout_width="0dp"
+                        android:paddingStart="5dp"
                         android:layout_height="55dp"
                         android:text="How to use OCR (Optical Character Recognition)"
                         android:textColor="#000000"
@@ -81,7 +82,7 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/FAQ_type_unit"
-                android:layout_width="378dp"
+                android:layout_width="0dp"
                 android:layout_height="79dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="42dp"
@@ -102,7 +103,8 @@
 
                     <TextView
                         android:id="@+id/use_of_TTS2"
-                        android:layout_width="341dp"
+                        android:paddingStart="5dp"
+                        android:layout_width="0dp"
                         android:layout_height="29dp"
                         android:text="What is type/unit in medications?"
                         android:textColor="#000000"
@@ -118,7 +120,7 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/FAQ_TTS"
-                android:layout_width="378dp"
+                android:layout_width="0dp"
                 android:layout_height="79dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="30dp"
@@ -138,7 +140,8 @@
 
                     <TextView
                         android:id="@+id/use_of_TTS"
-                        android:layout_width="337dp"
+                        android:layout_width="0dp"
+                        android:paddingStart="5dp"
                         android:layout_height="55dp"
                         android:text="How to use Text-to-speech in our application"
                         android:textColor="#000000"

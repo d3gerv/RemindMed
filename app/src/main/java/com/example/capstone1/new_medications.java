@@ -56,7 +56,7 @@ import java.util.Random;
 
 public class new_medications extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
     EditText  dosage ;
-    Button buttonsavemedication;
+    Button buttonsavemedication, notfinInventory;
     FirebaseAuth rootAuthen;
     FirebaseFirestore fstore;
     final int start = 1;
@@ -67,7 +67,7 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
     private DatePickerDialog datePickerDialog, datePickerDialog2;
     private Button dateButton, endDateButton;
     Calendar c;
-    ImageView helpdosage, helptype;
+    ImageView helpdosage, helptype, helpinventory;
     Calendar myAlarmDate = Calendar.getInstance();
     static final SimpleDateFormat format = new SimpleDateFormat("M/dd/yyyy");
     Button timeButtonmedtst;
@@ -99,6 +99,9 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
         fstore = FirebaseFirestore.getInstance();
         helpdosage = findViewById(R.id.dosageHelp);
         helptype = findViewById(R.id.typehelp);
+        helpinventory = findViewById(R.id.inventoryhelp);
+        notfinInventory = findViewById(R.id.notifbutton);
+
         timeButtonmedtst = findViewById(R.id.timeButtonmed);
         userId = rootAuthen.getCurrentUser().getUid();
 
@@ -116,6 +119,19 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
 
             }
         });
+        notfinInventory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(notfinInventory.getText().equals("YES"))
+                {
+                    notfinInventory.setText("NO");
+                }
+                else if(notfinInventory.getText().equals("NO"))
+                {
+                    notfinInventory.setText("YES");
+                }
+            }
+        });
 
         helptype.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,6 +142,20 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
                 aBuilder.setMessage("The type/unit box is to choose if the medication you are taking will be solid or liquid.\n\n" +
                         "If it is a solid medication you will have three choices:\nPill\nCapsule\nTablet\n\n"+
                         "If it is a liquid medication you will have two choices:\nTablespoon\nML ");
+                aBuilder.show();
+
+            }
+        });
+
+        helpinventory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder aBuilder = new AlertDialog.Builder(new_medications.this);
+                aBuilder.setCancelable(true);
+                aBuilder.setTitle("Inventory");
+                aBuilder.setMessage("You input the amount of medication inventory you currently have\n\n" +
+                        "If it is a solid medication you will have to input how many pills, capsules, or, tablets your medication have\n\n"+
+                        "If it is a liquid medication you will have to input how many ML your medication has you can also use the OCR to scan the ml text on the medication ");
                 aBuilder.show();
 
             }
@@ -253,9 +283,11 @@ public class new_medications extends AppCompatActivity implements TimePickerDial
                     user.put("Frequency", frequencychoide);
                     user.put("FrequencyName", frequencyName);
                     user.put("PillStatic", Integer.parseInt(Inventory));
+                    user.put("NotifyChoice", notfinInventory.getText().toString());
                     user.put("Hour", alarmHour);
                     user.put("Minute", alarmMin);
                     user.put("AlarmID", alarmID);
+
 
 
                     Log.d("class", "start " + alarmHour);

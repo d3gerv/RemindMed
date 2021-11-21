@@ -72,7 +72,7 @@ public class home_page extends AppCompatActivity {
         userId = rootAuthen.getCurrentUser().getUid();
 
         DocumentReference documentReference = fstore.collection("users").document(userId);
-        Log.d("TAG","ID: "+ userId);
+        Log.d("TAG","UIDuser: "+ userId);
 
 
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {

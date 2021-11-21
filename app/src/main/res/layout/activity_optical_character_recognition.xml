@@ -16,9 +16,10 @@
         app:fabSize="mini"
         app:layout_constraintBottom_toTopOf="@+id/captureButton"
         app:layout_constraintEnd_toStartOf="@+id/guideline90"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline99"
         app:layout_constraintTop_toBottomOf="@+id/medImageView"
-        app:layout_constraintVertical_bias="0.644"
+        app:layout_constraintVertical_bias="0.614"
         app:srcCompat="@drawable/ic_text_to_speech" />
 
     <androidx.appcompat.widget.Toolbar
@@ -108,11 +109,26 @@
         android:text="Scan"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintEnd_toStartOf="@+id/ttsButtonScan"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/medNameTV"
         app:layout_constraintVertical_bias="0.178" />
+
+    <Button
+        android:id="@+id/ttsButtonScan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edit_round"
+        android:backgroundTint="#FDCB00"
+        android:text="Speak"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/captureButton"
+        app:layout_constraintTop_toBottomOf="@+id/medNameTV"
+        app:layout_constraintVertical_bias="0.175" />
 
     <Button
         android:id="@+id/buttonTxttoEditTxt"

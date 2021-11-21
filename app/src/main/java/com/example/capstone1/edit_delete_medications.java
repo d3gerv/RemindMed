@@ -51,15 +51,15 @@ public class edit_delete_medications extends AppCompatActivity implements TimePi
     EditText  dosageBoxET;
     static EditText medName, medInventory;
     static final SimpleDateFormat format = new SimpleDateFormat("M/d/yyyy");
-    String title, amount, time,  strDate, strEnd, frequencyDB, medTypeDB, dosage, chkstart, chkend;
+    String title, amount, time,  strDate, strEnd, frequencyDB, medTypeDB, dosage, chkstart, chkend, notify;
     Date startdate, enddate;
     final int start = 1;
     final int end = 2;
     Calendar calendar = Calendar.getInstance();
     Calendar c;
-    ImageView helpdosage, helptype;
+    ImageView helpdosage, helptype, helpinvetory;
     Calendar myAlarmDate;
-    Button timeButtonEdit, dateFormat, delete, change, enddatebutton;
+    Button timeButtonEdit, dateFormat, delete, change, enddatebutton, notifButton;
     FirebaseFirestore db;
     FloatingActionButton ocrMedName2, ocrCount2;
     private DatePickerDialog datePickerDialog;
@@ -83,8 +83,10 @@ public class edit_delete_medications extends AppCompatActivity implements TimePi
         ocrCount2 = findViewById(R.id.ocr_button2);
         medName = findViewById(R.id.medicine_Box);
         helpdosage = findViewById(R.id.helpDosageEdit);
+        helpinvetory = findViewById(R.id.helpInventoryEdit);
         medInventory = findViewById(R.id.inventoryBox);
         helptype = findViewById(R.id.helpTypeEdit);
+        notifButton = findViewById(R.id.notifbuttonEdit);
         final Calendar calendar = Calendar.getInstance();
         initDatePicker();
         getData();
@@ -113,6 +115,21 @@ public class edit_delete_medications extends AppCompatActivity implements TimePi
                 aBuilder.setMessage("The type/unit box is to choose if the medication you are taking will be solid or liquid.\n\n" +
                         "If it is a solid medication you will have three choices:\nPill\nCapsule\nTablet\n\n"+
                         "If it is a liquid medication you will have two choices:\nTablespoon\nML ");
+                aBuilder.show();
+
+            }
+        });
+
+
+        helpinvetory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder aBuilder = new AlertDialog.Builder(edit_delete_medications.this);
+                aBuilder.setCancelable(true);
+                aBuilder.setTitle("Inventory");
+                aBuilder.setMessage("You input the amount of medication inventory you currently have\n\n" +
+                        "If it is a solid medication you will have to input how many pills, capsules, or, tablets your medication have\n\n"+
+                        "If it is a liquid medication you will have to input how many ML your medication has you can also use the OCR to scan that ml text on the medication ");
                 aBuilder.show();
 
             }
@@ -224,6 +241,20 @@ public class edit_delete_medications extends AppCompatActivity implements TimePi
         });
 
         setData();
+        notifButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(notifButton.getText().equals("YES"))
+                {
+                    notifButton.setText("NO");
+                }
+                else if(notifButton.getText().equals("NO"))
+                {
+                    notifButton.setText("YES");
+                }
+            }
+        });
+
         if(frequencyDB!=null)
         {
             int pos = myAdapter2.getPosition(frequencyDB);
@@ -264,6 +295,8 @@ public class edit_delete_medications extends AppCompatActivity implements TimePi
         change.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                chkstart = strDate;
+                chkend = strEnd;
                 if (getDateFromString(chkstart).after(getDateFromString(chkend))) {
                     Toast.makeText(getApplicationContext(), "Start Date should be before End Date", Toast.LENGTH_SHORT).show();
                     return;
@@ -298,6 +331,8 @@ public class edit_delete_medications extends AppCompatActivity implements TimePi
             medTypeDB = getIntent().getStringExtra("MedicineTitle");
             dosage = getIntent().getStringExtra("dosage");
             alarmIDdb = getIntent().getIntExtra("AlarmID", 0);
+            notify = getIntent().getStringExtra("NotifyChoice");
+
 
 
 
@@ -373,6 +408,7 @@ public class edit_delete_medications extends AppCompatActivity implements TimePi
         medInventory.setText(amount);
         timeButtonEdit.setText(time);
         dosageBoxET.setText(dosage);
+        notifButton.setText(notify);
     }
     private void deleteMedication() {
         Intent intent = new Intent(this, alarmreceiver.class);
@@ -559,6 +595,7 @@ public class edit_delete_medications extends AppCompatActivity implements TimePi
             time = timeButtonEdit.getText().toString().trim();
             dosage = dosageBoxET.getText().toString().trim();
             enddate = getDateFromString(enddatebutton.getText().toString());
+            notify = notifButton.getText().toString().trim();
             String frequencyName = mySpinnerfrequency.getSelectedItem().toString();
             String medicationTypeName = mySpinnertype.getSelectedItem().toString();
 
@@ -599,12 +636,12 @@ public class edit_delete_medications extends AppCompatActivity implements TimePi
 
 
             medication_info m = new medication_info(title, amount, startdate, time, enddate,
-                    medicationTypeName, frequencyName, frequencychoide, dynHour, dynMin, alarmIDdb, dosage);
+                    medicationTypeName, frequencyName, frequencychoide, dynHour, dynMin, alarmIDdb, dosage, notify);
             db.collection("users").document(currentFirebaseUser.getUid()).collection("New Medications")
                     .document(medication_info.getId()).update("Medication", m.getMedication(),
                     "InventoryMeds", m.getInventoryMeds(), "StartDate", m.getStartDate(),
                     "Time", m.getTime(), "EndDate", m.getEndDate(), "FrequencyName", m.getFrequencyName(), "Frequency", m.getFrequency(),
-                    "MedicineTypeName", m.getMedicineTypeName(), "Hour", m.getHour(), "Minute", m.getMinute(), "AlarmID", m.getAlarmID(), "Dosage", m.getDosage()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    "MedicineTypeName", m.getMedicineTypeName(), "Hour", m.getHour(), "Minute", m.getMinute(), "AlarmID", m.getAlarmID(), "Dosage", m.getDosage(), "NotifyChoice", m.getNotifyChoice() ).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void avoid) {
                     alarmManager.setExact(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), pendingIntent);

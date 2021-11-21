@@ -137,11 +137,27 @@
         android:backgroundTint="#FDCB00"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toStartOf="@+id/guideline78"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline28"
         app:layout_constraintTop_toBottomOf="@+id/type_txt" />
 
     <TextView
-        android:id="@+id/time_txt1"
+        android:id="@+id/notifyTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/viga"
+        android:text="Notification for inventory"
+        android:textColor="#000000"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/timeButtonmed"
+        app:layout_constraintEnd_toStartOf="@+id/guideline79"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline28"
+        app:layout_constraintTop_toBottomOf="@+id/guideline2"
+        app:layout_constraintVertical_bias="0.777" />
+
+    <TextView
+        android:id="@+id/time_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/viga"
@@ -150,7 +166,23 @@
         android:textSize="21sp"
         app:layout_constraintBottom_toTopOf="@+id/timeButtonmed"
         app:layout_constraintStart_toStartOf="@+id/guideline80"
-        app:layout_constraintTop_toBottomOf="@+id/guideline2" />
+        app:layout_constraintTop_toBottomOf="@+id/guideline2"
+        app:layout_constraintVertical_bias="0.473" />
+
+    <Button
+        android:id="@+id/notifbutton"
+        android:layout_width="0dp"
+        android:layout_height="51dp"
+        android:width="125dp"
+        android:height="50dp"
+        android:background="@drawable/edittext3"
+        android:gravity="center"
+        android:text="YES"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        app:layout_constraintEnd_toStartOf="@+id/guideline79"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline28" />
 
     <Button
         android:id="@+id/timeButtonmed"
@@ -166,7 +198,9 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintEnd_toStartOf="@+id/guideline81"
         app:layout_constraintStart_toStartOf="@+id/guideline80"
-        app:layout_constraintTop_toBottomOf="@+id/time_txt1" />
+        />
+
+
 
     <TextView
         android:id="@+id/frequency_txt1"
@@ -367,11 +401,23 @@
         android:id="@+id/typehelp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/DosageBox"
+        app:layout_constraintBottom_toTopOf="@+id/type_spinner_one"
+        app:layout_constraintEnd_toStartOf="@+id/guideline79"
+        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintStart_toEndOf="@+id/inventory_txt"
+        app:layout_constraintTop_toTopOf="@+id/guideline1"
+        app:layout_constraintVertical_bias="0.636"
+        app:srcCompat="@drawable/help" />
+
+    <ImageView
+        android:id="@+id/inventoryhelp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/inventoryBox"
         app:layout_constraintEnd_toStartOf="@+id/guideline79"
         app:layout_constraintHorizontal_bias="0.3"
-        app:layout_constraintStart_toEndOf="@+id/type_txt"
-        app:layout_constraintTop_toBottomOf="@+id/medicine_Box"
+        app:layout_constraintStart_toEndOf="@+id/inventory_txt"
+        app:layout_constraintTop_toTopOf="@+id/guideline3"
         app:layout_constraintVertical_bias="0.473"
         app:srcCompat="@drawable/help" />
 

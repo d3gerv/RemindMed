@@ -8,7 +8,7 @@ import java.sql.Time;
 import java.util.Date;
 
 public class medication_info implements Serializable {
-    String Medication, InventoryMeds, Dosage, Time, FrequencyName, MedicineTypeName;
+    String Medication, InventoryMeds, Dosage, Time, FrequencyName, MedicineTypeName, NotifyChoice;
     Date StartDate, EndDate;
     int MedicineType, Frequency, PillStatic, Hour, Minute, AlarmID;
     @Exclude  private String id;
@@ -18,7 +18,7 @@ public class medication_info implements Serializable {
 
     public medication_info(String Medication, String InventoryMeds, Date StartDate,
                            String Time, Date EndDate, String MedicineTypeMame,
-                           String FrequencyName, int Frequency, int Hour, int Minute, int AlarmID, String Dosage )
+                           String FrequencyName, int Frequency, int Hour, int Minute, int AlarmID, String Dosage, String NotifyChoice )
     {
         this.Medication = Medication;
         this.InventoryMeds = InventoryMeds;
@@ -32,9 +32,18 @@ public class medication_info implements Serializable {
         this.Minute = Minute;
         this.AlarmID = AlarmID;
         this.Dosage =Dosage;
+        this. NotifyChoice = NotifyChoice;
 
 
         this.id = id;
+    }
+
+    public String getNotifyChoice() {
+        return NotifyChoice;
+    }
+
+    public void setNotifyChoice(String notifyChoice) {
+        NotifyChoice = notifyChoice;
     }
 
     public String getId() {

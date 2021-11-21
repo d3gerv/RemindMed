@@ -57,17 +57,17 @@ public class MyMedicationAdapter extends RecyclerView.Adapter<MyMedicationAdapte
         Log.d("text", "test" + inventory);
 
         int intInv = inventory;
-        if (Integer.parseInt(medication_info.getInventoryMeds())  > intInv/2 )
+        if (Integer.parseInt(medication_info.getInventoryMeds())  > intInv/2 && medication_info.NotifyChoice.equals("YES") )
         {
             holder.constraintLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.green));
         }
-        else if(Integer.parseInt(medication_info.getInventoryMeds()) <= intInv/4  && Integer.parseInt(medication_info.getInventoryMeds()) > 2 )
+        else if(Integer.parseInt(medication_info.getInventoryMeds()) <= intInv/4  && Integer.parseInt(medication_info.getInventoryMeds()) > 2 && medication_info.NotifyChoice.equals("YES"))
         {
             holder.constraintLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.orange));
         }
-        else if(Integer.parseInt(medication_info.getInventoryMeds())  <= 2)
+        else if(Integer.parseInt(medication_info.getInventoryMeds())  <= 2 && medication_info.NotifyChoice.equals("YES"))
         {
-            holder.constraintLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.red1));
+            holder.constraintLayout.setBackgroundColor(ContextCompat.getColor(context, R.color.red1) );
         }
 
 
@@ -99,6 +99,7 @@ public class MyMedicationAdapter extends RecyclerView.Adapter<MyMedicationAdapte
                         intent.putExtra("frequency", medication_info.Frequency);
                         intent.putExtra("Hour", medication_info.Hour);
                         intent.putExtra("Minute", medication_info.Minute);
+                        intent.putExtra("NotifyChoice", medication_info.NotifyChoice);
                         intent.putExtra("AlarmID", medication_info.AlarmID);
 
 

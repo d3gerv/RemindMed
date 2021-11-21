@@ -52,7 +52,7 @@ import java.util.Random;
 
 public class intake_confirmation extends AppCompatActivity {
     TextView medName, medAmount, dateTakentxt;
-    String title, amount, time, date, enddate, dosage, userId, text;
+    String title, amount, time, date, enddate, dosage, userId, text, notify;
     Date myDate;
     int alarmYear, alarmMonth, alarmDay,alarmHour,alarmMin, id ,freq, alarmID;
     Calendar myAlarmDate = Calendar.getInstance();
@@ -159,7 +159,7 @@ public class intake_confirmation extends AppCompatActivity {
 
                     }
                     saveToHistory();
-                    if(Integer.parseInt(medication_info.getInventoryMeds())  <= medication_info.getPillStatic()/2)
+                    if(Integer.parseInt(medication_info.getInventoryMeds())  <= medication_info.getPillStatic()/2 &&  notify.equals("YES"))
                     {
                         NotificationCompat.Builder mBuilder = (NotificationCompat.Builder)
                                 new NotificationCompat.Builder(intake_confirmation.this, "abnormalbp");
@@ -248,6 +248,7 @@ public class intake_confirmation extends AppCompatActivity {
             alarmHour = getIntent().getIntExtra("Hour", 0);
             alarmMin =getIntent().getIntExtra("Minute", 0);
             alarmID = getIntent().getIntExtra("AlarnID",0 );
+            notify = getIntent().getStringExtra("NotifyChoce");
 
         } else {
             Toast.makeText(this, "No Data", Toast.LENGTH_SHORT).show();
@@ -269,7 +270,7 @@ public class intake_confirmation extends AppCompatActivity {
 
         amount = Integer.toString(inv);
         medication_info m = new medication_info(title, amount, getDateFromString(date), time, getDateFromString(enddate), medtype,
-                frequency, freq,alarmHour, alarmMin, alarmID, dosage);
+                frequency, freq,alarmHour, alarmMin, alarmID, dosage, notify);
 
         db.collection("users").document(currentFirebaseUser.getUid()).collection("New Medications")
                 .document(medication_info.getId()).update("InventoryMeds", m.getInventoryMeds())
