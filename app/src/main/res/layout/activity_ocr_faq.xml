@@ -8,9 +8,11 @@
 
     <TextView
         android:id="@+id/textView29"
-        android:layout_width="369dp"
+        android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
+        android:paddingStart="10dp"
+
         android:text="Optional: You can paste the scanned name for scheduling by click paste Medicine name."
         android:textColor="#000000"
         android:textSize="16sp"
@@ -21,9 +23,10 @@
 
     <TextView
         android:id="@+id/textView28"
-        android:layout_width="349dp"
+        android:layout_width="0dp"
         android:layout_height="47dp"
         android:layout_marginTop="16dp"
+        android:paddingStart="10dp"
         android:text="7. Click Crop on the upper right corner of the screen."
         android:textColor="#000000"
         android:textSize="16sp"
@@ -34,9 +37,10 @@
 
     <TextView
         android:id="@+id/textView27"
-        android:layout_width="357dp"
+        android:layout_width="0dp"
         android:layout_height="41dp"
         android:layout_marginTop="16dp"
+        android:paddingStart="10dp"
         android:text="6. Crop the image for a clearer scan of the medicine name"
         android:textColor="#000000"
         android:textSize="16sp"
@@ -47,9 +51,10 @@
 
     <TextView
         android:id="@+id/textView26"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:paddingStart="10dp"
         android:text="5. Click the check button."
         android:textColor="#000000"
         android:textSize="16sp"
@@ -60,10 +65,11 @@
 
     <TextView
         android:id="@+id/textView25"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:text="4. Take a picture of the medicine."
+        android:paddingStart="10dp"
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -73,9 +79,10 @@
 
     <TextView
         android:id="@+id/textView24"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:paddingStart="10dp"
         android:text="3. Click Scan"
         android:textColor="#000000"
         android:textSize="16sp"
@@ -105,8 +112,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.666"
         app:srcCompat="@drawable/backarrow" />
-
 
     <TextView
         android:id="@+id/FAQ"
@@ -139,7 +146,7 @@
 
     <TextView
         android:id="@+id/textView14"
-        android:layout_width="380dp"
+        android:layout_width="0dp"
         android:layout_height="53dp"
         android:layout_marginTop="8dp"
         android:text="How to use OCR (Optical Character Recognition)"
@@ -153,9 +160,10 @@
 
     <TextView
         android:id="@+id/textView20"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:paddingStart="10dp"
         android:text="1. Go to Add Medications."
         android:textColor="#000000"
         android:textSize="16sp"
@@ -166,8 +174,9 @@
 
     <TextView
         android:id="@+id/textView23"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:paddingStart="10dp"
         android:layout_marginTop="16dp"
         android:text='2. Click the "Scan" icon beside Medicine name.'
         android:textColor="#000000"

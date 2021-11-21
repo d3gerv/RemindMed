@@ -23,6 +23,7 @@
         android:layout_width="40dp"
         android:layout_height="68dp"
         android:backgroundTint="#E73927"
+        android:onClick="Faq_To_User"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -41,8 +42,10 @@
             android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/FAQ_OCR"
@@ -52,6 +55,7 @@
                 android:layout_marginTop="123dp"
                 android:layout_marginEnd="15dp"
                 android:layout_marginBottom="30dp"
+                android:onClick="FAQOCR_Faq"
                 app:cardBackgroundColor="#FDCB00"
                 app:cardCornerRadius="20dp"
                 app:cardMaxElevation="20dp"
@@ -67,8 +71,8 @@
                     <TextView
                         android:id="@+id/use_of_OCR"
                         android:layout_width="0dp"
-                        android:paddingStart="5dp"
                         android:layout_height="55dp"
+                        android:paddingStart="5dp"
                         android:text="How to use OCR (Optical Character Recognition)"
                         android:textColor="#000000"
                         android:textSize="20sp"
@@ -103,9 +107,10 @@
 
                     <TextView
                         android:id="@+id/use_of_TTS2"
-                        android:paddingStart="5dp"
                         android:layout_width="0dp"
                         android:layout_height="29dp"
+                        android:onClick="FAQUnit_Faq"
+                        android:paddingStart="5dp"
                         android:text="What is type/unit in medications?"
                         android:textColor="#000000"
                         android:textSize="20sp"
@@ -126,6 +131,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="17dp"
                 android:layout_marginBottom="42dp"
+                android:onClick="FAQTTS_Faq"
                 app:cardBackgroundColor="#FDCB00"
                 app:cardCornerRadius="20dp"
                 app:cardMaxElevation="20dp"
@@ -141,8 +147,8 @@
                     <TextView
                         android:id="@+id/use_of_TTS"
                         android:layout_width="0dp"
-                        android:paddingStart="5dp"
                         android:layout_height="55dp"
+                        android:paddingStart="5dp"
                         android:text="How to use Text-to-speech in our application"
                         android:textColor="#000000"
                         android:textSize="20sp"
