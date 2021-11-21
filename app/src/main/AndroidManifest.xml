@@ -18,7 +18,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Capstone1">
         <activity
-            android:name=".TypeUnit_FAQ"
+            android:name=".FAQTTS"
+            android:exported="true" />
+        <activity
+            android:name=".TYPE_FAQ"
             android:exported="true" />
         <activity
             android:name=".OCR_FAQ"
