@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TTS_FAQ">
+    tools:context=".FAQTTS">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -23,6 +23,7 @@
         android:layout_width="40dp"
         android:layout_height="68dp"
         android:backgroundTint="#E73927"
+        android:onClick="FaqTTS_To_User"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

@@ -6,17 +6,15 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class OCR_FAQ extends AppCompatActivity {
+public class TYPE_FAQ extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ocr_faq);
-
+        setContentView(R.layout.activity_type_faq);
     }
-
-    public void FacOcr_To_Faq(View view) {
-        Intent intent = new Intent(OCR_FAQ.this, Faq.class);
+    public void FaqType_To_User(View view) {
+        Intent intent = new Intent(TYPE_FAQ.this, Faq.class);
         startActivity(intent);
     }
 }
