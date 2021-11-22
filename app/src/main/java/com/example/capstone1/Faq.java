@@ -117,4 +117,8 @@ public class Faq extends AppCompatActivity {
         Intent intent = new Intent(Faq.this, TYPE_FAQ.class);
         startActivity(intent);
     }
+    public void GuestFAQ_Faq(View view){
+        Intent intent = new Intent(Faq.this, Guest_FAQ.class);
+        startActivity(intent);
+    }
 }

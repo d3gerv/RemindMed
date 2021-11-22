@@ -18,6 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Capstone1">
         <activity
+            android:name=".Guest_FAQ"
+            android:exported="true"/>
+        <activity
             android:name=".FAQTTS"
             android:exported="true" />
         <activity
