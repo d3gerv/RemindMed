@@ -76,4 +76,9 @@ public class guestLogout extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void Guest_To_FAQ(View view) {
+        Intent intent = new Intent(guestLogout.this, Faq.class);
+        startActivity(intent);
+    }
+
 }
