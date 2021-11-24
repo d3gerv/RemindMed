@@ -14,6 +14,7 @@
         android:focusable="true"
         app:backgroundTint="#FFFFFF"
         app:fabSize="mini"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/captureButton"
         app:layout_constraintEnd_toStartOf="@+id/guideline90"
         app:layout_constraintHorizontal_bias="0.0"
@@ -149,14 +150,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent=".20" />
+        app:layout_constraintGuide_percent=".10" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline89"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent=".80" />
+        app:layout_constraintGuide_percent=".90" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline90"

@@ -165,6 +165,7 @@
                 android:layout_height="78dp"
                 android:layout_marginTop="37dp"
                 android:onClick="GuestFAQ_Faq"
+                android:visibility="invisible"
                 app:cardBackgroundColor="#FDCB00"
                 app:cardCornerRadius="20dp"
                 app:cardMaxElevation="20dp"

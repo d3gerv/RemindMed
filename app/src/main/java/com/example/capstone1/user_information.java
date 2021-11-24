@@ -5,9 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,13 +37,14 @@ import java.util.Map;
 public class user_information extends AppCompatActivity {
     public static final String TAG = "TAG";
     EditText birthyr, height, weight;
+    int weightChoice, heightChoice;
     Button buttonSave, buttonLogout, buttonDeleteAcc;
     TextView email, firstname, lastname, faq;
     FirebaseAuth rootAuthen;
     FirebaseFirestore fstore;
     FirebaseUser firebaseUser;
-    String userId, genderDB;
-
+    String userId, genderDB, weightName, heightName;
+    Spinner spnWeight, spnHeight;
     Spinner spinner;
 
 
@@ -63,6 +67,8 @@ public class user_information extends AppCompatActivity {
         fstore = FirebaseFirestore.getInstance();
         firebaseUser = rootAuthen.getCurrentUser();
         faq = (TextView)findViewById(R.id.FAQ);
+        spnHeight = findViewById(R.id.spinnerHeight);
+        spnWeight = findViewById(R.id.spinnerWeight);
         faq.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,6 +76,43 @@ public class user_information extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        ArrayAdapter<String> adapterWeight = new ArrayAdapter<String>(user_information.this,
+                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array
+                .weight));
+        adapterWeight.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnWeight.setAdapter(adapterWeight);
+
+        ArrayAdapter<String> adapterHeight = new ArrayAdapter<String>(user_information.this,
+                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.height));
+
+        adapterWeight.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnHeight.setAdapter(adapterHeight);
+
+        spnWeight.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                weightChoice = position;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        spnHeight.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                heightChoice = position;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
 
 
         userId = rootAuthen.getCurrentUser().getUid();
@@ -86,6 +129,8 @@ public class user_information extends AppCompatActivity {
                 String Birthyr = birthyr.getText().toString().trim();
                 String Height = height.getText().toString().trim();
                 String Weight = weight.getText().toString().trim();
+                heightName = spnHeight.getSelectedItem().toString();
+                weightName = spnWeight.getSelectedItem().toString();
 
                 if (spinner.getSelectedItemPosition() == 0) {
                     Toast.makeText(getApplicationContext(), "Please select gender", Toast.LENGTH_SHORT).show();
@@ -97,6 +142,12 @@ public class user_information extends AppCompatActivity {
                 user.put("birthyr", Birthyr);
                 user.put("height", Height);
                 user.put("weight", Weight);
+                user.put("weightChoice", weightChoice);
+                user.put("weightName", weightName);
+
+                user.put("heightChoice", heightChoice);
+                user.put("heightName", heightName);
+
 
                 fstore.collection("users").document(userId).set(user, SetOptions.merge()).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -118,6 +169,21 @@ public class user_information extends AppCompatActivity {
                     Log.w(TAG, "listen:error", error);
                     return;
                 }
+                heightName = value.getString("heightName");
+                weightName = value.getString("weightName");
+                if(spnHeight!=null)
+                {
+                    int pos = adapterHeight.getPosition(heightName);
+                    spnHeight.setSelection(pos);
+                }
+
+                if(spnWeight!=null)
+                {
+                    int pos = adapterWeight.getPosition(weightName);
+                    spnWeight.setSelection(pos);
+                }
+
+
 
                 email.setText(value.getString("email"));
                 //firstname.setText(value.getString("firstname"));

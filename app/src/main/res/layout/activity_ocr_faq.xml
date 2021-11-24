@@ -8,12 +8,12 @@
 
     <TextView
         android:id="@+id/textView29"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="387dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="8dp"
         android:paddingStart="10dp"
 
-        android:text="Optional: You can paste the scanned name for scheduling by click paste Medicine name."
+        android:text="Optional: You can paste the scanned name for scheduling by click paste Medicine name. same steps are also used for pasting the inventory "
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline75"
@@ -23,14 +23,14 @@
 
     <TextView
         android:id="@+id/textView28"
-        android:layout_width="393dp"
+        android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginTop="12dp"
         android:paddingStart="10dp"
         android:text="7. Click Crop on the upper right corner of the screen."
         android:textColor="#000000"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline75"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline74"
         app:layout_constraintTop_toBottomOf="@+id/textView27" />
@@ -146,14 +146,14 @@
 
     <TextView
         android:id="@+id/textView14"
-        android:layout_width="385dp"
+        android:layout_width="0dp"
         android:layout_height="92dp"
         android:layout_marginTop="8dp"
         android:text="How to use OCR (Optical Character Recognition)"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="34sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline75"
         app:layout_constraintHorizontal_bias="0.21"
         app:layout_constraintStart_toStartOf="@+id/guideline74"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
@@ -178,7 +178,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:paddingStart="10dp"
-        android:text='2. Click the "Scan" icon beside Medicine name.'
+        android:text='2. Click the "Scan" icon beside Medicine name or beside the the inventory .'
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline75"
