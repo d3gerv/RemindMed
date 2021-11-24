@@ -23,6 +23,7 @@
         android:layout_width="40dp"
         android:layout_height="68dp"
         android:backgroundTint="#E73927"
+        android:onClick="GuestFAQ_Faq"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
